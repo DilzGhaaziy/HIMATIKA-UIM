@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIMASI - "Selamat Datang di Situs Web HIMASI FST Unja"</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        himasiBlue: '#0d72bf',
+                        himasiDark: '#363537',
+                        textDark: '#444444'
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Raleway', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Custom Background Hero */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://himasi.unja.ac.id/wp-content/uploads/2025/05/IMG_9841-e1747789829178.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="font-sans text-textDark bg-[#001436] overflow-x-hidden">
+
+    <nav class="bg-[#1B427B] shadow-md fixed w-full z-50 top-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html">
+                        <img class="h-14 w-auto rounded px-2" src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="HIMATIKA Logo">
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-white font-medium hover:text-gray-300">Beranda</a>
+                    <a href="#" class="text-gray-200 font-medium hover:text-white">Program Kerja</a>
+                    
+                    <div class="relative group cursor-pointer py-6">
+                        <span class="text-gray-200 font-medium group-hover:text-white">Departemen <i class="fas fa-chevron-down text-xs ml-1"></i></span>
+                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="struktur.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Komunikasi dan Informasi</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pemuda dan Olahraga</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Agama</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pengembangan dan SDM</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue">Kesejahteraan Mahasiswa</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="text-gray-200 font-medium hover:text-white">Berita</a>
+                    <a href="#" class="text-gray-200 font-medium hover:text-white">Galeri</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-white hover:text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 mt-20 md:mt-0 m-0 border-none">
+        <h1 class="text-3xl md:text-5xl font-bold text-white drop-shadow-md tracking-wide mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
+        <h2 class="text-2xl md:text-4xl font-bold text-[#2B569B] drop-shadow-md tracking-wide">UNIVERSITAS INDONESIA MANDIRI</h2>
+    </section>
+
+    <section class="bg-[#1B427B] py-16 m-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <h2 class="text-3xl font-heading font-bold text-white mb-6">Tentang Kami</h2>
+                    <p class="text-gray-200 leading-relaxed mb-6">
+                        Himpunan Mahasiswa Informatika (HIMATIKA) adalah sekumpulan mahasiswa berdedikasi yang berkomitmen untuk memajukan organisasi dan menciptakan lingkungan yang mendukung pertumbuhan akademik, profesional, dan sosial. Dengan semangat kolaborasi dan inovasi, kami bekerja bersama untuk memberikan kontribusi terbaik bagi mahasiswa/i Informatika.
+                    </p>
+                    <a href="#" class="inline-block bg-white text-[#1B427B] font-bold py-3 px-8 rounded shadow hover:bg-gray-200 transition duration-300">
+                        Selengkapnya
+                    </a>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="flex flex-col items-start">
+                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-globe"></i></div>
+                        <h3 class="font-heading font-bold text-xl text-white">Membangun Jaringan dan Kolaborasi</h3>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-book"></i></div>
+                        <h3 class="font-heading font-bold text-xl text-white">Berbagi Pengetahuan dan Pengalaman</h3>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="flex flex-col items-start">
+                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-id-card"></i></div>
+                        <h3 class="font-heading font-bold text-xl text-white">Pengembangan Profesionalisme</h3>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-project-diagram"></i></div>
+                        <h3 class="font-heading font-bold text-xl text-white">Mengembangkan Proyek Bersama</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[#001D4D] py-16 m-0 border-none">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-heading font-bold text-white mb-12">Pimpinan Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="flex flex-col items-center">
+                    <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" alt="Nazril Abdillah" class="w-64 h-80 object-cover rounded shadow-lg mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">Nazril Abdillah</h3>
+                    <p class="text-gray-300 text-center">Ketua Himpunan Mahasiswa Informatika 2025-2026</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" alt="I Kadek Febrianto Indrajaya" class="w-64 h-80 object-cover rounded shadow-lg mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-2">I Kadek Febrianto Indrajaya</h3>
+                    <p class="text-gray-300 text-center">Wakil Ketua Himpunan Mahasiswa Informatika 2025-2026</p>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <a href="#" class="inline-block bg-himasiBlue text-white font-bold py-3 px-8 rounded shadow hover:bg-blue-700 transition duration-300">
+                    LIAT SEMUA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[url('https://i.ibb.co.com/hJCS6dJs/Proyek-Baru-42-F052-DAB.png')] bg-[length:100%_100%] bg-no-repeat pt-24 pb-16 m-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="inline-block bg-[#001A3D] py-4 px-8 rounded-2xl shadow-lg mb-12">
+                <h2 class="text-2xl font-heading font-bold text-white">Kepengurusan HIMATIKA</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mix-blend-difference text-white">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-headset text-5xl mb-4"></i>
+                    <span class="text-5xl font-bold mb-2">67</span>
+                    <span class="font-medium">Jumlah Pengurus Himatika</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-journal-whills text-5xl mb-4"></i>
+                    <span class="text-5xl font-bold mb-2">8</span>
+                    <span class="font-medium">Total Departemen</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-smile text-5xl mb-4"></i>
+                    <span class="text-5xl font-bold mb-2">400++</span>
+                    <span class="font-medium">Anggota Himatika</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[url('https://i.ibb.co.com/Tx0djxwL/Proyek-Baru-49-9-E460-C2.png')] bg-[length:100%_100%] bg-no-repeat py-20 text-center m-0 border-none">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center md:space-x-8">
+            <a href="https://uimandiri.ac.id/" target="_blank" class="w-40 md:w-56 block mb-8 md:mb-0">
+                <img src="https://i.ibb.co.com/PzYTswGN/Proyek-Baru-51-E62-F390.png" alt="Ornamen Kiri" class="w-full object-contain drop-shadow-xl hover:scale-105 transition-transform">
+            </a>
+
+            <div class="w-full max-w-2xl bg-[url('https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png')] bg-contain bg-center bg-no-repeat py-20 px-6 rounded-xl flex flex-col items-center justify-center">
+                <h2 class="text-3xl font-heading font-bold text-white mb-8 drop-shadow-md">Social Media</h2>
+                <div class="flex justify-center space-x-8">
+                    <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/uimandiri_official/" target="_blank" class="text-white hover:text-himasiBlue text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <img src="https://i.ibb.co.com/8gsdLSTM/Proyek-Baru-51-68-BC19-E.png" alt="Ornamen Kanan" class="w-40 md:w-56 object-contain mt-8 md:mt-0 drop-shadow-xl hover:scale-105 transition-transform">
+        </div>
+    </section>
+
+    <section class="bg-[url('https://i.ibb.co.com/9m3FYdHc/Proyek-Baru-42-14-C2486.png')] bg-[length:100%_100%] bg-no-repeat pt-24 pb-16 m-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block bg-[#001A3D] py-4 px-10 rounded-2xl shadow-lg mb-12">
+                <h2 class="text-3xl font-heading font-bold text-white">BACA BERITA DARI HIMATIKA UIM</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                    <img src="https://himasi.unja.ac.id/wp-content/uploads/2026/03/Picture1.jpg" alt="WhoFi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Tanpa Kamera, Tanpa HP: Teknologi WhoFi yang Bisa "Mengenali" Kamu dari Wi-Fi</h4>
+                        <div class="text-xs text-gray-500 mb-3 font-semibold">
+                            <span>March 23, 2026</span> • <span class="text-himasiBlue uppercase">Informasi Keilmuan</span>
+                        </div>
+                        <p class="text-gray-600 text-sm line-clamp-3">Pemanfaatan sinyal WiFi untuk konektivitas dan pemantauan aktivitas Pernah merasa teknologi di sekitar kita...</p>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                    <img src="https://himasi.unja.ac.id/wp-content/uploads/2026/02/gambar1.jpeg" alt="RAM" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Kelangkaan Stok RAM di Era AI: Penyebab, Dampak, Durasi Tren & Upaya Alternatif Produsen</h4>
+                        <div class="text-xs text-gray-500 mb-3 font-semibold">
+                            <span>February 21, 2026</span> • <span class="text-himasiBlue uppercase">Berita</span>
+                        </div>
+                        <p class="text-gray-600 text-sm line-clamp-3">Detail RAM Lonjakan kebutuhan komputasi kecerdasan buatan dalam dua tahun terakhir tidak hanya meningkatkan...</p>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                    <img src="https://himasi.unja.ac.id/wp-content/uploads/2025/08/IMG_5596-scaled-e1756000398601.jpg" alt="Study Club" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Study Club Batch 5 : Mobile Application Development & Pemrograman Web Dasar</h4>
+                        <div class="text-xs text-gray-500 mb-3 font-semibold">
+                            <span>August 24, 2025</span> • <span class="text-himasiBlue uppercase">Kegiatan</span>
+                        </div>
+                        <p class="text-gray-600 text-sm line-clamp-3">Study Club Batch 5 Himpunan Mahasiswa Sistem Informasi (HIMASI) Universitas Jambi kembali menunjukkan komitmennya...</p>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                    <img src="https://himasi.unja.ac.id/wp-content/uploads/2025/06/DSC_1517-scaled.jpg" alt="Dies Natalis" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">"Shining in Elegance, Rising with the Excellence”: Semarak Penutupan Dies Natalis Sistem Informasi ke-12 Universitas Jambi</h4>
+                        <div class="text-xs text-gray-500 mb-3 font-semibold">
+                            <span>June 29, 2025</span> • <span class="text-himasiBlue uppercase">Kegiatan</span>
+                        </div>
+                        <p class="text-gray-600 text-sm line-clamp-3">Suasana hangat dan meriah menyelimuti Teras Mendalo pada Jumat malam, 20 Juni 2025, seluruh...</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[linear-gradient(to_bottom,#001C44_0px,#F5F4F1_50px,#F5F4F1_100%)] py-20 m-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <h2 class="text-4xl font-heading font-bold text-gray-800 mb-6">Lokasi Kampus Kami</h2>
+                    <div class="flex items-start text-gray-600 text-lg">
+                        <i class="fas fa-map-marker-alt text-himasiBlue mt-1 mr-4 text-3xl"></i>
+                        <p>
+                            <strong>Alamat :</strong><br>
+                            6P77+5VQ, Jl. Lintas Sumatera, Tj. Heran, Kec. Penengahan, Kabupaten Lampung Selatan, Lampung 35592.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.484031081758!2d105.7147533!3d-5.7870894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410b001b7db41d%3A0xd6d561cd88b415b!2sUNIVERSITAS%20INDONESIA%20MANDIRI!5e0!3m2!1sid!2sid!4v1776189049955!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#001436] py-6 m-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 text-right">
+            <p class="text-gray-400 text-sm">Developed by Gilang Aidil Pratama / Dilz Ghaaziy</p>
+        </div>
+    </footer>
+
+</body>
+</html>
