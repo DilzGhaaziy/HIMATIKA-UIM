@@ -430,16 +430,16 @@
         // ==========================================
         // 1. MASUKKAN KONFIGURASI FIREBASE ANDA DI SINI
         // ==========================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyCPUO6gazqj97i4Rj8NlmKzdJu764CZ_0g",
-            authDomain: "himatika-uim.firebaseapp.com",
-            databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "himatika-uim",
-            storageBucket: "himatika-uim.firebasestorage.app",
-            messagingSenderId: "829701559786",
-            appId: "1:829701559786:web:a81cbb4bda51c41ed44e93"
-			measurementId: "G-LVPX6SQ67K"
-        };
+const firebaseConfig = {
+    apiKey: "AIzaSyCPUO6gazqj97i4Rj8NlmKzdJu764CZ_0g",
+    authDomain: "himatika-uim.firebaseapp.com",
+    databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "himatika-uim",
+    storageBucket: "himatika-uim.firebasestorage.app",
+    messagingSenderId: "829701559786",
+    appId: "1:829701559786:web:a81cbb4bda51c41ed44e93", // <-- Tambahkan koma di sini
+    measurementId: "G-LVPX6SQ67K"
+};
         
         // Inisialisasi Firebase
         firebase.initializeApp(firebaseConfig);
