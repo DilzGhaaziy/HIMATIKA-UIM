@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi dengan Aurora</title>
+    <style>
+        /* --- Reset & Pengaturan Umum --- */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000510;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* --- Latar Belakang Aurora (Fixed) --- */
+        .aurora-bg { 
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100vw; 
+            height: 100vh; 
+            z-index: -1;
+            background-image: linear-gradient(135deg, #001233 0%, #003060 100%);
+            overflow: hidden;
+            contain: strict; 
+            transform: translateZ(0);
+        }
+
+        .glow {
+            position: absolute; 
+            border-radius: 50%;
+            filter: blur(60px); 
+            opacity: 0.7; 
+            mix-blend-mode: screen;
+            will-change: transform;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        .glow-1 {
+            width: 80vw; height: 80vh; background: linear-gradient(45deg, #00fff2, #00a2ff);
+            bottom: -20%; left: -20%; 
+            transform: translate3d(0,0,0) rotate(20deg) skewX(-20deg);
+            animation: drift1 10s infinite alternate ease-in-out;
+        }
+
+        .glow-2 {
+            width: 90vw; height: 70vh; background: linear-gradient(120deg, #0061ff, #001eff);
+            top: -10%; right: -10%; opacity: 0.6;
+            transform: translate3d(0,0,0) rotate(-30deg);
+            animation: drift2 15s infinite alternate-reverse ease-in-out;
+        }
+
+        .glow-3 {
+            width: 100vw; height: 40vh;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 234, 0.4), transparent 70%);
+            top: 30%; left: 10%; 
+            filter: blur(50px); opacity: 0.5;
+            transform: translate3d(0,0,0) rotate(-45deg) scaleY(0.5);
+        }
+
+        .stars, .stars-sm {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            will-change: background-position;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        .stars {
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #a3d5ff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 200px 200px, #ffffff, rgba(0,0,0,0));
+            background-size: 250px 250px; 
+            opacity: 0.6;
+            animation: moveUpSmall 20s linear infinite;
+        }
+
+        .stars-sm {
+            background-image: 
+                radial-gradient(1px 1px at 100px 50px, #fff, transparent),
+                radial-gradient(1px 1px at 200px 150px, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 300px 250px, #00fff2, transparent);
+            background-size: 350px 350px;
+            opacity: 0.4;
+            animation: moveUpLarge 30s linear infinite;
+        }
+
+        /* --- Animasi --- */
+        @keyframes drift1 {
+            0% { transform: translate3d(0, 0, 0) rotate(20deg) skewX(-20deg); }
+            100% { transform: translate3d(20px, -20px, 0) rotate(25deg) skewX(-15deg); }
+        }
+
+        @keyframes drift2 {
+            0% { transform: translate3d(0, 0, 0) rotate(-30deg); }
+            100% { transform: translate3d(-20px, 20px, 0) rotate(-25deg); }
+        }
+
+        @keyframes moveUpSmall {
+            from { background-position: 0 0; }
+            to   { background-position: 0 -250px; }
+        }
+
+        @keyframes moveUpLarge {
+            from { background-position: 0 0; }
+            to   { background-position: 0 -350px; }
+        }
+
+        /* --- Konten Struktur Organisasi --- */
+        .org-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .row-1 { gap: 30px; }
+        .row-2 { gap: 60px; }
+        .row-3 { gap: 20px; }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            text-align: center;
+            cursor: pointer; /* Indikator bahwa grid bisa diklik */
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Efek sedikit membesar saat diarahkan mouse */
+        }
+
+        .photo-box {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 4px;
+            box-shadow: 0 4px 15px rgba(0, 255, 234, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title {
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+
+        /* --- Fitur Modal (Galeri Gambar Besar dengan Navigasi) --- */
+        .modal-overlay {
+            display: none; /* Sembunyi secara default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 90%;
+            max-height: 80vh; /* Sesuaikan agar muat judul */
+        }
+
+        .modal-content {
+            max-width: 100%;
+            max-height: calc(80vh - 40px); /* Kurangi untuk judul */
+            border: 5px solid #ffffff; /* Border putih */
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 255, 234, 0.5);
+            object-fit: contain;
+        }
+
+        .modal-title {
+            color: white;
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+
+        /* --- Tombol Tutup diperbarui --- */
+        .btn-tutup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            margin-top: 0;
+            padding: 10px 25px;
+            background: linear-gradient(45deg, #00fff2, #0061ff);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 97, 255, 0.4);
+            transition: transform 0.2s;
+            z-index: 2002; /* Di atas segalanya */
+        }
+
+        .btn-tutup:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #0061ff, #00fff2);
+        }
+
+        /* --- Tombol Panah Navigasi SVG --- */
+        .prev-btn, .next-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.2s;
+            z-index: 2001; /* Di atas gambar modal tapi di bawah tombol tutup */
+            padding: 0; /* Hapus padding default tombol */
+        }
+
+        .prev-btn { left: 30px; }
+        .next-btn { right: 30px; }
+
+        .prev-btn svg, .next-btn svg {
+            width: 36px;
+            height: 36px;
+            fill: white; /* Warna ikon putih */
+            transition: fill 0.3s ease;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background-color: rgba(0, 255, 234, 0.7); /* Warna aurora saat hover */
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn:hover svg, .next-btn:hover svg {
+            fill: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aurora-bg">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+        <div class="stars"></div>
+        <div class="stars-sm"></div>
+    </div>
+
+    <div class="modal-overlay" id="imageModal">
+        <button class="prev-btn" onclick="prevImage(event)">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        
+        <div class="modal-content-container">
+            <img class="modal-content" id="imgFull" src="" alt="Gambar Besar">
+            <div class="modal-title" id="modalTitle"></div>
+        </div>
+
+        <button class="next-btn" onclick="nextImage(event)">
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+        
+        <button class="btn-tutup" onclick="closeModal()">TUTUP</button>
+    </div>
+
+    <div class="org-container">
+        <div class="row row-1">
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/Kxr4sd4y/Proyek-Baru-69-52-C7895.png" alt="Foto Ketua">
+                </div>
+                <div class="title">Ketua</div>
+            </div>
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/gbVCQGLq/Proyek-Baru-69-285-CF79.png" alt="Foto Wakil Ketua">
+                </div>
+                <div class="title">Wakil Ketua</div>
+            </div>
+        </div>
+
+        <div class="row row-2">
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/fzPRds4b/profil-departemen-card-himatika-Copy-Copy-4-Copy-Copy-62-F7-F1-F.png" alt="Foto Sekretaris">
+                </div>
+                <div class="title">Sekretaris</div>
+            </div>
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/WvLwHXzv/profil-departemen-card-himatika-Copy-Copy-4-3-F39056.png" alt="Foto Bendahara">
+                </div>
+                <div class="title">Bendahara</div>
+            </div>
+        </div>
+
+        <div class="row row-3">
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/0LpBMNS/profil-departemen-card-himatika-Copy-Copy-AAF6878.png" alt="Dept Kominfo">
+                </div>
+                <div class="title">Departemen <br> Komunikasi dan Informasi</div>
+            </div>
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/WYCKLhF/profil-departemen-card-himatika-Copy-2-F9-E07-D.png" alt="Dept Pemuda Olahraga">
+                </div>
+                <div class="title">Departemen <br> Pemuda dan Olahraga</div>
+            </div>
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/GvRvHsgy/profil-departemen-card-himatika-Copy-Copy-Copy-56817-B3.png" alt="Dept Agama">
+                </div>
+                <div class="title">Departemen <br> Agama</div>
+            </div>
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/4RnWxyxC/profil-departemen-card-himatika-Copy-Copy-2-8134-F68.png" alt="Dept PSDM">
+                </div>
+                <div class="title">Departemen <br> Pengembangan dan SDM</div>
+            </div>
+            <div class="card" onclick="openModal(this)">
+                <div class="photo-box">
+                    <img src="https://i.ibb.co.com/yF5ytcmb/profil-departemen-card-himatika-Copy-Copy-3-716-D1-CD.png" alt="Dept Kesra">
+                </div>
+                <div class="title">Departemen <br> Kesejahteraan Masyarakat</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variabel global untuk pelacakan galeri
+        let currentImageIndex = 0;
+        let allImages = [];
+        let allTitles = [];
+
+        // Fungsi untuk membuka modal
+        function openModal(element) {
+            const modal = document.getElementById('imageModal');
+            
+            // Kumpulkan daftar semua gambar dan judul dari semua kartu saat modal dibuka
+            const allCardElements = Array.from(document.querySelectorAll('.card'));
+            allImages = allCardElements.map(card => card.querySelector('img').src);
+            allTitles = allCardElements.map(card => card.querySelector('.title').innerHTML);
+            
+            // Temukan indeks gambar yang diklik
+            const clickedImgSrc = element.querySelector('img').src;
+            currentImageIndex = allImages.indexOf(clickedImgSrc);
+            
+            updateModalContent();
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Matikan scroll saat modal aktif
+        }
+
+        // Fungsi internal untuk memperbarui konten modal (gambar dan judul)
+        function updateModalContent() {
+            const fullImg = document.getElementById('imgFull');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            fullImg.src = allImages[currentImageIndex];
+            modalTitle.innerHTML = allTitles[currentImageIndex];
+        }
+
+        // Fungsi untuk navigasi ke gambar berikutnya
+        function nextImage(event) {
+            // Cegah penutupan modal dengan mengklik overlay di bawahnya
+            if (event) event.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % allImages.length;
+            updateModalContent();
+        }
+
+        // Fungsi untuk navigasi ke gambar sebelumnya
+        function prevImage(event) {
+            // Cegah penutupan modal dengan mengklik overlay di bawahnya
+            if (event) event.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+            updateModalContent();
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Aktifkan kembali scroll
+        }
+
+        // Menutup modal jika area di luar gambar diklik (tapi bukan pada panah)
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            // Tutup hanya jika overlay itu sendiri yang diklik
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Menambahkan navigasi keyboard (panah kiri/kanan dan escape)
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('imageModal');
+            if (modal.style.display === 'flex') {
+                if (event.key === 'ArrowLeft') {
+                    prevImage();
+                } else if (event.key === 'ArrowRight') {
+                    nextImage();
+                } else if (event.key === 'Escape') {
+                    closeModal();
+                }
+            }
+        });
+
+        // Registrasi Service Worker (Fitur Cache dari sesi sebelumnya)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('ServiceWorker Aktif'))
+                    .catch(err => console.log('SW Gagal', err));
+            });
+        }
+    </script>
+</body>
+</html>

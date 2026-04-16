@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - HIMATIKA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: linear-gradient(135deg, #001436 0%, #1B427B 100%);
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .sidebar-icon {
+            @apply flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 cursor-pointer hover:bg-white/20 hover:scale-110 mb-4;
+        }
+        
+        .sidebar-icon.active {
+            @apply bg-blue-500/50 border border-blue-300/30;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex overflow-hidden">
+
+    <aside class="w-24 h-screen glass-panel flex flex-col items-center py-8 relative z-10 border-r border-white/10">
+        <div class="mb-10">
+            <img src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="Logo" class="w-12 h-12 object-contain">
+        </div>
+        
+        <div class="flex-1 w-full flex flex-col items-center">
+            <div class="sidebar-icon active" title="Profil Akun">
+                <i class="fas fa-user text-xl text-white"></i>
+            </div>
+            <div class="sidebar-icon" title="Server">
+                <i class="fas fa-server text-xl text-white/70 hover:text-white"></i>
+            </div>
+            <div class="sidebar-icon" title="Pengaturan">
+                <i class="fas fa-cog text-xl text-white/70 hover:text-white"></i>
+            </div>
+            <div class="sidebar-icon" title="List Admin">
+                <i class="fas fa-users text-xl text-white/70 hover:text-white"></i>
+            </div>
+            <div class="sidebar-icon" title="Tambah List Admin">
+                <i class="fas fa-user-plus text-xl text-white/70 hover:text-white"></i>
+            </div>
+        </div>
+
+        <button onclick="tutupDashboard()" class="mt-auto flex items-center justify-center w-12 h-12 rounded-full bg-red-500/20 text-red-300 hover:bg-red-500 hover:text-white transition-all border border-red-500/30" title="Tutup Dashboard (Kembali ke Beranda)">
+            <i class="fas fa-sign-out-alt text-xl"></i>
+        </button>
+    </aside>
+
+    <main class="flex-1 h-screen p-10 overflow-y-auto">
+        <div class="max-w-4xl mx-auto mt-10">
+            <h1 class="text-4xl font-bold font-heading mb-8 drop-shadow-md">Profil Akun</h1>
+            
+            <div class="glass-panel rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8">
+                <div class="relative group">
+                    <div class="w-40 h-40 rounded-full border-4 border-white/20 overflow-hidden shadow-2xl">
+                        <img id="cardFoto" src="" alt="Foto Profil" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="flex-1 space-y-4">
+                    <h2 id="cardNama" class="text-3xl font-bold font-heading text-white"></h2>
+                    
+                    <div id="cardLabels" class="flex flex-wrap gap-2">
+                        </div>
+
+                    <div class="mt-6 space-y-3 text-white/80 bg-black/10 p-5 rounded-xl border border-white/5">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-at w-5 text-center text-blue-300"></i>
+                            <span class="font-medium text-sm w-24">Username</span>
+                            <span class="font-bold text-white">: <span id="cardUser"></span></span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fab fa-whatsapp w-5 text-center text-green-400"></i>
+                            <span class="font-medium text-sm w-24">Nomor WA</span>
+                            <span class="font-bold text-white">: <span id="cardWa"></span></span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-calendar-alt w-5 text-center text-orange-300"></i>
+                            <span class="font-medium text-sm w-24">Tgl Lahir</span>
+                            <span class="font-bold text-white">: <span id="cardDob"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Cek Sesi (Proteksi Halaman)
+        document.addEventListener("DOMContentLoaded", () => {
+            const sessionData = localStorage.getItem('adminSession');
+            
+            // Jika tidak ada data login, lempar kembali ke index
+            if (!sessionData) {
+                alert("Akses ditolak. Silakan login terlebih dahulu.");
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Parse data JSON
+            const user = JSON.parse(sessionData);
+
+            // Tampilkan Data ke Profile Card
+            document.getElementById('cardNama').textContent = user.name;
+            document.getElementById('cardUser').textContent = user.username;
+            document.getElementById('cardWa').textContent = user.wa;
+            document.getElementById('cardDob').textContent = user.dob;
+            document.getElementById('cardFoto').src = user.profilePic || 'https://via.placeholder.com/150';
+
+            // Generate Labels (Owner/Developer/Admin dll)
+            const labelContainer = document.getElementById('cardLabels');
+            user.labels.forEach(label => {
+                const span = document.createElement('span');
+                // Beri warna khusus tergantung labelnya
+                if(label.toLowerCase() === 'owner') span.className = 'px-3 py-1 bg-purple-500/80 text-white text-xs font-bold uppercase rounded-md border border-purple-300/50 shadow';
+                else if(label.toLowerCase() === 'developer') span.className = 'px-3 py-1 bg-blue-500/80 text-white text-xs font-bold uppercase rounded-md border border-blue-300/50 shadow';
+                else span.className = 'px-3 py-1 bg-gray-500/80 text-white text-xs font-bold uppercase rounded-md border border-gray-300/50 shadow';
+                
+                span.textContent = label;
+                labelContainer.appendChild(span);
+            });
+        });
+
+        function tutupDashboard() {
+            // Hanya pindah halaman (kembali ke index) tanpa menghapus localStorage, sehingga akun tetap dalam kondisi login
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
