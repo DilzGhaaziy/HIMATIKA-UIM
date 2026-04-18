@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1280">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIMATIKA - Universitas Indonesia Mandiri</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -115,7 +115,6 @@
             overflow: hidden;
         }
 
-        /* Animasi Pop tombol save */
         .btn-save-pop {
             animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
@@ -124,9 +123,7 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* ==========================================
-           CSS MUSIC PLAYER WIDGET
-           ========================================== */
+        /* Music Player Styles */
         :root {
             --fixed-bg: rgba(255, 255, 255, 0.9);
             --fixed-text: #2c3e50;
@@ -155,9 +152,7 @@
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
-        .now-playing-box.expanded {
-            transform: translateX(0);
-        }
+        .now-playing-box.expanded { transform: translateX(0); }
 
         .np-icon {
             width: 35px; height: 35px; flex-shrink: 0;
@@ -171,9 +166,7 @@
             position: relative; z-index: 2;
         }
         
-        .now-playing-box:not(.expanded) .np-icon {
-            animation: spin 3s linear infinite, pulseIcon 2s infinite;
-        }
+        .now-playing-box:not(.expanded) .np-icon { animation: spin 3s linear infinite, pulseIcon 2s infinite; }
         
         @keyframes pulseIcon { 
             0% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7); } 
@@ -181,13 +174,8 @@
             100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0); } 
         }
 
-        .np-content {
-            display: flex; align-items: center; justify-content: space-between;
-            width: 100%; overflow: hidden; opacity: 0; transition: opacity 0.2s;
-        }
-        
+        .np-content { display: flex; align-items: center; justify-content: space-between; width: 100%; overflow: hidden; opacity: 0; transition: opacity 0.2s; }
         .now-playing-box.expanded .np-content { opacity: 1; transition-delay: 0.2s; }
-
         .np-info { display: flex; flex-direction: column; overflow: hidden; max-width: 140px; }
         .np-label { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
         .np-title { font-size: 12px; font-weight: 700; color: var(--fixed-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -205,57 +193,30 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         .playlist-box {
-            position: fixed;
-            bottom: 80px; right: 20px;
+            position: fixed; bottom: 80px; right: 20px;
             width: 280px; max-height: 400px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            z-index: 9998;
-            padding: 3px; 
+            background: var(--card-bg); border-radius: 15px; z-index: 9998; padding: 3px; 
             opacity: 0; visibility: hidden; transform: translateY(20px);
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: hidden;
         }
-
         .playlist-box.show { opacity: 1; visibility: visible; transform: translateY(0); }
-
         .playlist-box::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, transparent, transparent, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-            animation: rotateRGB 4s linear infinite;
-            z-index: 0;
+            animation: rotateRGB 4s linear infinite; z-index: 0;
         }
-        
         @keyframes rotateRGB { 100% { transform: rotate(360deg); } }
-
-        .playlist-inner {
-            position: relative; z-index: 1;
-            background: var(--card-bg); 
-            width: 100%; height: 100%;
-            border-radius: 12px;
-            display: flex; flex-direction: column;
-            color: var(--text-color);
-        }
-
+        .playlist-inner { position: relative; z-index: 1; background: var(--card-bg); width: 100%; height: 100%; border-radius: 12px; display: flex; flex-direction: column; color: var(--text-color); }
         .playlist-header { padding: 12px 15px; font-weight: bold; border-bottom: 1px solid rgba(128,128,128,0.2); display: flex; justify-content: space-between; align-items: center; }
         .playlist-scroll { padding: 10px; overflow-y: auto; max-height: 300px; }
-        
-        .track-item {
-            display: flex; align-items: center; gap: 10px;
-            padding: 8px 10px; border-radius: 8px;
-            cursor: pointer; transition: 0.2s;
-            margin-bottom: 5px;
-        }
+        .track-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; margin-bottom: 5px; }
         .track-item:hover { background: rgba(0,0,0,0.05); }
         .track-item.playing { background: rgba(52, 152, 219, 0.15); border-left: 3px solid #3498db; }
-        
         .track-icon { font-size: 12px; color: #7f8c8d; width: 20px; text-align: center; }
         .track-item.playing .track-icon { color: #3498db; animation: pulse 1s infinite; }
-        
         .track-info { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
         .track-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .track-status { font-size: 10px; color: #aaa; }
-        
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
     </style>
 </head>
@@ -269,9 +230,9 @@
                         <img class="h-14 w-auto rounded px-2" src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="HIMATIKA Logo">
                     </a>
                 </div>
+                
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="dashboard.html" id="btnDashboard" class="hidden text-white font-bold bg-white/20 px-4 py-1.5 rounded hover:bg-white/30 transition shadow btn-dashboard-glow">Dashboard Admin</a>
-                    
                     <a href="index.html" class="text-white font-medium hover:text-gray-300">Beranda</a>
                     <button id="btnAdminAuth" onclick="openModal()" class="font-bold text-lg shimmer-text hover:scale-105 transition-transform">Admin</button>
                     <a href="#" class="text-gray-200 font-medium hover:text-white">Program Kerja</a>
@@ -290,78 +251,101 @@
                     <a href="#" class="text-gray-200 font-medium hover:text-white">Berita</a>
                     <a href="#" class="text-gray-200 font-medium hover:text-white">Galeri</a>
                 </div>
+
                 <div class="md:hidden flex items-center">
-                    <button class="text-white hover:text-gray-300 focus:outline-none">
+                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none p-2">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-[#15325c] border-t border-white/10 px-4 pt-2 pb-4 shadow-2xl absolute w-full z-40">
+            <a href="dashboard.html" id="btnDashboardMobile" class="hidden block text-white font-bold bg-white/20 px-4 py-2 rounded text-center mb-3">Dashboard Admin</a>
+            <a href="index.html" class="block text-white font-medium hover:text-gray-300 py-3 border-b border-white/10">Beranda</a>
+            <button id="btnAdminAuthMobile" onclick="openModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="block w-full text-left font-bold text-lg shimmer-text py-3 border-b border-white/10">Admin</button>
+            <a href="#" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Program Kerja</a>
+            
+            <div class="py-3 border-b border-white/10">
+                <div class="text-gray-200 font-medium mb-2">Departemen</div>
+                <div class="pl-4 space-y-3 border-l-2 border-white/20 mt-2">
+                    <a href="struktur.html" class="block text-sm text-gray-300 hover:text-white">Komunikasi dan Informasi</a>
+                    <a href="#" class="block text-sm text-gray-300 hover:text-white">Pemuda dan Olahraga</a>
+                    <a href="#" class="block text-sm text-gray-300 hover:text-white">Agama</a>
+                    <a href="#" class="block text-sm text-gray-300 hover:text-white">Pengembangan dan SDM</a>
+                    <a href="#" class="block text-sm text-gray-300 hover:text-white">Kesejahteraan Mahasiswa</a>
+                </div>
+            </div>
+            
+            <a href="#" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Berita</a>
+            <a href="#" class="block text-gray-200 font-medium hover:text-white py-3">Galeri</a>
+        </div>
     </nav>
 
-    <section class="hero-bg h-[720px] flex flex-col justify-center items-center text-center px-4 mt-20 md:mt-0 m-0 border-none">
+    <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
         <h1 id="txt-hero-title" class="editable-txt text-3xl md:text-5xl font-bold text-white drop-shadow-md tracking-wide mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
-        <h2 id="txt-hero-subtitle" class="editable-txt text-2xl md:text-4xl font-bold text-[#2B569B] drop-shadow-md tracking-wide">UNIVERSITAS INDONESIA MANDIRI</h2>
+        <h2 id="txt-hero-subtitle" class="editable-txt text-xl md:text-4xl font-bold text-[#2B569B] drop-shadow-md tracking-wide">UNIVERSITAS INDONESIA MANDIRI</h2>
     </section>
 
-    <section class="bg-[#1B427B] py-16 m-0 border-none">
+    <section class="bg-[#1B427B] py-12 md:py-16 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
                 <div>
-                    <h2 id="txt-tentang-judul" class="editable-txt text-3xl font-heading font-bold text-white mb-6">Tentang Kami</h2>
+                    <h2 id="txt-tentang-judul" class="editable-txt text-3xl font-heading font-bold text-white mb-4 md:mb-6">Tentang Kami</h2>
                     <p id="txt-tentang-desk" class="editable-txt text-gray-200 leading-relaxed mb-6">
                         Himpunan Mahasiswa Informatika (HIMATIKA) adalah sekumpulan mahasiswa berdedikasi yang berkomitmen untuk memajukan organisasi dan menciptakan lingkungan yang mendukung pertumbuhan akademik, profesional, dan sosial. Dengan semangat kolaborasi dan inovasi, kami bekerja bersama untuk memberikan kontribusi terbaik bagi mahasiswa/i Informatika.
                     </p>
                     <a href="#" class="inline-block bg-white text-[#1B427B] font-bold py-3 px-8 rounded shadow hover:bg-gray-200 transition duration-300">Selengkapnya</a>
                 </div>
                 
-                <div class="space-y-8">
+                <div class="space-y-6 md:space-y-8">
                     <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-globe"></i></div>
-                        <h3 id="txt-poin-1" class="editable-txt font-heading font-bold text-xl text-white">Membangun Jaringan dan Kolaborasi</h3>
+                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-globe"></i></div>
+                        <h3 id="txt-poin-1" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Membangun Jaringan dan Kolaborasi</h3>
                     </div>
                     <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-book"></i></div>
-                        <h3 id="txt-poin-2" class="editable-txt font-heading font-bold text-xl text-white">Berbagi Pengetahuan dan Pengalaman</h3>
+                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-book"></i></div>
+                        <h3 id="txt-poin-2" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Berbagi Pengetahuan dan Pengalaman</h3>
                     </div>
                 </div>
 
-                <div class="space-y-8">
+                <div class="space-y-6 md:space-y-8">
                     <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-id-card"></i></div>
-                        <h3 id="txt-poin-3" class="editable-txt font-heading font-bold text-xl text-white">Pengembangan Profesionalisme</h3>
+                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-id-card"></i></div>
+                        <h3 id="txt-poin-3" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Pengembangan Profesionalisme</h3>
                     </div>
                     <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-4xl mb-4"><i class="fas fa-project-diagram"></i></div>
-                        <h3 id="txt-poin-4" class="editable-txt font-heading font-bold text-xl text-white">Mengembangkan Proyek Bersama</h3>
+                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-project-diagram"></i></div>
+                        <h3 id="txt-poin-4" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Mengembangkan Proyek Bersama</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-[#001D4D] py-16 m-0 border-none">
+    <section class="bg-[#001D4D] py-12 md:py-16 m-0 border-none">
         <div class="max-w-5xl mx-auto px-4 text-center">
-            <h2 id="txt-pimpinan-judul" class="editable-txt text-3xl font-heading font-bold text-white mb-12">Pimpinan Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri</h2>
+            <h2 id="txt-pimpinan-judul" class="editable-txt text-2xl md:text-3xl font-heading font-bold text-white mb-8 md:mb-12">Pimpinan Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-12">
                 <div class="flex flex-col items-center">
-                    <div class="editable-img-wrapper w-64 h-80 rounded shadow-lg mb-6">
+                    <div class="editable-img-wrapper w-full aspect-[4/5] sm:w-64 sm:h-80 rounded shadow-lg mb-3 sm:mb-6">
                         <img id="img-ketua" src="https://i.ibb.co.com/Kxr4sd4y/Proyek-Baru-69-52-C7895.png" alt="Ketua" class="w-full h-full object-cover">
                     </div>
-                    <h3 id="txt-ketua-nama" class="editable-txt text-2xl font-bold text-white mb-2">Nazril Abdillah</h3>
-                    <p id="txt-ketua-jabatan" class="editable-txt text-gray-300 text-center">Ketua Himpunan Mahasiswa Informatika 2025-2026</p>
+                    <h3 id="txt-ketua-nama" class="editable-txt text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">Nazril Abdillah</h3>
+                    <p id="txt-ketua-jabatan" class="editable-txt text-xs sm:text-base text-gray-300 text-center leading-tight">Ketua HIMATIKA 2025-2026</p>
                 </div>
+                
                 <div class="flex flex-col items-center">
-                    <div class="editable-img-wrapper w-64 h-80 rounded shadow-lg mb-6">
+                    <div class="editable-img-wrapper w-full aspect-[4/5] sm:w-64 sm:h-80 rounded shadow-lg mb-3 sm:mb-6">
                         <img id="img-wakil" src="https://i.ibb.co.com/gbVCQGLq/Proyek-Baru-69-285-CF79.png" alt="Wakil Ketua" class="w-full h-full object-cover">
                     </div>
-                    <h3 id="txt-wakil-nama" class="editable-txt text-2xl font-bold text-white mb-2">I Kadek Febrianto Indrajaya</h3>
-                    <p id="txt-wakil-jabatan" class="editable-txt text-gray-300 text-center">Wakil Ketua Himpunan Mahasiswa Informatika 2025-2026</p>
+                    <h3 id="txt-wakil-nama" class="editable-txt text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">I Kadek Febrianto Indrajaya</h3>
+                    <p id="txt-wakil-jabatan" class="editable-txt text-xs sm:text-base text-gray-300 text-center leading-tight">Wakil Ketua HIMATIKA 2025-2026</p>
                 </div>
             </div>
 
-            <div class="mt-12">
+            <div class="mt-8 md:mt-12">
                 <a href="GridStruktur.html" class="inline-block bg-himasiBlue text-white font-bold py-3 px-8 rounded shadow hover:bg-blue-700 transition duration-300">
                     LIAT SEMUA
                 </a>
@@ -369,50 +353,50 @@
         </div>
     </section>
 
-    <section class="bg-[url('https://i.ibb.co.com/hJCS6dJs/Proyek-Baru-42-F052-DAB.png')] bg-[length:100%_100%] bg-no-repeat pt-24 pb-16 m-0 border-none">
+    <section class="bg-[url('https://i.ibb.co.com/hJCS6dJs/Proyek-Baru-42-F052-DAB.png')] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat pt-16 md:pt-24 pb-12 md:pb-16 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="inline-block bg-[#001A3D] py-4 px-8 rounded-2xl shadow-lg mb-12">
-                <h2 id="txt-pengurus-judul" class="editable-txt text-2xl font-heading font-bold text-white">Kepengurusan HIMATIKA</h2>
+            <div class="inline-block bg-[#001A3D] py-3 px-6 md:py-4 md:px-8 rounded-2xl shadow-lg mb-8 md:mb-12">
+                <h2 id="txt-pengurus-judul" class="editable-txt text-xl md:text-2xl font-heading font-bold text-white">Kepengurusan HIMATIKA</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mix-blend-difference text-white">
                 <div class="flex flex-col items-center">
-                    <i class="fas fa-headset text-5xl mb-4"></i>
-                    <span id="txt-stat-1" class="editable-txt text-5xl font-bold mb-2">49</span>
+                    <i class="fas fa-headset text-4xl md:text-5xl mb-3 md:mb-4"></i>
+                    <span id="txt-stat-1" class="editable-txt text-4xl md:text-5xl font-bold mb-2">49</span>
                     <span id="txt-stat-desc-1" class="editable-txt font-medium">Jumlah Pengurus Himatika</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <i class="fas fa-journal-whills text-5xl mb-4"></i>
-                    <span id="txt-stat-2" class="editable-txt text-5xl font-bold mb-2">5</span>
+                    <i class="fas fa-journal-whills text-4xl md:text-5xl mb-3 md:mb-4"></i>
+                    <span id="txt-stat-2" class="editable-txt text-4xl md:text-5xl font-bold mb-2">5</span>
                     <span id="txt-stat-desc-2" class="editable-txt font-medium">Total Departemen</span>
                 </div>
                 <div class="flex flex-col items-center">
-                    <i class="fas fa-smile text-5xl mb-4"></i>
-                    <span id="txt-stat-3" class="editable-txt text-5xl font-bold mb-2">106</span>
+                    <i class="fas fa-smile text-4xl md:text-5xl mb-3 md:mb-4"></i>
+                    <span id="txt-stat-3" class="editable-txt text-4xl md:text-5xl font-bold mb-2">106</span>
                     <span id="txt-stat-desc-3" class="editable-txt font-medium">Anggota Himatika</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-[url('https://i.ibb.co.com/Tx0djxwL/Proyek-Baru-49-9-E460-C2.png')] bg-[length:100%_100%] bg-no-repeat py-20 text-center m-0 border-none">
+    <section class="bg-[url('https://i.ibb.co.com/Tx0djxwL/Proyek-Baru-49-9-E460-C2.png')] bg-cover md:bg-[length:100%_100%] bg-no-repeat py-12 md:py-20 text-center m-0 border-none">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center md:space-x-8">
-            <a href="https://uimandiri.ac.id/" target="_blank" class="w-40 md:w-56 block mb-8 md:mb-0">
+            <a href="https://uimandiri.ac.id/" target="_blank" class="w-32 md:w-56 block mb-6 md:mb-0">
                 <div class="editable-img-wrapper rounded">
                     <img id="img-ornamen-kiri" src="https://i.ibb.co.com/PzYTswGN/Proyek-Baru-51-E62-F390.png" alt="Ornamen Kiri" class="w-full object-contain drop-shadow-xl hover:scale-105 transition-transform">
                 </div>
             </a>
 
-            <div class="w-full max-w-2xl bg-[url('https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png')] bg-contain bg-center bg-no-repeat py-20 px-6 rounded-xl flex flex-col items-center justify-center">
-                <h2 id="txt-sosmed-judul" class="editable-txt text-3xl font-heading font-bold text-white mb-8 drop-shadow-md">Social Media</h2>
-                <div class="flex justify-center space-x-8">
-                    <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/uimandiri_official/" target="_blank" class="text-white hover:text-himasiBlue text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
+            <div class="w-full max-w-2xl bg-[url('https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png')] bg-cover md:bg-contain bg-center bg-no-repeat py-12 md:py-20 px-6 rounded-xl flex flex-col items-center justify-center">
+                <h2 id="txt-sosmed-judul" class="editable-txt text-2xl md:text-3xl font-heading font-bold text-white mb-6 md:mb-8 drop-shadow-md">Social Media</h2>
+                <div class="flex justify-center space-x-6 md:space-x-8">
+                    <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-4xl md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/uimandiri_official/" target="_blank" class="text-white hover:text-himasiBlue text-4xl md:text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-4xl md:text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
-            <div class="w-40 md:w-56 mt-8 md:mt-0">
+            <div class="w-32 md:w-56 mt-6 md:mt-0">
                 <div class="editable-img-wrapper rounded">
                     <img id="img-ornamen-kanan" src="https://i.ibb.co.com/8gsdLSTM/Proyek-Baru-51-68-BC19-E.png" alt="Ornamen Kanan" class="w-full object-contain drop-shadow-xl hover:scale-105 transition-transform">
                 </div>
@@ -420,10 +404,10 @@
         </div>
     </section>
 
-    <section class="bg-[url('https://i.ibb.co.com/9m3FYdHc/Proyek-Baru-42-14-C2486.png')] bg-[length:100%_100%] bg-no-repeat pt-24 pb-16 m-0 border-none">
+    <section class="bg-[url('https://i.ibb.co.com/9m3FYdHc/Proyek-Baru-42-14-C2486.png')] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat pt-16 md:pt-24 pb-12 md:pb-16 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-block bg-[#001A3D] py-4 px-10 rounded-2xl shadow-lg mb-12">
-                <h2 id="txt-berita-judul" class="editable-txt text-3xl font-heading font-bold text-white">BACA BERITA DARI HIMATIKA UIM</h2>
+            <div class="inline-block bg-[#001A3D] py-3 px-6 md:py-4 md:px-10 rounded-2xl shadow-lg mb-8 md:mb-12">
+                <h2 id="txt-berita-judul" class="editable-txt text-xl md:text-3xl font-heading font-bold text-white">BACA BERITA DARI HIMATIKA UIM</h2>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
@@ -482,13 +466,13 @@
         </div>
     </section>
 
-    <section class="bg-[linear-gradient(to_bottom,#001C44_0px,#F5F4F1_50px,#F5F4F1_100%)] py-20 m-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section class="bg-[linear-gradient(to_bottom,#001C44_0px,#F5F4F1_50px,#F5F4F1_100%)] py-12 md:py-20 m-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div class="text-left">
-                    <h2 class="text-4xl font-heading font-bold text-gray-800 mb-6">Lokasi Kampus Kami</h2>
-                    <div class="flex items-start text-gray-600 text-lg">
-                        <i class="fas fa-map-marker-alt text-himasiBlue mt-1 mr-4 text-3xl"></i>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-800 mb-4 md:mb-6">Lokasi Kampus Kami</h2>
+                    <div class="flex items-start text-gray-600 text-base md:text-lg">
+                        <i class="fas fa-map-marker-alt text-himasiBlue mt-1 mr-4 text-2xl md:text-3xl"></i>
                         <p>
                             <strong>Alamat :</strong><br>
                             <span id="txt-alamat" class="editable-txt">6P77+5VQ, Jl. Lintas Sumatera, Tj. Heran, Kec. Penengahan, Kabupaten Lampung Selatan, Lampung 35592.</span>
@@ -496,25 +480,25 @@
                     </div>
                 </div>
 
-                <div class="w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.484031081758!2d105.7147533!3d-5.7870894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410b001b7db41d%3A0xd6d561cd88b415b!2sUNIVERSITAS%20INDONESIA%20MANDIRI!5e0!3m2!1sid!2sid!4v1776189049955!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white h-64 md:h-auto">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.484031081758!2d105.7147533!3d-5.7870894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410b001b7db41d%3A0xd6d561cd88b415b!2sUNIVERSITAS%20INDONESIA%20MANDIRI!5e0!3m2!1sid!2sid!4v1776189049955!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-full md:h-[450px]"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-[#001436] py-6 m-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 text-right">
+        <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
             <p class="text-gray-400 text-sm">Developed by Gilang Aidil Pratama / Dilz Ghaaziy</p>
         </div>
     </footer>
 
     <button id="btnSaveCms" onclick="simpanKeFirebase()" class="hidden fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-2xl font-bold z-50 flex items-center gap-2 transition-transform hover:scale-110 btn-save-pop">
-        <i class="fas fa-save text-xl"></i> Simpan Perubahan
+        <i class="fas fa-save text-xl"></i> Simpan
     </button>
 
-    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center transition-opacity">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 transform scale-95 transition-transform" id="modalContent">
+    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center transition-opacity px-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 md:p-8 transform scale-95 transition-transform" id="modalContent">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-himasiDark font-heading">Akses Admin</h2>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
@@ -536,7 +520,7 @@
         </div>
     </div>
 
-    <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] hidden flex items-center justify-center">
+    <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] hidden flex items-center justify-center px-4">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
             <button onclick="closeEditImgModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
             <h3 class="text-xl font-bold text-gray-800 mb-6">Mau Input Lewat Mana?</h3>
@@ -565,8 +549,7 @@
                 <span><i class="fas fa-list-ul"></i> Daftar Lagu</span>
                 <span style="font-size:10px; opacity:0.6;">Auto-Play</span>
             </div>
-            <div class="playlist-scroll" id="playlist-container">
-            </div>
+            <div class="playlist-scroll" id="playlist-container"></div>
         </div>
     </div>
 
@@ -593,9 +576,15 @@
 
     <script src="admin.js"></script>
     <script>
-        // ==========================================
-        // KONFIGURASI FIREBASE (Sudah diperbaiki koma-nya)
-        // ==========================================
+        // Toggle Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Config Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCPUO6gazqj97i4Rj8NlmKzdJu764CZ_0g",
             authDomain: "himatika-uim.firebaseapp.com",
@@ -628,7 +617,6 @@
             });
         }
 
-        // --- FUNGSI REALTIME FIREBASE ---
         function initRealtimeCMS() {
             cmsRef.on('value', (snapshot) => {
                 const data = snapshot.val();
@@ -637,9 +625,7 @@
                     if(data.texts) {
                         for (let id in data.texts) {
                             const el = document.getElementById(id);
-                            if (el && document.activeElement !== el) { 
-                                el.innerText = data.texts[id];
-                            }
+                            if (el && document.activeElement !== el) el.innerText = data.texts[id];
                         }
                     }
                     if(data.images) {
@@ -664,7 +650,6 @@
         function saveImageEdit(id, url) {
             const img = document.getElementById(id);
             if (img) img.src = url;
-
             if(!localCmsData.images) localCmsData.images = {};
             localCmsData.images[id] = url;
         }
@@ -676,37 +661,54 @@
             
             cmsRef.set(localCmsData).then(() => {
                 btn.innerHTML = '<i class="fas fa-check text-xl"></i> Tersimpan!';
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                }, 2000);
+                setTimeout(() => { btn.innerHTML = originalText; }, 2000);
             }).catch((error) => {
                 alert("Gagal menyimpan data: " + error.message);
                 btn.innerHTML = originalText;
             });
         }
 
-        // --- LOGIKA LOGIN ADMIN ---
         function cekStatusLogin() {
             const btnDashboard = document.getElementById('btnDashboard');
             const btnAdminAuth = document.getElementById('btnAdminAuth');
+            
+            const btnDashboardMobile = document.getElementById('btnDashboardMobile');
+            const btnAdminAuthMobile = document.getElementById('btnAdminAuthMobile');
+
             const btnSaveCms = document.getElementById('btnSaveCms');
             const isLoggedIn = localStorage.getItem('adminSession');
 
             if (isLoggedIn) {
+                // Desktop
                 btnDashboard.classList.remove('hidden');
                 btnAdminAuth.textContent = 'Logout';
                 btnAdminAuth.classList.remove('shimmer-text');
                 btnAdminAuth.classList.add('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = prosesLogout;
                 
+                // Mobile
+                btnDashboardMobile.classList.remove('hidden');
+                btnAdminAuthMobile.textContent = 'Logout';
+                btnAdminAuthMobile.classList.remove('shimmer-text');
+                btnAdminAuthMobile.classList.add('text-red-300');
+                btnAdminAuthMobile.onclick = () => { prosesLogout(); mobileMenu.classList.add('hidden'); };
+                
                 btnSaveCms.classList.remove('hidden');
                 aktifkanModeEdit(true);
             } else {
+                // Desktop
                 btnDashboard.classList.add('hidden');
                 btnAdminAuth.textContent = 'Admin';
                 btnAdminAuth.classList.add('shimmer-text');
                 btnAdminAuth.classList.remove('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = openModal;
+
+                // Mobile
+                btnDashboardMobile.classList.add('hidden');
+                btnAdminAuthMobile.textContent = 'Admin';
+                btnAdminAuthMobile.classList.add('shimmer-text');
+                btnAdminAuthMobile.classList.remove('text-red-300');
+                btnAdminAuthMobile.onclick = () => { openModal(); mobileMenu.classList.add('hidden'); };
 
                 btnSaveCms.classList.add('hidden');
                 aktifkanModeEdit(false);
@@ -714,13 +716,9 @@
         }
 
         function aktifkanModeEdit(status) {
-            document.querySelectorAll('.editable-txt').forEach(el => {
-                el.setAttribute('contenteditable', status);
-            });
-
+            document.querySelectorAll('.editable-txt').forEach(el => { el.setAttribute('contenteditable', status); });
             document.querySelectorAll('.editable-img-wrapper').forEach(wrapper => {
                 const imgId = wrapper.querySelector('img').id;
-                
                 if (status) {
                     if (!wrapper.querySelector('.cam-overlay')) {
                         const overlay = document.createElement('div');
@@ -742,7 +740,6 @@
         function prosesLogin() {
             const userIn = document.getElementById('username').value;
             const passIn = document.getElementById('password').value;
-            
             if (typeof adminAccounts !== 'undefined') {
                 const userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn);
                 if (userMatch) {
@@ -764,7 +761,6 @@
             }
         }
 
-        // --- FUNGSI MODAL UPLOAD GAMBAR ---
         function openEditImgModal(imgId) {
             currentEditImageId = imgId;
             document.getElementById('editImageModal').classList.remove('hidden');
@@ -774,59 +770,31 @@
             document.getElementById('uploadLoading').classList.add('hidden');
         }
 
-        function closeEditImgModal() {
-            document.getElementById('editImageModal').classList.add('hidden');
-            currentEditImageId = null;
-        }
-
-        function showUrlInput() {
-            document.getElementById('imgOptionsGroup').classList.add('hidden');
-            document.getElementById('imgUrlGroup').classList.remove('hidden');
-            document.getElementById('imgUrlGroup').classList.add('flex');
-        }
-
+        function closeEditImgModal() { document.getElementById('editImageModal').classList.add('hidden'); currentEditImageId = null; }
+        function showUrlInput() { document.getElementById('imgOptionsGroup').classList.add('hidden'); document.getElementById('imgUrlGroup').classList.remove('hidden'); document.getElementById('imgUrlGroup').classList.add('flex'); }
         function saveImageUrl() {
             const url = document.getElementById('imgUrlInput').value;
-            if (url && currentEditImageId) {
-                saveImageEdit(currentEditImageId, url);
-                closeEditImgModal();
-            }
+            if (url && currentEditImageId) { saveImageEdit(currentEditImageId, url); closeEditImgModal(); }
         }
 
         async function uploadToImgBB(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             document.getElementById('imgOptionsGroup').classList.add('hidden');
             document.getElementById('uploadLoading').classList.remove('hidden');
-
             const formData = new FormData();
             formData.append('image', file);
-
             try {
-                const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-                    method: 'POST',
-                    body: formData
-                });
-                
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData });
                 const data = await response.json();
-                
-                if (data.success) {
-                    saveImageEdit(currentEditImageId, data.data.url);
-                    closeEditImgModal();
-                } else {
-                    alert("Gagal mengupload gambar ke server.");
-                    closeEditImgModal();
-                }
-            } catch (error) {
-                alert("Terjadi kesalahan jaringan saat upload.");
-                closeEditImgModal();
-            }
+                if (data.success) { saveImageEdit(currentEditImageId, data.data.url); closeEditImgModal(); } 
+                else { alert("Gagal mengupload gambar ke server."); closeEditImgModal(); }
+            } catch (error) { alert("Terjadi kesalahan jaringan saat upload."); closeEditImgModal(); }
             event.target.value = ''; 
         }
 
         // ==========================================
-        // JAVASCRIPT MUSIC PLAYER WIDGET
+        // MUSIC PLAYER WIDGET LOGIC
         // ==========================================
         const bgmPlaylist = [
             {title: "DBFM Radio Pemda", url: "https://pu.klikhost.com/proxy/dbfm/stream"}, 
@@ -854,55 +822,35 @@
             }
         }, { once: true }); 
 
-function tryPlayDefaultRadio() {
+        function tryPlayDefaultRadio() {
             if (!userInteracted) return;
-
-            // Ambil waktu lokal dari perangkat pengguna
             const now = new Date();
-            const day = now.getDay(); // 0 = Minggu, 1 = Senin, ..., 6 = Sabtu
-            const hour = now.getHours(); // 0 sampai 23
-
-            let defaultIndex = 0; // Default awal
-
-            // Logika Penjadwalan Radio
-            if (day === 0 || day === 6) {
-                // Hari Sabtu (6) & Minggu (0) -> 24 Jam play JGRP Radio (Index 8)
-                defaultIndex = 8;
-            } else {
-                // Hari Senin - Jumat
-                if (hour >= 8 && hour < 20) {
-                    // Jam 08:00 - 19:59 -> DBFM Radio Pemda (Index 0)
-                    defaultIndex = 0;
-                } else {
-                    // Jam 20:00 - 07:59 -> JGRP Radio Live (Index 8)
-                    defaultIndex = 8;
-                }
+            const day = now.getDay(); 
+            const hour = now.getHours(); 
+            let defaultIndex = 0; 
+            
+            if (day === 0 || day === 6) { defaultIndex = 8; } 
+            else {
+                if (hour >= 8 && hour < 20) { defaultIndex = 0; } 
+                else { defaultIndex = 8; }
             }
 
             currentBgmIndex = defaultIndex; 
             playSpecificBGM(defaultIndex, true);
 
-            // Fallback: Jika dalam 5 detik tidak bunyi (server mati), ganti acak
             if (radioTimeout) clearTimeout(radioTimeout);
             radioTimeout = setTimeout(() => {
-                if (bgmAudio.paused || bgmAudio.readyState < 3) { 
-                    console.log("Radio default lambat/mati, mencari alternatif...");
-                    playRandomBGM(); 
-                }
+                if (bgmAudio.paused || bgmAudio.readyState < 3) { playRandomBGM(); }
             }, 5000); 
         }
 
         function playSpecificBGM(index, isStartup = false) {
             if (currentBgmIndex === index && !bgmAudio.paused && !isStartup) {
-                 bgmAudio.pause(); 
-                 renderPlaylist(); 
-                 return;
+                 bgmAudio.pause(); renderPlaylist(); return;
             }
-
             currentBgmIndex = index;
             bgmAudio.src = bgmPlaylist[currentBgmIndex].url;
             bgmAudio.volume = isMuted ? 0 : 1.0;
-            
             bgmAudio.onerror = function() {
                 if (isStartup) { playRandomBGM(); } else { updateNPUI("Link Offline, Mencari..."); playRandomBGM(); }
             };
@@ -913,37 +861,28 @@ function tryPlayDefaultRadio() {
                     updateNPUI(bgmPlaylist[currentBgmIndex].title);
                     renderPlaylist(); 
                     if(isStartup && radioTimeout) clearTimeout(radioTimeout);
-                }).catch(e => { 
-                    if(isStartup) playRandomBGM(); 
-                });
+                }).catch(e => { if(isStartup) playRandomBGM(); });
             }
-            
             bgmAudio.onended = playRandomBGM; 
         }
 
         function playRandomBGM() {
             if (!userInteracted) return;
             if (radioTimeout) clearTimeout(radioTimeout);
-            
             bgmAudio.pause();
             let newIdx;
-            do { 
-                newIdx = Math.floor(Math.random() * bgmPlaylist.length); 
-            } while ((newIdx === currentBgmIndex || newIdx === 0) && bgmPlaylist.length > 1);
+            do { newIdx = Math.floor(Math.random() * bgmPlaylist.length); } while ((newIdx === currentBgmIndex || newIdx === 0) && bgmPlaylist.length > 1);
             
             currentBgmIndex = newIdx;
             bgmAudio.src = bgmPlaylist[currentBgmIndex].url;
             bgmAudio.volume = 0; 
-            
             bgmAudio.onerror = () => { playRandomBGM(); }; 
 
             const playPromise = bgmAudio.play();
             if (playPromise !== undefined) {
                 playPromise.then(() => {
-                    fadeInBGM(); 
-                    updateNPUI(bgmPlaylist[currentBgmIndex].title); 
-                    renderPlaylist(); 
-                    document.getElementById('now-playing-box').classList.add('expanded');
+                    fadeInBGM(); updateNPUI(bgmPlaylist[currentBgmIndex].title); 
+                    renderPlaylist(); document.getElementById('now-playing-box').classList.add('expanded');
                 }).catch(error => { });
             }
             bgmAudio.onended = playRandomBGM;
@@ -952,12 +891,8 @@ function tryPlayDefaultRadio() {
         function fadeInBGM() {
             let vol = 0;
             const fade = setInterval(() => { 
-                if(vol < 1.0) { 
-                    vol += 0.1; 
-                    if(!isMuted) bgmAudio.volume = Math.min(vol, 1.0); 
-                } else { 
-                    clearInterval(fade); 
-                }
+                if(vol < 1.0) { vol += 0.1; if(!isMuted) bgmAudio.volume = Math.min(vol, 1.0); } 
+                else { clearInterval(fade); }
             }, 100);
         }
 
@@ -970,9 +905,7 @@ function tryPlayDefaultRadio() {
         function toggleNPBox() {
             const box = document.getElementById('now-playing-box');
             const playlist = document.getElementById('playlist-box');
-            
             box.classList.toggle('expanded');
-            
             if (!box.classList.contains('expanded')) {
                 playlist.classList.remove('show');
                 document.getElementById('btn-playlist-toggle').classList.remove('active-list');
@@ -982,9 +915,7 @@ function tryPlayDefaultRadio() {
         function togglePlaylist() {
             const playlistBox = document.getElementById('playlist-box');
             const btn = document.getElementById('btn-playlist-toggle');
-            
             if (!playlistBox.classList.contains('show')) { renderPlaylist(); }
-            
             playlistBox.classList.toggle('show');
             btn.classList.toggle('active-list');
         }
@@ -993,9 +924,7 @@ function tryPlayDefaultRadio() {
             document.getElementById('np-title').innerText = title;
             const box = document.getElementById('now-playing-box');
             const playlist = document.getElementById('playlist-box');
-            
             box.classList.add('expanded');
-            
             if (npBoxTimeout) clearTimeout(npBoxTimeout);
             npBoxTimeout = setTimeout(() => {
                 if (!playlist.classList.contains('show')) { box.classList.remove('expanded'); }
@@ -1005,17 +934,13 @@ function tryPlayDefaultRadio() {
         function renderPlaylist() {
             const container = document.getElementById('playlist-container');
             container.innerHTML = "";
-            
             bgmPlaylist.forEach((track, index) => {
                 const isPlaying = (index === currentBgmIndex && !bgmAudio.paused);
                 const item = document.createElement('div');
                 item.className = `track-item ${isPlaying ? 'playing' : ''}`;
                 item.onclick = () => playSpecificBGM(index);
-                
                 item.innerHTML = `
-                    <div class="track-icon">
-                        <i class="fas ${isPlaying ? 'fa-volume-up' : 'fa-play'}"></i>
-                    </div>
+                    <div class="track-icon"><i class="fas ${isPlaying ? 'fa-volume-up' : 'fa-play'}"></i></div>
                     <div class="track-info">
                         <div class="track-name">${track.title}</div>
                         <div class="track-status">${isPlaying ? 'Sedang Diputar' : 'Klik untuk memutar'}</div>
