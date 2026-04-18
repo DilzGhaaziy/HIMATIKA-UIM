@@ -123,7 +123,19 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Music Player Styles */
+        /* CSS KHUSUS SCROLLING BERITA MOBILE */
+        @keyframes scrollHint {
+            0%, 100% { transform: translateX(0); opacity: 0.3; }
+            50% { transform: translateX(5px); opacity: 1; }
+        }
+        .animate-scroll-hint {
+            animation: scrollHint 2.5s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* CSS MUSIC PLAYER WIDGET */
         :root {
             --fixed-bg: rgba(255, 255, 255, 0.9);
             --fixed-text: #2c3e50;
@@ -282,9 +294,9 @@
         </div>
     </nav>
 
-    <section class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
-        <h1 id="txt-hero-title" class="editable-txt text-3xl md:text-5xl font-bold text-white drop-shadow-md tracking-wide mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
-        <h2 id="txt-hero-subtitle" class="editable-txt text-xl md:text-4xl font-bold text-[#2B569B] drop-shadow-md tracking-wide">UNIVERSITAS INDONESIA MANDIRI</h2>
+    <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
+        <h1 id="txt-hero-title" class="editable-txt text-xl sm:text-3xl md:text-5xl font-bold text-white drop-shadow-md tracking-wide mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
+        <h2 id="txt-hero-subtitle" class="editable-txt text-sm sm:text-xl md:text-4xl font-bold text-[#2B569B] drop-shadow-md tracking-wide">UNIVERSITAS INDONESIA MANDIRI</h2>
     </section>
 
     <section class="bg-[#1B427B] py-12 md:py-16 m-0 border-none">
@@ -327,7 +339,7 @@
         <div class="max-w-5xl mx-auto px-4 text-center">
             <h2 id="txt-pimpinan-judul" class="editable-txt text-2xl md:text-3xl font-heading font-bold text-white mb-8 md:mb-12">Pimpinan Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri</h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-12">
+            <div class="grid grid-cols-2 gap-4 md:gap-12">
                 <div class="flex flex-col items-center">
                     <div class="editable-img-wrapper w-full aspect-[4/5] sm:w-64 sm:h-80 rounded shadow-lg mb-3 sm:mb-6">
                         <img id="img-ketua" src="https://i.ibb.co.com/Kxr4sd4y/Proyek-Baru-69-52-C7895.png" alt="Ketua" class="w-full h-full object-cover">
@@ -359,44 +371,44 @@
                 <h2 id="txt-pengurus-judul" class="editable-txt text-xl md:text-2xl font-heading font-bold text-white">Kepengurusan HIMATIKA</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mix-blend-difference text-white">
-                <div class="flex flex-col items-center">
-                    <i class="fas fa-headset text-4xl md:text-5xl mb-3 md:mb-4"></i>
-                    <span id="txt-stat-1" class="editable-txt text-4xl md:text-5xl font-bold mb-2">49</span>
-                    <span id="txt-stat-desc-1" class="editable-txt font-medium">Jumlah Pengurus Himatika</span>
+            <div class="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8 mix-blend-difference text-white">
+                <div class="flex flex-col items-center text-center">
+                    <i class="fas fa-headset text-2xl md:text-5xl mb-1 md:mb-4"></i>
+                    <span id="txt-stat-1" class="editable-txt text-xl md:text-5xl font-bold mb-0 md:mb-2">49</span>
+                    <span id="txt-stat-desc-1" class="editable-txt text-[10px] md:text-base font-medium leading-tight">Jumlah Pengurus Himatika</span>
                 </div>
-                <div class="flex flex-col items-center">
-                    <i class="fas fa-journal-whills text-4xl md:text-5xl mb-3 md:mb-4"></i>
-                    <span id="txt-stat-2" class="editable-txt text-4xl md:text-5xl font-bold mb-2">5</span>
-                    <span id="txt-stat-desc-2" class="editable-txt font-medium">Total Departemen</span>
+                <div class="flex flex-col items-center text-center">
+                    <i class="fas fa-journal-whills text-2xl md:text-5xl mb-1 md:mb-4"></i>
+                    <span id="txt-stat-2" class="editable-txt text-xl md:text-5xl font-bold mb-0 md:mb-2">5</span>
+                    <span id="txt-stat-desc-2" class="editable-txt text-[10px] md:text-base font-medium leading-tight">Total Departemen</span>
                 </div>
-                <div class="flex flex-col items-center">
-                    <i class="fas fa-smile text-4xl md:text-5xl mb-3 md:mb-4"></i>
-                    <span id="txt-stat-3" class="editable-txt text-4xl md:text-5xl font-bold mb-2">106</span>
-                    <span id="txt-stat-desc-3" class="editable-txt font-medium">Anggota Himatika</span>
+                <div class="flex flex-col items-center text-center">
+                    <i class="fas fa-smile text-2xl md:text-5xl mb-1 md:mb-4"></i>
+                    <span id="txt-stat-3" class="editable-txt text-xl md:text-5xl font-bold mb-0 md:mb-2">106</span>
+                    <span id="txt-stat-desc-3" class="editable-txt text-[10px] md:text-base font-medium leading-tight">Anggota Himatika</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="bg-[url('https://i.ibb.co.com/Tx0djxwL/Proyek-Baru-49-9-E460-C2.png')] bg-cover md:bg-[length:100%_100%] bg-no-repeat py-12 md:py-20 text-center m-0 border-none">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center md:space-x-8">
-            <a href="https://uimandiri.ac.id/" target="_blank" class="w-32 md:w-56 block mb-6 md:mb-0">
+        <div class="max-w-6xl mx-auto px-2 md:px-4 flex flex-row justify-center items-center space-x-2 md:space-x-8">
+            <a href="https://uimandiri.ac.id/" target="_blank" class="w-1/4 md:w-56 block">
                 <div class="editable-img-wrapper rounded">
                     <img id="img-ornamen-kiri" src="https://i.ibb.co.com/PzYTswGN/Proyek-Baru-51-E62-F390.png" alt="Ornamen Kiri" class="w-full object-contain drop-shadow-xl hover:scale-105 transition-transform">
                 </div>
             </a>
 
-            <div class="w-full max-w-2xl bg-[url('https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png')] bg-cover md:bg-contain bg-center bg-no-repeat py-12 md:py-20 px-6 rounded-xl flex flex-col items-center justify-center">
-                <h2 id="txt-sosmed-judul" class="editable-txt text-2xl md:text-3xl font-heading font-bold text-white mb-6 md:mb-8 drop-shadow-md">Social Media</h2>
-                <div class="flex justify-center space-x-6 md:space-x-8">
-                    <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-4xl md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/uimandiri_official/" target="_blank" class="text-white hover:text-himasiBlue text-4xl md:text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-4xl md:text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
+            <div class="w-2/4 md:w-full max-w-2xl bg-[url('https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png')] bg-contain md:bg-cover bg-center bg-no-repeat py-6 md:py-20 px-2 md:px-6 rounded-xl flex flex-col items-center justify-center">
+                <h2 id="txt-sosmed-judul" class="editable-txt text-[11px] sm:text-sm md:text-3xl font-heading font-bold text-white mb-2 md:mb-8 drop-shadow-md">Social Media</h2>
+                <div class="flex justify-center space-x-2 md:space-x-8">
+                    <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/uimandiri_official/" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
-            <div class="w-32 md:w-56 mt-6 md:mt-0">
+            <div class="w-1/4 md:w-56">
                 <div class="editable-img-wrapper rounded">
                     <img id="img-ornamen-kanan" src="https://i.ibb.co.com/8gsdLSTM/Proyek-Baru-51-68-BC19-E.png" alt="Ornamen Kanan" class="w-full object-contain drop-shadow-xl hover:scale-105 transition-transform">
                 </div>
@@ -410,58 +422,68 @@
                 <h2 id="txt-berita-judul" class="editable-txt text-xl md:text-3xl font-heading font-bold text-white">BACA BERITA DARI HIMATIKA UIM</h2>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
-                    <div class="editable-img-wrapper h-48 w-full">
-                        <img id="img-berita-1" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 1" class="w-full h-full object-cover">
+            <div class="relative group text-left">
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden pointer-events-none animate-scroll-hint">
+                    <div class="bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                        <i class="fas fa-chevron-right text-sm"></i>
                     </div>
-                    <div class="p-5">
-                        <h4 id="txt-berita-1-title" class="editable-txt font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Berita Kosong</h4>
-                        <div class="text-xs text-gray-500 mb-3 font-semibold">
-                            <span id="txt-berita-1-date" class="editable-txt">March 23, 2026</span> • <span id="txt-berita-1-kategori" class="editable-txt text-himasiBlue uppercase">Informasi Keilmuan</span>
-                        </div>
-                        <p id="txt-berita-1-desc" class="editable-txt text-gray-600 text-sm line-clamp-3">Belum ada isi</p>
-                    </div>
-                </article>
+                </div>
 
-                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
-                    <div class="editable-img-wrapper h-48 w-full">
-                        <img id="img-berita-2" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 2" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5">
-                        <h4 id="txt-berita-2-title" class="editable-txt font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Berita Kosong</h4>
-                        <div class="text-xs text-gray-500 mb-3 font-semibold">
-                            <span id="txt-berita-2-date" class="editable-txt">February 21, 2026</span> • <span id="txt-berita-2-kategori" class="editable-txt text-himasiBlue uppercase">Berita</span>
+                <div class="flex overflow-x-auto gap-3 snap-x snap-mandatory hide-scroll md:grid md:grid-cols-4 md:gap-6 md:overflow-visible pb-4">
+                    
+                    <article class="flex-none w-[46%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                        <div class="editable-img-wrapper h-24 md:h-48 w-full">
+                            <img id="img-berita-1" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 1" class="w-full h-full object-cover">
                         </div>
-                        <p id="txt-berita-2-desc" class="editable-txt text-gray-600 text-sm line-clamp-3">Belum ada isi</p>
-                    </div>
-                </article>
+                        <div class="p-3 md:p-5">
+                            <h4 id="txt-berita-1-title" class="editable-txt font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Berita Kosong</h4>
+                            <div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold">
+                                <span id="txt-berita-1-date" class="editable-txt">March 23, 2026</span> • <span id="txt-berita-1-kategori" class="editable-txt text-himasiBlue uppercase">Informasi Keilmuan</span>
+                            </div>
+                            <p id="txt-berita-1-desc" class="editable-txt text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">Belum ada isi</p>
+                        </div>
+                    </article>
 
-                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
-                    <div class="editable-img-wrapper h-48 w-full">
-                        <img id="img-berita-3" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 3" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5">
-                        <h4 id="txt-berita-3-title" class="editable-txt font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Berita Kosong</h4>
-                        <div class="text-xs text-gray-500 mb-3 font-semibold">
-                            <span id="txt-berita-3-date" class="editable-txt">August 24, 2025</span> • <span id="txt-berita-3-kategori" class="editable-txt text-himasiBlue uppercase">Kegiatan</span>
+                    <article class="flex-none w-[46%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                        <div class="editable-img-wrapper h-24 md:h-48 w-full">
+                            <img id="img-berita-2" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 2" class="w-full h-full object-cover">
                         </div>
-                        <p id="txt-berita-3-desc" class="editable-txt text-gray-600 text-sm line-clamp-3">Belum ada isi</p>
-                    </div>
-                </article>
+                        <div class="p-3 md:p-5">
+                            <h4 id="txt-berita-2-title" class="editable-txt font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Berita Kosong</h4>
+                            <div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold">
+                                <span id="txt-berita-2-date" class="editable-txt">February 21, 2026</span> • <span id="txt-berita-2-kategori" class="editable-txt text-himasiBlue uppercase">Berita</span>
+                            </div>
+                            <p id="txt-berita-2-desc" class="editable-txt text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">Belum ada isi</p>
+                        </div>
+                    </article>
 
-                <article class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
-                    <div class="editable-img-wrapper h-48 w-full">
-                        <img id="img-berita-4" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 4" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-5">
-                        <h4 id="txt-berita-4-title" class="editable-txt font-bold text-lg mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">"Berita Kosong</h4>
-                        <div class="text-xs text-gray-500 mb-3 font-semibold">
-                            <span id="txt-berita-4-date" class="editable-txt">June 29, 2025</span> • <span id="txt-berita-4-kategori" class="editable-txt text-himasiBlue uppercase">Kegiatan</span>
+                    <article class="flex-none w-[46%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                        <div class="editable-img-wrapper h-24 md:h-48 w-full">
+                            <img id="img-berita-3" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 3" class="w-full h-full object-cover">
                         </div>
-                        <p id="txt-berita-4-desc" class="editable-txt text-gray-600 text-sm line-clamp-3">Belum ada isi</p>
-                    </div>
-                </article>
+                        <div class="p-3 md:p-5">
+                            <h4 id="txt-berita-3-title" class="editable-txt font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Berita Kosong</h4>
+                            <div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold">
+                                <span id="txt-berita-3-date" class="editable-txt">August 24, 2025</span> • <span id="txt-berita-3-kategori" class="editable-txt text-himasiBlue uppercase">Kegiatan</span>
+                            </div>
+                            <p id="txt-berita-3-desc" class="editable-txt text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">Belum ada isi</p>
+                        </div>
+                    </article>
+
+                    <article class="flex-none w-[46%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition">
+                        <div class="editable-img-wrapper h-24 md:h-48 w-full">
+                            <img id="img-berita-4" src="https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" alt="Berita 4" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3 md:p-5">
+                            <h4 id="txt-berita-4-title" class="editable-txt font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue cursor-pointer">Berita Kosong</h4>
+                            <div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold">
+                                <span id="txt-berita-4-date" class="editable-txt">June 29, 2025</span> • <span id="txt-berita-4-kategori" class="editable-txt text-himasiBlue uppercase">Kegiatan</span>
+                            </div>
+                            <p id="txt-berita-4-desc" class="editable-txt text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">Belum ada isi</p>
+                        </div>
+                    </article>
+
+                </div>
             </div>
         </div>
     </section>
@@ -679,14 +701,12 @@
             const isLoggedIn = localStorage.getItem('adminSession');
 
             if (isLoggedIn) {
-                // Desktop
                 btnDashboard.classList.remove('hidden');
                 btnAdminAuth.textContent = 'Logout';
                 btnAdminAuth.classList.remove('shimmer-text');
                 btnAdminAuth.classList.add('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = prosesLogout;
                 
-                // Mobile
                 btnDashboardMobile.classList.remove('hidden');
                 btnAdminAuthMobile.textContent = 'Logout';
                 btnAdminAuthMobile.classList.remove('shimmer-text');
@@ -696,14 +716,12 @@
                 btnSaveCms.classList.remove('hidden');
                 aktifkanModeEdit(true);
             } else {
-                // Desktop
                 btnDashboard.classList.add('hidden');
                 btnAdminAuth.textContent = 'Admin';
                 btnAdminAuth.classList.add('shimmer-text');
                 btnAdminAuth.classList.remove('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = openModal;
 
-                // Mobile
                 btnDashboardMobile.classList.add('hidden');
                 btnAdminAuthMobile.textContent = 'Admin';
                 btnAdminAuthMobile.classList.add('shimmer-text');
