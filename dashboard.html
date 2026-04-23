@@ -7,6 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -31,6 +35,25 @@
         .sidebar-icon.active {
             @apply bg-blue-500/50 border border-blue-300/30;
         }
+
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #3b82f6;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #3b82f6;
+        }
+        .toggle-checkbox {
+            right: 0;
+            z-index: 1;
+            border-color: #e5e7eb;
+            transition: all 0.3s;
+        }
+        .toggle-label {
+            transition: all 0.3s;
+            background-color: #4b5563;
+        }
     </style>
 </head>
 <body class="min-h-screen flex overflow-hidden">
@@ -41,19 +64,19 @@
         </div>
         
         <div class="flex-1 w-full flex flex-col items-center">
-            <div class="sidebar-icon active" title="Profil Akun">
+            <div class="sidebar-icon active" onclick="pindahTab('profil', this)" title="Profil Akun">
                 <i class="fas fa-user text-xl text-white"></i>
             </div>
-            <div class="sidebar-icon" title="Server">
+            <div class="sidebar-icon" onclick="pindahTab('server', this)" title="Server">
                 <i class="fas fa-server text-xl text-white/70 hover:text-white"></i>
             </div>
-            <div class="sidebar-icon" title="Pengaturan">
+            <div class="sidebar-icon" onclick="pindahTab('pengaturan', this)" title="Pengaturan">
                 <i class="fas fa-cog text-xl text-white/70 hover:text-white"></i>
             </div>
-            <div class="sidebar-icon" title="List Admin">
+            <div class="sidebar-icon" onclick="pindahTab('listAdmin', this)" title="List Admin">
                 <i class="fas fa-users text-xl text-white/70 hover:text-white"></i>
             </div>
-            <div class="sidebar-icon" title="Tambah List Admin">
+            <div class="sidebar-icon" onclick="pindahTab('tambahAdmin', this)" title="Tambah List Admin">
                 <i class="fas fa-user-plus text-xl text-white/70 hover:text-white"></i>
             </div>
         </div>
@@ -64,22 +87,18 @@
     </aside>
 
     <main class="flex-1 h-screen p-10 overflow-y-auto">
-        <div class="max-w-4xl mx-auto mt-10">
-            <h1 class="text-4xl font-bold font-heading mb-8 drop-shadow-md">Profil Akun</h1>
-            
+        
+        <div id="tab-profil" class="tab-content max-w-4xl mx-auto mt-10">
+            <h1 class="text-4xl font-bold font-heading mb-8 drop-shadow-md border-b border-white/20 pb-4 inline-block">Profil Akun</h1>
             <div class="glass-panel rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8">
                 <div class="relative group">
                     <div class="w-40 h-40 rounded-full border-4 border-white/20 overflow-hidden shadow-2xl">
                         <img id="cardFoto" src="" alt="Foto Profil" class="w-full h-full object-cover">
                     </div>
                 </div>
-
                 <div class="flex-1 space-y-4">
                     <h2 id="cardNama" class="text-3xl font-bold font-heading text-white"></h2>
-                    
-                    <div id="cardLabels" class="flex flex-wrap gap-2">
-                        </div>
-
+                    <div id="cardLabels" class="flex flex-wrap gap-2"></div>
                     <div class="mt-6 space-y-3 text-white/80 bg-black/10 p-5 rounded-xl border border-white/5">
                         <div class="flex items-center gap-3">
                             <i class="fas fa-at w-5 text-center text-blue-300"></i>
@@ -100,48 +119,121 @@
                 </div>
             </div>
         </div>
+
+        <div id="tab-server" class="tab-content max-w-4xl mx-auto mt-10 hidden">
+            <h1 class="text-4xl font-bold font-heading mb-8 drop-shadow-md border-b border-white/20 pb-4 inline-block">Pengaturan Server</h1>
+            <div class="glass-panel rounded-2xl p-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold mb-2">Maintenance WEB</h2>
+                    <p class="text-sm text-gray-300 max-w-lg">Jika ini diaktifkan maka akan memunculkan notifikasi pop up di halaman index.html . pop up nya ya ada teks "MAAF SERVER SEDANG MAINTENANCE" di atas teks ada Ikon Repair. di pop up nya ada tombol "OKE" dengan delay 2 detik agar bisa dipencet.</p>
+                </div>
+                <div class="relative inline-block w-16 mr-2 align-middle select-none transition duration-200 ease-in">
+                    <input type="checkbox" name="toggle" id="toggleMaintenance" class="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer" onchange="updateMaintenanceState()"/>
+                    <label for="toggleMaintenance" class="toggle-label block overflow-hidden h-8 rounded-full cursor-pointer"></label>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-pengaturan" class="tab-content max-w-4xl mx-auto mt-10 hidden">
+            <h1 class="text-4xl font-bold font-heading mb-8 drop-shadow-md border-b border-white/20 pb-4 inline-block">Pengaturan Akun</h1>
+            <div class="glass-panel rounded-2xl p-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold mb-2">Logout Otomatis</h2>
+                    <p class="text-sm text-gray-300 max-w-lg">Fitur ini hanya mempengaruhi akunmu sendiri. Jika aktif, kamu akan otomatis ter-logout dari mode Admin jika tidak ada aktivitas selama 10 menit.</p>
+                </div>
+                <div class="relative inline-block w-16 mr-2 align-middle select-none transition duration-200 ease-in">
+                    <input type="checkbox" name="toggle" id="toggleAutoLogout" class="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer" onchange="updateAutoLogout()"/>
+                    <label for="toggleAutoLogout" class="toggle-label block overflow-hidden h-8 rounded-full cursor-pointer"></label>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-listAdmin" class="tab-content max-w-5xl mx-auto mt-10 hidden">
+            <h1 class="text-4xl font-bold font-heading mb-8 drop-shadow-md border-b border-white/20 pb-4 inline-block">Daftar Akun Pengurus</h1>
+            <div id="admin-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </div>
+
+        <div id="tab-tambahAdmin" class="tab-content max-w-2xl mx-auto mt-10 hidden">
+            <h1 class="text-4xl font-bold font-heading mb-8 drop-shadow-md border-b border-white/20 pb-4 inline-block">Tambah Akun Baru</h1>
+            <div id="dash-add-admin" class="glass-panel rounded-2xl p-8 relative">
+                <div id="overlay-akses-ditolak" class="absolute inset-0 bg-black/80 backdrop-blur flex flex-col items-center justify-center rounded-2xl z-20 hidden">
+                    <i class="fas fa-lock text-5xl text-red-500 mb-4"></i>
+                    <h2 class="text-2xl font-bold text-white">Akses Ditolak</h2>
+                    <p class="text-gray-300 mt-2 text-center px-4">Fitur ini hanya dapat diakses oleh Admin dengan label Owner atau Developer.</p>
+                </div>
+
+                <div class="flex flex-col items-center mb-8">
+                    <div class="relative group cursor-pointer" onclick="bukaModalFoto()">
+                        <div class="w-32 h-32 rounded-full border-4 border-white/30 overflow-hidden bg-gray-800 shadow-xl flex items-center justify-center">
+                            <img id="previewFotoBaru" src="https://via.placeholder.com/150?text=Klik+Foto" alt="Preview" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fas fa-camera text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-2">Klik untuk atur foto</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-1">Nama Lengkap</label>
+                        <input type="text" id="newAdminNama" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 text-white" placeholder="Masukkan Nama Lengkap">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-1">Username</label>
+                        <input type="text" id="newAdminUser" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 text-white" placeholder="Masukkan Username (tanpa @)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-1">Kata Sandi</label>
+                        <input type="password" id="newAdminPass" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 text-white" placeholder="Masukkan Kata Sandi">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-300 mb-1">Email (Opsional)</label>
+                        <input type="email" id="newAdminEmail" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 text-white" placeholder="contoh@email.com">
+                    </div>
+                    <button onclick="simpanAkunBaru()" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-colors flex justify-center items-center">
+                        <i class="fas fa-save mr-2"></i> SIMPAN AKUN
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <script>
-        // Cek Sesi (Proteksi Halaman)
-        document.addEventListener("DOMContentLoaded", () => {
-            const sessionData = localStorage.getItem('adminSession');
+    <div id="modalPilihFoto" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60] hidden flex items-center justify-center px-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
+            <button onclick="tutupModalFoto()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-xl font-bold text-gray-800 mb-6">Masukkan Lewat Mana?</h3>
             
-            // Jika tidak ada data login, lempar kembali ke index
-            if (!sessionData) {
-                alert("Akses ditolak. Silakan login terlebih dahulu.");
-                window.location.href = 'index.html';
-                return;
-            }
+            <div id="opsiFotoGroup" class="flex flex-col gap-3">
+                <button onclick="tampilInputUrl()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">Link URL</button>
+                <button onclick="document.getElementById('fileUploadBaru').click()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">Pilih Gambar</button>
+            </div>
 
-            // Parse data JSON
-            const user = JSON.parse(sessionData);
+            <div id="inputUrlGroup" class="hidden flex-col gap-3 mt-4">
+                <input type="text" id="urlFotoBaru" class="w-full border border-gray-300 text-gray-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-500" placeholder="Paste link gambar disini...">
+                <button onclick="simpanUrlFoto()" class="bg-blue-600 text-white py-2 rounded font-semibold">Gunakan Gambar</button>
+            </div>
 
-            // Tampilkan Data ke Profile Card
-            document.getElementById('cardNama').textContent = user.name;
-            document.getElementById('cardUser').textContent = user.username;
-            document.getElementById('cardWa').textContent = user.wa;
-            document.getElementById('cardDob').textContent = user.dob;
-            document.getElementById('cardFoto').src = user.profilePic || 'https://via.placeholder.com/150';
+            <div id="loadingFoto" class="hidden mt-4 text-blue-600 font-semibold text-sm">
+                <i class="fas fa-circle-notch fa-spin mr-2"></i>Mengupload ke ImgBB...
+            </div>
+        </div>
+    </div>
+    <input type="file" id="fileUploadBaru" accept="image/*" class="hidden" onchange="uploadFotoBaru(event)">
 
-            // Generate Labels (Owner/Developer/Admin dll)
-            const labelContainer = document.getElementById('cardLabels');
-            user.labels.forEach(label => {
-                const span = document.createElement('span');
-                // Beri warna khusus tergantung labelnya
-                if(label.toLowerCase() === 'owner') span.className = 'px-3 py-1 bg-purple-500/80 text-white text-xs font-bold uppercase rounded-md border border-purple-300/50 shadow';
-                else if(label.toLowerCase() === 'developer') span.className = 'px-3 py-1 bg-blue-500/80 text-white text-xs font-bold uppercase rounded-md border border-blue-300/50 shadow';
-                else span.className = 'px-3 py-1 bg-gray-500/80 text-white text-xs font-bold uppercase rounded-md border border-gray-300/50 shadow';
-                
-                span.textContent = label;
-                labelContainer.appendChild(span);
-            });
-        });
-
-        function tutupDashboard() {
-            // Hanya pindah halaman (kembali ke index) tanpa menghapus localStorage, sehingga akun tetap dalam kondisi login
-            window.location.href = 'index.html';
-        }
-    </script>
-</body>
-</html>
+    <script src="admin.js"></script>
+    <script>
+        // INISIALISASI FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyCPUO6gazqj97i4Rj8NlmKzdJu764CZ_0g",
+            authDomain: "himatika-uim.firebaseapp.com",
+            databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "himatika-uim",
+            storageBucket: "himatika-uim.firebasestorage.app",
+            messagingSenderId: "829701559786",
+            appId: "1:829701559786:web:a81cbb4bda51c41ed44e93"
+        };
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+        const database = firebase.database();
+        const maintenanceRef = database.ref('himasi_web
