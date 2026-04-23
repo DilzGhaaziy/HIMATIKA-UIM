@@ -45,18 +45,23 @@
             letter-spacing: 2px;
         }
 
-        /* Hero Combined Gradient Animation */
+/* Hero Combined Gradient Animation */
         .hero-text-wrapper {
             background: linear-gradient(135deg, #ffffff 15%, #1B427B 50%, #ffffff 85%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
-            animation: flowHero 4s ease-in-out infinite;
-        }
-
-        .hero-text-wrapper .editable-txt {
             color: transparent !important;
             -webkit-text-fill-color: transparent;
+            animation: flowHero 4s ease-in-out infinite;
+            /* Shadow dipindah ke sini agar tidak "merusak" teks transparan */
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes flowHero {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
         @keyframes flowHero {
@@ -347,10 +352,10 @@
         </div>
     </nav>
 
-    <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
+<section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
         <div class="hero-text-wrapper flex flex-col items-center justify-center">
-            <h1 id="txt-hero-title" class="editable-txt font-grames text-xl sm:text-3xl md:text-5xl font-bold drop-shadow-md mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
-            <h2 id="txt-hero-subtitle" class="editable-txt font-grames text-sm sm:text-xl md:text-4xl font-bold text-white drop-shadow-md">UNIVERSITAS INDONESIA MANDIRI</h2>
+            <h1 id="txt-hero-title" class="editable-txt font-grames text-xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
+            <h2 id="txt-hero-subtitle" class="editable-txt font-grames text-sm sm:text-xl md:text-4xl font-bold">UNIVERSITAS INDONESIA MANDIRI</h2>
         </div>
     </section>
 
