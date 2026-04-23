@@ -35,7 +35,7 @@
         @font-face {
             font-family: 'Grames';
             src: url('GRAMES.ttf') format('truetype'),
-                 url('GRAMES.ttp') format('truetype'); /* Fallback in case user uses .ttp */
+                 url('GRAMES.ttp') format('truetype'); 
             font-weight: bold;
             font-style: normal;
         }
@@ -45,7 +45,7 @@
             letter-spacing: 2px;
         }
 
-/* Hero Combined Gradient Animation */
+        /* Hero Combined Gradient Animation */
         .hero-text-wrapper {
             background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
             background-size: 300% 300%;
@@ -55,13 +55,11 @@
             -webkit-text-fill-color: transparent;
             animation: flowHero 8s linear infinite;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
-            /* Padding ditambahkan agar font kustom tidak terpotong (ter-crop) */
             padding-top: 15px;
             padding-bottom: 15px;
         }
 
         @keyframes flowHero {
-            /* Posisi dibalik agar efeknya bergerak turun dari kiri atas ke kanan bawah */
             0% { background-position: 100% 100%; }
             75% { background-position: 0% 0%; }
             100% { background-position: 0% 0%; } 
@@ -84,6 +82,92 @@
             50% { background-position: 100% 100%; }
             100% { background-position: 0% 0%; }
         }
+
+        /* ========================================= */
+        /* EFEK GLITCH KHUSUS UNTUK TEKS INFORMATIKA */
+        /* ========================================= */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Mewarisi clip transparan dari container */
+            background: inherit;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            pointer-events: none; /* Agar tidak ganggu klik edit CMS */
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 rgba(255, 0, 0, 0.8);
+            animation: glitch-1 2s linear infinite reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 rgba(0, 0, 255, 0.8);
+            animation: glitch-2 2s linear infinite reverse;
+        }
+
+        /* Menggunakan Persentase (inset) agar responsif di layar HP maupun Laptop */
+        @keyframes glitch-1 {
+            0% { clip-path: inset(20% 0 80% 0); }
+            5% { clip-path: inset(10% 0 60% 0); }
+            10% { clip-path: inset(80% 0 5% 0); }
+            15% { clip-path: inset(30% 0 20% 0); }
+            20% { clip-path: inset(70% 0 10% 0); }
+            25% { clip-path: inset(40% 0 50% 0); }
+            30% { clip-path: inset(90% 0 5% 0); }
+            35% { clip-path: inset(15% 0 70% 0); }
+            40% { clip-path: inset(55% 0 20% 0); }
+            45% { clip-path: inset(5% 0 80% 0); }
+            50% { clip-path: inset(40% 0 10% 0); }
+            55% { clip-path: inset(70% 0 20% 0); }
+            60% { clip-path: inset(10% 0 60% 0); }
+            65% { clip-path: inset(85% 0 5% 0); }
+            70% { clip-path: inset(20% 0 40% 0); }
+            75% { clip-path: inset(60% 0 30% 0); }
+            80% { clip-path: inset(30% 0 50% 0); }
+            85% { clip-path: inset(90% 0 5% 0); }
+            90% { clip-path: inset(10% 0 70% 0); }
+            95% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(20% 0 80% 0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { clip-path: inset(10% 0 60% 0); }
+            5% { clip-path: inset(80% 0 5% 0); }
+            10% { clip-path: inset(30% 0 20% 0); }
+            15% { clip-path: inset(70% 0 10% 0); }
+            20% { clip-path: inset(40% 0 50% 0); }
+            25% { clip-path: inset(90% 0 5% 0); }
+            30% { clip-path: inset(15% 0 70% 0); }
+            35% { clip-path: inset(55% 0 20% 0); }
+            40% { clip-path: inset(5% 0 80% 0); }
+            45% { clip-path: inset(40% 0 10% 0); }
+            50% { clip-path: inset(70% 0 20% 0); }
+            55% { clip-path: inset(10% 0 60% 0); }
+            60% { clip-path: inset(85% 0 5% 0); }
+            65% { clip-path: inset(20% 0 40% 0); }
+            70% { clip-path: inset(60% 0 30% 0); }
+            75% { clip-path: inset(30% 0 50% 0); }
+            80% { clip-path: inset(90% 0 5% 0); }
+            85% { clip-path: inset(10% 0 70% 0); }
+            90% { clip-path: inset(50% 0 30% 0); }
+            95% { clip-path: inset(20% 0 80% 0); }
+            100% { clip-path: inset(10% 0 60% 0); }
+        }
+        /* ========================================= */
 
         .hero-bg {
             background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/7N6JKV2T/Proyek-Baru-67-1-C2-AEFC.png');
@@ -349,9 +433,12 @@
         </div>
     </nav>
 
-<section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
+    <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
         <div class="hero-text-wrapper flex flex-col items-center justify-center">
-            <h1 id="txt-hero-title" class="editable-txt font-grames text-xl sm:text-3xl md:text-5xl font-bold leading-normal pt-2 mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
+            <h1 class="font-grames text-xl sm:text-3xl md:text-5xl font-bold leading-normal pt-2 mb-2 md:mb-4">
+                <span id="txt-hero-title-1" class="editable-txt">HIMPUNAN MAHASISWA </span>
+                <span id="txt-hero-title-2" class="editable-txt glitch" data-text="INFORMATIKA">INFORMATIKA</span>
+            </h1>
             <h2 id="txt-hero-subtitle" class="editable-txt font-grames text-sm sm:text-xl md:text-4xl font-bold leading-normal">UNIVERSITAS INDONESIA MANDIRI</h2>
         </div>
     </section>
@@ -456,7 +543,7 @@
                 </div>
             </a>
 
-<div class="w-2/4 md:w-full max-w-2xl relative flex flex-col items-center justify-center py-10 md:py-24">
+            <div class="w-2/4 md:w-full max-w-2xl relative flex flex-col items-center justify-center py-10 md:py-24">
                 <img src="https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png" class="absolute inset-0 w-full h-full object-contain z-0 drop-shadow-xl" alt="Background Sosmed">
                 
                 <div class="relative z-10 flex flex-col items-center justify-center w-full">
@@ -701,7 +788,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             initRealtimeCMS();
             cekStatusLogin();
-            initMaintenanceListener(); // Memanggil fungsi listener maintenance
+            initMaintenanceListener(); 
         });
 
         if ('serviceWorker' in navigator) {
@@ -751,7 +838,13 @@
                     if(data.texts) {
                         for (let id in data.texts) {
                             const el = document.getElementById(id);
-                            if (el && document.activeElement !== el) el.innerText = data.texts[id];
+                            if (el && document.activeElement !== el) {
+                                el.innerText = data.texts[id];
+                                // Update otomatis atribut data-text agar glitch menyesuaikan kata terbaru
+                                if(el.classList.contains('glitch')) {
+                                    el.setAttribute('data-text', data.texts[id]);
+                                }
+                            }
                         }
                     }
                     if(data.images) {
@@ -768,6 +861,11 @@
                     if(el.getAttribute('contenteditable') === "true") {
                         if(!localCmsData.texts) localCmsData.texts = {};
                         localCmsData.texts[e.target.id] = e.target.innerText;
+                        
+                        // Update otomatis atribut data-text saat admin selesai mengedit
+                        if(e.target.classList.contains('glitch')) {
+                            e.target.setAttribute('data-text', e.target.innerText);
+                        }
                     }
                 });
             });
