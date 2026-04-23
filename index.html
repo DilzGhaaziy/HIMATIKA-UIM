@@ -47,25 +47,24 @@
 
 /* Hero Combined Gradient Animation */
         .hero-text-wrapper {
-            /* Membuat gradien dengan batas yang lebih jelas */
             background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent !important;
             -webkit-text-fill-color: transparent;
-            /* Kecepatan lambat (8 detik total) dengan pergerakan konstan (linear) */
             animation: flowHero 8s linear infinite;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+            /* Padding ditambahkan agar font kustom tidak terpotong (ter-crop) */
+            padding-top: 15px;
+            padding-bottom: 15px;
         }
 
         @keyframes flowHero {
-            /* Bergerak dari kiri atas... */
-            0% { background-position: 0% 0%; }
-            /* ...sampai ke kanan bawah. Berhenti pada 75% waktu animasi (detik ke-6 dari total 8 detik) */
-            75% { background-position: 100% 100%; }
-            /* Delay/Diam dari 75% sampai 100% (detik ke-6 sampai detik ke-8) */
-            100% { background-position: 100% 100%; } 
+            /* Posisi dibalik agar efeknya bergerak turun dari kiri atas ke kanan bawah */
+            0% { background-position: 100% 100%; }
+            75% { background-position: 0% 0%; }
+            100% { background-position: 0% 0%; } 
         }
 
         /* Name Gradient Animation */
@@ -352,8 +351,8 @@
 
 <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
         <div class="hero-text-wrapper flex flex-col items-center justify-center">
-            <h1 id="txt-hero-title" class="editable-txt font-grames text-xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
-            <h2 id="txt-hero-subtitle" class="editable-txt font-grames text-sm sm:text-xl md:text-4xl font-bold">UNIVERSITAS INDONESIA MANDIRI</h2>
+            <h1 id="txt-hero-title" class="editable-txt font-grames text-xl sm:text-3xl md:text-5xl font-bold leading-normal pt-2 mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
+            <h2 id="txt-hero-subtitle" class="editable-txt font-grames text-sm sm:text-xl md:text-4xl font-bold leading-normal">UNIVERSITAS INDONESIA MANDIRI</h2>
         </div>
     </section>
 
