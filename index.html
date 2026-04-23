@@ -31,6 +31,58 @@
     </script>
 
     <style>
+        /* Import Local Font GRAMES */
+        @font-face {
+            font-family: 'Grames';
+            src: url('GRAMES.ttf') format('truetype'),
+                 url('GRAMES.ttp') format('truetype'); /* Fallback in case user uses .ttp */
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .font-grames {
+            font-family: 'Grames', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Combined Gradient Animation */
+        .hero-text-wrapper {
+            background: linear-gradient(135deg, #ffffff 15%, #1B427B 50%, #ffffff 85%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: flowHero 4s ease-in-out infinite;
+        }
+
+        .hero-text-wrapper .editable-txt {
+            color: transparent !important;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes flowHero {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Name Gradient Animation */
+        .name-gradient {
+            background: linear-gradient(135deg, #DAA520 15%, #ADD8E6 50%, #DAA520 85%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+            -webkit-text-fill-color: transparent;
+            animation: flowName 4s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes flowName {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
         .hero-bg {
             background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/7N6JKV2T/Proyek-Baru-67-1-C2-AEFC.png');
             background-size: cover;
@@ -88,6 +140,7 @@
             outline: 2px solid #0d72bf;
             background: rgba(255, 255, 255, 0.9);
             color: #333 !important;
+            -webkit-text-fill-color: #333 !important;
         }
 
         .cam-overlay {
@@ -295,8 +348,10 @@
     </nav>
 
     <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
-        <h1 id="txt-hero-title" class="editable-txt text-xl sm:text-3xl md:text-5xl font-bold text-white drop-shadow-md tracking-wide mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
-        <h2 id="txt-hero-subtitle" class="editable-txt text-sm sm:text-xl md:text-4xl font-bold text-[#2B569B] drop-shadow-md tracking-wide">UNIVERSITAS INDONESIA MANDIRI</h2>
+        <div class="hero-text-wrapper flex flex-col items-center justify-center">
+            <h1 id="txt-hero-title" class="editable-txt font-grames text-xl sm:text-3xl md:text-5xl font-bold drop-shadow-md mb-2 md:mb-4">HIMPUNAN MAHASISWA INFORMATIKA</h1>
+            <h2 id="txt-hero-subtitle" class="editable-txt font-grames text-sm sm:text-xl md:text-4xl font-bold text-white drop-shadow-md">UNIVERSITAS INDONESIA MANDIRI</h2>
+        </div>
     </section>
 
     <section class="bg-[#1B427B] py-12 md:py-16 m-0 border-none">
@@ -344,7 +399,7 @@
                     <div class="editable-img-wrapper w-full aspect-[4/5] sm:w-64 sm:h-80 rounded shadow-lg mb-3 sm:mb-6">
                         <img id="img-ketua" src="https://i.ibb.co.com/Kxr4sd4y/Proyek-Baru-69-52-C7895.png" alt="Ketua" class="w-full h-full object-cover">
                     </div>
-                    <h3 id="txt-ketua-nama" class="editable-txt text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">Nazril Abdillah</h3>
+                    <h3 id="txt-ketua-nama" class="editable-txt name-gradient text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">Nazril Abdillah</h3>
                     <p id="txt-ketua-jabatan" class="editable-txt text-xs sm:text-base text-gray-300 text-center leading-tight">Ketua HIMATIKA 2025-2026</p>
                 </div>
                 
@@ -352,7 +407,7 @@
                     <div class="editable-img-wrapper w-full aspect-[4/5] sm:w-64 sm:h-80 rounded shadow-lg mb-3 sm:mb-6">
                         <img id="img-wakil" src="https://i.ibb.co.com/gbVCQGLq/Proyek-Baru-69-285-CF79.png" alt="Wakil Ketua" class="w-full h-full object-cover">
                     </div>
-                    <h3 id="txt-wakil-nama" class="editable-txt text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">I Kadek Febrianto Indrajaya</h3>
+                    <h3 id="txt-wakil-nama" class="editable-txt name-gradient text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">I Kadek Febrianto Indrajaya</h3>
                     <p id="txt-wakil-jabatan" class="editable-txt text-xs sm:text-base text-gray-300 text-center leading-tight">Wakil Ketua HIMATIKA 2025-2026</p>
                 </div>
             </div>
@@ -392,25 +447,28 @@
     </section>
 
     <section class="bg-[url('https://i.ibb.co.com/Tx0djxwL/Proyek-Baru-49-9-E460-C2.png')] bg-cover md:bg-[length:100%_100%] bg-no-repeat py-12 md:py-20 text-center m-0 border-none">
-        <div class="max-w-6xl mx-auto px-2 md:px-4 flex flex-row justify-center items-center space-x-2 md:space-x-8">
+        <div class="max-w-6xl mx-auto px-2 md:px-4 flex flex-row justify-center items-stretch space-x-2 md:space-x-8 h-full">
             <a href="https://uimandiri.ac.id/" target="_blank" class="w-1/4 md:w-56 block">
-                <div class="editable-img-wrapper rounded">
-                    <img id="img-ornamen-kiri" src="https://i.ibb.co.com/PzYTswGN/Proyek-Baru-51-E62-F390.png" alt="Ornamen Kiri" class="w-full object-contain drop-shadow-xl hover:scale-105 transition-transform">
+                <div class="editable-img-wrapper rounded h-full flex">
+                    <img id="img-ornamen-kiri" src="https://i.ibb.co.com/PzYTswGN/Proyek-Baru-51-E62-F390.png" alt="Ornamen Kiri" class="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform">
                 </div>
             </a>
 
-            <div class="w-2/4 md:w-full max-w-2xl bg-[url('https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png')] bg-contain md:bg-cover bg-center bg-no-repeat py-6 md:py-20 px-2 md:px-6 rounded-xl flex flex-col items-center justify-center">
-                <h2 id="txt-sosmed-judul" class="editable-txt text-[11px] sm:text-sm md:text-3xl font-heading font-bold text-white mb-2 md:mb-8 drop-shadow-md">Social Media</h2>
-                <div class="flex justify-center space-x-2 md:space-x-8">
-                    <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/uimandiri_official/" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
+            <div class="w-2/4 md:w-full max-w-2xl relative flex flex-1 items-center justify-center">
+                <img src="https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png" class="w-full h-auto object-contain -z-10 drop-shadow-xl" alt="Background Sosmed">
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-2 md:p-6">
+                    <h2 id="txt-sosmed-judul" class="editable-txt text-[11px] sm:text-sm md:text-3xl font-heading font-bold text-white mb-2 md:mb-8 drop-shadow-md">Social Media</h2>
+                    <div class="flex justify-center space-x-2 md:space-x-8">
+                        <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/uimandiri_official/" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="w-1/4 md:w-56">
-                <div class="editable-img-wrapper rounded">
-                    <img id="img-ornamen-kanan" src="https://i.ibb.co.com/8gsdLSTM/Proyek-Baru-51-68-BC19-E.png" alt="Ornamen Kanan" class="w-full object-contain drop-shadow-xl hover:scale-105 transition-transform">
+            <div class="w-1/4 md:w-56 flex">
+                <div class="editable-img-wrapper rounded h-full flex">
+                    <img id="img-ornamen-kanan" src="https://i.ibb.co.com/8gsdLSTM/Proyek-Baru-51-68-BC19-E.png" alt="Ornamen Kanan" class="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform">
                 </div>
             </div>
         </div>
