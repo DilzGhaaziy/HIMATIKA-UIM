@@ -47,27 +47,25 @@
 
 /* Hero Combined Gradient Animation */
         .hero-text-wrapper {
-            background: linear-gradient(135deg, #ffffff 15%, #1B427B 50%, #ffffff 85%);
-            background-size: 200% 200%;
+            /* Membuat gradien dengan batas yang lebih jelas */
+            background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent !important;
             -webkit-text-fill-color: transparent;
-            animation: flowHero 4s ease-in-out infinite;
-            /* Shadow dipindah ke sini agar tidak "merusak" teks transparan */
+            /* Kecepatan lambat (8 detik total) dengan pergerakan konstan (linear) */
+            animation: flowHero 8s linear infinite;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
         }
 
         @keyframes flowHero {
+            /* Bergerak dari kiri atas... */
             0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-
-        @keyframes flowHero {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
+            /* ...sampai ke kanan bawah. Berhenti pada 75% waktu animasi (detik ke-6 dari total 8 detik) */
+            75% { background-position: 100% 100%; }
+            /* Delay/Diam dari 75% sampai 100% (detik ke-6 sampai detik ke-8) */
+            100% { background-position: 100% 100%; } 
         }
 
         /* Name Gradient Animation */
@@ -459,9 +457,10 @@
                 </div>
             </a>
 
-            <div class="w-2/4 md:w-full max-w-2xl relative flex flex-1 items-center justify-center">
-                <img src="https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png" class="w-full h-auto object-contain -z-10 drop-shadow-xl" alt="Background Sosmed">
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-2 md:p-6">
+<div class="w-2/4 md:w-full max-w-2xl relative flex flex-col items-center justify-center py-10 md:py-24">
+                <img src="https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png" class="absolute inset-0 w-full h-full object-contain z-0 drop-shadow-xl" alt="Background Sosmed">
+                
+                <div class="relative z-10 flex flex-col items-center justify-center w-full">
                     <h2 id="txt-sosmed-judul" class="editable-txt text-[11px] sm:text-sm md:text-3xl font-heading font-bold text-white mb-2 md:mb-8 drop-shadow-md">Social Media</h2>
                     <div class="flex justify-center space-x-2 md:space-x-8">
                         <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
