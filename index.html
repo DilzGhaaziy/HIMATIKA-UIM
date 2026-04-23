@@ -45,18 +45,34 @@
             letter-spacing: 2px;
         }
 
-        /* Hero Combined Gradient Animation */
+        /* ========================================= */
+        /* KELAS KHUSUS GRADASI MENYATU & ANTI-CROP  */
+        /* ========================================= */
         .hero-text-wrapper {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .hero-gradient {
             background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
             background-size: 300% 300%;
+            /* fixed attachment menyatukan gradasi dari beberapa elemen yang terpisah */
+            background-attachment: fixed; 
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent !important;
             -webkit-text-fill-color: transparent;
             animation: flowHero 8s linear infinite;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
-            padding-top: 15px;
-            padding-bottom: 15px;
+            
+            /* Padding atas & bawah untuk mencegah font terpotong (crop) */
+            padding-top: 20px;
+            padding-bottom: 20px;
+            line-height: 1.2;
+            display: inline-block;
         }
 
         @keyframes flowHero {
@@ -88,16 +104,8 @@
         /* ========================================= */
         .glitch {
             position: relative;
-            display: inline-block;
             cursor: pointer;
-            /* Menerapkan ulang gradasi persis seperti parent agar teks dasar 
-               TETAP MUNCUL dan efek animasi gradasinya tergabung */
-            background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: flowHero 8s linear infinite;
+            z-index: 2;
         }
 
         .glitch::before,
@@ -106,26 +114,39 @@
             content: attr(data-text);
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             visibility: hidden;
             pointer-events: none;
+            
+            /* Mematikan sifat transparan parent untuk overlay glitch murni */
             background: none;
             -webkit-background-clip: initial;
             background-clip: initial;
-            z-index: 10;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            
+            /* Menyesuaikan padding dari .hero-gradient agar presisi menumpuk! */
+            padding-top: 20px;
+            padding-bottom: 20px;
+            line-height: 1.2;
+            white-space: nowrap;
         }
 
         .glitch:hover::before {
             visibility: visible;
-            color: rgba(255,0,188,.8);
-            -webkit-text-fill-color: rgba(255,0,188,.8);
+            color: rgba(255,0,188,.8) !important;
+            -webkit-text-fill-color: rgba(255,0,188,.8) !important;
             animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) both infinite;
+            z-index: 10;
         }
 
         .glitch:hover::after {
             visibility: visible;
-            color: rgba(0,255,255,.8);
-            -webkit-text-fill-color: rgba(0,255,255,.8);
+            color: rgba(0,255,255,.8) !important;
+            -webkit-text-fill-color: rgba(0,255,255,.8) !important;
             animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) reverse both infinite;
+            z-index: 11;
         }
 
         @keyframes hover-glitch {
@@ -403,12 +424,12 @@
     </nav>
 
     <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
-        <div class="hero-text-wrapper flex flex-col items-center justify-center">
-            <h1 class="font-grames text-xl sm:text-3xl md:text-5xl font-bold leading-normal pt-2 mb-2 md:mb-4">
-                <span id="txt-hero-title-1" class="editable-txt">HIMPUNAN MAHASISWA </span>
-                <span id="txt-hero-title-2" class="editable-txt glitch" data-text="INFORMATIKA">INFORMATIKA</span>
+        <div class="hero-text-wrapper px-4">
+            <h1 class="flex flex-wrap justify-center items-center gap-x-3 md:gap-x-4 w-full">
+                <span id="txt-hero-title-1" class="editable-txt hero-gradient font-grames text-xl sm:text-3xl md:text-5xl font-bold text-center">HIMPUNAN MAHASISWA</span>
+                <span id="txt-hero-title-2" class="editable-txt hero-gradient glitch font-grames text-xl sm:text-3xl md:text-5xl font-bold text-center" data-text="INFORMATIKA">INFORMATIKA</span>
             </h1>
-            <h2 id="txt-hero-subtitle" class="editable-txt font-grames text-sm sm:text-xl md:text-4xl font-bold leading-normal">UNIVERSITAS INDONESIA MANDIRI</h2>
+            <h2 id="txt-hero-subtitle" class="editable-txt hero-gradient font-grames text-sm sm:text-xl md:text-4xl font-bold text-center -mt-[15px]">UNIVERSITAS INDONESIA MANDIRI</h2>
         </div>
     </section>
 
