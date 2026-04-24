@@ -60,7 +60,6 @@
         .hero-gradient {
             background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
             background-size: 300% 300%;
-            /* fixed attachment menyatukan gradasi dari beberapa elemen yang terpisah */
             background-attachment: fixed; 
             -webkit-background-clip: text;
             background-clip: text;
@@ -68,7 +67,6 @@
             -webkit-text-fill-color: transparent;
             animation: flowHero 8s linear infinite;
             
-            /* Padding atas & bawah untuk mencegah font terpotong (crop) */
             padding-top: 20px;
             padding-bottom: 20px;
             line-height: 1.2;
@@ -106,18 +104,13 @@
             position: relative;
             cursor: pointer;
             z-index: 2;
-            background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
-            background-size: 300% 300%;
-            background-attachment: fixed;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: flowHero 8s linear infinite;
         }
 
-        /* Menghilangkan teks aslinya saat mouse masuk (Hover) */
+        /* Menghilangkan teks asli saat di-hover/disentuh mouse */
         .glitch:hover {
             background: transparent !important;
+            -webkit-text-fill-color: transparent !important;
+            color: transparent !important;
         }
 
         .glitch::before,
@@ -131,14 +124,12 @@
             visibility: hidden;
             pointer-events: none;
             
-            /* Mematikan sifat transparan parent untuk overlay glitch murni */
             background: none;
             -webkit-background-clip: initial;
             background-clip: initial;
             color: transparent;
             -webkit-text-fill-color: transparent;
             
-            /* Menyesuaikan padding dari .hero-gradient agar presisi menumpuk! */
             padding-top: 20px;
             padding-bottom: 20px;
             line-height: 1.2;
@@ -394,7 +385,7 @@
                         <span class="text-gray-200 font-medium group-hover:text-white">Departemen <i class="fas fa-chevron-down text-xs ml-1"></i></span>
                         <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                             <a href="struktur.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Komunikasi dan Informasi</a>
-                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pemuda dan Olahraga</a>
+                            <a href="stpemuda.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pemuda dan Olahraga</a>
                             <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Agama</a>
                             <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pengembangan dan SDM</a>
                             <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue">Kesejahteraan Mahasiswa</a>
@@ -423,7 +414,7 @@
                 <div class="text-gray-200 font-medium mb-2">Departemen</div>
                 <div class="pl-4 space-y-3 border-l-2 border-white/20 mt-2">
                     <a href="struktur.html" class="block text-sm text-gray-300 hover:text-white">Komunikasi dan Informasi</a>
-                    <a href="#" class="block text-sm text-gray-300 hover:text-white">Pemuda dan Olahraga</a>
+                    <a href="stpemuda.html" class="block text-sm text-gray-300 hover:text-white">Pemuda dan Olahraga</a>
                     <a href="#" class="block text-sm text-gray-300 hover:text-white">Agama</a>
                     <a href="#" class="block text-sm text-gray-300 hover:text-white">Pengembangan dan SDM</a>
                     <a href="#" class="block text-sm text-gray-300 hover:text-white">Kesejahteraan Mahasiswa</a>
@@ -437,8 +428,9 @@
 
     <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
         <div class="hero-text-wrapper px-4">
-            <h1 class="flex flex-wrap justify-center items-center gap-[0.3em] w-full">
-                <span id="txt-hero-title-1" class="editable-txt hero-gradient font-grames text-xl sm:text-3xl md:text-5xl font-bold text-center">HIMPUNAN MAHASISWA</span>
+            <h1 class="flex flex-wrap justify-center items-center gap-x-3 md:gap-x-4 w-full">
+                <span id="txt-hero-title-1a" class="editable-txt hero-gradient font-grames text-xl sm:text-3xl md:text-5xl font-bold text-center">HIMPUNAN</span>
+                <span id="txt-hero-title-1b" class="editable-txt hero-gradient font-grames text-xl sm:text-3xl md:text-5xl font-bold text-center">MAHASISWA</span>
                 <span id="txt-hero-title-2" class="editable-txt hero-gradient glitch font-grames text-xl sm:text-3xl md:text-5xl font-bold text-center" data-text="INFORMATIKA">INFORMATIKA</span>
             </h1>
             <h2 id="txt-hero-subtitle" class="editable-txt hero-gradient font-grames text-sm sm:text-xl md:text-4xl font-bold text-center -mt-[15px]">UNIVERSITAS INDONESIA MANDIRI</h2>
