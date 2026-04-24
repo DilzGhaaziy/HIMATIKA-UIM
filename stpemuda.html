@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departemen Pemuda dan Olahraga - HIMATIKA</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        himasiBlue: '#0d72bf',
+                        himasiDark: '#363537',
+                        textDark: '#444444'
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Raleway', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-textDark bg-[#F5F4F1] overflow-x-hidden">
+
+    <nav class="bg-[#1B427B] shadow-md fixed w-full z-50 top-0 border-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html">
+                        <img class="h-14 w-auto rounded px-2" src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="HIMATIKA Logo">
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-white font-medium hover:text-gray-300">Beranda</a>
+                    <a href="#" class="text-gray-200 font-medium hover:text-white">Program Kerja</a>
+                    <div class="relative group cursor-pointer py-6">
+                        <span class="text-white font-bold">Departemen <i class="fas fa-chevron-down text-xs ml-1"></i></span>
+                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="struktur.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b">Komunikasi dan Informasi</a>
+                            <a href="stpemuda.html" class="block px-4 py-3 text-sm text-himasiBlue font-bold bg-gray-50 border-b">Pemuda dan Olahraga</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b">Agama</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b">Pengembangan dan SDM</a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">Kesejahteraan Mahasiswa</a>
+                        </div>
+                    </div>
+                    <a href="#" class="text-gray-200 font-medium hover:text-white">Berita</a>
+                    <a href="#" class="text-gray-200 font-medium hover:text-white">Galeri</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl md:text-5xl font-heading font-bold text-himasiBlue mb-6">Pemuda dan Olahraga</h1>
+                <p class="text-lg text-gray-600 leading-relaxed italic">
+                    "Departemen Pemuda dan Olahraga (PORA) adalah unit yang berfokus pada pengembangan minat, bakat, serta kesehatan fisik mahasiswa Informatika. Melalui berbagai kegiatan olahraga dan pemberdayaan pemuda, kami bertujuan menciptakan mahasiswa yang tidak hanya unggul secara akademis, tetapi juga memiliki sportivitas dan kepedulian sosial yang tinggi."
+                </p>
+            </div>
+            
+            <div class="md:w-1/2 flex flex-col sm:flex-row justify-center gap-8">
+                <div class="flex flex-col items-center">
+                    <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-40 h-40 object-cover rounded-2xl shadow-lg border-4 border-himasiBlue" alt="Ketua">
+                    <div class="mt-4 text-center">
+                        <p class="text-himasiBlue font-bold text-lg">Laila Rohmah</p>
+                        <p class="text-sm text-gray-500 uppercase tracking-widest font-medium">Ketua Departemen</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-40 h-40 object-cover rounded-2xl shadow-lg border-4 border-gray-300" alt="Wakil">
+                    <div class="mt-4 text-center">
+                        <p class="text-gray-800 font-bold text-lg">Sayyid Adil Rosadi</p>
+                        <p class="text-sm text-gray-500 uppercase tracking-widest font-medium">Wakil Ketua</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 space-y-16">
+            
+            <div>
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-10 flex items-center justify-center gap-3">
+                    <span class="h-1 w-12 bg-pink-400 rounded"></span>
+                    Unit Pemberdayaan Perempuan PPKS
+                    <span class="h-1 w-12 bg-pink-400 rounded"></span>
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Wulan Dhini Septiani</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Indri Meilani Umayyah</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Lilis Cahya Kurnia</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Widia Lestari</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-10 flex items-center justify-center gap-3">
+                    <span class="h-1 w-12 bg-blue-400 rounded"></span>
+                    Unit Kegiatan Mahasiswa
+                    <span class="h-1 w-12 bg-blue-400 rounded"></span>
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Muhammad Adelia Saputra</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Eric A Rizki</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Alfian Febriansyah</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-32 h-32 object-cover rounded-full shadow-md border-2 border-white" alt="Anggota">
+                        <p class="mt-3 font-bold text-gray-700 text-center">Muhammad Nirwanda</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-himasiDark py-8 text-center">
+        <p class="text-gray-400 text-sm">© 2026 HIMATIKA UIM - Departemen Pemuda dan Olahraga</p>
+    </footer>
+
+</body>
+</html>
