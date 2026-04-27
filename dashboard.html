@@ -258,23 +258,30 @@
             return `<span class="px-2.5 py-1 ${bgColor} ${txtColor} ${extraClass} rounded text-[10px] font-bold tracking-wider">${name}</span>`;
         }
 
-        // --- SECTION: DAFTAR AKUN PENGURUS ---
-        function loadAdminList() {
-            const container = document.getElementById('admin-list-container');
-            container.innerHTML = '';
-            
-            adminAccounts.forEach(acc => {
-                // Generate UI Label
+function loadAdminList() {
+    const container = document.getElementById('admin-list-container');
+    container.innerHTML = '<p class="text-gray-400 text-center w-full">Memuat data dari Firebase...</p>';
+    
+    // Membaca data secara realtime dari Firebase
+    db.ref('admins').on('value', (snapshot) => {
+        container.innerHTML = ''; // Kosongkan loading
+        const data = snapshot.val();
+        
+        if (data) {
+            // Loop setiap akun yang ada di Firebase
+            Object.values(data).forEach(acc => {
                 let labelsHTML = '';
-                acc.labels.forEach(l => { labelsHTML += getLabelHTML(l); });
+                // Pastikan label ada sebelum di-loop (mencegah error jika data kosong)
+                if(acc.labels) {
+                    acc.labels.forEach(l => { labelsHTML += getLabelHTML(l); });
+                }
 
                 container.innerHTML += `
                     <div class="glass-panel p-5 rounded-2xl flex items-center gap-4 relative overflow-hidden group">
                         <div class="absolute top-3 right-3 flex flex-col gap-1 items-end z-10">
                             ${labelsHTML}
                         </div>
-                        
-                        <img src="${acc.profilePic}" class="w-16 h-16 rounded-full object-cover border-2 border-white/20 shadow-md z-10 group-hover:scale-105 transition">
+                        <img src="${acc.profilePic || 'https://via.placeholder.com/150'}" class="w-16 h-16 rounded-full object-cover border-2 border-white/20 shadow-md z-10 group-hover:scale-105 transition">
                         <div class="z-10 mt-2 sm:mt-0 max-w-[60%]">
                             <p class="font-bold text-lg leading-tight truncate">${acc.name}</p>
                             <p class="text-xs text-gray-400 mt-0.5">@${acc.username}</p>
@@ -282,6 +289,28 @@
                     </div>`;
             });
         }
+        
+        // Backup: Tetap tampilkan akun dari admin.js sebagai akun master/default
+        if (typeof adminAccounts !== 'undefined') {
+            adminAccounts.forEach(acc => {
+                let labelsHTML = '';
+                acc.labels.forEach(l => { labelsHTML += getLabelHTML(l); });
+
+                container.innerHTML += `
+                    <div class="glass-panel p-5 rounded-2xl flex items-center gap-4 relative overflow-hidden group border-blue-500/30">
+                        <div class="absolute top-3 right-3 flex flex-col gap-1 items-end z-10">
+                            ${labelsHTML}
+                        </div>
+                        <img src="${acc.profilePic}" class="w-16 h-16 rounded-full object-cover border-2 border-white/20 shadow-md z-10 group-hover:scale-105 transition">
+                        <div class="z-10 mt-2 sm:mt-0 max-w-[60%]">
+                            <p class="font-bold text-lg leading-tight truncate">${acc.name}</p>
+                            <p class="text-xs text-gray-400 mt-0.5">@${acc.username} <span class="text-[9px] bg-blue-500/20 px-1 rounded ml-1">MASTER</span></p>
+                        </div>
+                    </div>`;
+            });
+        }
+    });
+}
 
         // --- SECTION: PROFIL AKUN (EDIT & BACA) ---
         function loadProfile() {
