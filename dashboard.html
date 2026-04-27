@@ -408,33 +408,62 @@
             }, 1000);
         }
 
-        function saveNewAdmin() {
-            const name = document.getElementById('addName').value;
-            const user = document.getElementById('addUser').value;
-            const pass = document.getElementById('addPass').value;
-            
-            // Kumpulkan semua checkbox label yang dicentang
-            const checkedLabels = Array.from(document.querySelectorAll('.add-label-cb:checked')).map(cb => cb.value);
+function saveNewAdmin() {
+    const name = document.getElementById('addName').value;
+    const user = document.getElementById('addUser').value;
+    const pass = document.getElementById('addPass').value;
+    const photoUrl = document.getElementById('newAdminPhoto').src;
+    
+    // Kumpulkan semua checkbox label yang dicentang
+    const checkedLabels = Array.from(document.querySelectorAll('.add-label-cb:checked')).map(cb => cb.value);
 
-            if(!name || !user || !pass) {
-                alert("Nama, Username, dan Password wajib diisi!");
-                return;
-            }
-            if(checkedLabels.length === 0) {
-                alert("Harap pilih minimal satu label!");
-                return;
-            }
+    if(!name || !user || !pass) {
+        alert("Nama, Username, dan Password wajib diisi!");
+        return;
+    }
+    if(checkedLabels.length === 0) {
+        alert("Harap pilih minimal satu label!");
+        return;
+    }
 
-            alert("SUKSES!\n\nNama: " + name + "\nLabel: " + checkedLabels.join(', ') + "\n\n(Catatan: Integrasi penambahan data ke database memerlukan backend lanjutan.)");
+    // Ubah teks tombol menjadi loading
+    const btnSave = document.querySelector('button[onclick="saveNewAdmin()"]');
+    btnSave.innerText = "MENYIMPAN...";
+    btnSave.disabled = true;
+
+    // Siapkan data yang akan dikirim ke Firebase
+    const newAdminData = {
+        name: name,
+        username: user,
+        password: pass,
+        wa: "-", // Nilai default, bisa diisi nanti di profil
+        dob: "-", // Nilai default, bisa diisi nanti di profil
+        labels: checkedLabels,
+        profilePic: photoUrl
+    };
+
+    // Push data ke Firebase Realtime Database di tabel (node) 'admins'
+    db.ref('admins').push(newAdminData)
+        .then(() => {
+            alert("SUKSES! Akun admin baru berhasil ditambahkan ke Database Firebase.");
             
             // Reset form
             document.getElementById('addName').value = '';
             document.getElementById('addUser').value = '';
             document.getElementById('addPass').value = '';
-            document.getElementById('addEmail').value = '';
             document.querySelectorAll('.add-label-cb').forEach(cb => cb.checked = false);
             document.getElementById('newAdminPhoto').src = "https://via.placeholder.com/150";
-        }
+            
+            // Kembalikan teks tombol
+            btnSave.innerText = "SIMPAN AKUN";
+            btnSave.disabled = false;
+        })
+        .catch((error) => {
+            alert("Gagal menambahkan akun: " + error.message);
+            btnSave.innerText = "SIMPAN AKUN";
+            btnSave.disabled = false;
+        });
+}
     </script>
 </body>
 </html>
