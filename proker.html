@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Program Kerja</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Background dari BGgalaxy */
+            background: radial-gradient(ellipse at bottom, #0B1026 0%, #000000 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden; 
+        }
+
+        /* --- CSS GALAXY BACKGROUND --- */
+        .scene {
+            position: fixed; /* Diubah menjadi fixed agar tetap saat discroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Dikirim ke belakang konten galeri */
+            pointer-events: none; /* Agar klik diteruskan ke galeri di depannya */
+        }
+
+        #starCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; 
+        }
+
+        .meteor {
+            position: absolute;
+            opacity: 0;
+            transform-origin: left center;
+            pointer-events: none;
+            z-index: 10;
+            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 500px;
+            will-change: transform, opacity; 
+        }
+        
+        @keyframes shooting {
+            0% { transform: translate(0, 0) rotate(-45deg); opacity: 1; }
+            100% { transform: translate(-100vh, 100vh) rotate(-45deg); opacity: 0; }
+        }
+
+        .meteor-head {
+            position: absolute;
+            left: 0; top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 10px 2px rgba(100, 200, 255, 0.8);
+        }
+
+        /* --- CSS GALERI PROKER --- */
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vw; 
+            width: 96vw; 
+            padding: 2vh 0;
+            position: relative;
+            z-index: 1; /* Di atas background galaxy */
+        }
+
+        .gallery-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5vw; 
+        }
+        
+        .img-card {
+            position: relative;
+            width: calc(25% - 1.125vw); 
+            aspect-ratio: 16 / 9;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            padding: 5px; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .row-bottom .img-card {
+            width: calc(25% - 1.125vw);
+        }
+
+        .img-card:hover {
+            transform: scale(1.08); 
+            z-index: 10;
+        }
+
+        .img-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+            background-size: 400% 400%;
+            animation: acakRGB 6s ease infinite;
+            z-index: 0;
+        }
+        .img-card img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px; 
+            background-color: #222;
+        }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.95); 
+            z-index: 1000;
+            overflow-y: auto; 
+        }
+
+        .modal-align-center {
+            display: flex;
+            min-height: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 90vw; 
+        }
+
+        .modal-img-box {
+            position: relative;
+            width: 100%;
+            max-width: calc(75vh * (16 / 9)); 
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+        }
+
+        .modal-img-box::after {
+            content: '';
+            position: absolute;
+            top: -1.5%; left: -1.5%; width: 103%; height: 103%;
+            background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+            background-size: 400% 400%;
+            filter: blur(35px); 
+            z-index: -1;
+            animation: acakRGB 6s ease infinite;
+            border-radius: 20px;
+            opacity: 0.9;
+        }
+
+        .modal-inner-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            padding: 8px; 
+            overflow: hidden;
+        }
+        
+        .modal-inner-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000);
+            background-size: 400% 400%;
+            animation: acakRGB 6s ease infinite;
+            z-index: 0;
+        }
+
+        .modal-inner-box img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* --- TOMBOL AKSI --- */
+        .modal-actions {
+            display: flex;
+            gap: 20px;
+            z-index: 2; 
+            flex-wrap: wrap; 
+            justify-content: center;
+        }
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        .btn:hover {
+            transform: translateY(-4px);
+            filter: brightness(1.15);
+        }
+        .btn-download { background-color: #28a745; }
+        .btn-close { background-color: #dc3545; }
+
+        @keyframes acakRGB {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 1024px) {
+            .img-card, .row-bottom .img-card { width: calc(50% - 1.5vw); }
+            .gallery-row { flex-wrap: wrap; }
+        }
+        @media (max-width: 600px) {
+            .img-card, .row-bottom .img-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene" id="scene">
+        <canvas id="starCanvas"></canvas>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-row row-top">
+            <div class="img-card" onclick="bukaModal('https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png')">
+                <img src="https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png" alt="Proker 1 (Thumbnail)">
+            </div>
+            <div class="img-card" onclick="bukaModal('https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png')">
+                <img src="https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png" alt="Proker 2 (Thumbnail)">
+            </div>
+            <div class="img-card" onclick="bukaModal('https://i.ibb.co.com/XZbxZpcC/Proyek-Baru-128-F787-A9-C.png')">
+                <img src="https://i.ibb.co.com/XZbxZpcC/Proyek-Baru-128-F787-A9-C.png" alt="Proker 3 (Thumbnail)">
+            </div>
+            <div class="img-card" onclick="bukaModal('https://i.ibb.co.com/ccCgWs0v/Proyek-Baru-128-CD6-CD7-A.png')">
+                <img src="https://i.ibb.co.com/ccCgWs0v/Proyek-Baru-128-CD6-CD7-A.png" alt="Proker 4 (Thumbnail)">
+            </div>
+        </div>
+
+        <div class="gallery-row row-bottom">
+            <div class="img-card" onclick="bukaModal('https://i.ibb.co.com/b5D44vNC/Proyek-Baru-128-A5-B6-FFD.png')">
+                <img src="https://i.ibb.co.com/b5D44vNC/Proyek-Baru-128-A5-B6-FFD.png" alt="Proker 5 (Thumbnail)">
+            </div>
+            <div class="img-card" onclick="bukaModal('https://i.ibb.co.com/XfMTBZHB/Proyek-Baru-128-FBFFE6-B.png')">
+                <img src="https://i.ibb.co.com/XfMTBZHB/Proyek-Baru-128-FBFFE6-B.png" alt="Proker 6 (Thumbnail)">
+            </div>
+            <div class="img-card" onclick="bukaModal('https://i.ibb.co.com/gKK41hk/Proyek-Baru-128-2-ED8778.png')">
+                <img src="https://i.ibb.co.com/gKK41hk/Proyek-Baru-128-2-ED8778.png" alt="Proker 7 (Thumbnail)">
+            </div>
+        </div>
+    </div>
+
+    <div id="modalGambar" class="modal">
+        <div class="modal-align-center">
+            <div class="modal-content-wrapper">
+                
+                <div class="modal-img-box">
+                    <div class="modal-inner-box">
+                        <img id="gambarZoom" src="" alt="Gambar Diperbesar">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <a id="btnDownload" href="" download class="btn btn-download">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                    <button class="btn btn-close" onclick="tutupModal()">
+                        <i class="fas fa-times"></i> Keluar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ================================================================
+           SCRIPT 1: GALAXY BACKGROUND (STARS & METEOR)
+           ================================================================ */
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+        const scene = document.getElementById('scene');
+
+        let width, height;
+        let stars = [];
+
+        const isMobile = window.innerWidth < 768;
+        const starCount = isMobile ? 150 : 300; 
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initStars(); 
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < starCount; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 2 + 0.5, 
+                    speed: Math.random() * 0.5 + 0.2, 
+                    opacity: Math.random()
+                });
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, width, height); 
+            ctx.fillStyle = "white";
+            
+            for (let i = 0; i < stars.length; i++) {
+                const star = stars[i];
+                ctx.globalAlpha = star.opacity;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+                star.y += star.speed; 
+
+                if (star.y > height) {
+                    star.y = 0;
+                    star.x = Math.random() * width;
+                }
+            }
+            requestAnimationFrame(animateStars); 
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animateStars();
+
+        let isTabActive = true;
+        let meteorTimeout;
+
+        document.addEventListener('visibilitychange', () => {
+            isTabActive = !document.hidden;
+            if (isTabActive) meteorLoop();
+            else clearTimeout(meteorTimeout);
+        });
+
+        function spawnMeteor() {
+            if (!isTabActive) return;
+            if (document.querySelectorAll('.meteor').length > 5) return;
+
+            const meteor = document.createElement('div');
+            meteor.classList.add('meteor');
+
+            const headSize = Math.random() * 2 + 2; 
+            const tailLength = headSize * (Math.random() * 40 + 30);
+            const startX = Math.random() * 100 + 20; 
+            const duration = Math.random() * 1.5 + 1; 
+
+            meteor.style.width = tailLength + 'px';
+            meteor.style.height = (headSize * 0.7) + 'px';
+            meteor.style.left = startX + 'vw';
+            meteor.style.top = '-50px';
+            meteor.style.animation = `shooting ${duration}s linear forwards`;
+
+            const head = document.createElement('div');
+            head.classList.add('meteor-head');
+            head.style.width = headSize + 'px';
+            head.style.height = headSize + 'px';
+            head.style.boxShadow = `0 0 ${headSize * 3}px ${headSize}px rgba(100, 200, 255, 0.8)`;
+            
+            meteor.appendChild(head);
+
+            meteor.addEventListener('animationend', () => {
+                meteor.remove();
+            });
+
+            scene.appendChild(meteor);
+        }
+
+        function meteorLoop() {
+            clearTimeout(meteorTimeout);
+            if (isTabActive) {
+                spawnMeteor();
+                const randomDelay = Math.random() * 3000 + 1000;
+                meteorTimeout = setTimeout(meteorLoop, randomDelay);
+            }
+        }
+        
+        setTimeout(meteorLoop, 1000);
+
+
+        /* ================================================================
+           SCRIPT 2: GALERI PROKER & MODAL
+           ================================================================ */
+        function bukaModal(srcGambarOriginal) {
+            const modal = document.getElementById("modalGambar");
+            const gambar = document.getElementById("gambarZoom");
+            const linkDownload = document.getElementById("btnDownload");
+
+            gambar.src = srcGambarOriginal;
+            linkDownload.href = srcGambarOriginal;
+            
+            let namaFile = srcGambarOriginal.split('/').pop().split('?')[0]; 
+            if (!namaFile.includes('.')) namaFile += '.jpg';
+            linkDownload.download = namaFile;
+
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+
+        function tutupModal() {
+            document.getElementById("modalGambar").style.display = "none";
+            document.getElementById("gambarZoom").src = ""; 
+            document.body.style.overflow = "auto";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("modalGambar");
+            const modalCenter = document.querySelector(".modal-align-center");
+            if (event.target === modal || event.target === modalCenter) {
+                tutupModal();
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                tutupModal();
+            }
+        });
+    </script>
+</body>
+</html>
