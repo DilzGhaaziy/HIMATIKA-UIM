@@ -956,21 +956,57 @@ function cekStatusLogin() {
 function prosesLogin() {
     const userIn = document.getElementById('username').value;
     const passIn = document.getElementById('password').value;
-    if (typeof adminAccounts !== 'undefined') {
-        const userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn);
+    const errorMsg = document.getElementById('errorMsg');
+    
+    if(!userIn || !passIn) {
+        errorMsg.innerText = "Username dan Password tidak boleh kosong!";
+        errorMsg.classList.remove('hidden');
+        return;
+    }
+
+    // Ganti teks tombol saat memuat
+    const btnLogin = document.querySelector('button[onclick="prosesLogin()"]');
+    const originalText = btnLogin.innerText;
+    btnLogin.innerText = "Memeriksa...";
+    btnLogin.disabled = true;
+
+    // 1. Cek dari Firebase terlebih dahulu
+    database.ref('admins').once('value').then((snapshot) => {
+        const data = snapshot.val();
+        let userMatch = null;
+
+        if (data) {
+            // Mencari kecocokan username dan password di Firebase
+            userMatch = Object.values(data).find(acc => acc.username === userIn && acc.password === passIn);
+        }
+
+        // 2. Jika tidak ketemu di Firebase, cek di file admin.js (Sebagai Master Account)
+        if (!userMatch && typeof adminAccounts !== 'undefined') {
+            userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn);
+        }
+
         if (userMatch) {
-            // UBAH BAGIAN INI: Samakan key penyimpanannya dengan dashboard & berita
+            // BERHASIL LOGIN
             localStorage.setItem('adminLoggedIn', 'true');
             localStorage.setItem('adminData', JSON.stringify(userMatch));
             
             closeModal();
             cekStatusLogin();
         } else {
-            document.getElementById('errorMsg').classList.remove('hidden');
+            // GAGAL LOGIN
+            errorMsg.innerText = "Username atau Password salah!";
+            errorMsg.classList.remove('hidden');
         }
-    } else {
-        alert("File admin.js tidak ditemukan.");
-    }
+
+        // Kembalikan tombol seperti semula
+        btnLogin.innerText = originalText;
+        btnLogin.disabled = false;
+        
+    }).catch((error) => {
+        alert("Error koneksi ke Firebase: " + error.message);
+        btnLogin.innerText = originalText;
+        btnLogin.disabled = false;
+    });
 }
 
 function prosesLogout() {
