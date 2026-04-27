@@ -7,6 +7,6 @@ const adminAccounts = [
         wa: "083896853851",
         dob: "24-10-2006",
         labels: ["Owner", "Developer"],
-        profilePic: "https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" // Foto default
+        profilePic: "https://i.ibb.co.com/4w92Rpc2/Whats-App-Image-2025-12-17-at-21-10-43.jpg" // Foto default
     }
 ];
