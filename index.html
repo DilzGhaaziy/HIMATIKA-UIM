@@ -886,17 +886,19 @@
             });
         }
 
-        function cekStatusLogin() {
-            const btnDashboard = document.getElementById('btnDashboard');
-            const btnAdminAuth = document.getElementById('btnAdminAuth');
-            
-            const btnDashboardMobile = document.getElementById('btnDashboardMobile');
-            const btnAdminAuthMobile = document.getElementById('btnAdminAuthMobile');
+function cekStatusLogin() {
+    const btnDashboard = document.getElementById('btnDashboard');
+    const btnAdminAuth = document.getElementById('btnAdminAuth');
+    
+    const btnDashboardMobile = document.getElementById('btnDashboardMobile');
+    const btnAdminAuthMobile = document.getElementById('btnAdminAuthMobile');
 
-            const btnSaveCms = document.getElementById('btnSaveCms');
-            const isLoggedIn = localStorage.getItem('adminSession');
+    const btnSaveCms = document.getElementById('btnSaveCms');
+    
+    // UBAH BARIS INI:
+    const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
 
-            if (isLoggedIn) {
+    if (isLoggedIn) {
                 btnDashboard.classList.remove('hidden');
                 btnAdminAuth.textContent = 'Logout';
                 btnAdminAuth.classList.remove('shimmer-text');
@@ -951,29 +953,35 @@
         function openModal() { document.getElementById('loginModal').classList.remove('hidden'); }
         function closeModal() { document.getElementById('loginModal').classList.add('hidden'); document.getElementById('errorMsg').classList.add('hidden'); }
 
-        function prosesLogin() {
-            const userIn = document.getElementById('username').value;
-            const passIn = document.getElementById('password').value;
-            if (typeof adminAccounts !== 'undefined') {
-                const userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn);
-                if (userMatch) {
-                    localStorage.setItem('adminSession', JSON.stringify(userMatch));
-                    closeModal();
-                    cekStatusLogin();
-                } else {
-                    document.getElementById('errorMsg').classList.remove('hidden');
-                }
-            } else {
-                alert("File admin.js tidak ditemukan.");
-            }
+function prosesLogin() {
+    const userIn = document.getElementById('username').value;
+    const passIn = document.getElementById('password').value;
+    if (typeof adminAccounts !== 'undefined') {
+        const userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn);
+        if (userMatch) {
+            // UBAH BAGIAN INI: Samakan key penyimpanannya dengan dashboard & berita
+            localStorage.setItem('adminLoggedIn', 'true');
+            localStorage.setItem('adminData', JSON.stringify(userMatch));
+            
+            closeModal();
+            cekStatusLogin();
+        } else {
+            document.getElementById('errorMsg').classList.remove('hidden');
         }
+    } else {
+        alert("File admin.js tidak ditemukan.");
+    }
+}
 
-        function prosesLogout() {
-            if(confirm('Apakah Anda yakin ingin logout?')){
-                localStorage.removeItem('adminSession');
-                cekStatusLogin();
-            }
-        }
+function prosesLogout() {
+    if(confirm('Apakah Anda yakin ingin logout?')){
+        // UBAH BAGIAN INI: Hapus kedua key agar ter-logout dari semua halaman
+        localStorage.removeItem('adminLoggedIn');
+        localStorage.removeItem('adminData');
+        
+        cekStatusLogin();
+    }
+}
 
         function openEditImgModal(imgId) {
             currentEditImageId = imgId;
