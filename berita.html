@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Ditambahkan library Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+    
     <script src="admin.js"></script>
 
     <script>
@@ -151,7 +155,6 @@
                         <div>
                             <p class="font-bold text-gray-700 dark:text-gray-300">
                                 <span id="article-author" class="text-sm">Pembuat Berita</span> 
-                                <!-- HIMATIKA UIM Teks Navy -->
                                 <span class="text-[#001436] dark:text-blue-300 ml-1.5 font-extrabold text-xs">HIMATIKA UIM</span>
                             </p>
                             <p id="article-date" class="text-xs mt-0.5">Tanggal</p>
@@ -160,17 +163,12 @@
 
                     <img id="article-img" src="" class="w-full h-auto max-h-[500px] object-cover rounded-xl mb-10 shadow-sm">
                     
-                    <div id="article-content" class="prose max-w-none text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
-                        <!-- Isi teks berita -->
-                    </div>
+                    <div id="article-content" class="prose max-w-none text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg"></div>
                 </div>
 
-                <!-- 3 Grid Berita Terbaru -->
                 <div class="bg-gray-50 dark:bg-gray-900 p-6 md:p-10 border-t border-gray-100 dark:border-gray-700">
                     <h3 class="text-xl font-bold font-heading mb-6 border-b-2 border-himasiBlue pb-2 inline-block">Berita Terbaru Lainnya</h3>
-                    <div id="article-latest-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        <!-- Konten Grid Bawah -->
-                    </div>
+                    <div id="article-latest-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
                 </div>
             </div>
         </div>
@@ -202,14 +200,24 @@
                         <button onclick="toggleView('news')" class="text-red-500 hover:text-red-700 px-2 py-2"><i class="fas fa-times text-xl"></i></button>
                     </div>
                 </div>
+
+                <!-- UPLOAD GAMBAR SAMPUL -->
+                <div class="relative group cursor-pointer mb-4 w-full aspect-video md:aspect-[19/6] bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center transition hover:border-himasiBlue" onclick="openModal('coverModal')">
+                    <img id="post-cover-img" src="" class="absolute inset-0 w-full h-full object-cover hidden z-10">
+                    <div class="text-center p-4 relative z-0" id="post-cover-placeholder">
+                        <i class="fas fa-image text-4xl text-gray-400 mb-2"></i>
+                        <p class="text-sm font-bold text-gray-500 dark:text-gray-400">Klik untuk Masukkan Gambar Sampul Berita</p>
+                    </div>
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-20">
+                        <i class="fas fa-camera text-3xl text-white"></i>
+                    </div>
+                </div>
+
                 <input type="text" id="post-title" placeholder="BUAT JUDUL..." class="w-full text-2xl font-bold p-3 border-b-2 border-gray-300 dark:border-gray-600 mb-4 focus:outline-none focus:border-himasiBlue bg-transparent">
                 
-                <!-- GANTI PEMBUAT BERITA (Muncul Hanya untuk Master) -->
                 <div id="edit-author-container" class="hidden mb-4 p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg">
                     <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300"><i class="fas fa-user-edit mr-2"></i>Ganti Pembuat Berita (Khusus Akun Master):</label>
-                    <select id="edit-author-select" class="w-full md:w-1/2 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-gray-800 dark:text-white outline-none focus:border-himasiBlue">
-                        <!-- Opsi akan diisi lewat Javascript -->
-                    </select>
+                    <select id="edit-author-select" class="w-full md:w-1/2 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-gray-800 dark:text-white outline-none focus:border-himasiBlue"></select>
                 </div>
 
                 <div class="flex gap-2 mb-2">
@@ -241,6 +249,22 @@
     </footer>
 
     <!-- MODAL POPUPS -->
+    <div id="coverModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[100] px-4 backdrop-blur-sm">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm text-center">
+            <h3 class="font-bold text-lg mb-4 text-gray-800 dark:text-white" id="coverModalText">Masukkan dari mana?</h3>
+            <div id="coverOptionsGroup" class="flex flex-col gap-3">
+                <button onclick="showCoverUrlInput()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow transition">LINK URL</button>
+                <button onclick="document.getElementById('coverUploader').click()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded shadow transition">Dari Galeri</button>
+            </div>
+            <div id="coverUrlGroup" class="hidden flex-col gap-3 mt-4">
+                <input type="url" id="coverUrlInput" class="w-full border dark:border-gray-600 dark:bg-gray-700 rounded px-3 py-2 text-sm outline-none focus:border-himasiBlue dark:text-white" placeholder="Paste link gambar disini...">
+                <button onclick="saveCoverUrl()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-bold shadow transition">Simpan Gambar</button>
+            </div>
+            <div class="mt-4 text-right"><button onclick="closeModal('coverModal'); resetCoverModal();" class="text-gray-500 hover:text-red-500 font-bold">Batal</button></div>
+        </div>
+    </div>
+    <input type="file" id="coverUploader" accept="image/*" class="hidden" onchange="uploadCoverImgBB(event)">
+
     <div id="popularConfirmModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[110] px-4">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm text-center">
             <h3 class="font-bold text-xl mb-2">Konfirmasi Perubahan</h3>
@@ -275,6 +299,7 @@
         </div>
     </div>
 
+    <!-- MODAL LOGIN -->
     <div id="loginModal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[150] px-4 backdrop-blur-sm">
         <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-sm relative">
             <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
@@ -292,6 +317,7 @@
         </div>
     </div>
 
+    <!-- MODAL LOGOUT -->
     <div id="logoutModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[150] px-4">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-sm text-center">
             <h3 class="font-bold text-xl mb-2 text-gray-800 dark:text-white">Logout Admin</h3>
@@ -304,7 +330,16 @@
     </div>
 
     <script>
-        // --- DATA & STATE BERITA ---
+        // INISIALISASI FIREBASE
+        const firebaseConfig = {
+            databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
+        };
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.database();
+        const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079';
+
         let isDarkMode = false;
         let popularId = 1;
         let dummyNews = [
@@ -313,7 +348,6 @@
             { id: 3, title: "Tutorial Lengkap Setup Environment React.js Untuk Pemula", author: "Prio Pambudi", authorImg: "https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png", date: new Date(Date.now() - 1000 * 60 * 60 * 5), excerpt: "React.js masih menjadi primadona di dunia Front-end. Artikel ini akan memandu kamu dari instalasi Node.js hingga merender komponen pertama-mu.", img: "https://i.ibb.co.com/XZbxZpcC/Proyek-Baru-128-F787-A9-C.png", label: "Edukasi" }
         ];
 
-        // --- SISTEM AUTHENTICATION ---
         const allowedLabels = ["KOMINFO", "OWNER", "DEVELOPER", "KETUA", "KAPRODI"];
 
         function checkAuthStatus() {
@@ -352,20 +386,60 @@
         }
 
         function submitLogin() {
-            if(typeof adminAccounts === 'undefined') { alert("Sistem Error: Data admin.js tidak ditemukan."); return; }
-            const user = document.getElementById('input-user').value; const pass = document.getElementById('input-pass').value;
+            const user = document.getElementById('input-user').value; 
+            const pass = document.getElementById('input-pass').value;
             const errBox = document.getElementById('login-error');
-            const account = adminAccounts.find(a => a.username === user && a.password === pass);
+            
+            if(!user || !pass) {
+                errBox.innerText = "Username dan Password wajib diisi!";
+                errBox.classList.remove('hidden');
+                return;
+            }
 
-            if (account) {
-                const hasAccess = account.labels.some(label => allowedLabels.includes(label.toUpperCase()));
-                if (hasAccess) {
-                    localStorage.setItem('adminLoggedIn', 'true'); localStorage.setItem('adminData', JSON.stringify(account));
-                    closeModal('loginModal'); document.getElementById('input-user').value = ''; document.getElementById('input-pass').value = ''; checkAuthStatus();
-                } else {
-                    errBox.innerText = "Akses Ditolak! Label divisi Anda tidak diizinkan mengatur berita."; errBox.classList.remove('hidden');
+            const btnLogin = document.querySelector('button[onclick="submitLogin()"]');
+            const originalText = btnLogin.innerText;
+            btnLogin.innerText = "Memeriksa..."; 
+            btnLogin.disabled = true;
+
+            // Memeriksa ke Firebase Dahulu
+            db.ref('admins').once('value').then((snapshot) => {
+                const data = snapshot.val();
+                let account = null;
+                
+                if (data) { 
+                    account = Object.values(data).find(a => a.username === user && a.password === pass); 
                 }
-            } else { errBox.innerText = "Username atau Password salah!"; errBox.classList.remove('hidden'); }
+                
+                // Jika tidak ditemukan di Firebase, periksa akun Master (admin.js)
+                if (!account && typeof adminAccounts !== 'undefined') {
+                    account = adminAccounts.find(a => a.username === user && a.password === pass);
+                }
+
+                if (account) {
+                    const hasAccess = account.labels.some(label => allowedLabels.includes(label.toUpperCase()));
+                    if (hasAccess) {
+                        localStorage.setItem('adminLoggedIn', 'true'); 
+                        localStorage.setItem('adminData', JSON.stringify(account));
+                        closeModal('loginModal'); 
+                        document.getElementById('input-user').value = ''; 
+                        document.getElementById('input-pass').value = ''; 
+                        checkAuthStatus();
+                    } else {
+                        errBox.innerText = "Akses Ditolak! Label divisi Anda tidak diizinkan mengatur berita."; 
+                        errBox.classList.remove('hidden');
+                    }
+                } else { 
+                    errBox.innerText = "Username atau Password salah!"; 
+                    errBox.classList.remove('hidden'); 
+                }
+                
+                btnLogin.innerText = originalText; 
+                btnLogin.disabled = false;
+            }).catch((error) => {
+                alert("Error koneksi ke Firebase: " + error.message);
+                btnLogin.innerText = originalText; 
+                btnLogin.disabled = false;
+            });
         }
 
         function submitLogout() {
@@ -373,7 +447,6 @@
             closeModal('logoutModal'); checkAuthStatus(); toggleView('news');
         }
 
-        // --- THEME LOGIC ---
         function toggleTheme() {
             isDarkMode = !isDarkMode;
             const html = document.documentElement; const icon = document.getElementById('theme-icon');
@@ -381,7 +454,6 @@
             else { html.classList.remove('dark'); icon.className = 'fas fa-moon'; }
         }
 
-        // --- UTILS & RENDER ---
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
         function formatWaktu(date) {
@@ -402,13 +474,11 @@
             document.getElementById('article-author').innerText = news.author;
             document.getElementById('article-date').innerText = formatWaktu(news.date);
             document.getElementById('article-img').src = news.img;
-            document.getElementById('article-content').innerHTML = news.excerpt; // (Harusnya full konten HTML)
+            document.getElementById('article-content').innerHTML = news.excerpt; 
 
-            // Render 3 Berita Terbaru di Bawah
             const latestContainer = document.getElementById('article-latest-grid');
             latestContainer.innerHTML = '';
             
-            // Ambil berita terbaru selain berita yang sedang dibuka
             const otherNews = dummyNews.filter(n => n.id !== id).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
             
             otherNews.forEach(n => {
@@ -503,7 +573,6 @@
             });
         }
 
-        // --- NAVIGATION ACTIONS ---
         function toggleView(view) {
             ['view-news', 'view-edit-list', 'view-editor', 'view-article'].forEach(id => {
                 const el = document.getElementById(id);
@@ -554,6 +623,64 @@
             }
         }
 
+        // --- SISTEM UPLOAD COVER BERITA ---
+        function showCoverUrlInput() {
+            document.getElementById('coverOptionsGroup').classList.add('hidden');
+            document.getElementById('coverUrlGroup').classList.remove('hidden');
+            document.getElementById('coverUrlGroup').classList.add('flex');
+        }
+
+        function resetCoverModal() {
+            document.getElementById('coverOptionsGroup').classList.remove('hidden');
+            document.getElementById('coverUrlGroup').classList.add('hidden');
+            document.getElementById('coverUrlGroup').classList.remove('flex');
+            document.getElementById('coverUrlInput').value = '';
+            document.getElementById('coverModalText').innerText = "Masukkan dari mana?";
+        }
+
+        function saveCoverUrl() {
+            const url = document.getElementById('coverUrlInput').value;
+            if (url) {
+                let fixedUrl = url.replace("i.ibb.co/", "i.ibb.co.com/");
+                applyCoverPhoto(fixedUrl);
+                closeModal('coverModal');
+                resetCoverModal();
+            }
+        }
+
+        async function uploadCoverImgBB(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            document.getElementById('coverOptionsGroup').classList.add('hidden');
+            document.getElementById('coverModalText').innerHTML = "<i class='fas fa-spinner fa-spin mr-2'></i> Sedang Mengunggah...";
+            
+            const formData = new FormData();
+            formData.append('image', file);
+            try {
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData });
+                const data = await response.json();
+                if (data.success) { 
+                    let fixedUrl = data.data.url.replace("i.ibb.co/", "i.ibb.co.com/");
+                    applyCoverPhoto(fixedUrl); 
+                    closeModal('coverModal');
+                } else { 
+                    alert("Gagal mengupload gambar ke server."); 
+                }
+            } catch (error) { 
+                alert("Terjadi kesalahan jaringan saat upload."); 
+            }
+            resetCoverModal();
+            event.target.value = ''; 
+        }
+
+        function applyCoverPhoto(url) {
+            const imgEl = document.getElementById('post-cover-img');
+            imgEl.src = url;
+            imgEl.classList.remove('hidden');
+            document.getElementById('post-cover-placeholder').classList.add('hidden');
+        }
+
         // --- EDITOR LOGIC ---
         function requestPopular(id) {
             if(id === popularId) return;
@@ -571,25 +698,21 @@
             document.getElementById('editor-tulis').innerHTML = news.excerpt;
             currentLabel = news.label; document.getElementById('lbl-terpilih').innerText = currentLabel;
 
-            // SISTEM GANTI AUTHOR (HANYA MASTER)
+            applyCoverPhoto(news.img);
+
             const currentUser = JSON.parse(localStorage.getItem('adminData'));
             const authorContainer = document.getElementById('edit-author-container');
             const selectAuth = document.getElementById('edit-author-select');
             
-            if(currentUser && currentUser.username === 'dilzghaaziy') { // username master
+            if(currentUser && currentUser.username === 'dilzghaaziy') { 
                 authorContainer.classList.remove('hidden');
-                
-                // Isi Opsi Standar Kominfo
                 selectAuth.innerHTML = `
                     <option value="Muhammad Ridho" class="dark:bg-gray-800">Muhammad Ridho</option>
                     <option value="Prio Pambudi" class="dark:bg-gray-800">Prio Pambudi</option>
                 `;
-
-                // Jika author saat ini bukan dari 2 orang itu, tambahkan sementara ke dalam opsi agar tidak merusak data lama
                 if(news.author !== "Muhammad Ridho" && news.author !== "Prio Pambudi") {
                     selectAuth.innerHTML += `<option value="${news.author}" class="dark:bg-gray-800">${news.author} (Saat Ini)</option>`;
                 }
-                
                 selectAuth.value = news.author;
             } else {
                 authorContainer.classList.add('hidden');
@@ -605,13 +728,22 @@
             document.getElementById('post-title').value = ''; 
             document.getElementById('editor-tulis').innerHTML = ''; 
             currentLabel = ""; document.getElementById('lbl-terpilih').innerText = "Pilih Label"; 
-            document.getElementById('edit-author-container').classList.add('hidden'); // Sembunyikan opsi ganti author
+            document.getElementById('edit-author-container').classList.add('hidden');
+            document.getElementById('post-cover-img').src = '';
+            document.getElementById('post-cover-img').classList.add('hidden');
+            document.getElementById('post-cover-placeholder').classList.remove('hidden');
         }
         
         function submitPost() {
             const title = document.getElementById('post-title').value;
             const content = document.getElementById('editor-tulis').innerHTML;
-            if(!title || !content || !currentLabel) { alert("Judul, Isi, dan Label wajib diisi!"); return; }
+            const coverImg = document.getElementById('post-cover-img').src;
+            const isCoverEmpty = document.getElementById('post-cover-img').classList.contains('hidden');
+
+            if(!title || !content || !currentLabel || isCoverEmpty) { 
+                alert("Judul, Isi, Label, dan Gambar Sampul wajib diisi!"); 
+                return; 
+            }
             
             const adminData = JSON.parse(localStorage.getItem('adminData'));
             const isMaster = adminData && adminData.username === 'dilzghaaziy';
@@ -621,9 +753,9 @@
                 const idx = dummyNews.findIndex(n => n.id === editingId);
                 dummyNews[idx].title = title; 
                 dummyNews[idx].label = currentLabel;
-                dummyNews[idx].excerpt = content; // Update konten
+                dummyNews[idx].excerpt = content; 
+                dummyNews[idx].img = coverImg;
                 
-                // Update Author Jika Diubah oleh Master
                 if(isMaster && !authContainer.classList.contains('hidden')) {
                     dummyNews[idx].author = document.getElementById('edit-author-select').value;
                 }
@@ -633,13 +765,12 @@
                     id: dummyNews.length + 1,
                     title: title, label: currentLabel,
                     author: adminData.name, authorImg: adminData.profilePic,
-                    date: new Date(), excerpt: content, img: "https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png"
+                    date: new Date(), excerpt: content, img: coverImg
                 });
             }
             closeModal('postModal'); renderAll(); toggleView('news');
         }
 
-        // --- SCROLL LOGIC ---
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset;
             const header = document.getElementById('main-header');
