@@ -90,7 +90,6 @@
         
         <div class="flex items-center space-x-2 ml-4 flex-shrink-0">
             <button onclick="toggleView('edit-list')" id="btn-nav-edit" class="hidden bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded font-bold shadow transition text-xs md:text-sm">EDIT</button>
-            <!-- Tombol Buat Berita sekarang memanggil openBuatBerita() -->
             <button onclick="openBuatBerita()" id="btn-nav-buat" class="hidden bg-black/20 hover:bg-black/30 text-white px-3 py-1.5 rounded font-bold shadow transition text-xs md:text-sm">BUAT BERITA</button>
         </div>
     </nav>
@@ -453,6 +452,7 @@
 
         function renderPopular() {
             const container = document.getElementById('popular-news-container');
+            if(dummyNews.length === 0) { container.innerHTML = '<p class="text-gray-500 italic">Belum ada berita yang diterbitkan.</p>'; return; }
             const news = dummyNews.find(n => n.id === popularId) || dummyNews[0];
             container.innerHTML = `
                 <article class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden flex flex-col-reverse md:flex-row border dark:border-gray-700 hover:shadow-lg transition">
@@ -464,7 +464,7 @@
                                 <span class="font-bold dark:text-gray-300 mr-2">${news.author}</span>
                                 <span>• ${formatWaktu(news.date)}</span>
                             </div>
-                            <p class="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 md:line-clamp-3">${news.excerpt}</p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 md:line-clamp-3">${news.excerpt.replace(/<[^>]*>?/gm, '')}</p>
                         </div>
                         <button onclick="openArticle(${news.id})" class="bg-goldenBrown text-white font-bold py-2 px-6 rounded shadow-md w-fit flex items-center hover:bg-yellow-600 transition"><i class="fas fa-book-open mr-2"></i> BACA SELENGKAPNYA</button>
                     </div>
@@ -498,21 +498,32 @@
                         <div class="flex-1"><h4 class="font-bold line-clamp-1">${news.title}</h4><p class="text-xs text-gray-500">${news.label} | ${news.author}</p></div>
                         <div class="flex items-center space-x-2">
                             <button onclick="requestPopular(${news.id})" class="text-[10px] font-bold px-3 py-1.5 rounded transition ${isPopuler ? 'bg-goldenBrown text-white cursor-default' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 hover:bg-gray-200'}">${isPopuler ? 'POPULER' : 'SET POPULER'}</button>
-                            <button onclick="startEdit(${news.id})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded"><i class="fas fa-pencil-alt"></i></button>
+                            <button onclick="startEdit(${news.id})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded" title="Edit Berita"><i class="fas fa-pencil-alt"></i></button>
+                            <button onclick="deleteNews(${news.id})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-gray-700 rounded" title="Hapus Berita"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                 `;
             });
         }
 
+        // FUNGSI HAPUS BERITA BARU
+        function deleteNews(id) {
+            if(confirm('Peringatan!\n\nYakin ingin menghapus berita ini secara permanen?')) {
+                const idx = dummyNews.findIndex(n => n.id === id);
+                if(idx > -1) {
+                    dummyNews.splice(idx, 1); 
+                    if(popularId === id) { popularId = dummyNews.length > 0 ? dummyNews[0].id : null; }
+                    renderAll();
+                }
+            }
+        }
+
         function toggleView(view) {
-            // Sembunyikan SEMUA view section
             ['view-news', 'view-edit-list', 'view-editor', 'view-article'].forEach(id => {
                 const el = document.getElementById(id);
                 if(el) el.classList.add('hidden');
             });
             
-            // Tampilkan yang diinginkan
             document.getElementById(`view-${view}`).classList.remove('hidden');
             
             const footer = document.getElementById('home-footer');
@@ -583,16 +594,15 @@
             document.getElementById('btn-confirm-populer').onclick = () => { popularId = id; closeModal('popularConfirmModal'); renderAll(); };
         }
 
-        // FUNGSI KHUSUS UNTUK BUAT BERITA AGAR FORM BENAR-BENAR BERSIH
         function openBuatBerita() {
-            resetEditor(); // Bersihkan ID dan form
+            resetEditor(); 
             document.getElementById('editor-title-text').innerText = "Buat Berita Baru";
             toggleView('editor');
         }
 
         let editingId = null;
         function startEdit(id) {
-            resetEditor(); // Bersihkan ID dan form terlebih dahulu sebelum ditimpa
+            resetEditor(); 
             const news = dummyNews.find(n => n.id === id);
             editingId = id; 
             
@@ -621,7 +631,7 @@
                 authorContainer.classList.add('hidden');
             }
 
-            toggleView('editor'); // Buka view setelah id diset
+            toggleView('editor'); 
         }
 
         let currentLabel = "";
@@ -630,7 +640,7 @@
         function switchMode(mode) { const tulis = document.getElementById('editor-tulis'); const html = document.getElementById('editor-html'); if(mode === 'tulis') { tulis.innerHTML = html.value; tulis.classList.remove('hidden'); html.classList.add('hidden'); } else { html.value = tulis.innerHTML; html.classList.remove('hidden'); tulis.classList.add('hidden'); } }
         
         function resetEditor() { 
-            editingId = null; // Memastikan ID kembali kosong
+            editingId = null; 
             document.getElementById('post-title').value = ''; 
             document.getElementById('editor-tulis').innerHTML = ''; 
             currentLabel = ""; document.getElementById('lbl-terpilih').innerText = "Pilih Label"; 
@@ -641,45 +651,31 @@
         }
         
         function submitPost() {
-            // Memaksa mengambil dari HTML mode jika user tidak pindah ke mode Tulis sebelum submit
-            if (!document.getElementById('editor-html').classList.contains('hidden')) {
-                switchMode('tulis');
-            }
+            if (!document.getElementById('editor-html').classList.contains('hidden')) { switchMode('tulis'); }
 
             const title = document.getElementById('post-title').value;
             const content = document.getElementById('editor-tulis').innerHTML;
             const coverImg = document.getElementById('post-cover-img').src;
             const isCoverEmpty = document.getElementById('post-cover-img').classList.contains('hidden');
 
-            if(!title || !content || !currentLabel || isCoverEmpty) { 
-                alert("Judul, Isi, Label, dan Gambar Sampul wajib diisi!"); 
-                return; 
-            }
+            if(!title || !content || !currentLabel || isCoverEmpty) { alert("Judul, Isi, Label, dan Gambar Sampul wajib diisi!"); return; }
             
             const adminData = JSON.parse(localStorage.getItem('adminData'));
             const isMaster = adminData && adminData.username === 'dilzghaaziy';
             const authContainer = document.getElementById('edit-author-container');
             
             if(editingId) {
-                // LOGIKA MENYIMPAN EDitan (Perbarui data yang ada)
                 const idx = dummyNews.findIndex(n => n.id === editingId);
-                dummyNews[idx].title = title; 
-                dummyNews[idx].label = currentLabel;
-                dummyNews[idx].excerpt = content; 
-                dummyNews[idx].img = coverImg;
+                dummyNews[idx].title = title; dummyNews[idx].label = currentLabel;
+                dummyNews[idx].excerpt = content; dummyNews[idx].img = coverImg;
                 
                 if(isMaster && !authContainer.classList.contains('hidden')) {
                     dummyNews[idx].author = document.getElementById('edit-author-select').value;
                 }
-
             } else {
-                // LOGIKA BUAT BERITA BARU
-                // Ambil ID tertinggi lalu ditambah 1 agar tidak bentrok
                 let newId = dummyNews.length > 0 ? Math.max(...dummyNews.map(n => n.id)) + 1 : 1;
-
                 dummyNews.push({
-                    id: newId,
-                    title: title, label: currentLabel,
+                    id: newId, title: title, label: currentLabel,
                     author: adminData.name, authorImg: adminData.profilePic,
                     date: new Date(), excerpt: content, img: coverImg
                 });
