@@ -33,22 +33,11 @@
     </script>
 
     <style>
-        .btn-active {
-            background: linear-gradient(-45deg, #2596be 0%, #ffffff 50%, #2596be 100%);
-            background-size: 400% 400%;
-            animation: gradientMove 2s linear infinite;
-            color: #000 !important;
-            font-weight: bold;
-        }
-        .dark .btn-active {
-            background: linear-gradient(-45deg, #1f2937 0%, #9ca3af 50%, #1f2937 100%);
-            color: #fff !important;
-        }
+        .btn-active { background: linear-gradient(-45deg, #2596be 0%, #ffffff 50%, #2596be 100%); background-size: 400% 400%; animation: gradientMove 2s linear infinite; color: #000 !important; font-weight: bold; }
+        .dark .btn-active { background: linear-gradient(-45deg, #1f2937 0%, #9ca3af 50%, #1f2937 100%); color: #fff !important; }
         @keyframes gradientMove { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
-
         .nav-scrolled { background-color: #DAA520 !important; }
         .dark .nav-scrolled { background-color: #1f2937 !important; }
-
         .header-hidden { transform: translateY(-100%); }
         #main-header, #nav-container { transition: all 0.3s ease; }
         .editor-content { min-height: 300px; outline: none; }
@@ -58,27 +47,19 @@
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#0f172a] dark:text-gray-100 flex flex-col min-h-screen">
 
-    <!-- 1. BAR HEADER -->
     <header id="main-header" class="bg-himasiBlue dark:bg-gray-800 w-full z-50 fixed top-0 flex justify-between items-center px-4 md:px-8 h-16 shadow-md">
-        <div class="flex items-center">
-            <img src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="Logo" class="h-10">
-        </div>
+        <div class="flex items-center"><img src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="Logo" class="h-10"></div>
         <div class="flex items-center space-x-4 md:space-x-6">
-            <button onclick="toggleTheme()" class="text-white hover:text-yellow-300 transition text-xl" title="Ganti Tema">
-                <i id="theme-icon" class="fas fa-moon"></i>
-            </button>
+            <button onclick="toggleTheme()" class="text-white hover:text-yellow-300 transition text-xl" title="Ganti Tema"><i id="theme-icon" class="fas fa-moon"></i></button>
             <button id="btn-login-header" onclick="handleLoginClick()" class="text-white hover:text-gray-200 flex items-center font-medium transition">
                 <span id="login-text" class="mr-2 hidden sm:inline">Login</span>
                 <i id="login-icon" class="fas fa-user-circle text-2xl"></i>
                 <img id="login-avatar" src="" class="w-8 h-8 rounded-full border-2 border-white hidden object-cover">
             </button>
-            <a href="index.html" class="text-white hover:text-red-300 transition" title="Keluar">
-                <i class="fas fa-sign-out-alt text-2xl"></i>
-            </a>
+            <a href="index.html" class="text-white hover:text-red-300 transition" title="Keluar"><i class="fas fa-sign-out-alt text-2xl"></i></a>
         </div>
     </header>
 
-    <!-- 2. BAR CONTAINER -->
     <nav id="nav-container" class="bg-himasiBlue dark:bg-gray-800 w-full z-40 fixed top-16 shadow-md flex justify-between items-center px-4 md:px-8 h-14">
         <div class="flex space-x-2 md:space-x-4 overflow-x-auto hide-scroll items-center h-full no-scrollbar">
             <button onclick="filterNews('All', this)" class="nav-tab btn-active text-white px-4 py-1.5 rounded-full text-sm whitespace-nowrap">Home</button>
@@ -87,23 +68,18 @@
             <button onclick="filterNews('Edukasi', this)" class="nav-tab text-white px-4 py-1.5 rounded-full text-sm whitespace-nowrap hover:bg-white/20">Edukasi</button>
             <a href="https://dilzghaaziy.my.id" target="_blank" class="text-white px-4 py-1.5 rounded-full text-sm whitespace-nowrap hover:bg-white/20">Store</a>
         </div>
-        
         <div class="flex items-center space-x-2 ml-4 flex-shrink-0">
             <button onclick="toggleView('edit-list')" id="btn-nav-edit" class="hidden bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded font-bold shadow transition text-xs md:text-sm">EDIT</button>
             <button onclick="openBuatBerita()" id="btn-nav-buat" class="hidden bg-black/20 hover:bg-black/30 text-white px-3 py-1.5 rounded font-bold shadow transition text-xs md:text-sm">BUAT BERITA</button>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <main class="pt-36 pb-12 px-4 max-w-7xl mx-auto flex-grow w-full">
-
-        <!-- VIEW: BERANDA (HOME) -->
         <div id="view-news" class="space-y-12">
             <section>
                 <h2 class="text-2xl font-bold font-heading mb-6 border-b-2 border-himasiBlue pb-2 inline-block dark:border-blue-400">Berita Terpopuler</h2>
                 <div id="popular-news-container"></div>
             </section>
-
             <section class="bg-gray-100 dark:bg-white/5 -mx-4 px-4 py-12 rounded-t-[3rem]">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-10">
@@ -113,7 +89,6 @@
                     <div id="grid-news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                 </div>
             </section>
-
             <section class="pt-12 pb-4 text-center border-t border-gray-200 dark:border-gray-700">
                 <h2 class="text-3xl md:text-4xl font-bold font-heading text-gray-800 dark:text-white uppercase mb-3">Tim Editor</h2>
                 <p class="text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto text-sm md:text-base">
@@ -139,19 +114,15 @@
             </section>
         </div>
 
-        <!-- VIEW: ARTIKEL PENUH (BACA BERITA) -->
         <div id="view-article" class="hidden">
             <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700">
                 <div class="p-6 md:p-10">
                     <button onclick="toggleView('news')" class="text-gray-500 hover:text-himasiBlue dark:hover:text-blue-400 mb-6 flex items-center font-bold text-sm transition"><i class="fas fa-arrow-left mr-2"></i> Kembali ke Beranda</button>
-                    <h1 id="article-title" class="text-3xl md:text-5xl font-bold font-heading mb-4 text-gray-800 dark:text-white leading-tight">Judul Berita</h1>
+                    <h1 id="article-title" class="text-3xl md:text-5xl font-bold font-heading mb-4 text-gray-800 dark:text-white leading-tight"></h1>
                     <div class="flex items-center text-sm text-gray-500 mb-8 border-l-4 border-himasiBlue pl-4">
                         <div>
-                            <p class="font-bold text-gray-700 dark:text-gray-300">
-                                <span id="article-author" class="text-sm">Pembuat Berita</span> 
-                                <span class="text-[#001436] dark:text-blue-300 ml-1.5 font-extrabold text-xs">HIMATIKA UIM</span>
-                            </p>
-                            <p id="article-date" class="text-xs mt-0.5">Tanggal</p>
+                            <p class="font-bold text-gray-700 dark:text-gray-300"><span id="article-author" class="text-sm"></span> <span class="text-[#001436] dark:text-blue-300 ml-1.5 font-extrabold text-xs">HIMATIKA UIM</span></p>
+                            <p id="article-date" class="text-xs mt-0.5"></p>
                         </div>
                     </div>
                     <img id="article-img" src="" class="w-full h-auto max-h-[500px] object-cover rounded-xl mb-10 shadow-sm">
@@ -164,7 +135,6 @@
             </div>
         </div>
 
-        <!-- VIEW: LIST EDIT BERITA -->
         <div id="view-edit-list" class="hidden">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold font-heading">Manajemen Konten Berita</h2>
@@ -173,21 +143,14 @@
             <div id="edit-list-container" class="space-y-4"></div>
         </div>
 
-        <!-- VIEW: EDITOR (Buat/Edit) -->
         <div id="view-editor" class="hidden">
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 border-b pb-4">
                     <h2 id="editor-title-text" class="text-2xl font-bold font-heading text-himasiBlue">Buat Berita Baru</h2>
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="openModal('labelModal')" class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-4 py-2 rounded font-medium border border-gray-300 dark:border-gray-600">
-                            <i class="fas fa-tag mr-2"></i><span id="lbl-terpilih">Pilih Label</span>
-                        </button>
-                        <button onclick="previewBerita()" class="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded font-medium border border-blue-300">
-                            <i class="fas fa-eye mr-2"></i>Pratinjau
-                        </button>
-                        <button onclick="openModal('postModal')" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded font-bold shadow-md">
-                            <i class="fas fa-paper-plane mr-2"></i>Posting
-                        </button>
+                        <button onclick="openModal('labelModal')" class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-4 py-2 rounded font-medium border border-gray-300 dark:border-gray-600"><i class="fas fa-tag mr-2"></i><span id="lbl-terpilih">Pilih Label</span></button>
+                        <button onclick="previewBerita()" class="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded font-medium border border-blue-300"><i class="fas fa-eye mr-2"></i>Pratinjau</button>
+                        <button onclick="openModal('postModal')" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 rounded font-bold shadow-md"><i class="fas fa-paper-plane mr-2"></i>Posting</button>
                         <button onclick="toggleView('news')" class="text-red-500 hover:text-red-700 px-2 py-2"><i class="fas fa-times text-xl"></i></button>
                     </div>
                 </div>
@@ -198,9 +161,7 @@
                         <i class="fas fa-image text-4xl text-gray-400 mb-2"></i>
                         <p class="text-sm font-bold text-gray-500 dark:text-gray-400">Klik untuk Masukkan Gambar Sampul Berita</p>
                     </div>
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-20">
-                        <i class="fas fa-camera text-3xl text-white"></i>
-                    </div>
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition z-20"><i class="fas fa-camera text-3xl text-white"></i></div>
                 </div>
 
                 <input type="text" id="post-title" placeholder="BUAT JUDUL..." class="w-full text-2xl font-bold p-3 border-b-2 border-gray-300 dark:border-gray-600 mb-4 focus:outline-none focus:border-himasiBlue bg-transparent">
@@ -231,7 +192,6 @@
         </div>
     </main>
 
-    <!-- FOOTER KHUSUS HOME -->
     <footer id="home-footer" class="bg-[#DAA520] dark:bg-gray-800 w-full mt-auto py-4 px-6 md:px-12 transition-colors duration-300 shadow-inner">
         <div class="max-w-7xl mx-auto flex justify-end items-center">
             <p class="text-white font-bold text-sm md:text-base tracking-wide">Developed by: Gilang Aidil Pratama / Dilz Ghaaziy</p>
@@ -327,12 +287,47 @@
         const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079';
 
         let isDarkMode = false;
-        let popularId = 1;
-        let dummyNews = [
-            { id: 1, title: "Inovasi AI Terbaru Karya Mahasiswa HIMATIKA Siap Dilombakan", author: "Gilang Aidil Pratama", authorImg: "https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png", date: new Date(Date.now() - 1000 * 60 * 10), excerpt: "Tim riset mahasiswa Informatika UIM berhasil mengembangkan model AI pendeteksi dini penyakit yang sangat revolusioner. Sistem ini akan dibawa ke ajang Gemastik tahun depan sebagai perwakilan utama kampus.", img: "https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png", label: "Teknologi" },
-            { id: 2, title: "Pendaftaran Beasiswa KIP-K Semester Ganjil 2026 Telah Dibuka", author: "Neneng Mudrikah", authorImg: "https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png", date: new Date(Date.now() - 1000 * 60 * 60 * 48), excerpt: "Kabar gembira bagi seluruh mahasiswa UIM. Pendaftaran dan verifikasi berkas KIP-K jalur ongoing telah resmi dibuka melalui portal kemahasiswaan.", img: "https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png", label: "Informasi" },
-            { id: 3, title: "Tutorial Lengkap Setup Environment React.js Untuk Pemula", author: "Prio Pambudi", authorImg: "https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png", date: new Date(Date.now() - 1000 * 60 * 60 * 5), excerpt: "React.js masih menjadi primadona di dunia Front-end. Artikel ini akan memandu kamu dari instalasi Node.js hingga merender komponen pertama-mu.", img: "https://i.ibb.co.com/XZbxZpcC/Proyek-Baru-128-F787-A9-C.png", label: "Edukasi" }
-        ];
+        let popularId = null;
+        let newsData = []; // Array data baru yang bersumber dari Firebase
+        let isRenderedOnce = false;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Dengar Perubahan Berita dari Firebase Secara Real-time
+            db.ref('settings/popularNews').on('value', snap => {
+                popularId = snap.val();
+                if(isRenderedOnce) { renderPopular(); renderEditList(); }
+            });
+
+            db.ref('news').on('value', snap => {
+                newsData = [];
+                const data = snap.val();
+                if(data) {
+                    Object.keys(data).forEach(key => {
+                        newsData.push({ id_firebase: key, ...data[key] });
+                    });
+                }
+                
+                // Urutkan berdasarkan tanggal terbaru
+                newsData.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+                // Otomatis set berita terbaru jadi populer jika belum ada yang populer
+                if(!popularId && newsData.length > 0) {
+                    popularId = newsData[0].id_firebase;
+                    db.ref('settings/popularNews').set(popularId);
+                }
+
+                isRenderedOnce = true;
+                renderAll();
+                
+                // Cek URL Param apakah sedang membuka berita dari index.html
+                const urlParams = new URLSearchParams(window.location.search);
+                const articleId = urlParams.get('id');
+                if (articleId && !window.articleOpened) {
+                    openArticle(articleId);
+                    window.articleOpened = true; 
+                }
+            });
+        });
 
         const allowedLabels = ["KOMINFO", "OWNER", "DEVELOPER", "KETUA", "KAPRODI"];
 
@@ -421,8 +416,8 @@
 
         function renderAll() { renderPopular(); renderGrid(); renderEditList(); checkAuthStatus(); }
 
-        function openArticle(id) {
-            const news = dummyNews.find(n => n.id === id);
+        function openArticle(id_fb) {
+            const news = newsData.find(n => n.id_firebase === id_fb);
             if(!news) return;
 
             document.getElementById('article-title').innerText = news.title;
@@ -434,10 +429,10 @@
             const latestContainer = document.getElementById('article-latest-grid');
             latestContainer.innerHTML = '';
             
-            const otherNews = dummyNews.filter(n => n.id !== id).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+            const otherNews = newsData.filter(n => n.id_firebase !== id_fb).sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
             otherNews.forEach(n => {
                 latestContainer.innerHTML += `
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700 overflow-hidden cursor-pointer hover:shadow-lg transition transform hover:-translate-y-1" onclick="openArticle(${n.id})">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-100 dark:border-gray-700 overflow-hidden cursor-pointer hover:shadow-lg transition transform hover:-translate-y-1" onclick="openArticle('${n.id_firebase}')">
                         <div class="h-32 md:h-40 w-full bg-gray-200 aspect-[4/3]"><img src="${n.img}" class="w-full h-full object-cover"></div>
                         <div class="p-4">
                             <h4 class="font-bold text-sm md:text-base leading-tight mb-2 line-clamp-2 hover:text-himasiBlue transition">${n.title}</h4>
@@ -452,32 +447,37 @@
 
         function renderPopular() {
             const container = document.getElementById('popular-news-container');
-            if(dummyNews.length === 0) { container.innerHTML = '<p class="text-gray-500 italic">Belum ada berita yang diterbitkan.</p>'; return; }
-            const news = dummyNews.find(n => n.id === popularId) || dummyNews[0];
+            if(newsData.length === 0) { container.innerHTML = '<p class="text-gray-500 italic">Belum ada berita yang diterbitkan.</p>'; return; }
+            
+            const news = newsData.find(n => n.id_firebase === popularId) || newsData[0];
+            let cleanExcerpt = news.excerpt.replace(/<[^>]*>?/gm, '');
+
             container.innerHTML = `
                 <article class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden flex flex-col-reverse md:flex-row border dark:border-gray-700 hover:shadow-lg transition">
                     <div class="p-6 md:w-2/3 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-2xl font-bold font-heading mb-4 cursor-pointer hover:text-himasiBlue transition" onclick="openArticle(${news.id})">${news.title}</h3>
+                            <h3 class="text-2xl font-bold font-heading mb-4 cursor-pointer hover:text-himasiBlue transition" onclick="openArticle('${news.id_firebase}')">${news.title}</h3>
                             <div class="flex items-center text-sm text-gray-500 mb-4 border-l-2 border-goldenBrown pl-3">
                                 <img src="${news.authorImg}" class="w-8 h-8 rounded-full mr-2 object-cover">
                                 <span class="font-bold dark:text-gray-300 mr-2">${news.author}</span>
                                 <span>• ${formatWaktu(news.date)}</span>
                             </div>
-                            <p class="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 md:line-clamp-3">${news.excerpt.replace(/<[^>]*>?/gm, '')}</p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 md:line-clamp-3">${cleanExcerpt}</p>
                         </div>
-                        <button onclick="openArticle(${news.id})" class="bg-goldenBrown text-white font-bold py-2 px-6 rounded shadow-md w-fit flex items-center hover:bg-yellow-600 transition"><i class="fas fa-book-open mr-2"></i> BACA SELENGKAPNYA</button>
+                        <button onclick="openArticle('${news.id_firebase}')" class="bg-goldenBrown text-white font-bold py-2 px-6 rounded shadow-md w-fit flex items-center hover:bg-yellow-600 transition"><i class="fas fa-book-open mr-2"></i> BACA SELENGKAPNYA</button>
                     </div>
-                    <div class="md:w-1/3 aspect-19-6 cursor-pointer" onclick="openArticle(${news.id})"><img src="${news.img}" class="w-full h-full object-cover hover:opacity-90 transition"></div>
+                    <div class="md:w-1/3 aspect-19-6 cursor-pointer" onclick="openArticle('${news.id_firebase}')"><img src="${news.img}" class="w-full h-full object-cover hover:opacity-90 transition"></div>
                 </article>
             `;
         }
 
         function renderGrid() {
             const container = document.getElementById('grid-news-container'); container.innerHTML = '';
-            dummyNews.forEach(news => {
+            if(newsData.length === 0) { container.innerHTML = '<p class="text-gray-500 italic">Belum ada berita yang diterbitkan.</p>'; return; }
+            
+            newsData.forEach(news => {
                 container.innerHTML += `
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-row md:flex-col p-3 md:p-0 hover:shadow-lg transition group cursor-pointer" onclick="openArticle(${news.id})">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-row md:flex-col p-3 md:p-0 hover:shadow-lg transition group cursor-pointer" onclick="openArticle('${news.id_firebase}')">
                         <div class="w-32 sm:w-40 md:w-full aspect-[4/3] flex-shrink-0"><img src="${news.img}" class="w-full h-full object-cover rounded-xl md:rounded-none group-hover:scale-105 transition duration-300"></div>
                         <div class="p-3 md:p-5 flex flex-col justify-between ml-2 md:ml-0 flex-1">
                             <div><h4 class="font-bold text-sm md:text-lg leading-tight mb-2 line-clamp-2 group-hover:text-himasiBlue transition">${news.title}</h4><span class="text-[10px] font-bold bg-blue-100 text-blue-600 px-2 py-0.5 rounded uppercase">${news.label}</span></div>
@@ -490,31 +490,27 @@
 
         function renderEditList() {
             const container = document.getElementById('edit-list-container'); container.innerHTML = '';
-            dummyNews.forEach(news => {
-                const isPopuler = news.id === popularId;
+            if(newsData.length === 0) { container.innerHTML = '<p class="text-gray-500 italic">Belum ada berita yang bisa di edit.</p>'; return; }
+
+            newsData.forEach(news => {
+                const isPopuler = news.id_firebase === popularId;
                 container.innerHTML += `
                     <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow border dark:border-gray-700 flex items-center gap-4">
                         <img src="${news.img}" class="w-24 h-16 object-cover rounded-lg aspect-video">
                         <div class="flex-1"><h4 class="font-bold line-clamp-1">${news.title}</h4><p class="text-xs text-gray-500">${news.label} | ${news.author}</p></div>
                         <div class="flex items-center space-x-2">
-                            <button onclick="requestPopular(${news.id})" class="text-[10px] font-bold px-3 py-1.5 rounded transition ${isPopuler ? 'bg-goldenBrown text-white cursor-default' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 hover:bg-gray-200'}">${isPopuler ? 'POPULER' : 'SET POPULER'}</button>
-                            <button onclick="startEdit(${news.id})" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded" title="Edit Berita"><i class="fas fa-pencil-alt"></i></button>
-                            <button onclick="deleteNews(${news.id})" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-gray-700 rounded" title="Hapus Berita"><i class="fas fa-trash-alt"></i></button>
+                            <button onclick="requestPopular('${news.id_firebase}')" class="text-[10px] font-bold px-3 py-1.5 rounded transition ${isPopuler ? 'bg-goldenBrown text-white cursor-default' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 hover:bg-gray-200'}">${isPopuler ? 'POPULER' : 'SET POPULER'}</button>
+                            <button onclick="startEdit('${news.id_firebase}')" class="p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 rounded" title="Edit Berita"><i class="fas fa-pencil-alt"></i></button>
+                            <button onclick="deleteNews('${news.id_firebase}')" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-gray-700 rounded" title="Hapus Berita"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                 `;
             });
         }
 
-        // FUNGSI HAPUS BERITA BARU
-        function deleteNews(id) {
+        function deleteNews(id_fb) {
             if(confirm('Peringatan!\n\nYakin ingin menghapus berita ini secara permanen?')) {
-                const idx = dummyNews.findIndex(n => n.id === id);
-                if(idx > -1) {
-                    dummyNews.splice(idx, 1); 
-                    if(popularId === id) { popularId = dummyNews.length > 0 ? dummyNews[0].id : null; }
-                    renderAll();
-                }
+                db.ref('news/' + id_fb).remove(); 
             }
         }
 
@@ -542,12 +538,12 @@
             if (label === 'All') { titleKategori.innerText = "BACA BERITA DARI HIMATIKA UIM"; renderGrid(); } 
             else {
                 titleKategori.innerText = `Berita: ${label}`; container.innerHTML = '';
-                const filtered = dummyNews.filter(n => n.label === label);
+                const filtered = newsData.filter(n => n.label === label);
                 if (filtered.length === 0) container.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">Belum ada berita "${label}"</div>`;
                 else {
                     filtered.forEach(news => {
                         container.innerHTML += `
-                            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-row md:flex-col p-3 md:p-0 hover:shadow-lg transition group cursor-pointer" onclick="openArticle(${news.id})">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-row md:flex-col p-3 md:p-0 hover:shadow-lg transition group cursor-pointer" onclick="openArticle('${news.id_firebase}')">
                                 <div class="w-32 sm:w-40 md:w-full aspect-[4/3] flex-shrink-0"><img src="${news.img}" class="w-full h-full object-cover rounded-xl md:rounded-none group-hover:scale-105 transition duration-300"></div>
                                 <div class="p-3 md:p-5 flex flex-col justify-between ml-2 md:ml-0 flex-1">
                                     <div><h4 class="font-bold text-sm md:text-lg leading-tight mb-2 line-clamp-2 group-hover:text-himasiBlue transition">${news.title}</h4><span class="text-[10px] font-bold bg-blue-100 text-blue-600 px-2 py-0.5 rounded uppercase">${news.label}</span></div>
@@ -588,10 +584,13 @@
             document.getElementById('post-cover-placeholder').classList.add('hidden');
         }
 
-        function requestPopular(id) {
-            if(id === popularId) return;
+        function requestPopular(id_fb) {
+            if(id_fb === popularId) return;
             openModal('popularConfirmModal');
-            document.getElementById('btn-confirm-populer').onclick = () => { popularId = id; closeModal('popularConfirmModal'); renderAll(); };
+            document.getElementById('btn-confirm-populer').onclick = () => { 
+                db.ref('settings/popularNews').set(id_fb);
+                closeModal('popularConfirmModal'); 
+            };
         }
 
         function openBuatBerita() {
@@ -601,10 +600,10 @@
         }
 
         let editingId = null;
-        function startEdit(id) {
+        function startEdit(id_fb) {
             resetEditor(); 
-            const news = dummyNews.find(n => n.id === id);
-            editingId = id; 
+            const news = newsData.find(n => n.id_firebase === id_fb);
+            editingId = id_fb; 
             
             document.getElementById('editor-title-text').innerText = "Edit Berita";
             document.getElementById('post-title').value = news.title;
@@ -664,23 +663,28 @@
             const isMaster = adminData && adminData.username === 'dilzghaaziy';
             const authContainer = document.getElementById('edit-author-container');
             
+            const newsPayload = {
+                title: title, label: currentLabel, excerpt: content, img: coverImg,
+                author: adminData.name, authorImg: adminData.profilePic,
+                date: new Date().toISOString()
+            };
+
             if(editingId) {
-                const idx = dummyNews.findIndex(n => n.id === editingId);
-                dummyNews[idx].title = title; dummyNews[idx].label = currentLabel;
-                dummyNews[idx].excerpt = content; dummyNews[idx].img = coverImg;
-                
+                // Update Firebase
                 if(isMaster && !authContainer.classList.contains('hidden')) {
-                    dummyNews[idx].author = document.getElementById('edit-author-select').value;
+                    newsPayload.author = document.getElementById('edit-author-select').value;
+                } else {
+                    const existing = newsData.find(n => n.id_firebase === editingId);
+                    newsPayload.author = existing.author;
+                    newsPayload.authorImg = existing.authorImg;
+                    newsPayload.date = existing.date; // pertahankan tgl asli
                 }
+                db.ref('news/' + editingId).update(newsPayload);
             } else {
-                let newId = dummyNews.length > 0 ? Math.max(...dummyNews.map(n => n.id)) + 1 : 1;
-                dummyNews.push({
-                    id: newId, title: title, label: currentLabel,
-                    author: adminData.name, authorImg: adminData.profilePic,
-                    date: new Date(), excerpt: content, img: coverImg
-                });
+                // Buat Baru ke Firebase
+                db.ref('news').push(newsPayload);
             }
-            closeModal('postModal'); renderAll(); toggleView('news');
+            closeModal('postModal'); toggleView('news');
         }
 
         window.addEventListener('scroll', () => {
@@ -691,7 +695,6 @@
             else { header.classList.remove('header-hidden'); nav.style.top = '4rem'; nav.classList.remove('nav-scrolled'); }
         });
 
-        document.addEventListener('DOMContentLoaded', renderAll);
     </script>
 </body>
 </html>
