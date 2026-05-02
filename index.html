@@ -180,8 +180,14 @@
                 </div>
 
                 <!-- MENU HEADER MOBILE -->
-                <div class="md:hidden flex items-center gap-3">
-                    <!-- Dashboard Admin Mobile (Di kiri garis 3) -->
+                <div class="md:hidden flex items-center gap-2 sm:gap-3">
+                    
+                    <!-- Tombol ADMIN Mobile Header (Muncul saat BELUM login) -->
+                    <button id="btnAdminMobileHeader" onclick="openModal()" class="text-white font-bold bg-[#1B427B] border border-white/30 px-3 py-1.5 rounded hover:bg-blue-800 transition shadow text-[10px] sm:text-xs flex items-center gap-1">
+                        <i class="fas fa-user-shield"></i> ADMIN
+                    </button>
+                    
+                    <!-- Dashboard Admin Mobile (Muncul saat LOGIN) -->
                     <a href="dashboard.html" id="btnDashboardMobileHeader" class="hidden text-white font-bold bg-white/20 px-3 py-1.5 rounded hover:bg-white/30 transition shadow btn-dashboard-glow text-[10px] sm:text-xs">Dashboard Admin</a>
                     
                     <!-- Garis Tiga -->
@@ -209,7 +215,7 @@
             <a href="berita.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Berita</a>
             <a href="#" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Galeri</a>
             
-            <!-- Tambahan Logout di Mobile Menu untuk jaga-jaga -->
+            <!-- Tombol Logout di Mobile Menu -->
             <button id="btnLogoutMobile" onclick="prosesLogout()" class="hidden w-full text-left text-red-400 font-bold hover:text-red-300 py-3">Logout Akun</button>
         </div>
     </nav>
@@ -222,10 +228,6 @@
             <i class="fas fa-edit"></i> EDIT: OFF
         </button>
 
-        <!-- Tombol ADMIN MOBILE (Muncul saat belum Login) -->
-        <button id="btnAdminAuthMobileFloating" onclick="openModal()" class="pointer-events-auto text-white font-bold bg-[#1B427B]/90 border border-white/50 px-4 py-2 rounded-full hover:bg-blue-800 transition shadow-lg text-[11px] flex items-center gap-2">
-            <i class="fas fa-user-shield"></i> ADMIN
-        </button>
     </div>
 
     <!-- HERO SECTION -->
@@ -560,7 +562,8 @@
                 { id: 1, title: "Inovasi AI Terbaru Karya Mahasiswa HIMATIKA Siap Dilombakan", date: new Date(Date.now() - 1000 * 60 * 10).toISOString(), label: "Teknologi", excerpt: "Tim riset mahasiswa Informatika UIM berhasil mengembangkan model AI pendeteksi dini...", img: "https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" },
                 { id: 2, title: "Pendaftaran Beasiswa KIP-K Semester Ganjil 2026 Telah Dibuka", date: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(), label: "Informasi", excerpt: "Kabar gembira bagi seluruh mahasiswa UIM. Pendaftaran dan verifikasi berkas KIP-K...", img: "https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png" },
                 { id: 3, title: "Tutorial Lengkap Setup Environment React.js Untuk Pemula", date: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), label: "Edukasi", excerpt: "React.js masih menjadi primadona di dunia Front-end. Artikel ini akan memandu kamu dari instalasi...", img: "https://i.ibb.co.com/XZbxZpcC/Proyek-Baru-128-F787-A9-C.png" },
-                { id: 4, title: "HIMATIKA Sukses Gelar Workshop UI/UX", date: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), label: "Edukasi", excerpt: "Ratusan mahasiswa hadir dalam pelatihan intensif UI/UX yang diadakan di lab kampus dengan mengundang...", img: "https://i.ibb.co.com/b5D44vNC/Proyek-Baru-128-A5-B6-FFD.png" }
+                { id: 4, title: "HIMATIKA Sukses Gelar Workshop UI/UX", date: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), label: "Edukasi", excerpt: "Ratusan mahasiswa hadir dalam pelatihan intensif UI/UX yang diadakan di lab kampus dengan mengundang...", img: "https://i.ibb.co.com/b5D44vNC/Proyek-Baru-128-A5-B6-FFD.png" },
+                { id: 5, title: "Jadwal Pertandingan Futsal Dekan Cup 2026", date: new Date(Date.now() - 1000 * 60 * 60 * 100).toISOString(), label: "Informasi", excerpt: "Pertandingan tahunan futsal mahasiswa akan segera dimulai. Lihat jadwal lengkapnya di sini...", img: "https://i.ibb.co.com/gKK41hk/Proyek-Baru-128-2-ED8778.png" }
             ];
 
             newsArray.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -681,8 +684,8 @@
             
             // Mobile Elements
             const btnDashboardMobileHeader = document.getElementById('btnDashboardMobileHeader');
+            const btnAdminMobileHeader = document.getElementById('btnAdminMobileHeader');
             const btnEditModeMobile = document.getElementById('btnEditModeMobile');
-            const btnAdminAuthMobileFloating = document.getElementById('btnAdminAuthMobileFloating');
             const btnLogoutMobile = document.getElementById('btnLogoutMobile');
             
             const btnSaveCms = document.getElementById('btnSaveCms');
@@ -700,9 +703,9 @@
                 
                 // Mobile
                 btnDashboardMobileHeader.classList.remove('hidden');
+                btnAdminMobileHeader.classList.add('hidden'); // Sembunyikan tombol admin header
                 btnEditModeMobile.classList.remove('hidden');
-                btnAdminAuthMobileFloating.classList.add('hidden'); // Sembunyikan tombol admin
-                btnLogoutMobile.classList.remove('hidden'); // Munculkan logout di menu drop down
+                btnLogoutMobile.classList.remove('hidden'); 
                 
                 // Reset Edit Mode (Harus pencet manual)
                 if(isEditModeActive) { toggleEditMode(); } 
@@ -718,8 +721,8 @@
 
                 // Mobile
                 btnDashboardMobileHeader.classList.add('hidden');
+                btnAdminMobileHeader.classList.remove('hidden'); // Munculkan tombol admin header
                 btnEditModeMobile.classList.add('hidden');
-                btnAdminAuthMobileFloating.classList.remove('hidden'); // Munculkan tombol admin
                 btnLogoutMobile.classList.add('hidden'); 
 
                 // Reset Edit Mode
