@@ -154,7 +154,6 @@
                 
                 <!-- MENU PC -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <!-- Tombol Edit (Kiri Dashboard Admin) -->
                     <button id="btnEditModePC" onclick="toggleEditMode()" class="hidden text-white font-bold bg-red-500/90 px-4 py-1.5 rounded hover:bg-red-500 transition shadow">
                         <i class="fas fa-edit mr-1"></i> EDIT: OFF
                     </button>
@@ -181,16 +180,11 @@
 
                 <!-- MENU HEADER MOBILE -->
                 <div class="md:hidden flex items-center gap-2 sm:gap-3">
-                    
-                    <!-- Tombol ADMIN Mobile Header (Muncul saat BELUM login) -->
                     <button id="btnAdminMobileHeader" onclick="openModal()" class="text-white font-bold bg-[#1B427B] border border-white/30 px-3 py-1.5 rounded hover:bg-blue-800 transition shadow text-[10px] sm:text-xs flex items-center gap-1">
                         <i class="fas fa-user-shield"></i> ADMIN
                     </button>
-                    
-                    <!-- Dashboard Admin Mobile (Muncul saat LOGIN) -->
                     <a href="dashboard.html" id="btnDashboardMobileHeader" class="hidden text-white font-bold bg-white/20 px-3 py-1.5 rounded hover:bg-white/30 transition shadow btn-dashboard-glow text-[10px] sm:text-xs">Dashboard Admin</a>
                     
-                    <!-- Garis Tiga -->
                     <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none p-2 ml-1">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
@@ -198,7 +192,6 @@
             </div>
         </div>
 
-        <!-- DROPDOWN MOBILE MENU -->
         <div id="mobile-menu" class="hidden md:hidden bg-[#15325c] border-t border-white/10 px-4 pt-2 pb-4 shadow-2xl absolute w-full z-[90]">
             <a href="index.html" class="block text-white font-medium hover:text-gray-300 py-3 border-b border-white/10">Beranda</a>
             <a href="proker.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Program Kerja</a>
@@ -214,20 +207,15 @@
             </div>
             <a href="berita.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Berita</a>
             <a href="#" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Galeri</a>
-            
-            <!-- Tombol Logout di Mobile Menu -->
             <button id="btnLogoutMobile" onclick="prosesLogout()" class="hidden w-full text-left text-red-400 font-bold hover:text-red-300 py-3">Logout Akun</button>
         </div>
     </nav>
 
-    <!-- FLOATING BUTTONS MOBILE (Di Bawah Header) -->
+    <!-- FLOATING BUTTONS MOBILE -->
     <div class="md:hidden fixed top-24 right-4 z-[90] flex flex-col gap-3 items-end pointer-events-none">
-        
-        <!-- Tombol EDIT MOBILE (Muncul saat Login) -->
         <button id="btnEditModeMobile" onclick="toggleEditMode()" class="hidden pointer-events-auto text-white font-bold bg-red-500/90 border border-red-400 px-4 py-2 rounded-full hover:bg-red-500 transition shadow-lg text-[11px] flex items-center gap-2">
             <i class="fas fa-edit"></i> EDIT: OFF
         </button>
-
     </div>
 
     <!-- HERO SECTION -->
@@ -367,7 +355,7 @@
         </div>
     </section>
 
-    <!-- BERITA TERINTEGRASI SECTION -->
+    <!-- BERITA TERINTEGRASI SECTION (REALTIME FIREBASE) -->
     <section class="bg-[url('https://i.ibb.co.com/9m3FYdHc/Proyek-Baru-42-14-C2486.png')] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat pt-16 md:pt-24 pb-12 md:pb-16 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="inline-block bg-[#001A3D] py-3 px-6 md:py-4 md:px-10 rounded-2xl shadow-lg mb-8 md:mb-12">
@@ -515,7 +503,7 @@
         const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079';
         let currentEditImageId = null;
         let localCmsData = { texts: {}, images: {} }; 
-        let isEditModeActive = false; // State untuk tombol edit manual
+        let isEditModeActive = false; 
 
         document.addEventListener("DOMContentLoaded", () => {
             initRealtimeCMS();
@@ -524,7 +512,6 @@
             initNewsFeed(); 
         });
 
-        // FUNGSI AKTIVASI MANUAL EDIT MODE
         function toggleEditMode() {
             isEditModeActive = !isEditModeActive;
             const btnPC = document.getElementById('btnEditModePC');
@@ -557,46 +544,55 @@
             }
         }
 
+        // --- SISTEM BERITA TERBARU MENGGUNAKAN FIREBASE ---
         function initNewsFeed() {
-            let newsArray = [
-                { id: 1, title: "Inovasi AI Terbaru Karya Mahasiswa HIMATIKA Siap Dilombakan", date: new Date(Date.now() - 1000 * 60 * 10).toISOString(), label: "Teknologi", excerpt: "Tim riset mahasiswa Informatika UIM berhasil mengembangkan model AI pendeteksi dini...", img: "https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" },
-                { id: 2, title: "Pendaftaran Beasiswa KIP-K Semester Ganjil 2026 Telah Dibuka", date: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(), label: "Informasi", excerpt: "Kabar gembira bagi seluruh mahasiswa UIM. Pendaftaran dan verifikasi berkas KIP-K...", img: "https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png" },
-                { id: 3, title: "Tutorial Lengkap Setup Environment React.js Untuk Pemula", date: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), label: "Edukasi", excerpt: "React.js masih menjadi primadona di dunia Front-end. Artikel ini akan memandu kamu dari instalasi...", img: "https://i.ibb.co.com/XZbxZpcC/Proyek-Baru-128-F787-A9-C.png" },
-                { id: 4, title: "HIMATIKA Sukses Gelar Workshop UI/UX", date: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), label: "Edukasi", excerpt: "Ratusan mahasiswa hadir dalam pelatihan intensif UI/UX yang diadakan di lab kampus dengan mengundang...", img: "https://i.ibb.co.com/b5D44vNC/Proyek-Baru-128-A5-B6-FFD.png" },
-                { id: 5, title: "Jadwal Pertandingan Futsal Dekan Cup 2026", date: new Date(Date.now() - 1000 * 60 * 60 * 100).toISOString(), label: "Informasi", excerpt: "Pertandingan tahunan futsal mahasiswa akan segera dimulai. Lihat jadwal lengkapnya di sini...", img: "https://i.ibb.co.com/gKK41hk/Proyek-Baru-128-2-ED8778.png" }
-            ];
-
-            newsArray.sort((a, b) => new Date(b.date) - new Date(a.date));
-            const top4 = newsArray.slice(0, 4);
-
             const container = document.getElementById('grid-berita-index');
             if(!container) return;
-            container.innerHTML = '';
-            
-            top4.forEach(news => {
-                const dateObj = new Date(news.date);
-                const options = { day: 'numeric', month: 'long', year: 'numeric' };
-                const tglStr = dateObj.toLocaleDateString('id-ID', options); 
 
-                container.innerHTML += `
-                    <article class="flex-none w-[60%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition cursor-pointer" onclick="window.location.href='berita.html'">
-                        <div class="h-28 md:h-48 w-full bg-gray-200">
-                            <img src="${news.img}" alt="Berita" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-4 md:p-5 flex flex-col justify-between">
-                            <div>
-                                <h4 class="font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue transition">${news.title}</h4>
-                                <div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold">
-                                    <span>${tglStr}</span> • <span class="text-himasiBlue uppercase">${news.label}</span>
+            container.innerHTML = '<div class="w-full text-center text-white py-10">Memuat berita terbaru...</div>';
+
+            database.ref('news').on('value', (snapshot) => {
+                container.innerHTML = ''; 
+                const data = snapshot.val();
+                
+                if (data) {
+                    let newsArray = Object.keys(data).map(key => {
+                        return { id_firebase: key, ...data[key] };
+                    });
+
+                    newsArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    const top4 = newsArray.slice(0, 4);
+
+                    top4.forEach(news => {
+                        const dateObj = new Date(news.date);
+                        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                        const tglStr = dateObj.toLocaleDateString('id-ID', options); 
+                        let cleanExcerpt = news.excerpt.replace(/<[^>]*>?/gm, '');
+
+                        container.innerHTML += `
+                            <article class="flex-none w-[60%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition cursor-pointer" onclick="window.location.href='berita.html?id=${news.id_firebase}'">
+                                <div class="h-28 md:h-48 w-full bg-gray-200">
+                                    <img src="${news.img}" alt="Berita" class="w-full h-full object-cover">
                                 </div>
-                                <p class="text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">${news.excerpt}</p>
-                            </div>
-                        </div>
-                    </article>
-                `;
+                                <div class="p-4 md:p-5 flex flex-col justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue transition">${news.title}</h4>
+                                        <div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold">
+                                            <span>${tglStr}</span> • <span class="text-himasiBlue uppercase">${news.label}</span>
+                                        </div>
+                                        <p class="text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">${cleanExcerpt}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        `;
+                    });
+                } else {
+                    container.innerHTML = '<div class="w-full text-center text-gray-400 py-10">Belum ada berita yang diterbitkan.</div>';
+                }
             });
         }
 
+        // --- SISTEM CMS LAINNYA ---
         function initMaintenanceListener() {
             const maintRef = database.ref('maintenance_mode');
             maintRef.on('value', (snapshot) => {
@@ -677,12 +673,10 @@
         }
 
         function cekStatusLogin() {
-            // PC Elements
             const btnDashboard = document.getElementById('btnDashboard');
             const btnAdminAuth = document.getElementById('btnAdminAuth');
             const btnEditModePC = document.getElementById('btnEditModePC');
             
-            // Mobile Elements
             const btnDashboardMobileHeader = document.getElementById('btnDashboardMobileHeader');
             const btnAdminMobileHeader = document.getElementById('btnAdminMobileHeader');
             const btnEditModeMobile = document.getElementById('btnEditModeMobile');
@@ -693,7 +687,6 @@
             const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
 
             if (isLoggedIn) {
-                // PC
                 btnDashboard.classList.remove('hidden');
                 btnEditModePC.classList.remove('hidden');
                 btnAdminAuth.textContent = 'Logout';
@@ -701,17 +694,14 @@
                 btnAdminAuth.classList.add('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = prosesLogout;
                 
-                // Mobile
                 btnDashboardMobileHeader.classList.remove('hidden');
-                btnAdminMobileHeader.classList.add('hidden'); // Sembunyikan tombol admin header
+                btnAdminMobileHeader.classList.add('hidden'); 
                 btnEditModeMobile.classList.remove('hidden');
                 btnLogoutMobile.classList.remove('hidden'); 
                 
-                // Reset Edit Mode (Harus pencet manual)
                 if(isEditModeActive) { toggleEditMode(); } 
                 else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
             } else {
-                // PC
                 btnDashboard.classList.add('hidden');
                 btnEditModePC.classList.add('hidden');
                 btnAdminAuth.textContent = 'Admin';
@@ -719,13 +709,11 @@
                 btnAdminAuth.classList.remove('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = openModal;
 
-                // Mobile
                 btnDashboardMobileHeader.classList.add('hidden');
-                btnAdminMobileHeader.classList.remove('hidden'); // Munculkan tombol admin header
+                btnAdminMobileHeader.classList.remove('hidden'); 
                 btnEditModeMobile.classList.add('hidden');
                 btnLogoutMobile.classList.add('hidden'); 
 
-                // Reset Edit Mode
                 if(isEditModeActive) { toggleEditMode(); }
                 else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
             }
