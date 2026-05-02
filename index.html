@@ -162,7 +162,6 @@
             100% { transform: translate(100%, 100%); }
         }
 
-        /* --- PERBAIKAN BUG TEKS (ADMIN MODE) TANPA BACKGROUND --- */
         .editable-txt[contenteditable="true"] {
             outline: 2px dashed rgba(255, 255, 255, 0.6);
             outline-offset: 4px;
@@ -206,7 +205,6 @@
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* WIDGET PLAYER CSS */
         :root { --fixed-bg: rgba(255, 255, 255, 0.9); --fixed-text: #2c3e50; --card-bg: #fff; --text-color: #333; }
         .now-playing-box { position: fixed; bottom: 20px; right: 0; z-index: 9999; background: var(--fixed-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 8px; padding-right: 20px; border-top-left-radius: 50px; border-bottom-left-radius: 50px; box-shadow: -5px 5px 20px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; width: 300px; transform: translateX(calc(100% - 50px)); transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         .now-playing-box.expanded { transform: translateX(0); }
@@ -303,15 +301,15 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-4 mt-16 md:mt-0 m-0 border-none">
-        <div class="hero-text-wrapper px-4 overflow-hidden">
-            <!-- Diubah menjadi flex-nowrap dan font responsif ukuran vw untuk memaksa satu baris di mobile -->
-            <h1 class="flex flex-nowrap justify-center items-center gap-x-1.5 sm:gap-x-3 md:gap-x-4 w-full">
-                <span id="txt-hero-title-1a" class="editable-txt hero-gradient font-grames text-[3vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">HIMPUNAN</span>
-                <span id="txt-hero-title-1b" class="editable-txt hero-gradient font-grames text-[3vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">MAHASISWA</span>
-                <span id="txt-hero-title-2" class="editable-txt hero-gradient glitch font-grames text-[3vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap" data-text="INFORMATIKA">INFORMATIKA</span>
+    <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-1 sm:px-4 mt-16 md:mt-0 m-0 border-none">
+        <div class="hero-text-wrapper w-full overflow-hidden px-1">
+            <!-- Diubah menjadi flex-nowrap dan font responsif ukuran 4.5vw (sangat besar untuk HP, menyesuaikan otomatis, dan mentok aman tanpa overflow) -->
+            <h1 class="flex flex-nowrap justify-center items-center gap-x-1 sm:gap-x-3 md:gap-x-4 w-full">
+                <span id="txt-hero-title-1a" class="editable-txt hero-gradient font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">HIMPUNAN</span>
+                <span id="txt-hero-title-1b" class="editable-txt hero-gradient font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">MAHASISWA</span>
+                <span id="txt-hero-title-2" class="editable-txt hero-gradient glitch font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap" data-text="INFORMATIKA">INFORMATIKA</span>
             </h1>
-            <h2 id="txt-hero-subtitle" class="editable-txt hero-gradient font-grames text-[2vw] sm:text-xl md:text-4xl font-bold text-center -mt-[5px] sm:-mt-[15px]">UNIVERSITAS INDONESIA MANDIRI</h2>
+            <h2 id="txt-hero-subtitle" class="editable-txt hero-gradient font-grames text-[2.5vw] sm:text-xl md:text-4xl font-bold text-center -mt-[2px] sm:-mt-[15px]">UNIVERSITAS INDONESIA MANDIRI</h2>
         </div>
     </section>
 
@@ -522,6 +520,7 @@
         </div>
     </div>
 
+    <!-- Modal CMS Gambar -->
     <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] hidden flex items-center justify-center px-4">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
             <button onclick="closeEditImgModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
