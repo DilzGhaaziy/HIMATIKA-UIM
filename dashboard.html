@@ -30,7 +30,7 @@
     <style>
         body { font-family: 'Roboto', sans-serif; background: linear-gradient(135deg, #001436 0%, #1B427B 100%); color: #fff; }
         .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .sidebar-icon { @apply flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 cursor-pointer hover:bg-white/20 mb-4; }
+        .sidebar-icon { @apply flex-shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl transition-all duration-300 cursor-pointer hover:bg-white/20 md:mb-4; }
         .sidebar-icon.active { @apply bg-blue-500/50 border border-blue-300/30; }
         .view-section { display: none; }
         .view-section.active { display: block; animation: fadeIn 0.3s ease; }
@@ -43,54 +43,72 @@
             transform: rotate(45deg);
             animation: shineAnim 3.5s linear infinite;
         }
-        @keyframes shineAnim {
-            0% { top: -150%; left: -150%; }
-            42% { top: 150%; left: 150%; } 
-            100% { top: 150%; left: 150%; } 
-        }
+        @keyframes shineAnim { 0% { top: -150%; left: -150%; } 42% { top: 150%; left: 150%; } 100% { top: 150%; left: 150%; } }
+        
+        /* Sembunyikan scrollbar di menu top bar mobile */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="min-h-screen flex overflow-hidden">
+<body class="min-h-screen flex flex-col md:flex-row overflow-hidden">
 
-    <aside class="w-24 h-screen glass-panel flex flex-col items-center py-8 z-20 border-r border-white/10">
-        <div class="mb-10"><img src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" class="w-12 h-12 object-contain"></div>
-        <div class="flex-1 w-full flex flex-col items-center">
-            <div class="sidebar-icon active" onclick="switchView('viewProfil', this)" title="Profil Akun"><i class="fas fa-user text-xl"></i></div>
-            <div class="sidebar-icon" onclick="switchView('viewServer', this)" title="Server"><i class="fas fa-server text-xl"></i></div>
-            <div class="sidebar-icon" onclick="switchView('viewSettings', this)" title="Pengaturan"><i class="fas fa-cog text-xl"></i></div>
-            <div class="sidebar-icon" onclick="switchView('viewListAdmin', this)" title="Daftar Akun Pengurus"><i class="fas fa-users text-xl"></i></div>
-            <div id="btnTabAddAdmin" class="sidebar-icon hidden" onclick="switchView('viewAddAdmin', this)" title="Tambah Admin"><i class="fas fa-user-plus text-xl"></i></div>
+    <!-- SIDEBAR (Berubah jadi Top Bar di Mobile) -->
+    <aside class="w-full h-auto md:w-24 md:h-screen glass-panel flex flex-row md:flex-col items-center justify-between md:justify-start px-4 py-2 md:py-8 z-50 fixed top-0 left-0 border-b md:border-b-0 md:border-r border-white/10 shadow-lg">
+        <div class="md:mb-10 w-10 md:w-12 h-10 md:h-12 flex-shrink-0">
+            <img src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" class="w-full h-full object-contain">
         </div>
-        <button onclick="window.location.href='index.html'" class="mt-auto w-12 h-12 rounded-full bg-red-500/20 text-red-300 hover:bg-red-500 hover:text-white transition-all border border-red-500/30"><i class="fas fa-sign-out-alt"></i></button>
+        
+        <div class="flex-1 flex flex-row md:flex-col items-center justify-start md:justify-center gap-2 md:gap-0 overflow-x-auto hide-scroll px-2 mx-2 md:mx-0 md:w-full">
+            <div class="sidebar-icon active" onclick="switchView('viewProfil', this)" title="Profil Akun"><i class="fas fa-user text-lg md:text-xl"></i></div>
+            <div class="sidebar-icon" onclick="switchView('viewServer', this)" title="Server"><i class="fas fa-server text-lg md:text-xl"></i></div>
+            <div class="sidebar-icon" onclick="switchView('viewSettings', this)" title="Pengaturan"><i class="fas fa-cog text-lg md:text-xl"></i></div>
+            <div class="sidebar-icon" onclick="switchView('viewListAdmin', this)" title="Daftar Akun Pengurus"><i class="fas fa-users text-lg md:text-xl"></i></div>
+            <div id="btnTabAddAdmin" class="sidebar-icon hidden" onclick="switchView('viewAddAdmin', this)" title="Tambah Admin"><i class="fas fa-user-plus text-lg md:text-xl"></i></div>
+        </div>
+
+        <button onclick="window.location.href='index.html'" class="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full bg-red-500/20 text-red-300 hover:bg-red-500 hover:text-white transition-all border border-red-500/30 flex items-center justify-center md:mt-auto">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
     </aside>
 
-    <main class="flex-1 h-screen p-10 overflow-y-auto">
+    <!-- KONTEN UTAMA -->
+    <main class="flex-1 min-h-screen pt-20 md:pt-10 md:ml-24 p-4 md:p-10 overflow-y-auto w-full">
         
+        <!-- SECTION: PROFIL AKUN -->
         <section id="viewProfil" class="view-section active max-w-4xl mx-auto">
-            <div class="flex justify-between items-center mb-8"><h1 class="text-3xl font-bold">Profil Akun</h1></div>
+            <div class="flex justify-between items-center mb-6 md:mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold">Profil Akun</h1>
+            </div>
             
-            <div class="glass-panel rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
-                <button id="btnEditProfile" onclick="toggleEditProfile()" class="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full transition cursor-pointer z-10">
+            <div class="glass-panel rounded-2xl p-5 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden">
+                <button id="btnEditProfile" onclick="toggleEditProfile()" class="absolute top-3 right-3 md:top-4 md:right-4 p-2 md:p-3 bg-white/10 hover:bg-white/20 rounded-full transition cursor-pointer z-10">
                     <i class="fas fa-pencil-alt text-gray-200"></i>
                 </button>
 
-                <div class="flex flex-col items-center z-10">
-                    <img id="cardFoto" src="" class="w-40 h-40 rounded-full border-4 border-white/20 object-cover shadow-2xl">
-                    <button id="btnGantiFoto" onclick="openPhotoPicker('profile')" class="hidden mt-3 text-xs bg-blue-500 hover:bg-blue-600 text-white font-bold py-1.5 px-4 rounded-full transition">
+                <div class="flex flex-col items-center z-10 flex-shrink-0">
+                    <img id="cardFoto" src="" class="w-28 h-28 md:w-40 md:h-40 rounded-full border-4 border-white/20 object-cover shadow-2xl">
+                    <button id="btnGantiFoto" onclick="openPhotoPicker('profile')" class="hidden mt-3 text-[10px] md:text-xs bg-blue-500 hover:bg-blue-600 text-white font-bold py-1.5 px-3 md:px-4 rounded-full transition">
                         <i class="fas fa-camera mr-1"></i> Ganti Foto
                     </button>
                 </div>
 
-                <div class="flex-1 z-10 w-full">
-                    <h2 id="cardNama" class="text-3xl font-bold mb-2"></h2>
-                    <div id="cardLabels" class="flex flex-wrap gap-2 mb-4"></div>
+                <div class="flex-1 z-10 w-full text-center md:text-left">
+                    <h2 id="cardNama" class="text-xl md:text-3xl font-bold mb-2"></h2>
+                    <div id="cardLabels" class="flex flex-wrap justify-center md:justify-start gap-2 mb-4"></div>
                     
-                    <div class="bg-black/20 p-5 rounded-xl space-y-3 text-sm">
+                    <div class="bg-black/20 p-4 md:p-5 rounded-xl space-y-2 md:space-y-3 text-xs md:text-sm text-left">
                         <p>Username: <span id="cardUser" class="font-bold ml-2"></span></p>
+                        
+                        <div class="flex flex-col sm:flex-row sm:items-center">
+                            <span class="w-24 text-gray-300">Password:</span>
+                            <div id="containerPass" class="flex-1 font-bold tracking-widest text-lg">***</div>
+                        </div>
+
                         <div class="flex flex-col sm:flex-row sm:items-center">
                             <span class="w-24 text-gray-300">Nomor WA:</span>
                             <div id="containerWa" class="flex-1 font-bold"></div>
                         </div>
+                        
                         <div class="flex flex-col sm:flex-row sm:items-center">
                             <span class="w-24 text-gray-300">Tgl Lahir:</span>
                             <div id="containerDob" class="flex-1 font-bold"></div>
@@ -100,70 +118,104 @@
             </div>
         </section>
 
+        <!-- SECTION: SERVER & PENGATURAN -->
         <section id="viewServer" class="view-section max-w-4xl mx-auto">
-            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-white/20">Pengaturan Server</h2>
-            <div class="glass-panel p-6 rounded-xl flex justify-between items-center">
+            <h2 class="text-xl md:text-2xl font-bold mb-6 border-b pb-2 border-white/20">Pengaturan Server</h2>
+            <div class="glass-panel p-4 md:p-6 rounded-xl flex justify-between items-center gap-4">
                 <div>
-                    <h3 class="text-xl font-bold">Maintenance WEB</h3>
-                    <p class="text-gray-400 text-sm">Jika ini diaktifkan maka akan memunculkan notifikasi pop up di beranda.</p>
+                    <h3 class="text-lg md:text-xl font-bold">Maintenance WEB</h3>
+                    <p class="text-gray-400 text-xs md:text-sm">Munculkan notifikasi pop up di beranda.</p>
                 </div>
-                <label class="relative inline-flex items-center cursor-pointer">
+                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
                     <input type="checkbox" id="toggleMaintenance" class="sr-only peer" onchange="updateMaintenance(this.checked)">
-                    <div class="w-14 h-7 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
+                    <div class="w-12 md:w-14 h-6 md:h-7 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] md:after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 md:after:h-6 after:w-5 md:after:w-6 after:transition-all peer-checked:bg-blue-600"></div>
                 </label>
             </div>
         </section>
 
         <section id="viewSettings" class="view-section max-w-4xl mx-auto">
-            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-white/20">Pengaturan Akun</h2>
-            <div class="glass-panel p-6 rounded-xl flex justify-between items-center">
+            <h2 class="text-xl md:text-2xl font-bold mb-6 border-b pb-2 border-white/20">Pengaturan Akun</h2>
+            <div class="glass-panel p-4 md:p-6 rounded-xl flex justify-between items-center gap-4">
                 <div>
-                    <h3 class="text-xl font-bold">Logout Otomatis</h3>
-                    <p class="text-gray-400 text-sm">Otomatis ter-logout jika tidak ada aktivitas selama 10 menit.</p>
+                    <h3 class="text-lg md:text-xl font-bold">Logout Otomatis</h3>
+                    <p class="text-gray-400 text-xs md:text-sm">Otomatis ter-logout jika tidak ada aktivitas 10 menit.</p>
                 </div>
-                <label class="relative inline-flex items-center cursor-pointer">
+                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
                     <input type="checkbox" id="toggleAutoLogout" class="sr-only peer" onchange="updateAutoLogout(this.checked)">
-                    <div class="w-14 h-7 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-orange-500"></div>
+                    <div class="w-12 md:w-14 h-6 md:h-7 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] md:after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 md:after:h-6 after:w-5 md:after:w-6 after:transition-all peer-checked:bg-orange-500"></div>
                 </label>
             </div>
         </section>
 
+        <!-- SECTION: LIST ADMIN -->
         <section id="viewListAdmin" class="view-section max-w-5xl mx-auto">
-            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-white/20">Daftar Akun Pengurus</h2>
-            <div id="admin-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 border-b pb-2 border-white/20">Daftar Akun Pengurus</h2>
+            <div id="admin-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"></div>
         </section>
 
+        <!-- SECTION: TAMBAH ADMIN -->
         <section id="viewAddAdmin" class="view-section max-w-2xl mx-auto">
-            <h2 class="text-2xl font-bold mb-6 border-b pb-2 border-white/20">Tambah Akun Baru</h2>
-            <div class="glass-panel p-8 rounded-2xl flex flex-col items-center">
+            <h2 class="text-xl md:text-2xl font-bold mb-6 border-b pb-2 border-white/20">Tambah Akun Baru</h2>
+            <div class="glass-panel p-5 md:p-8 rounded-2xl flex flex-col items-center">
                 <div class="relative group cursor-pointer mb-6" onclick="openPhotoPicker('newAdmin')">
-                    <img id="newAdminPhoto" src="https://via.placeholder.com/150" class="w-32 h-32 rounded-full border-4 border-white/20 object-cover">
-                    <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fas fa-camera text-2xl"></i></div>
+                    <!-- Default Foto Ikon Profil Kosong (SVG Base64) -->
+                    <img id="newAdminPhoto" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2FhYSI+PHBhdGggZD0iTTEyIDJDMi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMyMS41MiAyIDEyIDJ6bTAgM2MxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgMy0zLTEuMzQtMy0zIDEuMzQtMyAzLTN6bTAgMTQuMmMtMi41IDAtNC43MS0xLjI4LTYtMy4yMi4wMy0xLjk5IDQtMy4wOCA2LTMuMDggMiAwIDUuOTcgMS4wOSA2IDMuMDgtMS4yOSAxLjk0LTMuNSAzLjIyLTYgMy4yMnoiLz48L3N2Zz4=" class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white/20 object-cover bg-gray-800">
+                    <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fas fa-camera text-xl md:text-2xl"></i></div>
                 </div>
                 
-                <div class="w-full space-y-4">
-                    <input type="text" id="addName" placeholder="Nama Lengkap" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-400">
-                    <input type="text" id="addUser" placeholder="Username" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-400">
-                    <input type="password" id="addPass" placeholder="Kata Sandi" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-400">
+                <div class="w-full space-y-3 md:space-y-4 text-sm md:text-base">
+                    <input type="text" id="addName" placeholder="Nama Lengkap" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 md:px-4 md:py-3 focus:outline-none focus:border-blue-400">
+                    <input type="text" id="addUser" placeholder="Username" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 md:px-4 md:py-3 focus:outline-none focus:border-blue-400">
+                    <input type="password" id="addPass" placeholder="Kata Sandi" class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 md:px-4 md:py-3 focus:outline-none focus:border-blue-400">
                     
-                    <div class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3">
-                        <p class="text-sm font-bold mb-3 text-gray-200">Pilih Label (Bisa lebih dari satu):</p>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
-                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="KOMINFO" class="add-label-cb form-checkbox h-4 w-4 text-blue-500 rounded bg-white/20 border-white/30"><span>KOMINFO</span></label>
-                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="OWNER" class="add-label-cb form-checkbox h-4 w-4 text-blue-500 rounded bg-white/20 border-white/30"><span>OWNER</span></label>
-                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="DEVELOPER" class="add-label-cb form-checkbox h-4 w-4 text-blue-500 rounded bg-white/20 border-white/30"><span>DEVELOPER</span></label>
-                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="KETUA" class="add-label-cb form-checkbox h-4 w-4 text-blue-500 rounded bg-white/20 border-white/30"><span>KETUA</span></label>
-                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="WAKIL" class="add-label-cb form-checkbox h-4 w-4 text-blue-500 rounded bg-white/20 border-white/30"><span>WAKIL</span></label>
-                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="KAPRODI" class="add-label-cb form-checkbox h-4 w-4 text-blue-500 rounded bg-white/20 border-white/30"><span>KAPRODI</span></label>
+                    <div class="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 md:px-4 md:py-3">
+                        <p class="text-xs md:text-sm font-bold mb-2 md:mb-3 text-gray-200">Pilih Label (Bisa lebih dari satu):</p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-3 text-[10px] md:text-xs font-bold">
+                            <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="KOMINFO" class="add-label-cb form-checkbox h-3.5 w-3.5 text-blue-500 rounded bg-white/20"><span>KOMINFO</span></label>
+                            <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="OWNER" class="add-label-cb form-checkbox h-3.5 w-3.5 text-blue-500 rounded bg-white/20"><span>OWNER</span></label>
+                            <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="DEVELOPER" class="add-label-cb form-checkbox h-3.5 w-3.5 text-blue-500 rounded bg-white/20"><span>DEVELOPER</span></label>
+                            <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="KETUA" class="add-label-cb form-checkbox h-3.5 w-3.5 text-blue-500 rounded bg-white/20"><span>KETUA</span></label>
+                            <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="WAKIL" class="add-label-cb form-checkbox h-3.5 w-3.5 text-blue-500 rounded bg-white/20"><span>WAKIL</span></label>
+                            <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="KAPRODI" class="add-label-cb form-checkbox h-3.5 w-3.5 text-blue-500 rounded bg-white/20"><span>KAPRODI</span></label>
                         </div>
                     </div>
 
-                    <button id="btnSimpanAkun" onclick="saveNewAdmin()" class="w-full bg-blue-600 hover:bg-blue-700 font-bold py-3 rounded-lg shadow-lg mt-2 transition">SIMPAN AKUN</button>
+                    <button id="btnSimpanAkun" onclick="saveNewAdmin()" class="w-full bg-blue-600 hover:bg-blue-700 font-bold py-2.5 md:py-3 rounded-lg shadow-lg mt-2 transition text-sm md:text-base">SIMPAN AKUN</button>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- MODAL EDIT ADMIN DARI DAFTAR AKUN -->
+    <div id="editAdminModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-[#1B427B] text-white border border-white/20 rounded-xl p-5 md:p-6 w-full max-w-md shadow-2xl relative">
+            <button onclick="closeEditModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="text-xl font-bold mb-4 border-b border-white/20 pb-2">Edit Data Pengurus</h3>
+            
+            <input type="hidden" id="editAdminKey">
+            <div class="space-y-3 text-sm">
+                <div><label class="text-xs text-gray-300">Nama Lengkap</label><input type="text" id="editName" class="w-full bg-black/30 border border-white/20 rounded px-3 py-2 mt-1 focus:border-blue-400 outline-none"></div>
+                <div><label class="text-xs text-gray-300">Username</label><input type="text" id="editUser" class="w-full bg-black/30 border border-white/20 rounded px-3 py-2 mt-1 focus:border-blue-400 outline-none"></div>
+                <div><label class="text-xs text-gray-300">Password</label><input type="text" id="editPass" class="w-full bg-black/30 border border-white/20 rounded px-3 py-2 mt-1 focus:border-blue-400 outline-none"></div>
+                
+                <div class="pt-2">
+                    <p class="text-xs font-bold mb-2 text-gray-200">Edit Label:</p>
+                    <div class="grid grid-cols-3 gap-2 text-[10px] font-bold">
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="KOMINFO" class="edit-label-cb form-checkbox h-3.5 w-3.5 rounded bg-white/20"><span>KOMINFO</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="OWNER" class="edit-label-cb form-checkbox h-3.5 w-3.5 rounded bg-white/20"><span>OWNER</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="DEVELOPER" class="edit-label-cb form-checkbox h-3.5 w-3.5 rounded bg-white/20"><span>DEVELOPER</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="KETUA" class="edit-label-cb form-checkbox h-3.5 w-3.5 rounded bg-white/20"><span>KETUA</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="WAKIL" class="edit-label-cb form-checkbox h-3.5 w-3.5 rounded bg-white/20"><span>WAKIL</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" value="KAPRODI" class="edit-label-cb form-checkbox h-3.5 w-3.5 rounded bg-white/20"><span>KAPRODI</span></label>
+                    </div>
+                </div>
+                
+                <button onclick="saveEditAdmin()" class="w-full bg-green-600 hover:bg-green-700 font-bold py-2.5 rounded shadow mt-4 transition">SIMPAN PERUBAHAN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PILIH FOTO -->
     <div id="photoModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white text-gray-800 rounded-xl p-6 w-full max-w-sm text-center shadow-2xl">
             <h3 class="text-xl font-bold mb-6" id="photoModalText">Masukkan foto darimana?</h3>
@@ -183,6 +235,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
         const IMGBB_API = '794f171b910d0156e010c8e3f944e079';
+        const DEFAULT_PROFILE_ICON = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2FhYSI+PHBhdGggZD0iTTEyIDJDMi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMyMS41MiAyIDEyIDJ6bTAgM2MxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgMy0zLTEuMzQtMy0zIDEuMzQtMyAzLTN6bTAgMTQuMmMtMi41IDAtNC43MS0xLjI4LTYtMy4yMi4wMy0xLjk5IDQtMy4wOCA2LTMuMDggMiAwIDUuOTcgMS4wOSA2IDMuMDgtMS4yOSAxLjk0LTMuNSAzLjIyLTYgMy4yMnoiLz48L3N2Zz4=";
 
         let currentUser = JSON.parse(localStorage.getItem('adminData'));
         let idleTime = 0;
@@ -191,17 +244,11 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             if(localStorage.getItem('adminLoggedIn') !== 'true' || !currentUser) { 
-                window.location.href = 'index.html'; 
-                return; 
+                window.location.href = 'index.html'; return; 
             }
-            
-            loadProfile();
-            loadAdminList();
-            checkPermissions();
-            syncMaintenanceToggle();
-            initIdleTimer();
-            
+            loadProfile(); loadAdminList(); checkPermissions(); syncMaintenanceToggle(); initIdleTimer();
             document.getElementById('toggleAutoLogout').checked = localStorage.getItem('autoLogout') === 'true';
+            document.getElementById('newAdminPhoto').src = DEFAULT_PROFILE_ICON;
         });
 
         function switchView(viewId, btn) {
@@ -227,27 +274,57 @@
             else if (name === "KETUA") { bgColor = "bg-lblKetua"; txtColor = "text-black"; extraClass += " shine-effect"; } 
             else if (name === "WAKIL") { bgColor = "bg-lblWakil"; txtColor = "text-black"; extraClass += " shine-effect"; } 
             else if (name === "KAPRODI") { bgColor = "bg-lblKaprodi"; extraClass += " shine-effect"; }
-            return `<span class="px-2.5 py-1 ${bgColor} ${txtColor} ${extraClass} rounded text-[10px] font-bold tracking-wider">${name}</span>`;
+            return `<span class="px-2.5 py-1 ${bgColor} ${txtColor} ${extraClass} rounded text-[8px] md:text-[10px] font-bold tracking-wider">${name}</span>`;
         }
 
-        // --- SISTEM HAPUS AKUN & LOAD DATA ---
+        // --- MANAJEMEN AKUN DARI DAFTAR (HAPUS & EDIT) ---
         function deleteAdmin(dbKey, namaAkun) {
-            if(confirm(`Peringatan!\n\nApakah Anda yakin ingin menghapus akun "${namaAkun}" secara permanen? Data yang dihapus tidak bisa dikembalikan.`)) {
-                db.ref('admins/' + dbKey).remove()
-                    .then(() => {
-                        console.log("Akun berhasil dihapus dari sistem.");
-                    })
-                    .catch((error) => {
-                        alert("Gagal menghapus akun: " + error.message);
-                    });
+            if(confirm(`Yakin ingin menghapus akun "${namaAkun}" secara permanen?`)) {
+                db.ref('admins/' + dbKey).remove().catch(e => alert("Gagal menghapus akun: " + e.message));
             }
+        }
+
+        function openEditAdminModal(dbKey) {
+            db.ref('admins/' + dbKey).once('value').then(snap => {
+                const acc = snap.val();
+                if(acc) {
+                    document.getElementById('editAdminKey').value = dbKey;
+                    document.getElementById('editName').value = acc.name;
+                    document.getElementById('editUser').value = acc.username;
+                    document.getElementById('editPass').value = acc.password;
+                    
+                    document.querySelectorAll('.edit-label-cb').forEach(cb => {
+                        cb.checked = acc.labels && acc.labels.includes(cb.value);
+                    });
+                    
+                    document.getElementById('editAdminModal').classList.remove('hidden');
+                }
+            });
+        }
+        function closeEditModal() { document.getElementById('editAdminModal').classList.add('hidden'); }
+        
+        function saveEditAdmin() {
+            const key = document.getElementById('editAdminKey').value;
+            const newName = document.getElementById('editName').value;
+            const newUser = document.getElementById('editUser').value;
+            const newPass = document.getElementById('editPass').value;
+            const checkedLabels = Array.from(document.querySelectorAll('.edit-label-cb:checked')).map(cb => cb.value);
+
+            if(!newName || !newUser || !newPass) { alert("Data tidak boleh kosong!"); return; }
+            if(checkedLabels.length === 0) { alert("Pilih minimal satu label!"); return; }
+
+            db.ref('admins/' + key).update({
+                name: newName, username: newUser, password: newPass, labels: checkedLabels
+            }).then(() => {
+                closeEditModal();
+                alert("Perubahan profil berhasil disimpan.");
+            });
         }
 
         function loadAdminList() {
             const container = document.getElementById('admin-list-container');
             container.innerHTML = '<p class="text-gray-400 text-center w-full col-span-full py-10"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data dari Firebase...</p>';
             
-            // Cek apakah user yang login punya label OWNER untuk akses tombol hapus
             const isOwner = currentUser.labels.some(l => l.toUpperCase() === 'OWNER');
 
             db.ref('admins').on('value', (snapshot) => {
@@ -255,31 +332,32 @@
                 const data = snapshot.val();
                 
                 if (data) {
-                    // Loop setiap akun yang ada di Firebase
                     Object.entries(data).forEach(([key, acc]) => {
                         let labelsHTML = '';
                         if(acc.labels) { acc.labels.forEach(l => { labelsHTML += getLabelHTML(l); }); }
 
-                        // Fitur Hapus: Munculkan jika isOwner bernilai true
-                        let deleteBtnHTML = '';
+                        // Tombol Aksi Muncul Jika Owner
+                        let actionBtnsHTML = '';
                         if (isOwner) {
-                            deleteBtnHTML = `<button onclick="deleteAdmin('${key}', '${acc.name}')" class="text-red-400 hover:text-white bg-red-500/10 hover:bg-red-500 px-2.5 py-1 rounded transition shadow text-[10px] font-bold mt-2" title="Hapus Akun ini"><i class="fas fa-trash-alt mr-1"></i>HAPUS</button>`;
+                            actionBtnsHTML = `
+                            <div class="flex gap-1 mt-2">
+                                <button onclick="deleteAdmin('${key}', '${acc.name}')" class="text-red-400 hover:text-white bg-red-500/10 hover:bg-red-500 px-2 py-1 rounded transition shadow text-[9px] font-bold" title="Hapus"><i class="fas fa-trash-alt mr-1"></i>HAPUS</button>
+                                <button onclick="openEditAdminModal('${key}')" class="text-blue-400 hover:text-white bg-blue-500/10 hover:bg-blue-500 px-2 py-1 rounded transition shadow text-[9px] font-bold" title="Edit"><i class="fas fa-pencil-alt mr-1"></i>EDIT</button>
+                            </div>`;
                         }
 
                         container.innerHTML += `
-                            <div class="glass-panel p-5 rounded-2xl flex flex-row items-center gap-4 relative overflow-hidden group">
-                                <div class="absolute top-3 right-3 flex flex-col gap-1 items-end z-10">
+                            <div class="glass-panel p-4 md:p-5 rounded-2xl flex flex-row items-center gap-3 md:gap-4 relative overflow-hidden group">
+                                <div class="absolute top-2 right-2 md:top-3 md:right-3 flex flex-col gap-1 items-end z-10">
                                     ${labelsHTML}
                                 </div>
-                                
                                 <div class="flex flex-col items-center z-10 flex-shrink-0">
-                                    <img src="${acc.profilePic || 'https://via.placeholder.com/150'}" class="w-16 h-16 rounded-full object-cover border-2 border-white/20 shadow-md group-hover:scale-105 transition">
-                                    ${deleteBtnHTML}
+                                    <img src="${acc.profilePic || DEFAULT_PROFILE_ICON}" class="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover border-2 border-white/20 shadow-md group-hover:scale-105 transition bg-gray-800">
                                 </div>
-
-                                <div class="z-10 max-w-[55%]">
-                                    <p class="font-bold text-lg leading-tight truncate" title="${acc.name}">${acc.name}</p>
-                                    <p class="text-xs text-gray-400 mt-0.5">@${acc.username}</p>
+                                <div class="z-10 max-w-[50%] flex flex-col justify-center">
+                                    <p class="font-bold text-base md:text-lg leading-tight truncate" title="${acc.name}">${acc.name}</p>
+                                    <p class="text-[10px] md:text-xs text-gray-400 mt-0.5">@${acc.username}</p>
+                                    ${actionBtnsHTML}
                                 </div>
                             </div>`;
                     });
@@ -288,21 +366,17 @@
                 // Backup Master adminAccounts
                 if (typeof adminAccounts !== 'undefined') {
                     adminAccounts.forEach(acc => {
-                        let labelsHTML = '';
-                        acc.labels.forEach(l => { labelsHTML += getLabelHTML(l); });
-
+                        let labelsHTML = ''; acc.labels.forEach(l => { labelsHTML += getLabelHTML(l); });
                         container.innerHTML += `
-                            <div class="glass-panel p-5 rounded-2xl flex flex-row items-center gap-4 relative overflow-hidden group border-blue-500/30">
-                                <div class="absolute top-3 right-3 flex flex-col gap-1 items-end z-10">
-                                    ${labelsHTML}
-                                </div>
+                            <div class="glass-panel p-4 md:p-5 rounded-2xl flex flex-row items-center gap-3 md:gap-4 relative overflow-hidden group border-blue-500/30">
+                                <div class="absolute top-2 right-2 md:top-3 md:right-3 flex flex-col gap-1 items-end z-10">${labelsHTML}</div>
                                 <div class="flex flex-col items-center z-10 flex-shrink-0">
-                                    <img src="${acc.profilePic}" class="w-16 h-16 rounded-full object-cover border-2 border-white/20 shadow-md group-hover:scale-105 transition">
-                                    <span class="text-[9px] font-bold text-blue-300 bg-blue-900/50 px-2 py-0.5 rounded mt-2">MASTER</span>
+                                    <img src="${acc.profilePic}" class="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover border-2 border-white/20 shadow-md group-hover:scale-105 transition">
+                                    <span class="text-[8px] md:text-[9px] font-bold text-blue-300 bg-blue-900/50 px-2 py-0.5 rounded mt-2">MASTER</span>
                                 </div>
-                                <div class="z-10 max-w-[55%]">
-                                    <p class="font-bold text-lg leading-tight truncate" title="${acc.name}">${acc.name}</p>
-                                    <p class="text-xs text-gray-400 mt-0.5">@${acc.username}</p>
+                                <div class="z-10 max-w-[50%] flex flex-col justify-center">
+                                    <p class="font-bold text-base md:text-lg leading-tight truncate" title="${acc.name}">${acc.name}</p>
+                                    <p class="text-[10px] md:text-xs text-gray-400 mt-0.5">@${acc.username}</p>
                                 </div>
                             </div>`;
                     });
@@ -310,12 +384,17 @@
             });
         }
 
+        // --- SISTEM EDIT PROFIL PERSONAL & PASSWORD ---
         function loadProfile() {
             document.getElementById('cardNama').textContent = currentUser.name;
             document.getElementById('cardUser').textContent = currentUser.username;
-            document.getElementById('cardFoto').src = currentUser.profilePic || 'https://via.placeholder.com/150';
-            document.getElementById('containerWa').innerText = currentUser.wa;
-            document.getElementById('containerDob').innerText = currentUser.dob;
+            document.getElementById('cardFoto').src = currentUser.profilePic || DEFAULT_PROFILE_ICON;
+            document.getElementById('containerWa').innerText = currentUser.wa || "-";
+            document.getElementById('containerDob').innerText = currentUser.dob || "-";
+            // Set password hidden secara default
+            document.getElementById('containerPass').innerText = "********";
+            document.getElementById('containerPass').classList.add("tracking-widest", "text-lg");
+            
             const labelContainer = document.getElementById('cardLabels');
             labelContainer.innerHTML = '';
             currentUser.labels.forEach(l => { labelContainer.innerHTML += getLabelHTML(l); });
@@ -327,19 +406,47 @@
             const btnFoto = document.getElementById('btnGantiFoto');
             const contWa = document.getElementById('containerWa');
             const contDob = document.getElementById('containerDob');
+            const contPass = document.getElementById('containerPass');
 
             if(isEditingProfile) {
-                btnEdit.innerHTML = '<i class="fas fa-save text-xl text-green-400"></i>';
+                // Mode Input
+                btnEdit.innerHTML = '<i class="fas fa-save text-lg md:text-xl text-green-400"></i>';
                 btnEdit.classList.replace('bg-white/10', 'bg-green-500/20');
-                contWa.innerHTML = `<input type="text" id="inputEditWa" class="bg-black/40 text-white rounded px-3 py-1 w-full max-w-xs border border-white/30 focus:outline-none focus:border-blue-400" value="${currentUser.wa}">`;
-                contDob.innerHTML = `<input type="text" id="inputEditDob" class="bg-black/40 text-white rounded px-3 py-1 w-full max-w-xs border border-white/30 focus:outline-none focus:border-blue-400" value="${currentUser.dob}" placeholder="DD-MM-YYYY">`;
+                
+                contPass.classList.remove("tracking-widest", "text-lg");
+                contPass.innerHTML = `<input type="text" id="inputEditPass" class="bg-black/40 text-white rounded px-2 md:px-3 py-1 w-full max-w-xs border border-white/30 focus:outline-none focus:border-blue-400 text-xs md:text-sm" value="${currentUser.password}">`;
+                contWa.innerHTML = `<input type="text" id="inputEditWa" class="bg-black/40 text-white rounded px-2 md:px-3 py-1 w-full max-w-xs border border-white/30 focus:outline-none focus:border-blue-400 text-xs md:text-sm" value="${currentUser.wa || ''}">`;
+                contDob.innerHTML = `<input type="text" id="inputEditDob" class="bg-black/40 text-white rounded px-2 md:px-3 py-1 w-full max-w-xs border border-white/30 focus:outline-none focus:border-blue-400 text-xs md:text-sm" value="${currentUser.dob || ''}" placeholder="DD-MM-YYYY">`;
                 btnFoto.classList.remove('hidden');
             } else {
-                currentUser.wa = document.getElementById('inputEditWa').value;
-                currentUser.dob = document.getElementById('inputEditDob').value;
+                // Simpan Data
+                const newPass = document.getElementById('inputEditPass').value;
+                const newWa = document.getElementById('inputEditWa').value;
+                const newDob = document.getElementById('inputEditDob').value;
+                
+                currentUser.password = newPass;
+                currentUser.wa = newWa;
+                currentUser.dob = newDob;
+                
+                // Simpan ke local storage
                 localStorage.setItem('adminData', JSON.stringify(currentUser));
+                
+                // Mencoba simpan juga ke Firebase jika akun ini adalah akun Firebase
+                db.ref('admins').orderByChild('username').equalTo(currentUser.username).once('value').then(snap => {
+                    if(snap.exists()) {
+                        const key = Object.keys(snap.val())[0];
+                        db.ref('admins/' + key).update({
+                            password: newPass, wa: newWa, dob: newDob
+                        });
+                    }
+                });
+
+                // Tampilan Normal
                 btnEdit.innerHTML = '<i class="fas fa-pencil-alt text-gray-200"></i>';
                 btnEdit.classList.replace('bg-green-500/20', 'bg-white/10');
+                
+                contPass.innerText = "********";
+                contPass.classList.add("tracking-widest", "text-lg");
                 contWa.innerText = currentUser.wa;
                 contDob.innerText = currentUser.dob;
                 btnFoto.classList.add('hidden');
@@ -358,8 +465,7 @@
             const url = prompt("Paste Link URL Gambar (Contoh: https://i.ibb.co.com/...):");
             if(url) { 
                 let fixedUrl = url.replace("i.ibb.co/", "i.ibb.co.com/");
-                applyPhoto(fixedUrl);
-                closePhotoModal(); 
+                applyPhoto(fixedUrl); closePhotoModal(); 
             }
         }
         
@@ -368,27 +474,19 @@
             if(!file) return;
             
             document.getElementById('photoModalText').innerHTML = "<i class='fas fa-spinner fa-spin mr-2'></i> Sedang Mengunggah...";
-            
             const form = new FormData(); form.append('image', file);
             try {
                 const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API}`, { method: 'POST', body: form });
                 const data = await res.json();
                 
                 if(data.success) { 
-                    // MEMAKSA MENGGUNAKAN DOMAIN i.ibb.co.com
-                    let finalUrl = data.data.url;
-                    finalUrl = finalUrl.replace("i.ibb.co/", "i.ibb.co.com/");
+                    let finalUrl = data.data.url.replace("i.ibb.co/", "i.ibb.co.com/");
                     applyPhoto(finalUrl);
-                } else {
-                    alert("Gagal mengunggah foto ke server ImgBB.");
-                }
-            } catch(err) {
-                alert("Terjadi kesalahan jaringan.");
-            }
+                } else { alert("Gagal mengunggah foto ke server ImgBB."); }
+            } catch(err) { alert("Terjadi kesalahan jaringan."); }
             
             document.getElementById('photoModalText').innerText = "Masukkan foto darimana?";
-            closePhotoModal();
-            e.target.value = ''; 
+            closePhotoModal(); e.target.value = ''; 
         }
 
         function applyPhoto(url) {
@@ -396,6 +494,14 @@
                 document.getElementById('cardFoto').src = url;
                 currentUser.profilePic = url;
                 localStorage.setItem('adminData', JSON.stringify(currentUser));
+                
+                // Update Firebase foto profil jika user ada di database
+                db.ref('admins').orderByChild('username').equalTo(currentUser.username).once('value').then(snap => {
+                    if(snap.exists()) {
+                        const key = Object.keys(snap.val())[0];
+                        db.ref('admins/' + key).update({ profilePic: url });
+                    }
+                });
             } else if (activePhotoTarget === 'newAdmin') {
                 document.getElementById('newAdminPhoto').src = url;
             }
@@ -418,13 +524,12 @@
             }, 1000);
         }
 
-        // --- SAVE TO FIREBASE ---
+        // --- TAMBAH ADMIN FIREBASE PUSH ---
         function saveNewAdmin() {
             const name = document.getElementById('addName').value;
             const user = document.getElementById('addUser').value;
             const pass = document.getElementById('addPass').value;
             const photoUrl = document.getElementById('newAdminPhoto').src;
-            
             const checkedLabels = Array.from(document.querySelectorAll('.add-label-cb:checked')).map(cb => cb.value);
 
             if(!name || !user || !pass) { alert("Nama, Username, dan Password wajib diisi!"); return; }
@@ -436,33 +541,23 @@
             btnSave.disabled = true;
 
             const newAdminData = {
-                name: name,
-                username: user,
-                password: pass,
-                wa: "-", 
-                dob: "-", 
-                labels: checkedLabels,
-                profilePic: photoUrl
+                name: name, username: user, password: pass, wa: "-", dob: "-", 
+                labels: checkedLabels, profilePic: photoUrl
             };
 
             db.ref('admins').push(newAdminData)
                 .then(() => {
                     alert("SUKSES! Akun admin baru berhasil ditambahkan.");
-                    document.getElementById('addName').value = '';
-                    document.getElementById('addUser').value = '';
-                    document.getElementById('addPass').value = '';
+                    document.getElementById('addName').value = ''; document.getElementById('addUser').value = ''; document.getElementById('addPass').value = '';
                     document.querySelectorAll('.add-label-cb').forEach(cb => cb.checked = false);
-                    document.getElementById('newAdminPhoto').src = "https://via.placeholder.com/150";
+                    document.getElementById('newAdminPhoto').src = DEFAULT_PROFILE_ICON;
                     
-                    // Kembalikan tombol seperti semula & Pindah ke view List Admin untuk melihat hasilnya
-                    btnSave.innerHTML = originalText;
-                    btnSave.disabled = false;
+                    btnSave.innerHTML = originalText; btnSave.disabled = false;
                     switchView('viewListAdmin', document.querySelectorAll('.sidebar-icon')[3]);
                 })
                 .catch((error) => {
                     alert("Gagal menambahkan akun: " + error.message);
-                    btnSave.innerHTML = originalText;
-                    btnSave.disabled = false;
+                    btnSave.innerHTML = originalText; btnSave.disabled = false;
                 });
         }
     </script>
