@@ -31,7 +31,6 @@
     </script>
 
     <style>
-        /* Import Local Font GRAMES */
         @font-face {
             font-family: 'Grames';
             src: url('GRAMES.ttf') format('truetype'),
@@ -39,114 +38,44 @@
             font-weight: bold;
             font-style: normal;
         }
-
-        .font-grames {
-            font-family: 'Grames', sans-serif;
-            letter-spacing: 2px;
-        }
+        .font-grames { font-family: 'Grames', sans-serif; letter-spacing: 2px; }
 
         .hero-text-wrapper {
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5)); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; width: 100%;
         }
 
         .hero-gradient {
             background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
-            background-size: 300% 300%;
-            background-attachment: fixed; 
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent !important;
-            -webkit-text-fill-color: transparent;
-            animation: flowHero 8s linear infinite;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            line-height: 1.2;
-            display: inline-block;
+            background-size: 300% 300%; background-attachment: fixed; -webkit-background-clip: text;
+            background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent;
+            animation: flowHero 8s linear infinite; padding-top: 20px; padding-bottom: 20px;
+            line-height: 1.2; display: inline-block;
         }
 
-        @keyframes flowHero {
-            0% { background-position: 100% 100%; }
-            75% { background-position: 0% 0%; }
-            100% { background-position: 0% 0%; } 
-        }
+        @keyframes flowHero { 0% { background-position: 100% 100%; } 75% { background-position: 0% 0%; } 100% { background-position: 0% 0%; } }
 
         .name-gradient {
             background: linear-gradient(135deg, #DAA520 15%, #ADD8E6 50%, #DAA520 85%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent !important;
-            -webkit-text-fill-color: transparent;
-            animation: flowName 4s ease-in-out infinite;
-            animation-delay: 0.5s;
+            background-size: 200% 200%; -webkit-background-clip: text; background-clip: text;
+            color: transparent !important; -webkit-text-fill-color: transparent;
+            animation: flowName 4s ease-in-out infinite; animation-delay: 0.5s;
         }
+        @keyframes flowName { 0% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } 100% { background-position: 0% 0%; } }
 
-        @keyframes flowName {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
+        .glitch { position: relative; cursor: pointer; z-index: 2; }
+        .glitch:hover { background: transparent !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }
+        .glitch::before, .glitch::after {
+            position: absolute; content: attr(data-text); top: 0; left: 0; width: 100%; height: 100%;
+            visibility: hidden; pointer-events: none; background: none; -webkit-background-clip: initial; background-clip: initial;
+            color: transparent; -webkit-text-fill-color: transparent; padding-top: 20px; padding-bottom: 20px; line-height: 1.2; white-space: nowrap;
         }
+        .glitch:hover::before { visibility: visible; color: rgba(255,0,188,.8) !important; -webkit-text-fill-color: rgba(255,0,188,.8) !important; animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) both infinite; z-index: 10; }
+        .glitch:hover::after { visibility: visible; color: rgba(0,255,255,.8) !important; -webkit-text-fill-color: rgba(0,255,255,.8) !important; animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) reverse both infinite; z-index: 11; }
+        @keyframes hover-glitch { 0% { transform: translate(0); } 20% { transform: translate(-3px, 3px); } 40% { transform: translate(-3px, -3px); } 60% { transform: translate(3px, 3px); } 80% { transform: translate(3px, -3px); } 100% { transform: translate(0); } }
 
-        .glitch {
-            position: relative;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .glitch:hover {
-            background: transparent !important;
-            -webkit-text-fill-color: transparent !important;
-            color: transparent !important;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            position: absolute;
-            content: attr(data-text);
-            top: 0; left: 0; width: 100%; height: 100%;
-            visibility: hidden; pointer-events: none;
-            background: none; -webkit-background-clip: initial; background-clip: initial;
-            color: transparent; -webkit-text-fill-color: transparent;
-            padding-top: 20px; padding-bottom: 20px; line-height: 1.2; white-space: nowrap;
-        }
-
-        .glitch:hover::before {
-            visibility: visible;
-            color: rgba(255,0,188,.8) !important; -webkit-text-fill-color: rgba(255,0,188,.8) !important;
-            animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) both infinite; z-index: 10;
-        }
-
-        .glitch:hover::after {
-            visibility: visible;
-            color: rgba(0,255,255,.8) !important; -webkit-text-fill-color: rgba(0,255,255,.8) !important;
-            animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) reverse both infinite; z-index: 11;
-        }
-
-        @keyframes hover-glitch {
-            0%   { transform: translate(0); }
-            20%  { transform: translate(-3px, 3px); }
-            40%  { transform: translate(-3px, -3px); }
-            60%  { transform: translate(3px, 3px); }
-            80%  { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
-        }
-
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/7N6JKV2T/Proyek-Baru-67-1-C2-AEFC.png');
-            background-size: cover; background-position: center; background-repeat: no-repeat;
-        }
-
-        .shimmer-text {
-            background: linear-gradient(135deg, #a0aec0 20%, #ffffff 50%, #a0aec0 80%);
-            background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text;
-            animation: shimmer 3s linear infinite; cursor: pointer;
-        }
-
+        .hero-bg { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/7N6JKV2T/Proyek-Baru-67-1-C2-AEFC.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
+        .shimmer-text { background: linear-gradient(135deg, #a0aec0 20%, #ffffff 50%, #a0aec0 80%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: shimmer 3s linear infinite; cursor: pointer; }
         @keyframes shimmer { to { background-position: 200% center; } }
 
         .btn-dashboard-glow { position: relative; overflow: hidden; }
@@ -155,45 +84,16 @@
             background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
             transform: translate(-100%, -100%); animation: sweepLight 4s infinite linear;
         }
+        @keyframes sweepLight { 0% { transform: translate(-100%, -100%); } 50% { transform: translate(100%, 100%); } 100% { transform: translate(100%, 100%); } }
 
-        @keyframes sweepLight {
-            0% { transform: translate(-100%, -100%); }
-            50% { transform: translate(100%, 100%); }
-            100% { transform: translate(100%, 100%); }
-        }
-
-        .editable-txt[contenteditable="true"] {
-            outline: 2px dashed rgba(255, 255, 255, 0.6);
-            outline-offset: 4px;
-            cursor: text;
-            background: transparent !important;
-            transition: all 0.2s;
-            position: relative;
-            z-index: 50; 
-        }
-        
-        .editable-txt[contenteditable="true"]:focus {
-            outline: 3px solid #0d72bf;
-            background: transparent !important; 
-            z-index: 60;
+        /* PERBAIKAN BUG TEKS CMS */
+        .editable-txt[contenteditable="true"] { outline: 2px dashed rgba(255, 255, 255, 0.6); outline-offset: 4px; cursor: text; background: transparent !important; transition: all 0.2s; position: relative; z-index: 50; }
+        .editable-txt[contenteditable="true"]:focus { outline: 3px solid #0d72bf; background: transparent !important; z-index: 60; }
+        .hero-gradient[contenteditable="true"], .name-gradient[contenteditable="true"], .glitch[contenteditable="true"] {
+            -webkit-text-fill-color: #ffffff !important; color: #ffffff !important; -webkit-background-clip: initial !important; background-clip: initial !important; text-shadow: 0 4px 10px rgba(0,0,0,0.9);
         }
 
-        .hero-gradient[contenteditable="true"], 
-        .name-gradient[contenteditable="true"], 
-        .glitch[contenteditable="true"] {
-            -webkit-text-fill-color: #ffffff !important;
-            color: #ffffff !important;
-            -webkit-background-clip: initial !important;
-            background-clip: initial !important;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.9);
-        }
-
-        .cam-overlay {
-            position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.6); display: flex;
-            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
-            cursor: pointer; z-index: 10;
-        }
-        
+        .cam-overlay { position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; cursor: pointer; z-index: 10; }
         .editable-img-wrapper:hover .cam-overlay { opacity: 1; }
         .editable-img-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; overflow: hidden; }
 
@@ -205,6 +105,7 @@
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
+        /* PLAYER WIDGET */
         :root { --fixed-bg: rgba(255, 255, 255, 0.9); --fixed-text: #2c3e50; --card-bg: #fff; --text-color: #333; }
         .now-playing-box { position: fixed; bottom: 20px; right: 0; z-index: 9999; background: var(--fixed-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 8px; padding-right: 20px; border-top-left-radius: 50px; border-bottom-left-radius: 50px; box-shadow: -5px 5px 20px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; width: 300px; transform: translateX(calc(100% - 50px)); transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         .now-playing-box.expanded { transform: translateX(0); }
@@ -241,15 +142,23 @@
 </head>
 <body class="font-sans text-textDark bg-[#001436] overflow-x-hidden relative">
 
-    <!-- NAVBAR -->
-    <nav class="bg-[#1B427B] shadow-md fixed w-full z-50 top-0 border-none">
+    <!-- NAVBAR TINGKAT TINGGI (z-[100]) -->
+    <nav class="bg-[#1B427B] shadow-md fixed w-full z-[100] top-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
+                
+                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="index.html"><img class="h-14 w-auto rounded px-2" src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="HIMATIKA Logo"></a>
                 </div>
                 
+                <!-- MENU PC -->
                 <div class="hidden md:flex space-x-8 items-center">
+                    <!-- Tombol Edit (Kiri Dashboard Admin) -->
+                    <button id="btnEditModePC" onclick="toggleEditMode()" class="hidden text-white font-bold bg-red-500/90 px-4 py-1.5 rounded hover:bg-red-500 transition shadow">
+                        <i class="fas fa-edit mr-1"></i> EDIT: OFF
+                    </button>
+                    
                     <a href="dashboard.html" id="btnDashboard" class="hidden text-white font-bold bg-white/20 px-4 py-1.5 rounded hover:bg-white/30 transition shadow btn-dashboard-glow">Dashboard Admin</a>
                     <a href="index.html" class="text-white font-medium hover:text-gray-300">Beranda</a>
                     <button id="btnAdminAuth" onclick="openModal()" class="font-bold text-lg shimmer-text hover:scale-105 transition-transform">Admin</button>
@@ -257,7 +166,7 @@
                     
                     <div class="relative group cursor-pointer py-6">
                         <span class="text-gray-200 font-medium group-hover:text-white">Departemen <i class="fas fa-chevron-down text-xs ml-1"></i></span>
-                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100]">
                             <a href="struktur.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Komunikasi dan Informasi</a>
                             <a href="stpemuda.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pemuda dan Olahraga</a>
                             <a href="stagama.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Agama</a>
@@ -270,20 +179,23 @@
                     <a href="#" class="text-gray-200 font-medium hover:text-white">Galeri</a>
                 </div>
 
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none p-2">
+                <!-- MENU HEADER MOBILE -->
+                <div class="md:hidden flex items-center gap-3">
+                    <!-- Dashboard Admin Mobile (Di kiri garis 3) -->
+                    <a href="dashboard.html" id="btnDashboardMobileHeader" class="hidden text-white font-bold bg-white/20 px-3 py-1.5 rounded hover:bg-white/30 transition shadow btn-dashboard-glow text-[10px] sm:text-xs">Dashboard Admin</a>
+                    
+                    <!-- Garis Tiga -->
+                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none p-2 ml-1">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-[#15325c] border-t border-white/10 px-4 pt-2 pb-4 shadow-2xl absolute w-full z-40">
-            <a href="dashboard.html" id="btnDashboardMobile" class="hidden block text-white font-bold bg-white/20 px-4 py-2 rounded text-center mb-3">Dashboard Admin</a>
+        <!-- DROPDOWN MOBILE MENU -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#15325c] border-t border-white/10 px-4 pt-2 pb-4 shadow-2xl absolute w-full z-[90]">
             <a href="index.html" class="block text-white font-medium hover:text-gray-300 py-3 border-b border-white/10">Beranda</a>
-            <button id="btnAdminAuthMobile" onclick="openModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="block w-full text-left font-bold text-lg shimmer-text py-3 border-b border-white/10">Admin</button>
             <a href="proker.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Program Kerja</a>
-            
             <div class="py-3 border-b border-white/10">
                 <div class="text-gray-200 font-medium mb-2">Departemen</div>
                 <div class="pl-4 space-y-3 border-l-2 border-white/20 mt-2">
@@ -294,16 +206,31 @@
                     <a href="stkesejahteraan.html" class="block text-sm text-gray-300 hover:text-white">Kesejahteraan Mahasiswa</a>
                 </div>
             </div>
-            
             <a href="berita.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Berita</a>
-            <a href="#" class="block text-gray-200 font-medium hover:text-white py-3">Galeri</a>
+            <a href="#" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Galeri</a>
+            
+            <!-- Tambahan Logout di Mobile Menu untuk jaga-jaga -->
+            <button id="btnLogoutMobile" onclick="prosesLogout()" class="hidden w-full text-left text-red-400 font-bold hover:text-red-300 py-3">Logout Akun</button>
         </div>
     </nav>
+
+    <!-- FLOATING BUTTONS MOBILE (Di Bawah Header) -->
+    <div class="md:hidden fixed top-24 right-4 z-[90] flex flex-col gap-3 items-end pointer-events-none">
+        
+        <!-- Tombol EDIT MOBILE (Muncul saat Login) -->
+        <button id="btnEditModeMobile" onclick="toggleEditMode()" class="hidden pointer-events-auto text-white font-bold bg-red-500/90 border border-red-400 px-4 py-2 rounded-full hover:bg-red-500 transition shadow-lg text-[11px] flex items-center gap-2">
+            <i class="fas fa-edit"></i> EDIT: OFF
+        </button>
+
+        <!-- Tombol ADMIN MOBILE (Muncul saat belum Login) -->
+        <button id="btnAdminAuthMobileFloating" onclick="openModal()" class="pointer-events-auto text-white font-bold bg-[#1B427B]/90 border border-white/50 px-4 py-2 rounded-full hover:bg-blue-800 transition shadow-lg text-[11px] flex items-center gap-2">
+            <i class="fas fa-user-shield"></i> ADMIN
+        </button>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-1 sm:px-4 mt-16 md:mt-0 m-0 border-none">
         <div class="hero-text-wrapper w-full overflow-hidden px-1">
-            <!-- Diubah menjadi flex-nowrap dan font responsif ukuran 4.5vw (sangat besar untuk HP, menyesuaikan otomatis, dan mentok aman tanpa overflow) -->
             <h1 class="flex flex-nowrap justify-center items-center gap-x-1 sm:gap-x-3 md:gap-x-4 w-full">
                 <span id="txt-hero-title-1a" class="editable-txt hero-gradient font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">HIMPUNAN</span>
                 <span id="txt-hero-title-1b" class="editable-txt hero-gradient font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">MAHASISWA</span>
@@ -453,7 +380,7 @@
                 </div>
 
                 <div id="grid-berita-index" class="flex overflow-x-auto gap-3 snap-x snap-mandatory hide-scroll md:grid md:grid-cols-4 md:gap-6 md:overflow-visible pb-4">
-                    <!-- Konten berita akan dirender dari JS -->
+                    <!-- Konten berita dirender JS -->
                 </div>
             </div>
             
@@ -488,18 +415,18 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-[#001436] py-6 m-0 border-none">
+    <footer class="bg-[#001436] py-6 m-0 border-none relative z-50">
         <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
             <p class="text-gray-400 text-sm">Developed by Gilang Aidil Pratama / Dilz Ghaaziy</p>
         </div>
     </footer>
 
     <!-- MODAL & WIDGET CMS -->
-    <button id="btnSaveCms" onclick="simpanKeFirebase()" class="hidden fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-2xl font-bold z-50 flex items-center gap-2 transition-transform hover:scale-110 btn-save-pop">
+    <button id="btnSaveCms" onclick="simpanKeFirebase()" class="hidden fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-2xl font-bold z-[110] flex items-center gap-2 transition-transform hover:scale-110 btn-save-pop">
         <i class="fas fa-save text-xl"></i> Simpan
     </button>
 
-    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center transition-opacity px-4">
+    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] hidden flex items-center justify-center transition-opacity px-4">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 md:p-8 transform scale-95 transition-transform" id="modalContent">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-himasiDark font-heading">Akses Admin</h2>
@@ -521,7 +448,7 @@
     </div>
 
     <!-- Modal CMS Gambar -->
-    <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] hidden flex items-center justify-center px-4">
+    <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] hidden flex items-center justify-center px-4">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
             <button onclick="closeEditImgModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
             <h3 class="text-xl font-bold text-gray-800 mb-6">Mau Input Lewat Mana?</h3>
@@ -547,7 +474,7 @@
             <div class="playlist-scroll" id="playlist-container"></div>
         </div>
     </div>
-    <div id="now-playing-box" class="now-playing-box">
+    <div id="now-playing-box" class="now-playing-box z-[9998]">
         <div class="np-icon" onclick="toggleNPBox()"><i class="fas fa-music"></i></div>
         <div class="np-content">
             <div class="np-info"><div class="np-label">Sedang Memutar</div><div class="np-title" id="np-title">Menunggu Lagu...</div></div>
@@ -586,6 +513,7 @@
         const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079';
         let currentEditImageId = null;
         let localCmsData = { texts: {}, images: {} }; 
+        let isEditModeActive = false; // State untuk tombol edit manual
 
         document.addEventListener("DOMContentLoaded", () => {
             initRealtimeCMS();
@@ -594,13 +522,45 @@
             initNewsFeed(); 
         });
 
+        // FUNGSI AKTIVASI MANUAL EDIT MODE
+        function toggleEditMode() {
+            isEditModeActive = !isEditModeActive;
+            const btnPC = document.getElementById('btnEditModePC');
+            const btnMobile = document.getElementById('btnEditModeMobile');
+            
+            if(isEditModeActive) {
+                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: ON';
+                btnPC.classList.replace('bg-red-500/90', 'bg-green-500/90');
+                btnPC.classList.replace('hover:bg-red-500', 'hover:bg-green-500');
+                
+                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: ON';
+                btnMobile.classList.replace('bg-red-500/90', 'bg-green-500/90');
+                btnMobile.classList.replace('hover:bg-red-500', 'hover:bg-green-500');
+                btnMobile.classList.replace('border-red-400', 'border-green-400');
+                
+                aktifkanModeEdit(true);
+                document.getElementById('btnSaveCms').classList.remove('hidden');
+            } else {
+                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: OFF';
+                btnPC.classList.replace('bg-green-500/90', 'bg-red-500/90');
+                btnPC.classList.replace('hover:bg-green-500', 'hover:bg-red-500');
+                
+                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: OFF';
+                btnMobile.classList.replace('bg-green-500/90', 'bg-red-500/90');
+                btnMobile.classList.replace('hover:bg-green-500', 'hover:bg-red-500');
+                btnMobile.classList.replace('border-green-400', 'border-red-400');
+                
+                aktifkanModeEdit(false);
+                document.getElementById('btnSaveCms').classList.add('hidden');
+            }
+        }
+
         function initNewsFeed() {
             let newsArray = [
                 { id: 1, title: "Inovasi AI Terbaru Karya Mahasiswa HIMATIKA Siap Dilombakan", date: new Date(Date.now() - 1000 * 60 * 10).toISOString(), label: "Teknologi", excerpt: "Tim riset mahasiswa Informatika UIM berhasil mengembangkan model AI pendeteksi dini...", img: "https://i.ibb.co.com/HT8DW858/Proyek-Baru-65-AB3-B9-B2.png" },
                 { id: 2, title: "Pendaftaran Beasiswa KIP-K Semester Ganjil 2026 Telah Dibuka", date: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(), label: "Informasi", excerpt: "Kabar gembira bagi seluruh mahasiswa UIM. Pendaftaran dan verifikasi berkas KIP-K...", img: "https://i.ibb.co.com/ccXfb2xG/Proyek-Baru-128-1-F4-E11-D.png" },
                 { id: 3, title: "Tutorial Lengkap Setup Environment React.js Untuk Pemula", date: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), label: "Edukasi", excerpt: "React.js masih menjadi primadona di dunia Front-end. Artikel ini akan memandu kamu dari instalasi...", img: "https://i.ibb.co.com/XZbxZpcC/Proyek-Baru-128-F787-A9-C.png" },
-                { id: 4, title: "HIMATIKA Sukses Gelar Workshop UI/UX", date: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), label: "Edukasi", excerpt: "Ratusan mahasiswa hadir dalam pelatihan intensif UI/UX yang diadakan di lab kampus dengan mengundang...", img: "https://i.ibb.co.com/b5D44vNC/Proyek-Baru-128-A5-B6-FFD.png" },
-                { id: 5, title: "Jadwal Pertandingan Futsal Dekan Cup 2026", date: new Date(Date.now() - 1000 * 60 * 60 * 100).toISOString(), label: "Informasi", excerpt: "Pertandingan tahunan futsal mahasiswa akan segera dimulai. Lihat jadwal lengkapnya di sini...", img: "https://i.ibb.co.com/gKK41hk/Proyek-Baru-128-2-ED8778.png" }
+                { id: 4, title: "HIMATIKA Sukses Gelar Workshop UI/UX", date: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), label: "Edukasi", excerpt: "Ratusan mahasiswa hadir dalam pelatihan intensif UI/UX yang diadakan di lab kampus dengan mengundang...", img: "https://i.ibb.co.com/b5D44vNC/Proyek-Baru-128-A5-B6-FFD.png" }
             ];
 
             newsArray.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -714,44 +674,57 @@
         }
 
         function cekStatusLogin() {
+            // PC Elements
             const btnDashboard = document.getElementById('btnDashboard');
             const btnAdminAuth = document.getElementById('btnAdminAuth');
-            const btnDashboardMobile = document.getElementById('btnDashboardMobile');
-            const btnAdminAuthMobile = document.getElementById('btnAdminAuthMobile');
+            const btnEditModePC = document.getElementById('btnEditModePC');
+            
+            // Mobile Elements
+            const btnDashboardMobileHeader = document.getElementById('btnDashboardMobileHeader');
+            const btnEditModeMobile = document.getElementById('btnEditModeMobile');
+            const btnAdminAuthMobileFloating = document.getElementById('btnAdminAuthMobileFloating');
+            const btnLogoutMobile = document.getElementById('btnLogoutMobile');
+            
             const btnSaveCms = document.getElementById('btnSaveCms');
             
             const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
 
             if (isLoggedIn) {
+                // PC
                 btnDashboard.classList.remove('hidden');
+                btnEditModePC.classList.remove('hidden');
                 btnAdminAuth.textContent = 'Logout';
                 btnAdminAuth.classList.remove('shimmer-text');
                 btnAdminAuth.classList.add('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = prosesLogout;
                 
-                btnDashboardMobile.classList.remove('hidden');
-                btnAdminAuthMobile.textContent = 'Logout';
-                btnAdminAuthMobile.classList.remove('shimmer-text');
-                btnAdminAuthMobile.classList.add('text-red-300');
-                btnAdminAuthMobile.onclick = () => { prosesLogout(); mobileMenu.classList.add('hidden'); };
+                // Mobile
+                btnDashboardMobileHeader.classList.remove('hidden');
+                btnEditModeMobile.classList.remove('hidden');
+                btnAdminAuthMobileFloating.classList.add('hidden'); // Sembunyikan tombol admin
+                btnLogoutMobile.classList.remove('hidden'); // Munculkan logout di menu drop down
                 
-                btnSaveCms.classList.remove('hidden');
-                aktifkanModeEdit(true);
+                // Reset Edit Mode (Harus pencet manual)
+                if(isEditModeActive) { toggleEditMode(); } 
+                else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
             } else {
+                // PC
                 btnDashboard.classList.add('hidden');
+                btnEditModePC.classList.add('hidden');
                 btnAdminAuth.textContent = 'Admin';
                 btnAdminAuth.classList.add('shimmer-text');
                 btnAdminAuth.classList.remove('text-red-300', 'hover:text-red-400');
                 btnAdminAuth.onclick = openModal;
 
-                btnDashboardMobile.classList.add('hidden');
-                btnAdminAuthMobile.textContent = 'Admin';
-                btnAdminAuthMobile.classList.add('shimmer-text');
-                btnAdminAuthMobile.classList.remove('text-red-300');
-                btnAdminAuthMobile.onclick = () => { openModal(); mobileMenu.classList.add('hidden'); };
+                // Mobile
+                btnDashboardMobileHeader.classList.add('hidden');
+                btnEditModeMobile.classList.add('hidden');
+                btnAdminAuthMobileFloating.classList.remove('hidden'); // Munculkan tombol admin
+                btnLogoutMobile.classList.add('hidden'); 
 
-                btnSaveCms.classList.add('hidden');
-                aktifkanModeEdit(false);
+                // Reset Edit Mode
+                if(isEditModeActive) { toggleEditMode(); }
+                else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
             }
         }
 
