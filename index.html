@@ -74,7 +74,29 @@
         .glitch:hover::after { visibility: visible; color: rgba(0,255,255,.8) !important; -webkit-text-fill-color: rgba(0,255,255,.8) !important; animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) reverse both infinite; z-index: 11; }
         @keyframes hover-glitch { 0% { transform: translate(0); } 20% { transform: translate(-3px, 3px); } 40% { transform: translate(-3px, -3px); } 60% { transform: translate(3px, 3px); } 80% { transform: translate(3px, -3px); } 100% { transform: translate(0); } }
 
-        .hero-bg { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/7N6JKV2T/Proyek-Baru-67-1-C2-AEFC.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
+.hero-bg { 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    /* Mengatur animasi berjalan selama 6 detik (3 gambar x 2 detik) secara terus-menerus */
+    animation: fadeHeroBg 6s infinite; 
+}
+
+/* Keyframes untuk mengganti gambar dan menciptakan efek pudar antar transisi */
+@keyframes fadeHeroBg { 
+    0%, 28% { 
+        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); 
+    } 
+    33%, 61% { 
+        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/6cQF2QgN/Proyek-Baru-149-D362-AFA.png'); 
+    } 
+    66%, 94% { 
+        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/BKLTRh7P/Proyek-Baru-149-2-AF93-C7.png'); 
+    } 
+    100% { 
+        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); 
+    } 
+}
         .shimmer-text { background: linear-gradient(135deg, #a0aec0 20%, #ffffff 50%, #a0aec0 80%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: shimmer 3s linear infinite; cursor: pointer; }
         @keyframes shimmer { to { background-position: 200% center; } }
 
@@ -82,7 +104,7 @@
         .btn-dashboard-glow::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
-            transform: translate(-100%, -100%); animation: sweepLight 4s infinite linear;
+            transform: translate(-100%, -100%); animation: sweepLigfht 4s infinite linear;
         }
         @keyframes sweepLight { 0% { transform: translate(-100%, -100%); } 50% { transform: translate(100%, 100%); } 100% { transform: translate(100%, 100%); } }
 
