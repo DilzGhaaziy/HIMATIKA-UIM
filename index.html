@@ -949,20 +949,39 @@
             const passIn = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorMsg');
             
-            if(!userIn || !passIn) { errorMsg.innerText = "Username dan Password tidak boleh kosong!"; errorMsg.classList.remove('hidden'); return; }
+            if(!userIn || !passIn) { 
+                errorMsg.innerText = "Username dan Password tidak boleh kosong!"; 
+                errorMsg.classList.remove('hidden'); 
+                return; 
+            }
 
             const btnLogin = document.querySelector('button[onclick="prosesLogin()"]');
             const originalText = btnLogin.innerText;
-            btnLogin.innerText = "Memeriksa..."; btnLogin.disabled = true;
+            btnLogin.innerText = "Memeriksa..."; 
+            btnLogin.disabled = true;
 
-            database.ref('admins').once('value').then((snapshot) => {
-                const data = snapshot.val(); let userMatch = null;
-                if (data) { userMatch = Object.values(data).find(acc => acc.username === userIn && acc.password === passIn); }
-                if (!userMatch && typeof adminAccounts !== 'undefined') { userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn); }
-                if (userMatch) { localStorage.setItem('adminLoggedIn', 'true'); localStorage.setItem('adminData', JSON.stringify(userMatch)); closeModal(); cekStatusLogin(); } 
-                else { errorMsg.innerText = "Username atau Password salah!"; errorMsg.classList.remove('hidden'); }
-                btnLogin.innerText = originalText; btnLogin.disabled = false;
-            }).catch((error) => { alert("Error: " + error.message); btnLogin.innerText = originalText; btnLogin.disabled = false; });
+            // Menggunakan setTimeout untuk memberikan sedikit efek loading yang natural
+            setTimeout(() => {
+                let userMatch = null;
+                
+                // Membaca langsung dari array adminAccounts yang ada di file admin.js
+                if (typeof adminAccounts !== 'undefined') { 
+                    userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn); 
+                }
+
+                if (userMatch) { 
+                    localStorage.setItem('adminLoggedIn', 'true'); 
+                    localStorage.setItem('adminData', JSON.stringify(userMatch)); 
+                    closeModal(); 
+                    cekStatusLogin(); 
+                } else { 
+                    errorMsg.innerText = "Username/Password salah, atau file admin.js gagal dimuat!"; 
+                    errorMsg.classList.remove('hidden'); 
+                }
+                
+                btnLogin.innerText = originalText; 
+                btnLogin.disabled = false;
+            }, 600); // Delay 0.6 detik
         }
 
         function prosesLogout() { if(confirm('Apakah Anda yakin ingin logout?')){ localStorage.removeItem('adminLoggedIn'); localStorage.removeItem('adminData'); cekStatusLogin(); } }
