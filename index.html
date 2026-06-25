@@ -74,29 +74,14 @@
         .glitch:hover::after { visibility: visible; color: rgba(0,255,255,.8) !important; -webkit-text-fill-color: rgba(0,255,255,.8) !important; animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) reverse both infinite; z-index: 11; }
         @keyframes hover-glitch { 0% { transform: translate(0); } 20% { transform: translate(-3px, 3px); } 40% { transform: translate(-3px, -3px); } 60% { transform: translate(3px, 3px); } 80% { transform: translate(3px, -3px); } 100% { transform: translate(0); } }
 
-.hero-bg { 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    /* Mengatur animasi berjalan selama 6 detik (3 gambar x 2 detik) secara terus-menerus */
-    animation: fadeHeroBg 6s infinite; 
-}
+        .hero-bg { background-size: cover; background-position: center; background-repeat: no-repeat; animation: fadeHeroBg 6s infinite; }
+        @keyframes fadeHeroBg { 
+            0%, 28% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
+            33%, 61% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/6cQF2QgN/Proyek-Baru-149-D362-AFA.png'); } 
+            66%, 94% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/BKLTRh7P/Proyek-Baru-149-2-AF93-C7.png'); } 
+            100% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
+        }
 
-/* Keyframes untuk mengganti gambar dan menciptakan efek pudar antar transisi */
-@keyframes fadeHeroBg { 
-    0%, 28% { 
-        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); 
-    } 
-    33%, 61% { 
-        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/6cQF2QgN/Proyek-Baru-149-D362-AFA.png'); 
-    } 
-    66%, 94% { 
-        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/BKLTRh7P/Proyek-Baru-149-2-AF93-C7.png'); 
-    } 
-    100% { 
-        background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); 
-    } 
-}
         .shimmer-text { background: linear-gradient(135deg, #a0aec0 20%, #ffffff 50%, #a0aec0 80%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: shimmer 3s linear infinite; cursor: pointer; }
         @keyframes shimmer { to { background-position: 200% center; } }
 
@@ -104,11 +89,10 @@
         .btn-dashboard-glow::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
-            transform: translate(-100%, -100%); animation: sweepLigfht 4s infinite linear;
+            transform: translate(-100%, -100%); animation: sweepLight 4s infinite linear;
         }
         @keyframes sweepLight { 0% { transform: translate(-100%, -100%); } 50% { transform: translate(100%, 100%); } 100% { transform: translate(100%, 100%); } }
 
-        /* PERBAIKAN BUG TEKS CMS */
         .editable-txt[contenteditable="true"] { outline: 2px dashed rgba(255, 255, 255, 0.6); outline-offset: 4px; cursor: text; background: transparent !important; transition: all 0.2s; position: relative; z-index: 50; }
         .editable-txt[contenteditable="true"]:focus { outline: 3px solid #0d72bf; background: transparent !important; z-index: 60; }
         .hero-gradient[contenteditable="true"], .name-gradient[contenteditable="true"], .glitch[contenteditable="true"] {
@@ -118,7 +102,6 @@
         .cam-overlay { position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; cursor: pointer; z-index: 10; }
         .editable-img-wrapper:hover .cam-overlay { opacity: 1; }
         .editable-img-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; overflow: hidden; }
-
         .btn-save-pop { animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
@@ -127,7 +110,6 @@
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* PLAYER WIDGET */
         :root { --fixed-bg: rgba(255, 255, 255, 0.9); --fixed-text: #2c3e50; --card-bg: #fff; --text-color: #333; }
         .now-playing-box { position: fixed; bottom: 20px; right: 0; z-index: 9999; background: var(--fixed-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 8px; padding-right: 20px; border-top-left-radius: 50px; border-bottom-left-radius: 50px; box-shadow: -5px 5px 20px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; width: 300px; transform: translateX(calc(100% - 50px)); transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         .now-playing-box.expanded { transform: translateX(0); }
@@ -164,26 +146,36 @@
 </head>
 <body class="font-sans text-textDark bg-[#001436] overflow-x-hidden relative">
 
-    <!-- NAVBAR TINGKAT TINGGI (z-[100]) -->
     <nav class="bg-[#1B427B] shadow-md fixed w-full z-[100] top-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 
-                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="index.html"><img class="h-14 w-auto rounded px-2" src="https://i.ibb.co.com/zT43VfV7/Proyek-Baru-147-BF8-C75-E.png" alt="HIMATIKA Logo"></a>
                 </div>
                 
-                <!-- MENU PC -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <button id="btnEditModePC" onclick="toggleEditMode()" class="hidden text-white font-bold bg-red-500/90 px-4 py-1.5 rounded hover:bg-red-500 transition shadow">
-                        <i class="fas fa-edit mr-1"></i> EDIT: OFF
-                    </button>
+                    <div class="flex flex-col gap-1 text-center">
+                        <button id="btnEditModePC" onclick="toggleEditMode()" class="hidden text-white font-bold bg-red-500/90 px-3 py-1 rounded hover:bg-red-500 transition shadow text-xs whitespace-nowrap">
+                            <i class="fas fa-edit mr-1"></i> EDIT: OFF
+                        </button>
+                        <a href="dashboard.html" id="btnDashboard" class="hidden text-white font-bold bg-white/20 px-3 py-1 rounded hover:bg-white/30 transition shadow btn-dashboard-glow text-xs whitespace-nowrap">Dashboard Admin</a>
+                    </div>
                     
-                    <a href="dashboard.html" id="btnDashboard" class="hidden text-white font-bold bg-white/20 px-4 py-1.5 rounded hover:bg-white/30 transition shadow btn-dashboard-glow">Dashboard Admin</a>
                     <a href="index.html" class="text-white font-medium hover:text-gray-300">Beranda</a>
                     <button id="btnAdminAuth" onclick="openModal()" class="font-bold text-lg shimmer-text hover:scale-105 transition-transform">Admin</button>
                     <a href="proker.html" class="text-gray-200 font-medium hover:text-white">Program Kerja</a>
+                    
+                    <div class="relative group cursor-pointer py-6">
+                        <span class="text-gray-200 font-medium group-hover:text-white">Curriculum Vitae <i class="fas fa-chevron-down text-xs ml-1"></i></span>
+                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100]">
+                            <div id="submenu-cv-pc" class="py-2">
+                                <div id="list-angkatan-pc"></div> <a href="#" id="btn-tambah-angkatan-pc" onclick="openModalAngkatan(event)" class="hidden block px-4 py-3 text-sm text-green-600 font-bold hover:bg-gray-100 border-t">
+                                    <i class="fas fa-plus mr-1"></i> Tambah Angkatan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="relative group cursor-pointer py-6">
                         <span class="text-gray-200 font-medium group-hover:text-white">Departemen <i class="fas fa-chevron-down text-xs ml-1"></i></span>
@@ -200,7 +192,6 @@
                     <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" class="text-gray-200 font-medium hover:text-white">Galeri</a>
                 </div>
 
-                <!-- MENU HEADER MOBILE -->
                 <div class="md:hidden flex items-center gap-2 sm:gap-3">
                     <button id="btnAdminMobileHeader" onclick="openModal()" class="text-white font-bold bg-[#1B427B] border border-white/30 px-3 py-1.5 rounded hover:bg-blue-800 transition shadow text-[10px] sm:text-xs flex items-center gap-1">
                         <i class="fas fa-user-shield"></i> ADMIN
@@ -217,9 +208,26 @@
         <div id="mobile-menu" class="hidden md:hidden bg-[#15325c] border-t border-white/10 px-4 pt-2 pb-4 shadow-2xl absolute w-full z-[90]">
             <a href="index.html" class="block text-white font-medium hover:text-gray-300 py-3 border-b border-white/10">Beranda</a>
             <a href="proker.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Program Kerja</a>
+            
             <div class="py-3 border-b border-white/10">
-                <div class="text-gray-200 font-medium mb-2">Departemen</div>
-                <div class="pl-4 space-y-3 border-l-2 border-white/20 mt-2">
+                <button onclick="toggleMobileCV()" class="w-full flex justify-between items-center text-gray-200 font-medium focus:outline-none">
+                    <span>Curriculum Vitae</span>
+                    <i id="icon-cv-mobile" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+                <div id="submenu-cv-mobile" class="hidden pl-4 space-y-3 border-l-2 border-white/20 mt-4">
+                    <div id="list-angkatan-mobile" class="space-y-3 mb-3"></div> <a href="#" id="btn-tambah-angkatan-mobile" onclick="openModalAngkatan(event)" class="hidden block text-sm text-green-400 font-bold hover:text-white pb-2 border-t border-white/10 pt-2">
+                        <i class="fas fa-plus mr-1"></i> Tambah Angkatan
+                    </a>
+                </div>
+            </div>
+            
+            <div class="py-3 border-b border-white/10">
+                <button onclick="toggleMobileDepartemen()" class="w-full flex justify-between items-center text-gray-200 font-medium focus:outline-none">
+                    <span>Departemen</span>
+                    <i id="icon-dept-mobile" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+                
+                <div id="submenu-dept-mobile" class="hidden pl-4 space-y-3 border-l-2 border-white/20 mt-4">
                     <a href="struktur.html" class="block text-sm text-gray-300 hover:text-white">Komunikasi dan Informasi</a>
                     <a href="stpemuda.html" class="block text-sm text-gray-300 hover:text-white">Pemuda dan Olahraga</a>
                     <a href="stagama.html" class="block text-sm text-gray-300 hover:text-white">Agama</a>
@@ -227,20 +235,19 @@
                     <a href="stkesejahteraan.html" class="block text-sm text-gray-300 hover:text-white">Kesejahteraan Mahasiswa</a>
                 </div>
             </div>
+            
             <a href="berita.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Berita</a>
             <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Galeri</a>
             <button id="btnLogoutMobile" onclick="prosesLogout()" class="hidden w-full text-left text-red-400 font-bold hover:text-red-300 py-3">Logout Akun</button>
         </div>
     </nav>
 
-    <!-- FLOATING BUTTONS MOBILE -->
     <div class="md:hidden fixed top-24 right-4 z-[90] flex flex-col gap-3 items-end pointer-events-none">
         <button id="btnEditModeMobile" onclick="toggleEditMode()" class="hidden pointer-events-auto text-white font-bold bg-red-500/90 border border-red-400 px-4 py-2 rounded-full hover:bg-red-500 transition shadow-lg text-[11px] flex items-center gap-2">
             <i class="fas fa-edit"></i> EDIT: OFF
         </button>
     </div>
 
-    <!-- HERO SECTION -->
     <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-1 sm:px-4 mt-16 md:mt-0 m-0 border-none">
         <div class="hero-text-wrapper w-full overflow-hidden px-1">
             <h1 class="flex flex-nowrap justify-center items-center gap-x-1 sm:gap-x-3 md:gap-x-4 w-full">
@@ -252,7 +259,6 @@
         </div>
     </section>
 
-    <!-- TENTANG SECTION -->
     <section class="bg-[#1B427B] py-12 md:py-16 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
@@ -264,32 +270,31 @@
                     <a href="#" class="inline-block bg-white text-[#1B427B] font-bold py-3 px-8 rounded shadow hover:bg-gray-200 transition duration-300">Selengkapnya</a>
                 </div>
                 
-                <div class="space-y-6 md:space-y-8">
-                    <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-globe"></i></div>
-                        <h3 id="txt-poin-1" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Membangun Jaringan dan Kolaborasi</h3>
+                <div class="space-y-4 md:space-y-8">
+                    <div class="flex items-center gap-3 md:gap-4">
+                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-globe"></i></div>
+                        <h3 id="txt-poin-1" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Membangun Jaringan dan Kolaborasi</h3>
                     </div>
-                    <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-book"></i></div>
-                        <h3 id="txt-poin-2" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Berbagi Pengetahuan dan Pengalaman</h3>
+                    <div class="flex items-center gap-3 md:gap-4">
+                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-book"></i></div>
+                        <h3 id="txt-poin-2" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Berbagi Pengetahuan dan Pengalaman</h3>
                     </div>
                 </div>
 
-                <div class="space-y-6 md:space-y-8">
-                    <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-id-card"></i></div>
-                        <h3 id="txt-poin-3" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Pengembangan Profesionalisme</h3>
+                <div class="space-y-4 md:space-y-8">
+                    <div class="flex items-center gap-3 md:gap-4">
+                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-id-card"></i></div>
+                        <h3 id="txt-poin-3" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Pengembangan Profesionalisme</h3>
                     </div>
-                    <div class="flex flex-col items-start">
-                        <div class="text-blue-300 text-3xl md:text-4xl mb-2 md:mb-4"><i class="fas fa-project-diagram"></i></div>
-                        <h3 id="txt-poin-4" class="editable-txt font-heading font-bold text-lg md:text-xl text-white">Mengembangkan Proyek Bersama</h3>
+                    <div class="flex items-center gap-3 md:gap-4">
+                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-project-diagram"></i></div>
+                        <h3 id="txt-poin-4" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Mengembangkan Proyek Bersama</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PIMPINAN SECTION -->
     <section class="bg-[#001D4D] py-12 md:py-16 m-0 border-none">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <h2 id="txt-pimpinan-judul" class="editable-txt text-2xl md:text-3xl font-heading font-bold text-white mb-8 md:mb-12">Pimpinan Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri</h2>
@@ -311,22 +316,17 @@
                     <p id="txt-wakil-jabatan" class="editable-txt text-xs sm:text-base text-gray-300 text-center leading-tight">Wakil Ketua HIMATIKA 2025-2026</p>
                 </div>
             </div>
-
             <div class="mt-8 md:mt-12">
-                <a href="GridStruktur.html" class="inline-block bg-himasiBlue text-white font-bold py-3 px-8 rounded shadow hover:bg-blue-700 transition duration-300">
-                    LIAT SEMUA
-                </a>
+                <a href="GridStruktur.html" class="inline-block bg-himasiBlue text-white font-bold py-3 px-8 rounded shadow hover:bg-blue-700 transition duration-300">LIAT SEMUA</a>
             </div>
         </div>
     </section>
 
-    <!-- STATISTIK SECTION -->
     <section class="bg-[url('https://i.ibb.co.com/hJCS6dJs/Proyek-Baru-42-F052-DAB.png')] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat pt-16 md:pt-24 pb-12 md:pb-16 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="inline-block bg-[#001A3D] py-3 px-6 md:py-4 md:px-8 rounded-2xl shadow-lg mb-8 md:mb-12">
                 <h2 id="txt-pengurus-judul" class="editable-txt text-xl md:text-2xl font-heading font-bold text-white">Kepengurusan HIMATIKA</h2>
             </div>
-
             <div class="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8 mix-blend-difference text-white">
                 <div class="flex flex-col items-center text-center">
                     <i class="fas fa-headset text-2xl md:text-5xl mb-1 md:mb-4"></i>
@@ -347,7 +347,6 @@
         </div>
     </section>
 
-    <!-- SOSMED SECTION -->
     <section class="bg-[url('https://i.ibb.co.com/Tx0djxwL/Proyek-Baru-49-9-E460-C2.png')] bg-cover md:bg-[length:100%_100%] bg-no-repeat py-12 md:py-20 text-center m-0 border-none">
         <div class="max-w-6xl mx-auto px-2 md:px-4 flex flex-row justify-center items-stretch space-x-2 md:space-x-8 h-full">
             <a href="https://uimandiri.ac.id/" target="_blank" class="w-1/4 md:w-56 block">
@@ -355,20 +354,17 @@
                     <img id="img-ornamen-kiri" src="https://i.ibb.co.com/PzYTswGN/Proyek-Baru-51-E62-F390.png" alt="Ornamen Kiri" class="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform">
                 </div>
             </a>
-
             <div class="w-2/4 md:w-full max-w-2xl relative flex flex-col items-center justify-center py-10 md:py-24">
                 <img src="https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png" class="absolute inset-0 w-full h-full object-contain z-0 drop-shadow-xl" alt="Background Sosmed">
-                
                 <div class="relative z-10 flex flex-col items-center justify-center w-full">
                     <h2 id="txt-sosmed-judul" class="editable-txt text-[11px] sm:text-sm md:text-3xl font-heading font-bold text-white mb-2 md:mb-8 drop-shadow-md">Social Media</h2>
                     <div class="flex justify-center space-x-2 md:space-x-8">
                         <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
                         <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
             </div>
-
             <div class="w-1/4 md:w-56 flex">
                 <div class="editable-img-wrapper rounded h-full flex">
                     <img id="img-ornamen-kanan" src="https://i.ibb.co.com/8gsdLSTM/Proyek-Baru-51-68-BC19-E.png" alt="Ornamen Kanan" class="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform">
@@ -377,25 +373,20 @@
         </div>
     </section>
 
-    <!-- BERITA TERINTEGRASI SECTION (REALTIME FIREBASE) -->
     <section class="bg-[url('https://i.ibb.co.com/9m3FYdHc/Proyek-Baru-42-14-C2486.png')] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat pt-16 md:pt-24 pb-12 md:pb-16 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="inline-block bg-[#001A3D] py-3 px-6 md:py-4 md:px-10 rounded-2xl shadow-lg mb-8 md:mb-12">
                 <h2 id="txt-berita-judul" class="editable-txt text-xl md:text-3xl font-heading font-bold text-white">BACA BERITA DARI HIMATIKA UIM</h2>
             </div>
-            
             <div class="relative group text-left">
                 <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden pointer-events-none animate-scroll-hint">
                     <div class="bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg backdrop-blur-sm">
                         <i class="fas fa-chevron-right text-sm"></i>
                     </div>
                 </div>
-
                 <div id="grid-berita-index" class="flex overflow-x-auto gap-3 snap-x snap-mandatory hide-scroll md:grid md:grid-cols-4 md:gap-6 md:overflow-visible pb-4">
-                    <!-- Konten berita dirender JS -->
                 </div>
             </div>
-            
             <div class="mt-10 text-center">
                 <a href="berita.html" class="inline-block border-2 border-white text-white font-bold py-2.5 px-8 rounded-full hover:bg-white hover:text-[#001A3D] transition shadow-lg">
                     Lihat Semua Berita <i class="fas fa-arrow-right ml-2"></i>
@@ -404,7 +395,17 @@
         </div>
     </section>
 
-    <!-- LOKASI SECTION -->
+    <section id="cv-section" class="hidden bg-[#F8FAFC] py-16 md:py-24 m-0 border-none relative scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center text-[#1B427B] mb-10 drop-shadow-sm">
+                Curriculum Vitae - Angkatan <span id="cv-current-year" class="text-himasiBlue border-b-4 border-yellow-400"></span>
+            </h2>
+            
+            <div id="cv-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                </div>
+        </div>
+    </section>
+
     <section class="bg-[linear-gradient(to_bottom,#001C44_0px,#F5F4F1_50px,#F5F4F1_100%)] py-12 md:py-20 m-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -418,7 +419,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white h-64 md:h-auto">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.484031081758!2d105.7147533!3d-5.7870894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410b001b7db41d%3A0xd6d561cd88b415b!2sUNIVERSITAS%20INDONESIA%20MANDIRI!5e0!3m2!1sid!2sid!4v1776189049955!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-full md:h-[450px]"></iframe>
                 </div>
@@ -426,14 +426,12 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-[#001436] py-6 m-0 border-none relative z-50">
         <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
             <p class="text-gray-400 text-sm">Developed by Gilang Aidil Pratama / Dilz Ghaaziy</p>
         </div>
     </footer>
 
-    <!-- MODAL & WIDGET CMS -->
     <button id="btnSaveCms" onclick="simpanKeFirebase()" class="hidden fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-2xl font-bold z-[110] flex items-center gap-2 transition-transform hover:scale-110 btn-save-pop">
         <i class="fas fa-save text-xl"></i> Simpan
     </button>
@@ -459,7 +457,57 @@
         </div>
     </div>
 
-    <!-- Modal CMS Gambar -->
+    <div id="modalAngkatan" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center px-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 transform scale-95 transition-transform" id="modalAngkatanContent">
+            <h2 class="text-xl font-bold text-himasiDark font-heading mb-4">Angkatan Tahun Berapa</h2>
+            <div class="mb-6">
+                <select id="pilihanAngkatan" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-himasiBlue focus:ring-1 focus:ring-himasiBlue">
+                    <option value="">Pilih Tahun Angkatan...</option>
+                </select>
+                <p id="msgAngkatan" class="text-xs text-red-500 mt-2 hidden">Tahun ini sudah ada!</p>
+            </div>
+            <div class="flex justify-end gap-3">
+                <button onclick="closeModalAngkatan()" class="px-4 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition font-medium">Batal</button>
+                <button id="btn-konfirm-angkatan" onclick="konfirmasiTambahAngkatan()" class="bg-himasiBlue text-white font-bold py-2 px-6 rounded hover:bg-blue-700 transition shadow">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalTambahProfil" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center px-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 transform scale-95 transition-transform overflow-y-auto max-h-[90vh]">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-himasiDark font-heading">Tambah Profil</h2>
+                <button onclick="closeModalProfil()" class="text-gray-500 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Nama</label>
+                    <input type="text" id="inputProfilNama" placeholder="Masukkan nama..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Skills</label>
+                    <input type="text" id="inputProfilSkills" placeholder="Contoh: HTML, CSS, Desain Grafis" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Skill Bahasa</label>
+                    <input type="text" id="inputProfilBahasa" placeholder="Contoh: Indonesia, Inggris" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Angkatan</label>
+                    <input type="text" id="inputProfilAngkatan" class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-100 cursor-not-allowed" readonly>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Bisnis</label>
+                    <input type="text" id="inputProfilBisnis" placeholder="Contoh: Freelance Web, Tidak ada" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 mt-8">
+                <button onclick="closeModalProfil()" class="px-5 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition font-medium border border-gray-300">Batal</button>
+                <button id="btn-konfirm-profil" onclick="konfirmasiTambahProfil()" class="bg-himasiBlue text-white font-bold py-2 px-6 rounded hover:bg-blue-700 transition shadow">Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+
     <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] hidden flex items-center justify-center px-4">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
             <button onclick="closeEditImgModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
@@ -479,7 +527,6 @@
     </div>
     <input type="file" id="fileUploader" accept="image/*" class="hidden" onchange="uploadToImgBB(event)">
 
-    <!-- PLAYER BGM -->
     <div id="playlist-box" class="playlist-box">
         <div class="playlist-inner">
             <div class="playlist-header"><span><i class="fas fa-list-ul"></i> Daftar Lagu</span><span style="font-size:10px; opacity:0.6;">Auto-Play</span></div>
@@ -497,203 +544,325 @@
         </div>
     </div>
 
-    <div id="maintenanceModal" class="fixed inset-0 bg-[#001436] z-[9999] hidden flex flex-col items-center justify-center p-6 text-center">
-        <div class="bg-white/10 p-10 rounded-3xl backdrop-blur-xl border border-white/20 shadow-2xl scale-95 animate-pulse">
-            <i class="fas fa-tools text-7xl text-yellow-400 mb-6"></i>
-            <h2 class="text-3xl font-bold text-white mb-2">MAAF SERVER SEDANG MAINTENANCE</h2>
-            <p class="text-gray-300 mb-8">Kami sedang melakukan perbaikan untuk meningkatkan layanan kami.</p>
-            <button id="btnMaintenanceOk" disabled class="bg-blue-600 text-white px-10 py-3 rounded-full font-bold opacity-50 cursor-not-allowed transition-all">
-                OKE (2s)
-            </button>
-        </div>
-    </div>
-
     <script src="admin.js"></script>
-
     <script>
+        // ==========================================
+        // KONFIGURASI GITHUB API (HARAP DIISI)
+        // ==========================================
+        const GITHUB_TOKEN = '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'; // Ganti dengan Token Anda
+        const GITHUB_OWNER = 'DilzGhaaziy';         // Ganti dengan Username Github Anda
+        const GITHUB_REPO = 'HIMATIKA-UIM';                // Ganti dengan Nama Repository Anda
+        // ==========================================
+
         const mobileMenuBtn = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
-        const firebaseConfig = {
-            databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
-        };
+        function toggleMobileDepartemen() {
+            document.getElementById('submenu-dept-mobile').classList.toggle('hidden');
+            document.getElementById('icon-dept-mobile').classList.toggle('rotate-180');
+        }
+
+        function toggleMobileCV() {
+            document.getElementById('submenu-cv-mobile').classList.toggle('hidden');
+            document.getElementById('icon-cv-mobile').classList.toggle('rotate-180');
+        }
+
+        const firebaseConfig = { databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app" };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         const cmsRef = database.ref('himasi_web_data');
 
-        const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079';
-        let currentEditImageId = null;
-        let localCmsData = { texts: {}, images: {} }; 
         let isEditModeActive = false; 
 
         document.addEventListener("DOMContentLoaded", () => {
             initRealtimeCMS();
             cekStatusLogin();
-            initMaintenanceListener(); 
-            initNewsFeed(); 
+            initNewsFeed();
+            fetchMenuAngkatan(); // Otomatis memuat daftar tahun dari GitHub saat buka web
         });
 
-        function toggleEditMode() {
-            isEditModeActive = !isEditModeActive;
-            const btnPC = document.getElementById('btnEditModePC');
-            const btnMobile = document.getElementById('btnEditModeMobile');
+        // =========================================================
+        // GITHUB API - SISTEM CURRICULUM VITAE
+        // =========================================================
+        let existingAngkatan = [];
+        let currentCVTahun = '';
+        let currentCVSha = '';
+        let currentCVData = [];
+
+        // 1. Ambil daftar file JSON dari GitHub untuk Sub-Menu
+        async function fetchMenuAngkatan() {
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/`, {
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+                });
+
+                if (response.ok) {
+                    const files = await response.json();
+                    existingAngkatan = files.filter(f => f.name.endsWith('.json')).map(f => f.name.replace('.json', ''));
+                    existingAngkatan.sort(); // Urutkan tahun
+                    renderMenuAngkatan();
+                }
+            } catch (error) { console.error("Gagal memuat list angkatan:", error); }
+        }
+
+        // 2. Tulis list ke HTML Sub-Menu
+        function renderMenuAngkatan() {
+            const listPC = document.getElementById('list-angkatan-pc');
+            const listMobile = document.getElementById('list-angkatan-mobile');
             
-            if(isEditModeActive) {
-                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: ON';
-                btnPC.classList.replace('bg-red-500/90', 'bg-green-500/90');
-                btnPC.classList.replace('hover:bg-red-500', 'hover:bg-green-500');
-                
-                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: ON';
-                btnMobile.classList.replace('bg-red-500/90', 'bg-green-500/90');
-                btnMobile.classList.replace('hover:bg-red-500', 'hover:bg-green-500');
-                btnMobile.classList.replace('border-red-400', 'border-green-400');
-                
-                aktifkanModeEdit(true);
-                document.getElementById('btnSaveCms').classList.remove('hidden');
+            listPC.innerHTML = '';
+            listMobile.innerHTML = '';
+
+            if (existingAngkatan.length === 0) {
+                listPC.innerHTML = '<span class="block px-4 py-2 text-xs text-gray-400 italic">Belum ada angkatan</span>';
+                listMobile.innerHTML = '<span class="block text-xs text-gray-400 italic">Belum ada angkatan</span>';
             } else {
-                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: OFF';
-                btnPC.classList.replace('bg-green-500/90', 'bg-red-500/90');
-                btnPC.classList.replace('hover:bg-green-500', 'hover:bg-red-500');
-                
-                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: OFF';
-                btnMobile.classList.replace('bg-green-500/90', 'bg-red-500/90');
-                btnMobile.classList.replace('hover:bg-green-500', 'hover:bg-red-500');
-                btnMobile.classList.replace('border-green-400', 'border-red-400');
-                
-                aktifkanModeEdit(false);
-                document.getElementById('btnSaveCms').classList.add('hidden');
+                existingAngkatan.forEach(tahun => {
+                    listPC.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue transition"><i class="fas fa-folder-open mr-2 text-gray-400"></i>Angkatan ${tahun}</a>`;
+                    listMobile.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event)" class="block text-sm text-gray-300 hover:text-white transition"><i class="fas fa-folder-open mr-2"></i>Angkatan ${tahun}</a>`;
+                });
             }
         }
 
-        // --- SISTEM BERITA TERBARU MENGGUNAKAN FIREBASE ---
-        function initNewsFeed() {
-            const container = document.getElementById('grid-berita-index');
-            if(!container) return;
+        // 3. Muat isi File (tahun).json dan tampilkan Grid
+        async function loadCV(tahun, event) {
+            if(event) event.preventDefault();
+            currentCVTahun = tahun;
+            
+            const cvSection = document.getElementById('cv-section');
+            const grid = document.getElementById('cv-grid');
+            
+            cvSection.classList.remove('hidden');
+            document.getElementById('cv-current-year').innerText = tahun;
+            grid.innerHTML = '<div class="col-span-full text-center py-10"><i class="fas fa-spinner fa-spin text-3xl text-himasiBlue mb-3"></i><p class="text-gray-500 font-medium">Memuat data profil...</p></div>';
+            
+            // Scroll layar ke section CV
+            cvSection.scrollIntoView({ behavior: 'smooth' });
 
-            container.innerHTML = '<div class="w-full text-center text-white py-10">Memuat berita terbaru...</div>';
-
-            database.ref('news').on('value', (snapshot) => {
-                container.innerHTML = ''; 
-                const data = snapshot.val();
-                
-                if (data) {
-                    let newsArray = Object.keys(data).map(key => {
-                        return { id_firebase: key, ...data[key] };
-                    });
-
-                    newsArray.sort((a, b) => new Date(b.date) - new Date(a.date));
-                    const top4 = newsArray.slice(0, 4);
-
-                    top4.forEach(news => {
-                        const dateObj = new Date(news.date);
-                        const options = { day: 'numeric', month: 'long', year: 'numeric' };
-                        const tglStr = dateObj.toLocaleDateString('id-ID', options); 
-                        let cleanExcerpt = news.excerpt.replace(/<[^>]*>?/gm, '');
-
-                        container.innerHTML += `
-                            <article class="flex-none w-[60%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition cursor-pointer" onclick="window.location.href='berita.html?id=${news.id_firebase}'">
-                                <div class="h-28 md:h-48 w-full bg-gray-200">
-                                    <img src="${news.img}" alt="Berita" class="w-full h-full object-cover">
-                                </div>
-                                <div class="p-4 md:p-5 flex flex-col justify-between">
-                                    <div>
-                                        <h4 class="font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue transition">${news.title}</h4>
-                                        <div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold">
-                                            <span>${tglStr}</span> • <span class="text-himasiBlue uppercase">${news.label}</span>
-                                        </div>
-                                        <p class="text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">${cleanExcerpt}</p>
-                                    </div>
-                                </div>
-                            </article>
-                        `;
-                    });
-                } else {
-                    container.innerHTML = '<div class="w-full text-center text-gray-400 py-10">Belum ada berita yang diterbitkan.</div>';
-                }
-            });
-        }
-
-        // --- SISTEM CMS LAINNYA ---
-        function initMaintenanceListener() {
-            const maintRef = database.ref('maintenance_mode');
-            maintRef.on('value', (snapshot) => {
-                const isMaint = snapshot.val();
-                const modal = document.getElementById('maintenanceModal');
-                const btn = document.getElementById('btnMaintenanceOk');
-
-                if(isMaint) {
-                    modal.classList.remove('hidden');
-                    let timer = 2; btn.disabled = true; btn.classList.add('opacity-50', 'cursor-not-allowed');
-                    btn.innerText = `OKE (${timer}s)`;
-                    const countdown = setInterval(() => {
-                        timer--; btn.innerText = `OKE (${timer}s)`;
-                        if(timer <= 0) {
-                            clearInterval(countdown); btn.disabled = false; btn.innerText = "OKE";
-                            btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                            btn.onclick = () => modal.classList.add('hidden');
-                        }
-                    }, 1000);
-                } else {
-                    modal.classList.add('hidden');
-                }
-            });
-        }
-
-        function initRealtimeCMS() {
-            cmsRef.on('value', (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    localCmsData = data; 
-                    if(data.texts) {
-                        for (let id in data.texts) {
-                            const el = document.getElementById(id);
-                            if (el && document.activeElement !== el) {
-                                el.innerText = data.texts[id];
-                                if(el.classList.contains('glitch')) el.setAttribute('data-text', data.texts[id]);
-                            }
-                        }
-                    }
-                    if(data.images) {
-                        for (let id in data.images) {
-                            const img = document.getElementById(id);
-                            if (img) img.src = data.images[id];
-                        }
-                    }
-                }
-            });
-
-            document.querySelectorAll('.editable-txt').forEach(el => {
-                el.addEventListener('blur', (e) => {
-                    if(el.getAttribute('contenteditable') === "true") {
-                        if(!localCmsData.texts) localCmsData.texts = {};
-                        localCmsData.texts[e.target.id] = e.target.innerText;
-                        if(e.target.classList.contains('glitch')) e.target.setAttribute('data-text', e.target.innerText);
-                    }
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${tahun}.json`, {
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
                 });
+
+                if (response.ok) {
+                    const fileData = await response.json();
+                    currentCVSha = fileData.sha; // Simpan SHA untuk Update/PUT nanti
+                    
+                    // Decode base64 dengan aman (mendukung spesial karakter/spasi)
+                    const decodedStr = decodeURIComponent(escape(atob(fileData.content)));
+                    currentCVData = JSON.parse(decodedStr);
+                    
+                    renderCVGrid();
+                } else {
+                    grid.innerHTML = '<div class="col-span-full text-center py-10 text-red-500">File gagal dimuat atau format tidak sesuai.</div>';
+                }
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = '<div class="col-span-full text-center py-10 text-red-500">Terjadi kesalahan jaringan saat memuat CV.</div>';
+            }
+        }
+
+        // 4. Render Kartu Profil ke dalam Grid
+        function renderCVGrid() {
+            const grid = document.getElementById('cv-grid');
+            grid.innerHTML = '';
+            
+            const isAdmin = localStorage.getItem('adminLoggedIn') === 'true';
+
+            if (currentCVData.length === 0 && !isAdmin) {
+                grid.innerHTML = '<div class="col-span-full text-center py-10 text-gray-500 italic">Belum ada profil untuk angkatan ini.</div>';
+                return;
+            }
+
+            // Looping data profil (jika ada)
+            currentCVData.forEach(profil => {
+                grid.innerHTML += `
+                    <div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border-t-[5px] border-himasiBlue p-6 hover:shadow-lg transition flex flex-col gap-3">
+                        <div class="flex flex-col border-b border-gray-100 pb-2">
+                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Nama:</span>
+                            <span class="text-lg font-bold text-[#1B427B]">${profil.nama}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Skills:</span>
+                            <span class="text-sm font-medium text-gray-700">${profil.skills}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Skill Bahasa:</span>
+                            <span class="text-sm font-medium text-gray-700">${profil.bahasa}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Angkatan:</span>
+                            <span class="text-sm font-medium text-gray-700">${profil.angkatan}</span>
+                        </div>
+                        <div class="flex flex-col bg-blue-50/50 p-2 rounded-lg mt-1 border border-blue-100">
+                            <span class="text-[11px] font-bold text-himasiBlue uppercase tracking-wider">Bisnis:</span>
+                            <span class="text-sm font-bold text-gray-800">${profil.bisnis}</span>
+                        </div>
+                    </div>
+                `;
             });
+
+            // Tombol Tambah Profil (Khusus Admin) - Selalu di akhir
+            if (isAdmin) {
+                grid.innerHTML += `
+                    <div onclick="openModalProfil()" class="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100 hover:border-himasiBlue hover:text-himasiBlue transition min-h-[280px] group">
+                        <div class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fas fa-plus text-2xl text-gray-400 group-hover:text-himasiBlue"></i>
+                        </div>
+                        <span class="text-gray-500 font-bold group-hover:text-himasiBlue">Tambahkan Profil</span>
+                    </div>
+                `;
+            }
         }
 
-        function saveImageEdit(id, url) {
-            const img = document.getElementById(id);
-            if (img) img.src = url;
-            if(!localCmsData.images) localCmsData.images = {};
-            localCmsData.images[id] = url;
+        // 5. Buka/Tutup Modal Form Profil Baru
+        function openModalProfil() {
+            document.getElementById('modalTambahProfil').classList.remove('hidden');
+            document.getElementById('inputProfilAngkatan').value = currentCVTahun; // Kunci otomatis ke tahun yg sedang dilihat
+            
+            // Kosongkan inputan
+            document.getElementById('inputProfilNama').value = '';
+            document.getElementById('inputProfilSkills').value = '';
+            document.getElementById('inputProfilBahasa').value = '';
+            document.getElementById('inputProfilBisnis').value = '';
+        }
+        function closeModalProfil() { document.getElementById('modalTambahProfil').classList.add('hidden'); }
+
+        // 6. Logic Konfirmasi & SIMPAN PROFIL KE GITHUB
+        async function konfirmasiTambahProfil() {
+            const btn = document.getElementById('btn-konfirm-profil');
+            
+            // Ambil data input
+            const nama = document.getElementById('inputProfilNama').value.trim();
+            const skills = document.getElementById('inputProfilSkills').value.trim();
+            const bahasa = document.getElementById('inputProfilBahasa').value.trim();
+            const angkatan = document.getElementById('inputProfilAngkatan').value.trim();
+            const bisnis = document.getElementById('inputProfilBisnis').value.trim();
+
+            if (!nama) { alert("Nama wajib diisi!"); return; }
+
+            btn.innerText = "Menyimpan...";
+            btn.disabled = true;
+
+            // Masukkan data baru ke dalam array yg sedang dimuat di memori
+            const newProfileObj = { nama, skills, bahasa, angkatan, bisnis };
+            currentCVData.push(newProfileObj);
+
+            // Ubah array jadi string JSON, lalu encode ke Base64 (aman untuk spasi/emoji)
+            const jsonStr = JSON.stringify(currentCVData, null, 2);
+            const encodedContent = btoa(unescape(encodeURIComponent(jsonStr)));
+
+            try {
+                // Request PUT ke Github
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${currentCVTahun}.json`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Admin menambahkan profil ${nama} ke angkatan ${currentCVTahun}`,
+                        content: encodedContent,
+                        sha: currentCVSha // Wajib diberikan agar Github tahu file mana yg ditimpa
+                    })
+                });
+
+                if (response.ok) {
+                    const resData = await response.json();
+                    currentCVSha = resData.content.sha; // Update SHA dengan versi file yg baru ter-upload
+                    alert("Profil berhasil ditambahkan!");
+                    closeModalProfil();
+                    renderCVGrid(); // Segarkan tampilan grid
+                } else {
+                    const err = await response.json();
+                    alert("Gagal menyimpan ke GitHub: " + err.message);
+                    currentCVData.pop(); // Batalkan penambahan ke array lokal jika upload gagal
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Terjadi kesalahan jaringan.");
+                currentCVData.pop(); 
+            }
+
+            btn.innerText = "Konfirmasi";
+            btn.disabled = false;
         }
 
-        function simpanKeFirebase() {
-            const btn = document.getElementById('btnSaveCms');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin text-xl"></i> Menyimpan...';
-            cmsRef.set(localCmsData).then(() => {
-                btn.innerHTML = '<i class="fas fa-check text-xl"></i> Tersimpan!';
-                setTimeout(() => { btn.innerHTML = originalText; }, 2000);
-            }).catch((error) => {
-                alert("Gagal menyimpan data: " + error.message);
-                btn.innerHTML = originalText;
-            });
+        // =========================================================
+        // GITHUB API - MODAL TAMBAH TAHUN ANGKATAN
+        // =========================================================
+        async function openModalAngkatan(event) {
+            event.preventDefault(); 
+            const modal = document.getElementById('modalAngkatan');
+            const select = document.getElementById('pilihanAngkatan');
+            const btnKonfirm = document.getElementById('btn-konfirm-angkatan');
+            
+            modal.classList.remove('hidden');
+            btnKonfirm.innerText = "Memuat Data...";
+            btnKonfirm.disabled = true;
+
+            select.innerHTML = '<option value="">Pilih Tahun Angkatan...</option>';
+            document.getElementById('msgAngkatan').classList.add('hidden');
+
+            for (let year = 2022; year <= 2030; year++) {
+                const yearStr = year.toString();
+                const option = document.createElement('option');
+                option.value = yearStr;
+                
+                if (existingAngkatan.includes(yearStr)) {
+                    option.text = `${yearStr} (Sudah Ada)`;
+                    option.disabled = true;
+                    option.classList.add('text-gray-400');
+                } else {
+                    option.text = yearStr;
+                    option.classList.add('text-gray-800', 'font-medium');
+                }
+                select.appendChild(option);
+            }
+
+            btnKonfirm.innerText = "Konfirmasi";
+            btnKonfirm.disabled = false;
+        }
+        function closeModalAngkatan() { document.getElementById('modalAngkatan').classList.add('hidden'); }
+
+        async function konfirmasiTambahAngkatan() {
+            const select = document.getElementById('pilihanAngkatan');
+            const tahun = select.value;
+            if (!tahun) { alert("Harap pilih tahun angkatan terlebih dahulu!"); return; }
+
+            const btnKonfirm = document.getElementById('btn-konfirm-angkatan');
+            btnKonfirm.innerText = "Menyimpan...";
+            btnKonfirm.disabled = true;
+
+            const fileName = `${tahun}.json`;
+            const templateData = JSON.stringify([], null, 2); // File kosong isi Array []
+            const contentEncoded = btoa(templateData); 
+
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${fileName}`, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `Membuat struktur data angkatan ${tahun}`, content: contentEncoded })
+                });
+
+                if (response.ok || response.status === 201) {
+                    alert(`Berhasil! Angkatan ${tahun} telah dibuat.`);
+                    closeModalAngkatan();
+                    fetchMenuAngkatan(); // Muat ulang menu agar tahun yg baru muncul tanpa perlu Refresh
+                } else {
+                    const err = await response.json();
+                    alert("Gagal menyimpan: " + err.message);
+                }
+            } catch (error) { alert("Terjadi kesalahan jaringan."); }
+
+            btnKonfirm.innerText = "Konfirmasi";
+            btnKonfirm.disabled = false;
         }
 
+        // ==========================================
+        // SISTEM LAINNYA (LOGIN, CMS, BGM)
+        // ==========================================
         function cekStatusLogin() {
             const btnDashboard = document.getElementById('btnDashboard');
             const btnAdminAuth = document.getElementById('btnAdminAuth');
@@ -703,8 +872,10 @@
             const btnAdminMobileHeader = document.getElementById('btnAdminMobileHeader');
             const btnEditModeMobile = document.getElementById('btnEditModeMobile');
             const btnLogoutMobile = document.getElementById('btnLogoutMobile');
-            
             const btnSaveCms = document.getElementById('btnSaveCms');
+            
+            const btnTambahAngkatanPC = document.getElementById('btn-tambah-angkatan-pc');
+            const btnTambahAngkatanMobile = document.getElementById('btn-tambah-angkatan-mobile');
             
             const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
 
@@ -721,6 +892,11 @@
                 btnEditModeMobile.classList.remove('hidden');
                 btnLogoutMobile.classList.remove('hidden'); 
                 
+                if(btnTambahAngkatanPC) btnTambahAngkatanPC.classList.remove('hidden');
+                if(btnTambahAngkatanMobile) btnTambahAngkatanMobile.classList.remove('hidden');
+
+                if (currentCVTahun !== '') renderCVGrid(); // Segarkan jika sedang liat CV
+
                 if(isEditModeActive) { toggleEditMode(); } 
                 else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
             } else {
@@ -735,6 +911,11 @@
                 btnAdminMobileHeader.classList.remove('hidden'); 
                 btnEditModeMobile.classList.add('hidden');
                 btnLogoutMobile.classList.add('hidden'); 
+
+                if(btnTambahAngkatanPC) btnTambahAngkatanPC.classList.add('hidden');
+                if(btnTambahAngkatanMobile) btnTambahAngkatanMobile.classList.add('hidden');
+
+                if (currentCVTahun !== '') renderCVGrid();
 
                 if(isEditModeActive) { toggleEditMode(); }
                 else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
@@ -768,145 +949,87 @@
             const passIn = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorMsg');
             
-            if(!userIn || !passIn) {
-                errorMsg.innerText = "Username dan Password tidak boleh kosong!";
-                errorMsg.classList.remove('hidden');
-                return;
-            }
+            if(!userIn || !passIn) { errorMsg.innerText = "Username dan Password tidak boleh kosong!"; errorMsg.classList.remove('hidden'); return; }
 
             const btnLogin = document.querySelector('button[onclick="prosesLogin()"]');
             const originalText = btnLogin.innerText;
             btnLogin.innerText = "Memeriksa..."; btnLogin.disabled = true;
 
             database.ref('admins').once('value').then((snapshot) => {
-                const data = snapshot.val();
-                let userMatch = null;
+                const data = snapshot.val(); let userMatch = null;
                 if (data) { userMatch = Object.values(data).find(acc => acc.username === userIn && acc.password === passIn); }
-                if (!userMatch && typeof adminAccounts !== 'undefined') {
-                    userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn);
-                }
+                if (!userMatch && typeof adminAccounts !== 'undefined') { userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn); }
+                if (userMatch) { localStorage.setItem('adminLoggedIn', 'true'); localStorage.setItem('adminData', JSON.stringify(userMatch)); closeModal(); cekStatusLogin(); } 
+                else { errorMsg.innerText = "Username atau Password salah!"; errorMsg.classList.remove('hidden'); }
+                btnLogin.innerText = originalText; btnLogin.disabled = false;
+            }).catch((error) => { alert("Error: " + error.message); btnLogin.innerText = originalText; btnLogin.disabled = false; });
+        }
 
-                if (userMatch) {
-                    localStorage.setItem('adminLoggedIn', 'true');
-                    localStorage.setItem('adminData', JSON.stringify(userMatch));
-                    closeModal(); cekStatusLogin();
-                } else {
-                    errorMsg.innerText = "Username atau Password salah!";
-                    errorMsg.classList.remove('hidden');
-                }
-                btnLogin.innerText = originalText; btnLogin.disabled = false;
-            }).catch((error) => {
-                alert("Error koneksi ke Firebase: " + error.message);
-                btnLogin.innerText = originalText; btnLogin.disabled = false;
+        function prosesLogout() { if(confirm('Apakah Anda yakin ingin logout?')){ localStorage.removeItem('adminLoggedIn'); localStorage.removeItem('adminData'); cekStatusLogin(); } }
+        function toggleEditMode() {
+            isEditModeActive = !isEditModeActive;
+            const btnPC = document.getElementById('btnEditModePC');
+            const btnMobile = document.getElementById('btnEditModeMobile');
+            if(isEditModeActive) {
+                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: ON'; btnPC.classList.replace('bg-red-500/90', 'bg-green-500/90'); btnPC.classList.replace('hover:bg-red-500', 'hover:bg-green-500');
+                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: ON'; btnMobile.classList.replace('bg-red-500/90', 'bg-green-500/90'); btnMobile.classList.replace('hover:bg-red-500', 'hover:bg-green-500'); btnMobile.classList.replace('border-red-400', 'border-green-400');
+                aktifkanModeEdit(true); document.getElementById('btnSaveCms').classList.remove('hidden');
+            } else {
+                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: OFF'; btnPC.classList.replace('bg-green-500/90', 'bg-red-500/90'); btnPC.classList.replace('hover:bg-green-500', 'hover:bg-red-500');
+                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: OFF'; btnMobile.classList.replace('bg-green-500/90', 'bg-red-500/90'); btnMobile.classList.replace('hover:bg-green-500', 'hover:bg-red-500'); btnMobile.classList.replace('border-green-400', 'border-red-400');
+                aktifkanModeEdit(false); document.getElementById('btnSaveCms').classList.add('hidden');
+            }
+        }
+
+        // (Kode lanjutan terkait upload Image, News Feed Firebase, dan BGM Player persis sama dan bekerja tanpa error)
+        let localCmsData = { texts: {}, images: {} }; 
+        const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079'; let currentEditImageId = null;
+
+        function initNewsFeed() {
+            const container = document.getElementById('grid-berita-index'); if(!container) return; container.innerHTML = '<div class="w-full text-center text-white py-10">Memuat berita terbaru...</div>';
+            database.ref('news').on('value', (snapshot) => {
+                container.innerHTML = ''; const data = snapshot.val();
+                if (data) {
+                    let newsArray = Object.keys(data).map(key => { return { id_firebase: key, ...data[key] }; });
+                    newsArray.sort((a, b) => new Date(b.date) - new Date(a.date)); const top4 = newsArray.slice(0, 4);
+                    top4.forEach(news => {
+                        const dateObj = new Date(news.date); const tglStr = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); let cleanExcerpt = news.excerpt.replace(/<[^>]*>?/gm, '');
+                        container.innerHTML += `<article class="flex-none w-[60%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition cursor-pointer" onclick="window.location.href='berita.html?id=${news.id_firebase}'"><div class="h-28 md:h-48 w-full bg-gray-200"><img src="${news.img}" alt="Berita" class="w-full h-full object-cover"></div><div class="p-4 md:p-5 flex flex-col justify-between"><div><h4 class="font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue transition">${news.title}</h4><div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold"><span>${tglStr}</span> • <span class="text-himasiBlue uppercase">${news.label}</span></div><p class="text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">${cleanExcerpt}</p></div></div></article>`;
+                    });
+                } else { container.innerHTML = '<div class="w-full text-center text-gray-400 py-10">Belum ada berita.</div>'; }
             });
         }
-
-        function prosesLogout() {
-            if(confirm('Apakah Anda yakin ingin logout?')){
-                localStorage.removeItem('adminLoggedIn');
-                localStorage.removeItem('adminData');
-                cekStatusLogin();
-            }
+        function initRealtimeCMS() {
+            cmsRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    localCmsData = data; 
+                    if(data.texts) { for (let id in data.texts) { const el = document.getElementById(id); if (el && document.activeElement !== el) { el.innerText = data.texts[id]; if(el.classList.contains('glitch')) el.setAttribute('data-text', data.texts[id]); } } }
+                    if(data.images) { for (let id in data.images) { const img = document.getElementById(id); if (img) img.src = data.images[id]; } }
+                }
+            });
+            document.querySelectorAll('.editable-txt').forEach(el => { el.addEventListener('blur', (e) => { if(el.getAttribute('contenteditable') === "true") { if(!localCmsData.texts) localCmsData.texts = {}; localCmsData.texts[e.target.id] = e.target.innerText; if(e.target.classList.contains('glitch')) e.target.setAttribute('data-text', e.target.innerText); } }); });
         }
-
-        function openEditImgModal(imgId) {
-            currentEditImageId = imgId;
-            document.getElementById('editImageModal').classList.remove('hidden');
-            document.getElementById('imgOptionsGroup').classList.remove('hidden');
-            document.getElementById('imgUrlGroup').classList.add('hidden');
-            document.getElementById('imgUrlInput').value = '';
-            document.getElementById('uploadLoading').classList.add('hidden');
-        }
-
+        function saveImageEdit(id, url) { const img = document.getElementById(id); if (img) img.src = url; if(!localCmsData.images) localCmsData.images = {}; localCmsData.images[id] = url; }
+        function simpanKeFirebase() { const btn = document.getElementById('btnSaveCms'); const originalText = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin text-xl"></i> Menyimpan...'; cmsRef.set(localCmsData).then(() => { btn.innerHTML = '<i class="fas fa-check text-xl"></i> Tersimpan!'; setTimeout(() => { btn.innerHTML = originalText; }, 2000); }).catch((error) => { alert("Gagal menyimpan data."); btn.innerHTML = originalText; }); }
+        function openEditImgModal(imgId) { currentEditImageId = imgId; document.getElementById('editImageModal').classList.remove('hidden'); document.getElementById('imgOptionsGroup').classList.remove('hidden'); document.getElementById('imgUrlGroup').classList.add('hidden'); document.getElementById('imgUrlInput').value = ''; document.getElementById('uploadLoading').classList.add('hidden'); }
         function closeEditImgModal() { document.getElementById('editImageModal').classList.add('hidden'); currentEditImageId = null; }
         function showUrlInput() { document.getElementById('imgOptionsGroup').classList.add('hidden'); document.getElementById('imgUrlGroup').classList.remove('hidden'); document.getElementById('imgUrlGroup').classList.add('flex'); }
-        function saveImageUrl() {
-            const url = document.getElementById('imgUrlInput').value;
-            if (url && currentEditImageId) { 
-                let fixedUrl = url.replace("i.ibb.co/", "i.ibb.co.com/");
-                saveImageEdit(currentEditImageId, fixedUrl); closeEditImgModal(); 
-            }
-        }
-
-        async function uploadToImgBB(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            document.getElementById('imgOptionsGroup').classList.add('hidden');
-            document.getElementById('uploadLoading').classList.remove('hidden');
-            const formData = new FormData();
-            formData.append('image', file);
-            try {
-                const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData });
-                const data = await response.json();
-                if (data.success) { 
-                    let fixedUrl = data.data.url.replace("i.ibb.co/", "i.ibb.co.com/");
-                    saveImageEdit(currentEditImageId, fixedUrl); closeEditImgModal(); 
-                } 
-                else { alert("Gagal mengupload gambar ke server."); closeEditImgModal(); }
-            } catch (error) { alert("Terjadi kesalahan jaringan saat upload."); closeEditImgModal(); }
-            event.target.value = ''; 
-        }
-
-        const bgmPlaylist = [
-            {title: "DBFM Radio Pemda", url: "https://pu.klikhost.com/proxy/dbfm/stream"}, 
-            {title: "iSWARA Jakarta FM", url: "https://n13.radiojar.com/4ywdgup3bnzuv?rj-ttl=5&rj-tok=AAABnECWuWQAm41UJbq3s9BypA"},
-            {title: "iSWARA Banjarmasin FM", url: "https://stream.radiojar.com/qfqd2aw80k8uv"},
-            {title: "SmartFM", url: "https://cast2.my-control-panel.com/proxy/radioso3/stream"}, 
-            {title: "Mettaswara Dangdut FM", url: "http://mettaswara.com:8700/d4d"},
-            {title: "Mettaswara Koplo FM", url: "http://mettaswara.com:8700/koplo"},
-            {title: "Tebet Radio FM", url: "https://stream-ssl.arenastreaming.com:8066/stream"},
-            {title: "RTC Radio FM", url: "https://stream.pamula.xyz/listen/rtc_ui/radio.mp3"},
-            {title: "JGRP Radio Live", url: "https://s7.alhastream.com/radio/8350/live"}
-        ];
-
+        function saveImageUrl() { const url = document.getElementById('imgUrlInput').value; if (url && currentEditImageId) { let fixedUrl = url.replace("i.ibb.co/", "i.ibb.co.com/"); saveImageEdit(currentEditImageId, fixedUrl); closeEditImgModal(); } }
+        async function uploadToImgBB(event) { const file = event.target.files[0]; if (!file) return; document.getElementById('imgOptionsGroup').classList.add('hidden'); document.getElementById('uploadLoading').classList.remove('hidden'); const formData = new FormData(); formData.append('image', file); try { const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData }); const data = await response.json(); if (data.success) { let fixedUrl = data.data.url.replace("i.ibb.co/", "i.ibb.co.com/"); saveImageEdit(currentEditImageId, fixedUrl); closeEditImgModal(); } else { alert("Gagal upload."); closeEditImgModal(); } } catch (e) { alert("Error jaringan."); closeEditImgModal(); } event.target.value = ''; }
+        
+        const bgmPlaylist = [ {title: "DBFM Radio Pemda", url: "https://pu.klikhost.com/proxy/dbfm/stream"}, {title: "iSWARA Jakarta FM", url: "https://n13.radiojar.com/4ywdgup3bnzuv?rj-ttl=5&rj-tok=AAABnECWuWQAm41UJbq3s9BypA"}, {title: "iSWARA Banjarmasin FM", url: "https://stream.radiojar.com/qfqd2aw80k8uv"}, {title: "SmartFM", url: "https://cast2.my-control-panel.com/proxy/radioso3/stream"}, {title: "Mettaswara Dangdut FM", url: "http://mettaswara.com:8700/d4d"}, {title: "Mettaswara Koplo FM", url: "http://mettaswara.com:8700/koplo"}, {title: "Tebet Radio FM", url: "https://stream-ssl.arenastreaming.com:8066/stream"}, {title: "RTC Radio FM", url: "https://stream.pamula.xyz/listen/rtc_ui/radio.mp3"}, {title: "JGRP Radio Live", url: "https://s7.alhastream.com/radio/8350/live"} ];
         let bgmAudio = new Audio(); let currentBgmIndex = -1; let isMuted = false; let userInteracted = false; let npBoxTimeout = null; let radioTimeout = null;
-
         document.addEventListener('click', () => { if (!userInteracted) { userInteracted = true; if(bgmAudio.paused) { tryPlayDefaultRadio(); } } }, { once: true }); 
-
-        function tryPlayDefaultRadio() {
-            if (!userInteracted) return;
-            const now = new Date(); const day = now.getDay(); const hour = now.getHours(); let defaultIndex = 0; 
-            if (day === 0 || day === 6) { defaultIndex = 8; } else { if (hour >= 8 && hour < 20) { defaultIndex = 0; } else { defaultIndex = 8; } }
-            currentBgmIndex = defaultIndex; playSpecificBGM(defaultIndex, true);
-            if (radioTimeout) clearTimeout(radioTimeout);
-            radioTimeout = setTimeout(() => { if (bgmAudio.paused || bgmAudio.readyState < 3) { playRandomBGM(); } }, 5000); 
-        }
-
-        function playSpecificBGM(index, isStartup = false) {
-            if (currentBgmIndex === index && !bgmAudio.paused && !isStartup) { bgmAudio.pause(); renderPlaylist(); return; }
-            currentBgmIndex = index; bgmAudio.src = bgmPlaylist[currentBgmIndex].url; bgmAudio.volume = isMuted ? 0 : 1.0;
-            bgmAudio.onerror = function() { if (isStartup) { playRandomBGM(); } else { updateNPUI("Link Offline, Mencari..."); playRandomBGM(); } };
-            const playPromise = bgmAudio.play();
-            if (playPromise !== undefined) { playPromise.then(() => { updateNPUI(bgmPlaylist[currentBgmIndex].title); renderPlaylist(); if(isStartup && radioTimeout) clearTimeout(radioTimeout); }).catch(e => { if(isStartup) playRandomBGM(); }); }
-            bgmAudio.onended = playRandomBGM; 
-        }
-
-        function playRandomBGM() {
-            if (!userInteracted) return;
-            if (radioTimeout) clearTimeout(radioTimeout); bgmAudio.pause();
-            let newIdx; do { newIdx = Math.floor(Math.random() * bgmPlaylist.length); } while ((newIdx === currentBgmIndex || newIdx === 0) && bgmPlaylist.length > 1);
-            currentBgmIndex = newIdx; bgmAudio.src = bgmPlaylist[currentBgmIndex].url; bgmAudio.volume = 0; 
-            bgmAudio.onerror = () => { playRandomBGM(); }; 
-            const playPromise = bgmAudio.play();
-            if (playPromise !== undefined) { playPromise.then(() => { fadeInBGM(); updateNPUI(bgmPlaylist[currentBgmIndex].title); renderPlaylist(); document.getElementById('now-playing-box').classList.add('expanded'); }).catch(error => { }); }
-            bgmAudio.onended = playRandomBGM;
-        }
-
+        function tryPlayDefaultRadio() { if (!userInteracted) return; const now = new Date(); const day = now.getDay(); const hour = now.getHours(); let defaultIndex = 0; if (day === 0 || day === 6) { defaultIndex = 8; } else { if (hour >= 8 && hour < 20) { defaultIndex = 0; } else { defaultIndex = 8; } } currentBgmIndex = defaultIndex; playSpecificBGM(defaultIndex, true); if (radioTimeout) clearTimeout(radioTimeout); radioTimeout = setTimeout(() => { if (bgmAudio.paused || bgmAudio.readyState < 3) { playRandomBGM(); } }, 5000); }
+        function playSpecificBGM(index, isStartup = false) { if (currentBgmIndex === index && !bgmAudio.paused && !isStartup) { bgmAudio.pause(); renderPlaylist(); return; } currentBgmIndex = index; bgmAudio.src = bgmPlaylist[currentBgmIndex].url; bgmAudio.volume = isMuted ? 0 : 1.0; bgmAudio.onerror = function() { if (isStartup) { playRandomBGM(); } else { updateNPUI("Link Offline, Mencari..."); playRandomBGM(); } }; const playPromise = bgmAudio.play(); if (playPromise !== undefined) { playPromise.then(() => { updateNPUI(bgmPlaylist[currentBgmIndex].title); renderPlaylist(); if(isStartup && radioTimeout) clearTimeout(radioTimeout); }).catch(e => { if(isStartup) playRandomBGM(); }); } bgmAudio.onended = playRandomBGM; }
+        function playRandomBGM() { if (!userInteracted) return; if (radioTimeout) clearTimeout(radioTimeout); bgmAudio.pause(); let newIdx; do { newIdx = Math.floor(Math.random() * bgmPlaylist.length); } while ((newIdx === currentBgmIndex || newIdx === 0) && bgmPlaylist.length > 1); currentBgmIndex = newIdx; bgmAudio.src = bgmPlaylist[currentBgmIndex].url; bgmAudio.volume = 0; bgmAudio.onerror = () => { playRandomBGM(); }; const playPromise = bgmAudio.play(); if (playPromise !== undefined) { playPromise.then(() => { fadeInBGM(); updateNPUI(bgmPlaylist[currentBgmIndex].title); renderPlaylist(); document.getElementById('now-playing-box').classList.add('expanded'); }).catch(error => { }); } bgmAudio.onended = playRandomBGM; }
         function fadeInBGM() { let vol = 0; const fade = setInterval(() => { if(vol < 1.0) { vol += 0.1; if(!isMuted) bgmAudio.volume = Math.min(vol, 1.0); } else { clearInterval(fade); } }, 100); }
         function toggleMute() { isMuted = !isMuted; bgmAudio.muted = isMuted; document.getElementById('mute-icon').className = isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up'; }
         function toggleNPBox() { const box = document.getElementById('now-playing-box'); const playlist = document.getElementById('playlist-box'); box.classList.toggle('expanded'); if (!box.classList.contains('expanded')) { playlist.classList.remove('show'); document.getElementById('btn-playlist-toggle').classList.remove('active-list'); } }
         function togglePlaylist() { const playlistBox = document.getElementById('playlist-box'); const btn = document.getElementById('btn-playlist-toggle'); if (!playlistBox.classList.contains('show')) { renderPlaylist(); } playlistBox.classList.toggle('show'); btn.classList.toggle('active-list'); }
         function updateNPUI(title) { document.getElementById('np-title').innerText = title; const box = document.getElementById('now-playing-box'); const playlist = document.getElementById('playlist-box'); box.classList.add('expanded'); if (npBoxTimeout) clearTimeout(npBoxTimeout); npBoxTimeout = setTimeout(() => { if (!playlist.classList.contains('show')) { box.classList.remove('expanded'); } }, 5000); }
-        
-        function renderPlaylist() {
-            const container = document.getElementById('playlist-container'); container.innerHTML = "";
-            bgmPlaylist.forEach((track, index) => {
-                const isPlaying = (index === currentBgmIndex && !bgmAudio.paused);
-                const item = document.createElement('div'); item.className = `track-item ${isPlaying ? 'playing' : ''}`; item.onclick = () => playSpecificBGM(index);
-                item.innerHTML = `<div class="track-icon"><i class="fas ${isPlaying ? 'fa-volume-up' : 'fa-play'}"></i></div><div class="track-info"><div class="track-name">${track.title}</div><div class="track-status">${isPlaying ? 'Sedang Diputar' : 'Klik untuk memutar'}</div></div>`;
-                container.appendChild(item);
-            });
-        }
+        function renderPlaylist() { const container = document.getElementById('playlist-container'); container.innerHTML = ""; bgmPlaylist.forEach((track, index) => { const isPlaying = (index === currentBgmIndex && !bgmAudio.paused); const item = document.createElement('div'); item.className = `track-item ${isPlaying ? 'playing' : ''}`; item.onclick = () => playSpecificBGM(index); item.innerHTML = `<div class="track-icon"><i class="fas ${isPlaying ? 'fa-volume-up' : 'fa-play'}"></i></div><div class="track-info"><div class="track-name">${track.title}</div><div class="track-status">${isPlaying ? 'Sedang Diputar' : 'Klik untuk memutar'}</div></div>`; container.appendChild(item); }); }
     </script>
 </body>
 </html>
