@@ -1,4 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ================= SEO & META TAGS ================= -->
+    <title>HIMATIKA - Universitas Indonesia Mandiri</title>
+    <meta name="description" content="Website Resmi Himpunan Mahasiswa Informatika (HIMATIKA) Universitas Indonesia Mandiri (UIM).">
+    <meta name="keywords" content="Himatika, Himatika UIM, himatika uim, HIMATIKA UIM, Himatika Universitas Indonesia Mandiri, Universitas Indonesia Mandiri, UIM">
+    
+    <!-- Open Graph (Tautan Judul & Nama Situs untuk Sosmed/Pencarian) -->
+    <meta property="og:title" content="HIMATIKA - Universitas Indonesia Mandiri">
+    <meta property="og:site_name" content="HIMATIKA UIM">
+    <meta property="og:image" content="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
+    <meta property="og:type" content="website">
 
+    <!-- Web Icon (Favicon) -->
+    <link rel="icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
+    <!-- =================================================== -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+	
+	<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics-compat.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        himasiBlue: '#0d72bf',
+                        himasiDark: '#363537',
+                        textDark: '#444444'
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Raleway', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'Grames';
+            src: url('GRAMES.ttf') format('truetype'),
+                 url('GRAMES.ttp') format('truetype'); 
+            font-weight: bold;
+            font-style: normal;
+        }
+        .font-grames { font-family: 'Grames', sans-serif; letter-spacing: 2px; }
+
+        .hero-text-wrapper {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5)); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; width: 100%;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
+            background-size: 300% 300%; background-attachment: fixed; -webkit-background-clip: text;
+            background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent;
+            animation: flowHero 8s linear infinite; padding-top: 20px; padding-bottom: 20px;
+            line-height: 1.2; display: inline-block;
+        }
+
+        @keyframes flowHero { 0% { background-position: 100% 100%; } 75% { background-position: 0% 0%; } 100% { background-position: 0% 0%; } }
+
+        .name-gradient {
+            background: linear-gradient(135deg, #DAA520 15%, #ADD8E6 50%, #DAA520 85%);
+            background-size: 200% 200%; -webkit-background-clip: text; background-clip: text;
+            color: transparent !important; -webkit-text-fill-color: transparent;
+            animation: flowName 4s ease-in-out infinite; animation-delay: 0.5s;
+        }
+        @keyframes flowName { 0% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } 100% { background-position: 0% 0%; } }
+
+        .glitch { position: relative; cursor: pointer; z-index: 2; }
+        .glitch:hover { background: transparent !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }
+        .glitch::before, .glitch::after {
             position: absolute; content: attr(data-text); top: 0; left: 0; width: 100%; height: 100%;
             visibility: hidden; pointer-events: none; background: none; -webkit-background-clip: initial; background-clip: initial;
             color: transparent; -webkit-text-fill-color: transparent; padding-top: 20px; padding-bottom: 20px; line-height: 1.2; white-space: nowrap;
@@ -10,8 +93,8 @@
         .hero-bg { background-size: cover; background-position: center; background-repeat: no-repeat; animation: fadeHeroBg 6s infinite; }
         @keyframes fadeHeroBg { 
             0%, 28% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
-            33%, 61% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
-            66%, 94% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
+            33%, 61% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/6cQF2QgN/Proyek-Baru-149-D362-AFA.png'); } 
+            66%, 94% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/BKLTRh7P/Proyek-Baru-149-2-AF93-C7.png'); } 
             100% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
         }
 
