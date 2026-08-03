@@ -8,9 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+	
+	<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics-compat.js"></script>
 
     <script>
         tailwind.config = {
@@ -145,6 +146,7 @@
     </style>
 </head>
 <body class="font-sans text-textDark bg-[#001436] overflow-x-hidden relative">
+<div id="mouse-glow" class="fixed top-0 left-0 w-[100px] h-[100px] rounded-full pointer-events-none z-[9999] opacity-50 blur-[60px] bg-white mix-blend-difference transition-transform duration-100 ease-out will-change-transform"></div>
 
     <nav class="bg-[#1B427B] shadow-md fixed w-full z-[100] top-0 border-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -434,7 +436,7 @@
 
     <footer class="bg-[#001436] py-6 m-0 border-none relative z-50">
         <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
-            <p class="text-gray-400 text-sm">Developed by Gilang Aidil Pratama / Dilz Ghaaziy</p>
+            <p class="text-gray-400 text-sm">Developed by Dep Pengembangan dan SDM 2025</p>
         </div>
     </footer>
 
@@ -479,13 +481,25 @@
         </div>
     </div>
 
-    <div id="modalTambahProfil" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center px-4">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 transform scale-95 transition-transform overflow-y-auto max-h-[90vh]">
+<div id="modalTambahProfil" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center px-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 transform scale-95 transition-transform overflow-y-auto max-h-[90vh] hide-scroll">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-himasiDark font-heading">Tambah Profil</h2>
+                <h2 id="modalProfilTitle" class="text-xl font-bold text-himasiDark font-heading">Tambah Profil</h2>
                 <button onclick="closeModalProfil()" class="text-gray-500 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
             </div>
             <div class="space-y-4">
+                
+                <div class="flex gap-3">
+                    <input type="hidden" id="inputProfilFoto">
+                    <input type="hidden" id="inputProfilBanner">
+                    <button type="button" onclick="openFormImgModal('foto')" class="flex-1 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 font-bold py-2 px-2 rounded transition text-xs flex flex-col items-center gap-1">
+                        <i class="fas fa-user-circle text-lg"></i> <span id="txt-status-foto">Pasang Foto Profil</span>
+                    </button>
+                    <button type="button" onclick="openFormImgModal('banner')" class="flex-1 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 font-bold py-2 px-2 rounded transition text-xs flex flex-col items-center gap-1">
+                        <i class="fas fa-image text-lg"></i> <span id="txt-status-banner">Pasang Banner</span>
+                    </button>
+                </div>
+
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-1">Nama</label>
                     <input type="text" id="inputProfilNama" placeholder="Masukkan nama..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
@@ -506,13 +520,57 @@
                     <label class="block text-sm font-bold text-gray-700 mb-1">Bisnis</label>
                     <input type="text" id="inputProfilBisnis" placeholder="Contoh: Freelance Web, Tidak ada" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
                 </div>
+
+                <div class="mt-2 border-t pt-3">
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Sosial Media (Opsional)</label>
+                    <div class="flex gap-3 mb-3">
+                        <label class="flex items-center gap-1 text-sm text-gray-700 cursor-pointer">
+                            <input type="checkbox" id="checkIg" onchange="toggleSocmed('ig')"> <i class="fab fa-instagram text-pink-600"></i> Instagram
+                        </label>
+                        <label class="flex items-center gap-1 text-sm text-gray-700 cursor-pointer">
+                            <input type="checkbox" id="checkTt" onchange="toggleSocmed('tt')"> <i class="fab fa-tiktok text-black"></i> Tiktok
+                        </label>
+                        <label class="flex items-center gap-1 text-sm text-gray-700 cursor-pointer">
+                            <input type="checkbox" id="checkYt" onchange="toggleSocmed('yt')"> <i class="fab fa-youtube text-red-600"></i> Youtube
+                        </label>
+                    </div>
+                    
+                    <div id="wrapIg" class="hidden mb-2">
+                        <input type="text" id="inputIg" placeholder="Link Instagram..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-pink-500 text-sm">
+                    </div>
+                    <div id="wrapTt" class="hidden mb-2">
+                        <input type="text" id="inputTt" placeholder="Link Tiktok..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-gray-500 text-sm">
+                    </div>
+                    <div id="wrapYt" class="hidden">
+                        <input type="text" id="inputYt" placeholder="Link Youtube..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-red-500 text-sm">
+                    </div>
+                </div>
             </div>
-            <div class="flex justify-end gap-3 mt-8">
+            <div class="flex justify-end gap-3 mt-6">
                 <button onclick="closeModalProfil()" class="px-5 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition font-medium border border-gray-300">Batal</button>
                 <button id="btn-konfirm-profil" onclick="konfirmasiTambahProfil()" class="bg-himasiBlue text-white font-bold py-2 px-6 rounded hover:bg-blue-700 transition shadow">Konfirmasi</button>
             </div>
         </div>
     </div>
+
+    <div id="formImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[250] hidden flex items-center justify-center px-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
+            <button onclick="closeFormImgModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
+            <h3 class="text-xl font-bold text-gray-800 mb-6">Masukkan Lewat Apa?</h3>
+            <div id="formImgOptionsGroup" class="flex flex-col gap-3">
+                <button onclick="showFormUrlInput()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">Link URL</button>
+                <button onclick="document.getElementById('formFileUploader').click()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">Dari Galeri</button>
+            </div>
+            <div id="formImgUrlGroup" class="hidden flex-col gap-3 mt-4">
+                <input type="text" id="formImgUrlInput" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-500" placeholder="Paste link gambar disini...">
+                <button onclick="saveFormImageUrl()" class="bg-blue-600 text-white py-2 rounded font-semibold">Konfirmasi</button>
+            </div>
+            <div id="formUploadLoading" class="hidden mt-4 text-blue-600 font-semibold text-sm">
+                <i class="fas fa-circle-notch fa-spin mr-2"></i>Sedang Mengupload Gambar...
+            </div>
+        </div>
+    </div>
+    <input type="file" id="formFileUploader" accept="image/*" class="hidden" onchange="uploadFormToImgBB(event)">
 
     <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] hidden flex items-center justify-center px-4">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
@@ -553,6 +611,17 @@
     <script src="admin.js"></script>
 
     <script>
+	const mouseGlow = document.getElementById('mouse-glow');
+
+    document.addEventListener('mousemove', (e) => {
+        // Menggeser posisi cahaya agar kursor berada tepat di tengah-tengah cahaya
+        // (150px adalah setengah dari lebar/tinggi cahaya 300px)
+        const x = e.clientX - 50; 
+        const y = e.clientY - 50;
+        
+        mouseGlow.style.transform = `translate(${x}px, ${y}px)`;
+    });
+	
         // ==========================================
         // KONFIGURASI GITHUB API (HARAP DIISI)
         // ==========================================
@@ -575,8 +644,21 @@
             document.getElementById('icon-cv-mobile').classList.toggle('rotate-180');
         }
 
-        const firebaseConfig = { databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app" };
+        const firebaseConfig = {
+            apiKey: "AIzaSyCPUO6gazqj97i4Rj8NlmKzdJu764CZ_0g",
+            authDomain: "himatika-uim.firebaseapp.com",
+            databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "himatika-uim",
+            storageBucket: "himatika-uim.firebasestorage.app",
+            messagingSenderId: "829701559786",
+            appId: "1:829701559786:web:a81cbb4bda51c41ed44e93",
+            measurementId: "G-LVPX6SQ67K"
+        };
+
+        // Initialize Firebase & Analytics
         firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics(); // Fitur Analytics Aktif
+        
         const database = firebase.database();
         const cmsRef = database.ref('himasi_web_data');
 
@@ -624,8 +706,9 @@
                 listMobile.innerHTML = '<span class="block text-xs text-gray-400 italic">Belum ada angkatan</span>';
             } else {
                 existingAngkatan.forEach(tahun => {
-                    listPC.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue transition"><i class="fas fa-folder-open mr-2 text-gray-400"></i>Angkatan ${tahun}</a>`;
-                    listMobile.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event); document.getElementById('mobile-menu').classList.add('hidden');" class="block text-sm text-gray-300 hover:text-white transition"><i class="fas fa-folder-open mr-2"></i>Angkatan ${tahun}</a>`;
+                    // Ikon diganti dari 'fa-folder-open' menjadi 'fa-file-alt' (dokumen resume)
+                    listPC.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue transition"><i class="fas fa-file-alt mr-2 text-gray-400"></i>Angkatan ${tahun}</a>`;
+                    listMobile.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event); document.getElementById('mobile-menu').classList.add('hidden');" class="block text-sm text-gray-300 hover:text-white transition"><i class="fas fa-file-alt mr-2"></i>Angkatan ${tahun}</a>`;
                 });
             }
         }
@@ -688,65 +771,67 @@
             currentCVData = [];
         }
 
-        function renderCVGrid() {
-            const grid = document.getElementById('cv-grid');
-            grid.innerHTML = '';
-            const isAdmin = localStorage.getItem('adminLoggedIn') === 'true';
-
-            if (currentCVData.length === 0 && !isAdmin) {
-                grid.innerHTML = '<div class="col-span-full text-center py-10 text-gray-500 italic">Belum ada profil untuk angkatan ini.</div>';
-                return;
-            }
-
-            currentCVData.forEach(profil => {
-                grid.innerHTML += `
-                    <div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border-t-[5px] border-himasiBlue p-6 hover:shadow-lg transition flex flex-col gap-3">
-                        <div class="flex flex-col border-b border-gray-100 pb-2">
-                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Nama:</span>
-                            <span class="text-lg font-bold text-[#1B427B]">${profil.nama}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Skills:</span>
-                            <span class="text-sm font-medium text-gray-700">${profil.skills}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Skill Bahasa:</span>
-                            <span class="text-sm font-medium text-gray-700">${profil.bahasa}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Angkatan:</span>
-                            <span class="text-sm font-medium text-gray-700">${profil.angkatan}</span>
-                        </div>
-                        <div class="flex flex-col bg-blue-50/50 p-2 rounded-lg mt-1 border border-blue-100">
-                            <span class="text-[11px] font-bold text-himasiBlue uppercase tracking-wider">Bisnis:</span>
-                            <span class="text-sm font-bold text-gray-800">${profil.bisnis}</span>
-                        </div>
-                    </div>
-                `;
-            });
-
-            if (isAdmin) {
-                grid.innerHTML += `
-                    <div onclick="openModalProfil()" class="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100 hover:border-himasiBlue hover:text-himasiBlue transition min-h-[280px] group">
-                        <div class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center mb-4 group-hover:scale-110 transition">
-                            <i class="fas fa-plus text-2xl text-gray-400 group-hover:text-himasiBlue"></i>
-                        </div>
-                        <span class="text-gray-500 font-bold group-hover:text-himasiBlue">Tambahkan Profil</span>
-                    </div>
-                `;
-            }
-        }
-
-        function openModalProfil() {
+         function openModalProfil() {
+            editingProfileIndex = -1;
+            document.getElementById('modalProfilTitle').innerText = 'Tambah Profil';
             document.getElementById('modalTambahProfil').classList.remove('hidden');
             document.getElementById('inputProfilAngkatan').value = currentCVTahun;
+            
             document.getElementById('inputProfilNama').value = '';
             document.getElementById('inputProfilSkills').value = '';
             document.getElementById('inputProfilBahasa').value = '';
             document.getElementById('inputProfilBisnis').value = '';
+            document.getElementById('inputProfilFoto').value = '';
+            document.getElementById('inputProfilBanner').value = '';
+            
+            document.getElementById('txt-status-foto').innerText = 'Pasang Foto Profil';
+            document.getElementById('txt-status-foto').classList.remove('text-green-600');
+            document.getElementById('txt-status-banner').innerText = 'Pasang Banner';
+            document.getElementById('txt-status-banner').classList.remove('text-green-600');
+
+            document.getElementById('checkIg').checked = false;
+            document.getElementById('checkTt').checked = false;
+            document.getElementById('checkYt').checked = false;
+            toggleSocmed('ig'); toggleSocmed('tt'); toggleSocmed('yt');
+            document.getElementById('inputIg').value = ''; document.getElementById('inputTt').value = ''; document.getElementById('inputYt').value = '';
         }
+
+        // FUNGSI MEMBUKA MODAL EDIT PROFIL (PENCIL ICON)
+        function editProfil(index) {
+            editingProfileIndex = index;
+            const p = currentCVData[index];
+            
+            document.getElementById('modalProfilTitle').innerText = 'Edit Profil';
+            document.getElementById('modalTambahProfil').classList.remove('hidden');
+            document.getElementById('inputProfilAngkatan').value = p.angkatan || currentCVTahun;
+            
+            document.getElementById('inputProfilNama').value = p.nama || '';
+            document.getElementById('inputProfilSkills').value = p.skills || '';
+            document.getElementById('inputProfilBahasa').value = p.bahasa || '';
+            document.getElementById('inputProfilBisnis').value = p.bisnis || '';
+            document.getElementById('inputProfilFoto').value = p.fotoProf || '';
+            document.getElementById('inputProfilBanner').value = p.bannerProf || '';
+            
+            document.getElementById('txt-status-foto').innerText = p.fotoProf ? 'Foto Terpasang!' : 'Pasang Foto Profil';
+            if(p.fotoProf) document.getElementById('txt-status-foto').classList.add('text-green-600');
+            
+            document.getElementById('txt-status-banner').innerText = p.bannerProf ? 'Banner Terpasang!' : 'Pasang Banner';
+            if(p.bannerProf) document.getElementById('txt-status-banner').classList.add('text-green-600');
+
+            // Sosmed Loader
+            document.getElementById('checkIg').checked = !!(p.socmed && p.socmed.instagram);
+            document.getElementById('checkTt').checked = !!(p.socmed && p.socmed.tiktok);
+            document.getElementById('checkYt').checked = !!(p.socmed && p.socmed.youtube);
+            toggleSocmed('ig'); toggleSocmed('tt'); toggleSocmed('yt');
+            
+            document.getElementById('inputIg').value = (p.socmed && p.socmed.instagram) ? p.socmed.instagram : '';
+            document.getElementById('inputTt').value = (p.socmed && p.socmed.tiktok) ? p.socmed.tiktok : '';
+            document.getElementById('inputYt').value = (p.socmed && p.socmed.youtube) ? p.socmed.youtube : '';
+        }
+
         function closeModalProfil() { document.getElementById('modalTambahProfil').classList.add('hidden'); }
 
+        // FUNGSI KONFIRMASI SIMPAN PROFIL
         async function konfirmasiTambahProfil() {
             const btn = document.getElementById('btn-konfirm-profil');
             const nama = document.getElementById('inputProfilNama').value.trim();
@@ -754,13 +839,26 @@
             const bahasa = document.getElementById('inputProfilBahasa').value.trim();
             const angkatan = document.getElementById('inputProfilAngkatan').value.trim();
             const bisnis = document.getElementById('inputProfilBisnis').value.trim();
+            const fotoProf = document.getElementById('inputProfilFoto').value.trim();
+            const bannerProf = document.getElementById('inputProfilBanner').value.trim();
 
             if (!nama) { alert("Nama wajib diisi!"); return; }
 
+            // Ambil data sosial media jika di centang
+            let socmed = {};
+            if (document.getElementById('checkIg').checked) socmed.instagram = document.getElementById('inputIg').value.trim();
+            if (document.getElementById('checkTt').checked) socmed.tiktok = document.getElementById('inputTt').value.trim();
+            if (document.getElementById('checkYt').checked) socmed.youtube = document.getElementById('inputYt').value.trim();
+
             btn.innerText = "Menyimpan..."; btn.disabled = true;
 
-            const newProfileObj = { nama, skills, bahasa, angkatan, bisnis };
-            currentCVData.push(newProfileObj);
+            const newProfileObj = { nama, skills, bahasa, angkatan, bisnis, fotoProf, bannerProf, socmed };
+            
+            if (editingProfileIndex > -1) {
+                currentCVData[editingProfileIndex] = newProfileObj; // Edit Data
+            } else {
+                currentCVData.push(newProfileObj); // Tambah Data Baru
+            }
 
             const jsonStr = JSON.stringify(currentCVData, null, 2);
             const encodedContent = btoa(unescape(encodeURIComponent(jsonStr)));
@@ -769,22 +867,75 @@
                 const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${currentCVTahun}.json`, {
                     method: 'PUT',
                     headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: `Admin menambahkan profil ${nama}`, content: encodedContent, sha: currentCVSha })
+                    body: JSON.stringify({ message: `Admin update profil ${nama}`, content: encodedContent, sha: currentCVSha })
                 });
 
                 if (response.ok) {
                     const resData = await response.json();
                     currentCVSha = resData.content.sha;
-                    alert("Profil berhasil ditambahkan!");
+                    alert("Profil berhasil disimpan!");
                     closeModalProfil(); renderCVGrid();
                 } else {
                     const err = await response.json();
                     alert("Gagal menyimpan ke GitHub: " + err.message);
-                    currentCVData.pop(); 
                 }
-            } catch (error) { alert("Terjadi kesalahan jaringan."); currentCVData.pop(); }
+            } catch (error) { alert("Terjadi kesalahan jaringan."); }
 
             btn.innerText = "Konfirmasi"; btn.disabled = false;
+        }
+
+        // =========================================================
+        // SISTEM UPLOAD GAMBAR UNTUK FORM PROFIL
+        // =========================================================
+        function openFormImgModal(type) {
+            currentFormImgType = type;
+            document.getElementById('formImageModal').classList.remove('hidden');
+            document.getElementById('formImgOptionsGroup').classList.remove('hidden');
+            document.getElementById('formImgUrlGroup').classList.add('hidden');
+            document.getElementById('formImgUrlInput').value = '';
+            document.getElementById('formUploadLoading').classList.add('hidden');
+        }
+        function closeFormImgModal() { document.getElementById('formImageModal').classList.add('hidden'); }
+        function showFormUrlInput() { 
+            document.getElementById('formImgOptionsGroup').classList.add('hidden'); 
+            document.getElementById('formImgUrlGroup').classList.remove('hidden'); 
+            document.getElementById('formImgUrlGroup').classList.add('flex'); 
+        }
+        function saveFormImageUrl() { 
+            const url = document.getElementById('formImgUrlInput').value; 
+            if (url) { 
+                let fixedUrl = url.replace("i.ibb.co/", "i.ibb.co.com/"); 
+                applyFormImage(fixedUrl); 
+                closeFormImgModal(); 
+            } 
+        }
+        async function uploadFormToImgBB(event) { 
+            const file = event.target.files[0]; 
+            if (!file) return; 
+            document.getElementById('formImgOptionsGroup').classList.add('hidden'); 
+            document.getElementById('formUploadLoading').classList.remove('hidden'); 
+            const formData = new FormData(); formData.append('image', file); 
+            try { 
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData }); 
+                const data = await response.json(); 
+                if (data.success) { 
+                    let fixedUrl = data.data.url.replace("i.ibb.co/", "i.ibb.co.com/"); 
+                    applyFormImage(fixedUrl); 
+                    closeFormImgModal(); 
+                } else { alert("Gagal upload."); closeFormImgModal(); } 
+            } catch (e) { alert("Error jaringan."); closeFormImgModal(); } 
+            event.target.value = ''; 
+        }
+        function applyFormImage(url) {
+            if (currentFormImgType === 'foto') {
+                document.getElementById('inputProfilFoto').value = url;
+                document.getElementById('txt-status-foto').innerText = 'Foto Terpasang!';
+                document.getElementById('txt-status-foto').classList.add('text-green-600');
+            } else {
+                document.getElementById('inputProfilBanner').value = url;
+                document.getElementById('txt-status-banner').innerText = 'Banner Terpasang!';
+                document.getElementById('txt-status-banner').classList.add('text-green-600');
+            }
         }
 
         // =========================================================
@@ -1012,6 +1163,113 @@
         function togglePlaylist() { const playlistBox = document.getElementById('playlist-box'); const btn = document.getElementById('btn-playlist-toggle'); if (!playlistBox.classList.contains('show')) { renderPlaylist(); } playlistBox.classList.toggle('show'); btn.classList.toggle('active-list'); }
         function updateNPUI(title) { document.getElementById('np-title').innerText = title; const box = document.getElementById('now-playing-box'); const playlist = document.getElementById('playlist-box'); box.classList.add('expanded'); if (npBoxTimeout) clearTimeout(npBoxTimeout); npBoxTimeout = setTimeout(() => { if (!playlist.classList.contains('show')) { box.classList.remove('expanded'); } }, 5000); }
         function renderPlaylist() { const container = document.getElementById('playlist-container'); container.innerHTML = ""; bgmPlaylist.forEach((track, index) => { const isPlaying = (index === currentBgmIndex && !bgmAudio.paused); const item = document.createElement('div'); item.className = `track-item ${isPlaying ? 'playing' : ''}`; item.onclick = () => playSpecificBGM(index); item.innerHTML = `<div class="track-icon"><i class="fas ${isPlaying ? 'fa-volume-up' : 'fa-play'}"></i></div><div class="track-info"><div class="track-name">${track.title}</div><div class="track-status">${isPlaying ? 'Sedang Diputar' : 'Klik untuk memutar'}</div></div>`; container.appendChild(item); }); }
+		
+        let editingProfileIndex = -1;
+        let currentFormImgType = '';
+
+        // Tampilkan/Sembunyikan kolom input sosmed berdasarkan Checkbox
+        function toggleSocmed(type) {
+            const isChecked = document.getElementById('check' + type.charAt(0).toUpperCase() + type.slice(1)).checked;
+            const wrap = document.getElementById('wrap' + type.charAt(0).toUpperCase() + type.slice(1));
+            if(isChecked) { wrap.classList.remove('hidden'); } else { wrap.classList.add('hidden'); }
+        }
+
+function renderCVGrid() {
+            const grid = document.getElementById('cv-grid');
+            grid.innerHTML = '';
+            const isAdmin = localStorage.getItem('adminLoggedIn') === 'true';
+
+            if (currentCVData.length === 0 && !isAdmin) {
+                grid.innerHTML = '<div class="col-span-full text-center py-10 text-gray-500 italic">Belum ada profil untuk angkatan ini.</div>';
+                return;
+            }
+
+            currentCVData.forEach((profil, index) => {
+                const bannerId = `cv-banner-${currentCVTahun}-${index}`;
+                const profId = `cv-prof-${currentCVTahun}-${index}`;
+                
+                // Prioritaskan gambar dari JSON profil, jika tidak ada baru gunakan cache Firebase/Default
+                const bannerUrl = profil.bannerProf || ((localCmsData.images && localCmsData.images[bannerId]) ? localCmsData.images[bannerId] : 'https://i.ibb.co.com/mC7XyShv/Chat-GPT-Image-26-Jun-2026-18-16-33.png');
+                const profUrl = profil.fotoProf || ((localCmsData.images && localCmsData.images[profId]) ? localCmsData.images[profId] : 'https://i.ibb.co.com/S4Q8KP29/images-15.jpg');
+
+                // Render Social Media Icons (Posisi di tengah)
+                let socmedHTML = '<div class="flex flex-col items-center justify-center border-b border-gray-100 pb-1.5 pt-1">';
+                socmedHTML += '<span class="text-[9px] font-bold text-gray-400 uppercase mb-1">Social Media</span>';
+                
+                if (profil.socmed && (profil.socmed.instagram || profil.socmed.tiktok || profil.socmed.youtube)) {
+                    socmedHTML += '<div class="flex gap-4 justify-center">';
+                    if (profil.socmed.instagram) socmedHTML += `<a href="${profil.socmed.instagram}" target="_blank" class="text-pink-600 hover:text-pink-800 text-sm hover:scale-110 transition-transform"><i class="fab fa-instagram"></i></a>`;
+                    if (profil.socmed.tiktok) socmedHTML += `<a href="${profil.socmed.tiktok}" target="_blank" class="text-black hover:text-gray-800 text-sm hover:scale-110 transition-transform"><i class="fab fa-tiktok"></i></a>`;
+                    if (profil.socmed.youtube) socmedHTML += `<a href="${profil.socmed.youtube}" target="_blank" class="text-red-600 hover:text-red-800 text-sm hover:scale-110 transition-transform"><i class="fab fa-youtube"></i></a>`;
+                    socmedHTML += '</div>';
+                } else {
+                    socmedHTML += '<span class="text-[10px] font-medium text-gray-500 italic">-Tidak Ada/Privasi-</span>';
+                }
+                socmedHTML += '</div>';
+
+                grid.innerHTML += `
+                    <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col aspect-[1/1] hover:shadow-xl transition relative group">
+                        
+                        <!-- Banner Rasio 5:2 Permanen -->
+                        <div class="relative w-full aspect-[5/2] bg-gray-200 flex-shrink-0 overflow-hidden">
+                            <img id="${bannerId}" src="${bannerUrl}" class="w-full h-full object-cover object-center">
+                            
+                            ${isAdmin ? `<button onclick="openEditImgModal('${bannerId}')" class="absolute top-2 right-2 bg-black/60 hover:bg-himasiBlue text-white w-8 h-8 rounded-full flex items-center justify-center transition shadow-lg z-20" title="Ganti Banner"><i class="fas fa-camera"></i></button>` : ''}
+                        </div>
+
+                        <div class="relative px-5 pb-5 flex-grow flex flex-col bg-white">
+                            <!-- Foto Profil Bulat -->
+                            <div class="relative -mt-8 mx-auto w-16 h-16 rounded-full border-4 border-white shadow-md bg-gray-100 z-10 flex-shrink-0 overflow-hidden">
+                                <img id="${profId}" src="${profUrl}" class="w-full h-full object-cover bg-white object-center">
+                                ${isAdmin ? `<div onclick="openEditImgModal('${profId}')" class="absolute inset-0 bg-black/50 flex items-center justify-center cursor-pointer opacity-0 hover:opacity-100 transition z-20" title="Ganti Foto Profil"><i class="fas fa-camera text-white text-lg"></i></div>` : ''}
+                            </div>
+
+                            <!-- Tombol Edit Pensil -->
+                            ${isAdmin ? `<button onclick="editProfil(${index})" class="absolute right-[calc(50%-4rem)] top-[-1.5rem] bg-yellow-500 hover:bg-yellow-600 text-white w-7 h-7 rounded-full flex items-center justify-center transition shadow z-20" title="Edit Profil"><i class="fas fa-pencil-alt text-xs"></i></button>` : ''}
+
+                            <h3 class="text-sm font-bold text-center text-[#1B427B] mt-1 mb-2 leading-tight line-clamp-1">${profil.nama}</h3>
+                            
+                            <div class="flex flex-col gap-1 text-left overflow-y-auto hide-scroll flex-grow">
+                                <div class="flex flex-col border-b border-gray-100 pb-0.5">
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase">Skills:</span>
+                                    <span class="text-[11px] font-medium text-gray-700">${profil.skills}</span>
+                                </div>
+                                <div class="flex flex-col border-b border-gray-100 pb-0.5">
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase">Skill Bahasa:</span>
+                                    <span class="text-[11px] font-medium text-gray-700">${profil.bahasa}</span>
+                                </div>
+                                
+                                ${socmedHTML}
+                                
+                                <div class="flex flex-col items-center text-center mt-auto pb-1">
+    <span class="text-[9px] font-bold text-gray-400 uppercase">Bisnis</span>
+    <span class="text-[11px] font-bold text-gray-800 line-clamp-1 w-full">${profil.bisnis}</span>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (isAdmin) {
+                grid.innerHTML += `
+                    <div onclick="openModalProfil()" class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100 hover:border-himasiBlue hover:text-himasiBlue transition aspect-[1/1] group shadow-sm">
+                        <div class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fas fa-plus text-2xl text-gray-400 group-hover:text-himasiBlue"></i></div>
+                        <span class="text-gray-500 font-bold group-hover:text-himasiBlue">Tambahkan Profil</span>
+                    </div>
+                `;
+            }
+        }
+		
+        // 2. Fungsi saveImageEdit yang sudah diupdate
+        function saveImageEdit(id, url) { 
+            const img = document.getElementById(id); 
+            if (img) img.src = url; 
+            if(!localCmsData.images) localCmsData.images = {}; 
+            localCmsData.images[id] = url; 
+            simpanKeFirebase(); // Auto save
+        }
+		
     </script>
 </body>
 </html>
