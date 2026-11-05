@@ -1,1290 +1,1055 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- ================= SEO & META TAGS ================= -->
-    <title>HIMATIKA - Universitas Indonesia Mandiri</title>
-    <meta name="description" content="Website Resmi Himpunan Mahasiswa Informatika (HIMATIKA) Universitas Indonesia Mandiri (UIM).">
-    <meta name="keywords" content="Himatika, Himatika UIM, himatika uim, HIMATIKA UIM, Himatika Universitas Indonesia Mandiri, Universitas Indonesia Mandiri, UIM">
-    
-    <!-- Open Graph (Tautan Judul & Nama Situs untuk Sosmed/Pencarian) -->
-    <meta property="og:title" content="HIMATIKA - Universitas Indonesia Mandiri">
-    <meta property="og:site_name" content="HIMATIKA UIM">
-    <meta property="og:image" content="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
-    <meta property="og:type" content="website">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050E1F">
 
-    <!-- Web Icon (Favicon) -->
-    <link rel="icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" type="image/png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
-    <!-- =================================================== -->
-    
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-	
-	<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics-compat.js"></script>
+<!-- ================= SEO & META ================= -->
+<title>HIMATIKA - Universitas Indonesia Mandiri</title>
+<meta name="description" content="Website Resmi Himpunan Mahasiswa Informatika (HIMATIKA) Universitas Indonesia Mandiri (UIM).">
+<meta name="keywords" content="Himatika, Himatika UIM, himatika uim, HIMATIKA UIM, Himatika Universitas Indonesia Mandiri, Universitas Indonesia Mandiri, UIM">
+<meta property="og:title" content="HIMATIKA - Universitas Indonesia Mandiri">
+<meta property="og:site_name" content="HIMATIKA UIM">
+<meta property="og:description" content="Website Resmi Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri.">
+<meta property="og:image" content="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" type="image/png">
+<link rel="apple-touch-icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        himasiBlue: '#0d72bf',
-                        himasiDark: '#363537',
-                        textDark: '#444444'
-                    },
-                    fontFamily: {
-                        sans: ['Roboto', 'sans-serif'],
-                        heading: ['Raleway', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+<!-- Terapkan tema sebelum render (mencegah kedipan) -->
+<script>
+  (function(){var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;})();
+</script>
 
-    <style>
-        @font-face {
-            font-family: 'Grames';
-            src: url('GRAMES.ttf') format('truetype'),
-                 url('GRAMES.ttp') format('truetype'); 
-            font-weight: bold;
-            font-style: normal;
-        }
-        .font-grames { font-family: 'Grames', sans-serif; letter-spacing: 2px; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .hero-text-wrapper {
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5)); display: flex; flex-direction: column;
-            align-items: center; justify-content: center; width: 100%;
-        }
+<style>
+@font-face{font-family:'Grames';src:url('GRAMES.ttf') format('truetype');font-display:swap}
 
-        .hero-gradient {
-            background: linear-gradient(135deg, #ffffff 35%, #1B427B 50%, #ffffff 65%);
-            background-size: 300% 300%; background-attachment: fixed; -webkit-background-clip: text;
-            background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent;
-            animation: flowHero 8s linear infinite; padding-top: 20px; padding-bottom: 20px;
-            line-height: 1.2; display: inline-block;
-        }
+/* ================= DESIGN TOKENS ================= */
+:root{
+  --navy-950:#050E1F; --navy-900:#0A1A33; --navy-800:#0F2547; --navy-700:#16335F; --navy-600:#1E4380;
+  --gold:#F5B841; --gold-2:#FFD47A; --cyan:#38BDF8; --mint:#34D399; --coral:#FB7185;
+  --bg:#F5F4F1; --bg-2:#ECEAE4; --surface:#FFFFFF; --text:#0B1424; --text-2:#5B6578;
+  --line:rgba(10,26,51,.08);
+  --radius:24px;
+  --shadow:0 10px 30px -14px rgba(10,26,51,.25);
+  --shadow-lg:0 30px 60px -22px rgba(10,26,51,.4);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+[data-theme="dark"]{
+  --bg:#07111F; --bg-2:#0A1628; --surface:#0E1C33; --text:#E8EEF8; --text-2:#93A1B8;
+  --line:rgba(255,255,255,.08);
+  --shadow:0 10px 30px -14px rgba(0,0,0,.6);
+  --shadow-lg:0 30px 60px -22px rgba(0,0,0,.7);
+}
 
-        @keyframes flowHero { 0% { background-position: 100% 100%; } 75% { background-position: 0% 0%; } 100% { background-position: 0% 0%; } }
+/* ================= BASE ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;transition:background .4s,color .4s}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+::selection{background:var(--gold);color:var(--navy-950)}
+.container{width:min(1200px,100% - 2.5rem);margin-inline:auto}
+section{position:relative}
+.section{padding:clamp(4.5rem,9vw,7.5rem) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#C98A0B;margin-bottom:1rem}
+[data-theme="dark"] .eyebrow{color:var(--gold)}
+.eyebrow::before{content:'';width:26px;height:2px;background:currentColor;border-radius:2px}
+.title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,4.2vw,3.1rem);line-height:1.1;letter-spacing:-.025em;font-weight:700}
+.hl{background:linear-gradient(90deg,var(--navy-600),#0EA5E9);-webkit-background-clip:text;background-clip:text;color:transparent}
+[data-theme="dark"] .hl{background-image:linear-gradient(90deg,var(--cyan),var(--gold-2))}
+.lead{color:var(--text-2);font-size:clamp(1rem,1.25vw,1.08rem);max-width:60ch}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
 
-        .name-gradient {
-            background: linear-gradient(135deg, #DAA520 15%, #ADD8E6 50%, #DAA520 85%);
-            background-size: 200% 200%; -webkit-background-clip: text; background-clip: text;
-            color: transparent !important; -webkit-text-fill-color: transparent;
-            animation: flowName 4s ease-in-out infinite; animation-delay: 0.5s;
-        }
-        @keyframes flowName { 0% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } 100% { background-position: 0% 0%; } }
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform .35s var(--ease),box-shadow .35s,background .35s;white-space:nowrap}
+.btn i{transition:transform .35s var(--ease)}
+.btn:hover i{transform:translateX(4px)}
+.btn-gold{background:var(--gold);color:var(--navy-950);box-shadow:0 10px 25px -8px rgba(245,184,65,.6)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 35px -10px rgba(245,184,65,.8)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.22);color:#fff;background:rgba(255,255,255,.05);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-3px)}
+.btn-dark{background:var(--navy-900);color:#fff}
+[data-theme="dark"] .btn-dark{background:var(--gold);color:var(--navy-950)}
+.btn-dark:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.btn-sm{padding:.7rem 1.2rem;font-size:.85rem}
 
-        .glitch { position: relative; cursor: pointer; z-index: 2; }
-        .glitch:hover { background: transparent !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }
-        .glitch::before, .glitch::after {
-            position: absolute; content: attr(data-text); top: 0; left: 0; width: 100%; height: 100%;
-            visibility: hidden; pointer-events: none; background: none; -webkit-background-clip: initial; background-clip: initial;
-            color: transparent; -webkit-text-fill-color: transparent; padding-top: 20px; padding-bottom: 20px; line-height: 1.2; white-space: nowrap;
-        }
-        .glitch:hover::before { visibility: visible; color: rgba(255,0,188,.8) !important; -webkit-text-fill-color: rgba(255,0,188,.8) !important; animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) both infinite; z-index: 10; }
-        .glitch:hover::after { visibility: visible; color: rgba(0,255,255,.8) !important; -webkit-text-fill-color: rgba(0,255,255,.8) !important; animation: hover-glitch .3s cubic-bezier(.25,.46,.45,.94) reverse both infinite; z-index: 11; }
-        @keyframes hover-glitch { 0% { transform: translate(0); } 20% { transform: translate(-3px, 3px); } 40% { transform: translate(-3px, -3px); } 60% { transform: translate(3px, 3px); } 80% { transform: translate(3px, -3px); } 100% { transform: translate(0); } }
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
 
-        .hero-bg { background-size: cover; background-position: center; background-repeat: no-repeat; animation: fadeHeroBg 6s infinite; }
-        @keyframes fadeHeroBg { 
-            0%, 28% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
-            33%, 61% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
-            66%, 94% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
-            100% { background-image: linear-gradient(rgba(0, 20, 54, 0.6), rgba(0, 20, 54, 0.6)), url('https://i.ibb.co.com/9m32CLTQ/Proyek-Baru-149-36-DD1-DE.png'); } 
-        }
+/* ================= LOADER / PROGRESS / CURSOR ================= */
+.loader{position:fixed;inset:0;z-index:9999;background:var(--navy-950);display:grid;place-items:center;transition:opacity .7s var(--ease),visibility .7s}
+.loader.hide{opacity:0;visibility:hidden}
+.loader-inner{display:flex;flex-direction:column;align-items:center}
+.loader-logo{width:78px;height:78px;border-radius:50%;animation:pulse 1.4s ease-in-out infinite}
+.loader-bar{width:150px;height:3px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin-top:1.4rem}
+.loader-bar span{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--cyan),var(--gold));animation:load 1.1s ease-in-out infinite}
+@keyframes load{from{transform:translateX(-100%)}to{transform:translateX(260%)}}
+@keyframes pulse{50%{transform:scale(1.08);filter:drop-shadow(0 0 25px rgba(56,189,248,.6))}}
+.progress{position:fixed;top:0;left:0;width:100%;height:3px;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--cyan),var(--gold));z-index:1200}
+.cursor-glow{position:fixed;top:0;left:0;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.10),transparent 60%);pointer-events:none;z-index:1;display:none}
 
-        .shimmer-text { background: linear-gradient(135deg, #a0aec0 20%, #ffffff 50%, #a0aec0 80%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; animation: shimmer 3s linear infinite; cursor: pointer; }
-        @keyframes shimmer { to { background-position: 200% center; } }
+/* ================= DESKTOP HEADER ================= */
+.header{position:fixed;top:1rem;left:50%;transform:translateX(-50%);width:min(1200px,100% - 2rem);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:.6rem .7rem .6rem 1.1rem;border-radius:999px;border:1px solid transparent;transition:all .45s var(--ease)}
+.header.scrolled{background:rgba(10,26,51,.72);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-color:rgba(255,255,255,.08);box-shadow:0 12px 40px -12px rgba(0,0,0,.45)}
+.brand{display:flex;align-items:center;gap:.7rem;color:#fff}
+.brand img{width:40px;height:40px;border-radius:50%}
+.brand b{font-family:'Grames','Space Grotesk',sans-serif;font-size:1.15rem;letter-spacing:.08em;line-height:1;display:block}
+.brand small{display:block;font-size:.6rem;opacity:.6;letter-spacing:.14em;margin-top:3px}
+.nav{display:flex;align-items:center;gap:.2rem}
+.nav>a,.dd>button{color:rgba(255,255,255,.72);font-size:.9rem;font-weight:600;padding:.6rem 1rem;border-radius:999px;transition:.25s;display:flex;align-items:center;gap:.4rem}
+.nav>a:hover,.nav>a.active,.dd:hover>button{color:#fff;background:rgba(255,255,255,.09)}
+.dd{position:relative}
+.dd>button i{font-size:.65rem;transition:transform .3s}
+.dd:hover>button i{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + .7rem);left:50%;transform:translate(-50%,10px);min-width:270px;background:rgba(10,26,51,.96);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:.5rem;opacity:0;visibility:hidden;transition:.35s var(--ease);box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.dd-menu::before{content:'';position:absolute;top:-.9rem;left:0;right:0;height:.9rem}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.dd-menu a{display:flex;align-items:center;gap:.8rem;padding:.65rem .8rem;border-radius:14px;color:rgba(255,255,255,.85);font-size:.88rem;font-weight:600;transition:.25s}
+.dd-menu a:hover{background:rgba(255,255,255,.07);color:#fff;padding-left:1rem}
+.dd-menu a i{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c);font-size:.9rem}
+.header-actions{display:flex;gap:.5rem;align-items:center}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.09);transition:.35s var(--ease)}
+.icon-btn:hover{background:rgba(255,255,255,.18);transform:rotate(20deg)}
 
-        .btn-dashboard-glow { position: relative; overflow: hidden; }
-        .btn-dashboard-glow::after {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
-            transform: translate(-100%, -100%); animation: sweepLight 4s infinite linear;
-        }
-        @keyframes sweepLight { 0% { transform: translate(-100%, -100%); } 50% { transform: translate(100%, 100%); } 100% { transform: translate(100%, 100%); } }
+/* ================= MOBILE APPBAR / BOTTOM NAV / SHEET ================= */
+.appbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:none;align-items:center;justify-content:space-between;padding:calc(.75rem + env(safe-area-inset-top)) 1.1rem .75rem;transition:.4s var(--ease)}
+.appbar.scrolled{background:rgba(5,14,31,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 8px 30px -12px rgba(0,0,0,.5)}
+.appbar .brand img{width:34px;height:34px}
+.appbar .brand b{font-size:1rem}
+.bottom-nav{position:fixed;left:.8rem;right:.8rem;bottom:calc(.8rem + env(safe-area-inset-bottom));z-index:1000;display:none;background:rgba(10,26,51,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:.45rem;box-shadow:0 16px 40px -10px rgba(0,0,0,.55)}
+.bottom-nav a,.bottom-nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:.2rem;font-size:.64rem;font-weight:700;color:rgba(255,255,255,.5);padding:.5rem 0;border-radius:18px;transition:.3s var(--ease)}
+.bottom-nav i{font-size:1.1rem;transition:transform .35s var(--ease)}
+.bottom-nav .active{color:var(--gold);background:rgba(245,184,65,.1)}
+.bottom-nav .active i{transform:translateY(-2px) scale(1.1)}
+.sheet-backdrop{position:fixed;inset:0;background:rgba(5,14,31,.55);backdrop-filter:blur(4px);z-index:1100;opacity:0;visibility:hidden;transition:.35s}
+.sheet-backdrop.open{opacity:1;visibility:visible}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:1101;background:var(--surface);color:var(--text);border-radius:28px 28px 0 0;padding:.8rem 1.25rem calc(1.6rem + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .5s var(--ease);max-height:86vh;overflow:auto}
+.sheet.open{transform:translateY(0)}
+.sheet-handle{width:46px;height:5px;border-radius:5px;background:rgba(127,127,127,.35);margin:0 auto 1.2rem}
+.sheet h4{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-2);margin:1.2rem 0 .8rem}
+.sheet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.sheet-grid a{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1rem .4rem;border-radius:18px;background:var(--bg);font-size:.72rem;font-weight:700;text-align:center;line-height:1.3;transition:transform .2s}
+.sheet-grid a:active{transform:scale(.95)}
+.sheet-grid a i{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;color:#fff;font-size:1.05rem;background:var(--c)}
 
-        .editable-txt[contenteditable="true"] { outline: 2px dashed rgba(255, 255, 255, 0.6); outline-offset: 4px; cursor: text; background: transparent !important; transition: all 0.2s; position: relative; z-index: 50; }
-        .editable-txt[contenteditable="true"]:focus { outline: 3px solid #0d72bf; background: transparent !important; z-index: 60; }
-        .hero-gradient[contenteditable="true"], .name-gradient[contenteditable="true"], .glitch[contenteditable="true"] {
-            -webkit-text-fill-color: #ffffff !important; color: #ffffff !important; -webkit-background-clip: initial !important; background-clip: initial !important; text-shadow: 0 4px 10px rgba(0,0,0,0.9);
-        }
+/* ================= HERO ================= */
+.hero{min-height:100vh;min-height:100svh;background:var(--navy-950);color:#fff;display:flex;align-items:center;overflow:hidden;padding:8rem 0 6rem}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 40%,#000 25%,transparent 75%)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);animation:float 16s ease-in-out infinite}
+.b1{width:560px;height:560px;background:var(--navy-600);top:-160px;left:-140px;opacity:.7}
+.b2{width:400px;height:400px;background:var(--cyan);bottom:-140px;right:12%;opacity:.22;animation-delay:-5s}
+.b3{width:320px;height:320px;background:var(--gold);top:18%;right:-100px;opacity:.16;animation-delay:-10s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,25px) scale(.95)}}
+.hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;position:relative;z-index:2}
+.badge{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem 1rem .4rem .4rem;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:.8rem;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:1.6rem}
+.badge span{background:var(--gold);color:var(--navy-950);padding:.2rem .7rem;border-radius:999px;font-size:.68rem;font-weight:800;letter-spacing:.05em}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.3rem,5.8vw,4.5rem);line-height:1.03;letter-spacing:-.035em;font-weight:700}
+.grad{background:linear-gradient(100deg,#fff 10%,var(--cyan) 45%,var(--gold) 85%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.typing{color:var(--gold);white-space:nowrap}
+.typing::after{content:'';display:inline-block;width:3px;height:.85em;background:var(--gold);margin-left:5px;vertical-align:-.08em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero .lead{color:rgba(255,255,255,.7);margin:1.5rem 0 2.3rem}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+.hero-meta{display:flex;gap:2.4rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.09)}
+.hero-meta b{font-family:'Space Grotesk',sans-serif;font-size:1.9rem;display:block;line-height:1.1}
+.hero-meta small{color:rgba(255,255,255,.55);font-size:.8rem}
+.hero-visual{position:relative;aspect-ratio:1;display:grid;place-items:center;max-width:480px;width:100%;justify-self:center}
+.orbit{position:absolute;border-radius:50%;border:1px dashed rgba(255,255,255,.15);animation:spin 40s linear infinite}
+.o1{inset:3%}
+.o2{inset:17%;border-style:solid;border-color:rgba(56,189,248,.2);animation-duration:26s;animation-direction:reverse}
+.orbit .dot{position:absolute;top:-6px;left:calc(50% - 6px);width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 22px var(--gold)}
+.o2 .dot{background:var(--cyan);box-shadow:0 0 22px var(--cyan)}
+.logo-core{width:48%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);display:grid;place-items:center;box-shadow:0 0 90px rgba(56,189,248,.28),inset 0 0 40px rgba(255,255,255,.06);animation:bob 6s ease-in-out infinite}
+.logo-core img{width:74%;filter:drop-shadow(0 12px 25px rgba(0,0,0,.45))}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{50%{transform:translateY(-14px)}}
+.chip{position:absolute;display:flex;align-items:center;gap:.55rem;padding:.65rem 1rem;border-radius:14px;background:rgba(15,37,71,.72);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);font-size:.82rem;font-weight:700;box-shadow:0 15px 30px -10px rgba(0,0,0,.5);animation:bob 5s ease-in-out infinite;white-space:nowrap}
+.chip i{color:var(--gold)}
+.c1{top:9%;left:-6%}
+.c2{top:47%;right:-10%;animation-delay:-1.6s}.c2 i{color:var(--cyan)}
+.c3{bottom:7%;left:4%;animation-delay:-3.2s}.c3 i{color:var(--mint)}
+.scroll-hint{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);width:26px;height:42px;border:2px solid rgba(255,255,255,.3);border-radius:20px;z-index:2}
+.scroll-hint::after{content:'';position:absolute;top:7px;left:50%;width:4px;height:8px;margin-left:-2px;background:var(--gold);border-radius:4px;animation:scrollDot 1.8s ease-in-out infinite}
+@keyframes scrollDot{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
 
-        .cam-overlay { position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; cursor: pointer; z-index: 10; }
-        .editable-img-wrapper:hover .cam-overlay { opacity: 1; }
-        .editable-img-wrapper { position: relative; display: inline-block; width: 100%; height: 100%; overflow: hidden; }
-        .btn-save-pop { animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+/* ================= MARQUEE ================= */
+.marquee{background:var(--gold);color:var(--navy-950);padding:1.05rem 0;overflow:hidden;transform:rotate(-1.6deg);margin:-1.8rem -2rem 0;position:relative;z-index:5;box-shadow:0 15px 40px -15px rgba(245,184,65,.6)}
+.marquee-track{display:flex;width:max-content;animation:marquee 32s linear infinite}
+.marquee-track span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;white-space:nowrap;padding-right:2.5rem;display:flex;align-items:center;gap:2.5rem}
+.marquee-track span::after{content:'✦';font-size:.9rem}
+@keyframes marquee{to{transform:translateX(-50%)}}
 
-        @keyframes scrollHint { 0%, 100% { transform: translateX(0); opacity: 0.3; } 50% { transform: translateX(5px); opacity: 1; } }
-        .animate-scroll-hint { animation: scrollHint 2.5s ease-in-out infinite; animation-delay: 1s; }
-        .hide-scroll::-webkit-scrollbar { display: none; }
-        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+/* ================= CARDS ================= */
+.card{position:relative;background:var(--surface);border-radius:var(--radius);padding:1.9rem;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .45s var(--ease),box-shadow .45s;overflow:hidden}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.spot::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(56,189,248,.13),transparent 45%);opacity:0;transition:opacity .4s}
+.spot:hover::after{opacity:1}
+.card-icon{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:1.2rem}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;margin-bottom:.5rem;letter-spacing:-.01em}
+.card p{color:var(--text-2);font-size:.95rem}
 
-        :root { --fixed-bg: rgba(255, 255, 255, 0.9); --fixed-text: #2c3e50; --card-bg: #fff; --text-color: #333; }
-        .now-playing-box { position: fixed; bottom: 20px; right: 0; z-index: 9999; background: var(--fixed-bg); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 8px; padding-right: 20px; border-top-left-radius: 50px; border-bottom-left-radius: 50px; box-shadow: -5px 5px 20px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; width: 300px; transform: translateX(calc(100% - 50px)); transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
-        .now-playing-box.expanded { transform: translateX(0); }
-        .np-icon { width: 35px; height: 35px; flex-shrink: 0; background: #e91e63; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; animation: spin 3s linear infinite; cursor: pointer; box-shadow: 0 0 10px rgba(233, 30, 99, 0.6); position: relative; z-index: 2; }
-        .now-playing-box:not(.expanded) .np-icon { animation: spin 3s linear infinite, pulseIcon 2s infinite; }
-        @keyframes pulseIcon { 0% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(233, 30, 99, 0); } 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0); } }
-        .np-content { display: flex; align-items: center; justify-content: space-between; width: 100%; overflow: hidden; opacity: 0; transition: opacity 0.2s; }
-        .now-playing-box.expanded .np-content { opacity: 1; transition-delay: 0.2s; }
-        .np-info { display: flex; flex-direction: column; overflow: hidden; max-width: 140px; }
-        .np-label { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
-        .np-title { font-size: 12px; font-weight: 700; color: var(--fixed-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .np-controls { display: flex; gap: 8px; }
-        .np-btn { background: rgba(0,0,0,0.05); border: none; color: var(--fixed-text); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 12px; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
-        .np-btn:hover { background: #e91e63; color: white; }
-        .np-btn.active-list { background: #3498db; color: white; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        .playlist-box { position: fixed; bottom: 80px; right: 20px; width: 280px; max-height: 400px; background: var(--card-bg); border-radius: 15px; z-index: 9998; padding: 3px; opacity: 0; visibility: hidden; transform: translateY(20px); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: hidden; }
-        .playlist-box.show { opacity: 1; visibility: visible; transform: translateY(0); }
-        .playlist-box::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000); animation: rotateRGB 4s linear infinite; z-index: 0; }
-        @keyframes rotateRGB { 100% { transform: rotate(360deg); } }
-        .playlist-inner { position: relative; z-index: 1; background: var(--card-bg); width: 100%; height: 100%; border-radius: 12px; display: flex; flex-direction: column; color: var(--text-color); }
-        .playlist-header { padding: 12px 15px; font-weight: bold; border-bottom: 1px solid rgba(128,128,128,0.2); display: flex; justify-content: space-between; align-items: center; }
-        .playlist-scroll { padding: 10px; overflow-y: auto; max-height: 300px; }
-        .track-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; margin-bottom: 5px; }
-        .track-item:hover { background: rgba(0,0,0,0.05); }
-        .track-item.playing { background: rgba(52, 152, 219, 0.15); border-left: 3px solid #3498db; }
-        .track-icon { font-size: 12px; color: #7f8c8d; width: 20px; text-align: center; }
-        .track-item.playing .track-icon { color: #3498db; animation: pulse 1s infinite; }
-        .track-info { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
-        .track-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .track-status { font-size: 10px; color: #aaa; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
-    </style>
+/* ================= ABOUT (BENTO) ================= */
+.about-head{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:3rem}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(190px,auto);gap:1.1rem}
+.bento .visi{grid-column:span 2;grid-row:span 2;background:linear-gradient(150deg,var(--navy-700),var(--navy-950));color:#fff;border:0;display:flex;flex-direction:column;justify-content:flex-end}
+.bento .visi::before{content:'';position:absolute;width:340px;height:340px;top:-90px;right:-90px;border-radius:50%;border:50px solid rgba(255,255,255,.04);box-shadow:0 0 0 40px rgba(255,255,255,.025)}
+.bento .visi .card-icon{background:var(--gold);color:var(--navy-950)}
+.bento .visi p{color:rgba(255,255,255,.78);font-size:1.12rem;line-height:1.7}
+.bento .visi h3{font-size:1.6rem}
+.bento .misi{grid-column:span 2}
+.misi ul{list-style:none;display:grid;gap:.7rem;margin-top:.4rem}
+.misi li{display:flex;gap:.75rem;color:var(--text-2);font-size:.94rem}
+.misi li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;flex-shrink:0;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:.65rem;background:rgba(52,211,153,.15);color:#059669;margin-top:2px}
+.ic-gold{background:rgba(245,184,65,.16);color:#C98A0B}
+.ic-cyan{background:rgba(56,189,248,.15);color:#0284C7}
+.ic-mint{background:rgba(52,211,153,.15);color:#059669}
+[data-theme="dark"] .ic-gold{color:var(--gold)}[data-theme="dark"] .ic-cyan{color:var(--cyan)}[data-theme="dark"] .ic-mint{color:var(--mint)}
+
+/* ================= LEADERS ================= */
+.leaders-sec{background:var(--bg-2)}
+.leaders{display:grid;grid-template-columns:repeat(2,minmax(0,380px));justify-content:center;gap:2rem}
+.leader{position:relative;border-radius:30px;overflow:hidden;background:var(--navy-900);aspect-ratio:4/5;color:#fff;box-shadow:var(--shadow-lg);transition:transform .25s ease-out}
+.leader img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.leader:hover img{transform:scale(1.07)}
+.leader::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(5,14,31,.96) 5%,rgba(5,14,31,.3) 45%,transparent 70%)}
+.leader-info{position:absolute;left:0;right:0;bottom:0;padding:1.7rem;z-index:2}
+.leader-role{display:inline-block;background:var(--gold);color:var(--navy-950);font-size:.68rem;font-weight:800;padding:.32rem .85rem;border-radius:999px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem}
+.leader:nth-child(2) .leader-role{background:var(--cyan)}
+.leader h3{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;line-height:1.2}
+.leader p{color:rgba(255,255,255,.65);font-size:.88rem;margin-top:.3rem}
+.leader-num{position:absolute;top:1.2rem;right:1.4rem;z-index:2;font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:700;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.35);line-height:1}
+.quote{max-width:720px;margin:3.5rem auto 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:clamp(1.1rem,2vw,1.4rem);line-height:1.5;color:var(--text)}
+.quote i{color:var(--gold);font-size:1.4rem;display:block;margin-bottom:.8rem}
+
+/* ================= DEPARTEMEN ================= */
+.dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.dept{position:relative;padding:1.9rem;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);overflow:hidden;transition:transform .45s var(--ease),box-shadow .45s,color .35s;display:flex;flex-direction:column;min-height:230px;box-shadow:var(--shadow)}
+.dept::before{content:'';position:absolute;inset:0;background:linear-gradient(140deg,var(--c),color-mix(in srgb,var(--c) 60%,#050E1F));opacity:0;transition:opacity .45s}
+.dept:hover{color:#fff;transform:translateY(-8px);box-shadow:0 30px 50px -22px color-mix(in srgb,var(--c) 70%,transparent)}
+.dept:hover::before{opacity:1}
+.dept>*{position:relative;z-index:1}
+.dept .card-icon{background:color-mix(in srgb,var(--c) 15%,transparent);color:var(--c);transition:.35s}
+.dept:hover .card-icon{background:rgba(255,255,255,.2);color:#fff;transform:rotate(-8deg) scale(1.05)}
+.dept h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;margin-bottom:.4rem}
+.dept p{color:var(--text-2);font-size:.9rem;transition:color .35s}
+.dept:hover p{color:rgba(255,255,255,.85)}
+.dept .go{margin-top:auto;padding-top:1.2rem;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.85rem}
+.dept .go i{transition:transform .35s var(--ease)}
+.dept:hover .go i{transform:translateX(6px)}
+.dept.all{background:var(--navy-900);color:#fff;border:0}
+.dept.all p{color:rgba(255,255,255,.7)}
+.dept.all .card-icon{background:var(--gold);color:var(--navy-950)}
+
+/* ================= STATS ================= */
+.stats{background:var(--navy-950);color:#fff;overflow:hidden}
+.stats .hero-grid{opacity:.6}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative;z-index:2}
+.stat{padding:2rem 1.5rem;border-radius:var(--radius);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);text-align:center;transition:.4s var(--ease)}
+.stat:hover{background:rgba(255,255,255,.08);transform:translateY(-5px)}
+.stat i{font-size:1.4rem;color:var(--gold);margin-bottom:1rem}
+.stat:nth-child(2) i{color:var(--cyan)}.stat:nth-child(3) i{color:var(--mint)}.stat:nth-child(4) i{color:var(--coral)}
+.stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1}
+.stat b::after{content:attr(data-suffix);color:var(--gold)}
+.stat small{color:rgba(255,255,255,.6);font-size:.85rem;font-weight:600}
+
+/* ================= NEWS ================= */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.news{background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .45s var(--ease),box-shadow .45s;display:flex;flex-direction:column}
+.news:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.news-img{aspect-ratio:16/10;overflow:hidden;background:var(--navy-800);position:relative}
+.news-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.news:hover .news-img img{transform:scale(1.08)}
+.news-tag{position:absolute;top:1rem;left:1rem;background:rgba(5,14,31,.75);backdrop-filter:blur(8px);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .8rem;border-radius:999px}
+.news-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+.news-date{font-size:.76rem;color:#C98A0B;font-weight:700;display:flex;align-items:center;gap:.4rem}
+[data-theme="dark"] .news-date{color:var(--gold)}
+.news h3{font-family:'Space Grotesk',sans-serif;font-size:1.12rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news p{color:var(--text-2);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.read-more{margin-top:auto;padding-top:.6rem;font-weight:700;font-size:.85rem;display:flex;align-items:center;gap:.45rem;color:var(--navy-600)}
+[data-theme="dark"] .read-more{color:var(--cyan)}
+.news:hover .read-more i{transform:translateX(5px)}
+.read-more i{transition:transform .35s var(--ease)}
+.skeleton{min-height:360px;background:linear-gradient(100deg,var(--surface) 30%,var(--bg-2) 50%,var(--surface) 70%);background-size:300% 100%;animation:shimmer 1.4s linear infinite;border-radius:var(--radius);border:1px solid var(--line)}
+@keyframes shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+.empty{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--text-2);border:2px dashed var(--line);border-radius:var(--radius)}
+.empty i{font-size:2rem;margin-bottom:.8rem;color:var(--gold)}
+
+/* ================= CTA / KONTAK ================= */
+.cta{background:linear-gradient(135deg,var(--navy-800),var(--navy-950) 60%);color:#fff;border-radius:36px;padding:clamp(2rem,5vw,4rem);display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:var(--cyan);filter:blur(120px);opacity:.18;right:-100px;top:-120px}
+.cta::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:var(--gold);filter:blur(120px);opacity:.14;left:-80px;bottom:-140px}
+.cta>*{position:relative;z-index:1}
+.cta .title{color:#fff}
+.cta .lead{color:rgba(255,255,255,.7);margin-top:1rem}
+.socials{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
+.social{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);font-size:1.15rem;transition:.35s var(--ease)}
+.social:hover{transform:translateY(-5px);background:var(--c);border-color:transparent;box-shadow:0 12px 25px -8px var(--c)}
+.cv-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:1.6rem;backdrop-filter:blur(10px)}
+.cv-box h4{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;margin-bottom:.3rem}
+.cv-box>p{color:rgba(255,255,255,.6);font-size:.88rem;margin-bottom:1.2rem}
+.cv-list{display:grid;gap:.6rem}
+.cv-chip{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-radius:14px;background:rgba(255,255,255,.06);font-weight:600;font-size:.92rem;transition:.3s var(--ease)}
+.cv-chip span{display:flex;align-items:center;gap:.7rem}
+.cv-chip span i{color:var(--gold)}
+.cv-chip:hover{background:var(--gold);color:var(--navy-950);padding-left:1.4rem}
+.cv-chip:hover span i{color:var(--navy-950)}
+
+/* ================= FOOTER ================= */
+.footer{background:var(--navy-950);color:rgba(255,255,255,.7);padding:4.5rem 0 2rem;margin-top:clamp(4rem,8vw,6rem)}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:2.5rem}
+.footer h5{color:#fff;font-size:.95rem;margin-bottom:1.1rem;font-family:'Space Grotesk',sans-serif}
+.footer ul{list-style:none;display:grid;gap:.6rem;font-size:.9rem}
+.footer ul a{transition:.25s}
+.footer ul a:hover{color:var(--gold);padding-left:4px}
+.footer .brand{margin-bottom:1rem}
+.footer-desc{font-size:.9rem;max-width:34ch}
+.contact-item{display:flex;gap:.7rem;font-size:.9rem;margin-bottom:.7rem}
+.contact-item i{color:var(--gold);margin-top:5px}
+.footer-bottom{margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.82rem}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* ================= FLOATING: MUSIC / TOTOP / EDIT / TOAST ================= */
+.np{position:fixed;left:1.5rem;bottom:1.5rem;z-index:900;display:flex;align-items:center;gap:.7rem;padding:.4rem;border-radius:999px;background:rgba(10,26,51,.85);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);color:#fff;box-shadow:0 12px 30px -10px rgba(0,0,0,.5);max-width:52px;overflow:hidden;transition:max-width .55s var(--ease)}
+.np.expanded{max-width:300px;padding-right:.5rem}
+.np-disc{width:42px;height:42px;flex-shrink:0;border-radius:50%;background:conic-gradient(from 0deg,var(--gold),var(--coral),var(--cyan),var(--gold));display:grid;place-items:center;cursor:pointer}
+.np-disc::before{content:'';width:14px;height:14px;border-radius:50%;background:var(--navy-950);box-shadow:0 0 0 4px rgba(255,255,255,.25)}
+.np.playing .np-disc{animation:spin 3s linear infinite}
+.np-info{white-space:nowrap;font-size:.78rem;line-height:1.3;min-width:120px}
+.np-info b{display:block;font-size:.85rem}
+.np-info small{opacity:.6}
+.np-bars{display:flex;gap:2px;align-items:flex-end;height:14px}
+.np-bars i{width:3px;background:var(--gold);border-radius:2px;height:4px}
+.np.playing .np-bars i{animation:eq .9s ease-in-out infinite}
+.np-bars i:nth-child(2){animation-delay:-.3s!important}.np-bars i:nth-child(3){animation-delay:-.6s!important}
+@keyframes eq{50%{height:14px}}
+.np-btn{width:36px;height:36px;flex-shrink:0;border-radius:50%;background:var(--gold);color:var(--navy-950);display:grid;place-items:center;font-size:.8rem}
+.totop{position:fixed;right:1.5rem;bottom:1.5rem;z-index:900;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p,0)*1%),rgba(127,127,127,.25) 0);opacity:0;visibility:hidden;transform:translateY(20px);transition:.4s var(--ease)}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop span{width:44px;height:44px;border-radius:50%;background:var(--navy-900);color:#fff;display:grid;place-items:center;transition:.3s}
+.totop:hover span{background:var(--navy-700)}
+.edit-fab{position:fixed;right:1.5rem;bottom:5.5rem;z-index:950;display:none;align-items:center;gap:.6rem;padding:.85rem 1.2rem;border-radius:999px;background:var(--gold);color:var(--navy-950);font-weight:800;font-size:.85rem;box-shadow:0 12px 30px -8px rgba(245,184,65,.7)}
+body.is-admin .edit-fab{display:flex}
+body.editing .edit-fab{display:none}
+.edit-bar{position:fixed;top:1rem;left:50%;transform:translate(-50%,-180%);z-index:1300;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;justify-content:center;padding:.6rem .6rem .6rem 1.2rem;border-radius:20px;background:var(--navy-900);color:#fff;font-size:.85rem;box-shadow:0 20px 50px -10px rgba(0,0,0,.6);transition:transform .5s var(--ease);width:max-content;max-width:calc(100% - 1.5rem)}
+body.editing .edit-bar{transform:translate(-50%,0)}
+.edit-bar i{color:var(--gold)}
+.eb-btn{padding:.55rem 1rem;border-radius:12px;background:rgba(255,255,255,.1);font-weight:700;font-size:.82rem}
+.eb-btn.primary{background:var(--gold);color:var(--navy-950)}
+body.editing [data-edit]{outline:2px dashed var(--gold);outline-offset:4px;border-radius:6px;cursor:text}
+body.editing [data-edit]:focus{outline-style:solid;background:rgba(245,184,65,.08)}
+body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:6.5rem;transform:translate(-50%,30px);z-index:1400;background:var(--navy-900);color:#fff;padding:.85rem 1.3rem;border-radius:14px;font-size:.88rem;font-weight:600;box-shadow:0 15px 40px -10px rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:.4s var(--ease);border-left:4px solid var(--gold)}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+/* ================= DESKTOP-ONLY ================= */
+@media (min-width:961px){
+  .news-grid .news:first-child{grid-column:span 2;flex-direction:row}
+  .news-grid .news:first-child .news-img{aspect-ratio:auto;width:55%;flex-shrink:0}
+  .news-grid .news:first-child .news-body{padding:2rem;justify-content:center}
+  .news-grid .news:first-child h3{font-size:1.5rem;-webkit-line-clamp:3}
+  .news-grid .news:first-child p{-webkit-line-clamp:5}
+}
+@media (hover:hover) and (pointer:fine) and (min-width:961px){ .cursor-glow{display:block} }
+
+/* ================= TABLET & MOBILE ================= */
+@media (max-width:960px){
+  .header,.totop,.scroll-hint{display:none}
+  .appbar{display:flex}
+  .bottom-nav{display:flex}
+  body{padding-bottom:calc(5.5rem + env(safe-area-inset-bottom))}
+  .hero{padding:6.5rem 0 4.5rem;min-height:auto;text-align:center}
+  .hero-inner{grid-template-columns:1fr;gap:1.5rem}
+  .hero-visual{order:-1;max-width:230px}
+  .chip{display:none}
+  .badge{margin-inline:auto}
+  .hero .lead{margin-inline:auto}
+  .hero-cta{justify-content:center}
+  .hero-meta{justify-content:center;gap:1.6rem}
+  .about-head{grid-template-columns:1fr;gap:1rem}
+  .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+  .bento .visi{grid-row:span 1;min-height:260px}
+  .leaders{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding:0 1.25rem 1rem;margin:0 -1.25rem;scrollbar-width:none}
+  .leaders::-webkit-scrollbar{display:none}
+  .leader{flex:0 0 78%;max-width:340px;scroll-snap-align:center}
+  .dept-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .news-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding:0 1.25rem 1rem;margin:0 -1.25rem;scrollbar-width:none}
+  .news-grid::-webkit-scrollbar{display:none}
+  .news,.news-grid .skeleton{flex:0 0 80%;max-width:360px;scroll-snap-align:center}
+  .cta{grid-template-columns:1fr;border-radius:28px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-grid>div:first-child{grid-column:1/-1}
+  .np{left:auto;right:1rem;bottom:calc(6.2rem + env(safe-area-inset-bottom))}
+  .np.expanded{max-width:270px}
+  .edit-fab{right:1rem;bottom:calc(10rem + env(safe-area-inset-bottom))}
+  .toast{bottom:calc(6.5rem + env(safe-area-inset-bottom))}
+  .swipe-hint{display:flex!important}
+}
+@media (max-width:560px){
+  .container{width:calc(100% - 2.5rem)}
+  .section-head{margin-bottom:2rem}
+  .bento .visi,.bento .misi{grid-column:span 2}
+  .bento .v1,.bento .v2{padding:1.3rem}
+  .bento .v1 h3,.bento .v2 h3{font-size:1.05rem}
+  .bento .v1 p,.bento .v2 p{font-size:.84rem}
+  /* Departemen jadi list ala aplikasi */
+  .dept-grid{grid-template-columns:1fr;gap:.7rem}
+  .dept{flex-direction:row;align-items:center;min-height:auto;padding:1rem 1.1rem;gap:1rem;border-radius:20px}
+  .dept .card-icon{margin:0;width:48px;height:48px;flex-shrink:0;border-radius:15px}
+  .dept h3{font-size:1rem;margin:0}
+  .dept p{font-size:.8rem;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .dept .go{margin:0 0 0 auto;padding:0}
+  .dept .go span{display:none}
+  .dept-text{min-width:0}
+  .stat{padding:1.4rem 1rem}
+  .hero-meta b{font-size:1.5rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .footer-bottom{justify-content:center;text-align:center}
+  .marquee-track span{font-size:.95rem}
+}
+.swipe-hint{display:none;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--text-2);margin-top:-1.2rem;margin-bottom:1.2rem}
+.swipe-hint i{animation:swipe 1.6s ease-in-out infinite}
+@keyframes swipe{50%{transform:translateX(6px)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
-<body class="font-sans text-textDark bg-[#001436] overflow-x-hidden relative">
-<div id="mouse-glow" class="fixed top-0 left-0 w-[100px] h-[100px] rounded-full pointer-events-none z-[9999] opacity-50 blur-[60px] bg-white mix-blend-difference transition-transform duration-100 ease-out will-change-transform"></div>
 
-    <nav class="bg-[#1B427B] shadow-md fixed w-full z-[100] top-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" onclick="tutupCV(event)"><img class="h-14 w-auto rounded px-2 hover:opacity-80 transition" src="https://i.ibb.co/pBk0x659/1000028633.png" alt="HIMATIKA Logo"></a>
-                </div>
-                
-                <div class="hidden md:flex space-x-8 items-center">
-                    <div class="flex flex-col gap-1 text-center">
-                        <button id="btnEditModePC" onclick="toggleEditMode()" class="hidden text-white font-bold bg-red-500/90 px-3 py-1 rounded hover:bg-red-500 transition shadow text-xs whitespace-nowrap">
-                            <i class="fas fa-edit mr-1"></i> EDIT: OFF
-                        </button>
-                        <a href="dashboard.html" id="btnDashboard" class="hidden text-white font-bold bg-white/20 px-3 py-1 rounded hover:bg-white/30 transition shadow btn-dashboard-glow text-xs whitespace-nowrap">Dashboard Admin</a>
-                    </div>
-                    
-                    <a href="#" onclick="tutupCV(event)" class="text-white font-medium hover:text-gray-300 transition">Beranda</a>
-                    <button id="btnAdminAuth" onclick="openModal()" class="font-bold text-lg shimmer-text hover:scale-105 transition-transform">Admin</button>
-                    <a href="proker.html" class="text-gray-200 font-medium hover:text-white">Program Kerja</a>
-                    
-                    <div class="relative group cursor-pointer py-6">
-                        <span class="text-gray-200 font-medium group-hover:text-white">Curriculum Vitae <i class="fas fa-chevron-down text-xs ml-1"></i></span>
-                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100]">
-                            <div id="submenu-cv-pc" class="py-2">
-                                <div id="list-angkatan-pc"></div> 
-                                <a href="#" id="btn-tambah-angkatan-pc" onclick="openModalAngkatan(event)" class="hidden block px-4 py-3 text-sm text-green-600 font-bold hover:bg-gray-100 border-t">
-                                    <i class="fas fa-plus mr-1"></i> Tambah Angkatan
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="relative group cursor-pointer py-6">
-                        <span class="text-gray-200 font-medium group-hover:text-white">Departemen <i class="fas fa-chevron-down text-xs ml-1"></i></span>
-                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100]">
-                            <a href="struktur.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Komunikasi dan Informasi</a>
-                            <a href="stpemuda.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pemuda dan Olahraga</a>
-                            <a href="stagama.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Agama</a>
-                            <a href="stsdm.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pengembangan dan SDM</a>
-                            <a href="stkesejahteraan.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue">Kesejahteraan Mahasiswa</a>
-                        </div>
-                    </div>
-                    
-                    <a href="berita.html" class="text-gray-200 font-medium hover:text-white">Berita</a>
-                    <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" class="text-gray-200 font-medium hover:text-white">Galeri</a>
-                </div>
-
-                <div class="md:hidden flex items-center gap-2 sm:gap-3">
-                    <button id="btnAdminMobileHeader" onclick="openModal()" class="text-white font-bold bg-[#1B427B] border border-white/30 px-3 py-1.5 rounded hover:bg-blue-800 transition shadow text-[10px] sm:text-xs flex items-center gap-1">
-                        <i class="fas fa-user-shield"></i> ADMIN
-                    </button>
-                    <a href="dashboard.html" id="btnDashboardMobileHeader" class="hidden text-white font-bold bg-white/20 px-3 py-1.5 rounded hover:bg-white/30 transition shadow btn-dashboard-glow text-[10px] sm:text-xs">Dashboard Admin</a>
-                    
-                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none p-2 ml-1">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-[#15325c] border-t border-white/10 px-4 pt-2 pb-4 shadow-2xl absolute w-full z-[90]">
-            <a href="#" onclick="tutupCV(event); document.getElementById('mobile-menu').classList.add('hidden');" class="block text-white font-medium hover:text-gray-300 py-3 border-b border-white/10">Beranda</a>
-            <a href="proker.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Program Kerja</a>
-            
-            <div class="py-3 border-b border-white/10">
-                <button onclick="toggleMobileCV()" class="w-full flex justify-between items-center text-gray-200 font-medium focus:outline-none">
-                    <span>Curriculum Vitae</span>
-                    <i id="icon-cv-mobile" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                </button>
-                <div id="submenu-cv-mobile" class="hidden pl-4 space-y-3 border-l-2 border-white/20 mt-4">
-                    <div id="list-angkatan-mobile" class="space-y-3 mb-3"></div> 
-                    <a href="#" id="btn-tambah-angkatan-mobile" onclick="openModalAngkatan(event)" class="hidden block text-sm text-green-400 font-bold hover:text-white pb-2 border-t border-white/10 pt-2">
-                        <i class="fas fa-plus mr-1"></i> Tambah Angkatan
-                    </a>
-                </div>
-            </div>
-            
-            <div class="py-3 border-b border-white/10">
-                <button onclick="toggleMobileDepartemen()" class="w-full flex justify-between items-center text-gray-200 font-medium focus:outline-none">
-                    <span>Departemen</span>
-                    <i id="icon-dept-mobile" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                </button>
-                
-                <div id="submenu-dept-mobile" class="hidden pl-4 space-y-3 border-l-2 border-white/20 mt-4">
-                    <a href="struktur.html" class="block text-sm text-gray-300 hover:text-white">Komunikasi dan Informasi</a>
-                    <a href="stpemuda.html" class="block text-sm text-gray-300 hover:text-white">Pemuda dan Olahraga</a>
-                    <a href="stagama.html" class="block text-sm text-gray-300 hover:text-white">Agama</a>
-                    <a href="stsdm.html" class="block text-sm text-gray-300 hover:text-white">Pengembangan dan SDM</a>
-                    <a href="stkesejahteraan.html" class="block text-sm text-gray-300 hover:text-white">Kesejahteraan Mahasiswa</a>
-                </div>
-            </div>
-            
-            <a href="berita.html" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Berita</a>
-            <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" class="block text-gray-200 font-medium hover:text-white py-3 border-b border-white/10">Galeri</a>
-            <button id="btnLogoutMobile" onclick="prosesLogout()" class="hidden w-full text-left text-red-400 font-bold hover:text-red-300 py-3">Logout Akun</button>
-        </div>
-    </nav>
-
-    <div class="md:hidden fixed top-24 right-4 z-[90] flex flex-col gap-3 items-end pointer-events-none">
-        <button id="btnEditModeMobile" onclick="toggleEditMode()" class="hidden pointer-events-auto text-white font-bold bg-red-500/90 border border-red-400 px-4 py-2 rounded-full hover:bg-red-500 transition shadow-lg text-[11px] flex items-center gap-2">
-            <i class="fas fa-edit"></i> EDIT: OFF
-        </button>
-    </div>
-
-    <section class="hero-bg h-[250px] sm:h-[400px] md:h-[720px] flex flex-col justify-center items-center text-center px-1 sm:px-4 mt-16 md:mt-0 m-0 border-none">
-        <div class="hero-text-wrapper w-full overflow-hidden px-1">
-            <h1 class="flex flex-nowrap justify-center items-center gap-x-1 sm:gap-x-3 md:gap-x-4 w-full">
-                <span id="txt-hero-title-1a" class="editable-txt hero-gradient font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">HIMPUNAN</span>
-                <span id="txt-hero-title-1b" class="editable-txt hero-gradient font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap">MAHASISWA</span>
-                <span id="txt-hero-title-2" class="editable-txt hero-gradient glitch font-grames text-[4.5vw] sm:text-3xl md:text-5xl font-bold text-center whitespace-nowrap" data-text="INFORMATIKA">INFORMATIKA</span>
-            </h1>
-            <h2 id="txt-hero-subtitle" class="editable-txt hero-gradient font-grames text-[2.5vw] sm:text-xl md:text-4xl font-bold text-center -mt-[2px] sm:-mt-[15px]">UNIVERSITAS INDONESIA MANDIRI</h2>
-        </div>
-    </section>
-
-    <section class="bg-[#1B427B] py-12 md:py-16 m-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-                <div>
-                    <h2 id="txt-tentang-judul" class="editable-txt text-3xl font-heading font-bold text-white mb-4 md:mb-6">Tentang Kami</h2>
-                    <p id="txt-tentang-desk" class="editable-txt text-gray-200 leading-relaxed mb-6">
-                        Himpunan Mahasiswa Informatika (HIMATIKA) adalah sekumpulan mahasiswa berdedikasi yang berkomitmen untuk memajukan organisasi dan menciptakan lingkungan yang mendukung pertumbuhan akademik, profesional, dan sosial. Dengan semangat kolaborasi dan inovasi, kami bekerja bersama untuk memberikan kontribusi terbaik bagi mahasiswa/i Informatika.
-                    </p>
-                    <a href="#" class="inline-block bg-white text-[#1B427B] font-bold py-3 px-8 rounded shadow hover:bg-gray-200 transition duration-300">Selengkapnya</a>
-                </div>
-                
-                <div class="space-y-4 md:space-y-8">
-                    <div class="flex items-center gap-3 md:gap-4">
-                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-globe"></i></div>
-                        <h3 id="txt-poin-1" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Membangun Jaringan dan Kolaborasi</h3>
-                    </div>
-                    <div class="flex items-center gap-3 md:gap-4">
-                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-book"></i></div>
-                        <h3 id="txt-poin-2" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Berbagi Pengetahuan dan Pengalaman</h3>
-                    </div>
-                </div>
-
-                <div class="space-y-4 md:space-y-8">
-                    <div class="flex items-center gap-3 md:gap-4">
-                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-id-card"></i></div>
-                        <h3 id="txt-poin-3" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Pengembangan Profesionalisme</h3>
-                    </div>
-                    <div class="flex items-center gap-3 md:gap-4">
-                        <div class="text-blue-300 text-xl md:text-3xl flex-shrink-0"><i class="fas fa-project-diagram"></i></div>
-                        <h3 id="txt-poin-4" class="editable-txt font-heading font-bold text-sm md:text-lg text-white">Mengembangkan Proyek Bersama</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[#001D4D] py-12 md:py-16 m-0 border-none">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <h2 id="txt-pimpinan-judul" class="editable-txt text-2xl md:text-3xl font-heading font-bold text-white mb-8 md:mb-12">Pimpinan Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri</h2>
-            
-            <div class="grid grid-cols-2 gap-4 md:gap-12">
-                <div class="flex flex-col items-center">
-                    <div class="editable-img-wrapper w-full aspect-[4/5] sm:w-64 sm:h-80 rounded shadow-lg mb-3 sm:mb-6">
-                        <img id="img-ketua" src="https://i.ibb.co.com/Kxr4sd4y/Proyek-Baru-69-52-C7895.png" alt="Ketua" class="w-full h-full object-cover">
-                    </div>
-                    <h3 id="txt-ketua-nama" class="editable-txt name-gradient text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">Nazril Abdillah</h3>
-                    <p id="txt-ketua-jabatan" class="editable-txt text-xs sm:text-base text-gray-300 text-center leading-tight">Ketua HIMATIKA 2025-2026</p>
-                </div>
-                
-                <div class="flex flex-col items-center">
-                    <div class="editable-img-wrapper w-full aspect-[4/5] sm:w-64 sm:h-80 rounded shadow-lg mb-3 sm:mb-6">
-                        <img id="img-wakil" src="https://i.ibb.co.com/gbVCQGLq/Proyek-Baru-69-285-CF79.png" alt="Wakil Ketua" class="w-full h-full object-cover">
-                    </div>
-                    <h3 id="txt-wakil-nama" class="editable-txt name-gradient text-sm sm:text-2xl font-bold text-white mb-1 sm:mb-2 leading-tight">I Kadek Febrianto Indrajaya</h3>
-                    <p id="txt-wakil-jabatan" class="editable-txt text-xs sm:text-base text-gray-300 text-center leading-tight">Wakil Ketua HIMATIKA 2025-2026</p>
-                </div>
-            </div>
-            <div class="mt-8 md:mt-12">
-                <a href="GridStruktur.html" class="inline-block bg-himasiBlue text-white font-bold py-3 px-8 rounded shadow hover:bg-blue-700 transition duration-300">LIAT SEMUA</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[url('https://i.ibb.co.com/hJCS6dJs/Proyek-Baru-42-F052-DAB.png')] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat pt-16 md:pt-24 pb-12 md:pb-16 m-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="inline-block bg-[#001A3D] py-3 px-6 md:py-4 md:px-8 rounded-2xl shadow-lg mb-8 md:mb-12">
-                <h2 id="txt-pengurus-judul" class="editable-txt text-xl md:text-2xl font-heading font-bold text-white">Kepengurusan HIMATIKA</h2>
-            </div>
-            <div class="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8 mix-blend-difference text-white">
-                <div class="flex flex-col items-center text-center">
-                    <i class="fas fa-headset text-2xl md:text-5xl mb-1 md:mb-4"></i>
-                    <span id="txt-stat-1" class="editable-txt text-xl md:text-5xl font-bold mb-0 md:mb-2">49</span>
-                    <span id="txt-stat-desc-1" class="editable-txt text-[10px] md:text-base font-medium leading-tight">Jumlah Pengurus Himatika</span>
-                </div>
-                <div class="flex flex-col items-center text-center">
-                    <i class="fas fa-journal-whills text-2xl md:text-5xl mb-1 md:mb-4"></i>
-                    <span id="txt-stat-2" class="editable-txt text-xl md:text-5xl font-bold mb-0 md:mb-2">5</span>
-                    <span id="txt-stat-desc-2" class="editable-txt text-[10px] md:text-base font-medium leading-tight">Total Departemen</span>
-                </div>
-                <div class="flex flex-col items-center text-center">
-                    <i class="fas fa-smile text-2xl md:text-5xl mb-1 md:mb-4"></i>
-                    <span id="txt-stat-3" class="editable-txt text-xl md:text-5xl font-bold mb-0 md:mb-2">106</span>
-                    <span id="txt-stat-desc-3" class="editable-txt text-[10px] md:text-base font-medium leading-tight">Anggota Himatika</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[url('https://i.ibb.co.com/Tx0djxwL/Proyek-Baru-49-9-E460-C2.png')] bg-cover md:bg-[length:100%_100%] bg-no-repeat py-12 md:py-20 text-center m-0 border-none">
-        <div class="max-w-6xl mx-auto px-2 md:px-4 flex flex-row justify-center items-stretch space-x-2 md:space-x-8 h-full">
-            <a href="https://uimandiri.ac.id/" target="_blank" class="w-1/4 md:w-56 block">
-                <div class="editable-img-wrapper rounded h-full flex">
-                    <img id="img-ornamen-kiri" src="https://i.ibb.co.com/PzYTswGN/Proyek-Baru-51-E62-F390.png" alt="Ornamen Kiri" class="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform">
-                </div>
-            </a>
-            <div class="w-2/4 md:w-full max-w-2xl relative flex flex-col items-center justify-center py-10 md:py-24">
-                <img src="https://i.ibb.co.com/279C67ML/Proyek-Baru-50-1-D8-B5-BA.png" class="absolute inset-0 w-full h-full object-contain z-0 drop-shadow-xl" alt="Background Sosmed">
-                <div class="relative z-10 flex flex-col items-center justify-center w-full">
-                    <h2 id="txt-sosmed-judul" class="editable-txt text-[11px] sm:text-sm md:text-3xl font-heading font-bold text-white mb-2 md:mb-8 drop-shadow-md">Social Media</h2>
-                    <div class="flex justify-center space-x-2 md:space-x-8">
-                        <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank" class="text-white hover:text-himasiBlue text-sm sm:text-lg md:text-5xl transition drop-shadow"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/4 md:w-56 flex">
-                <div class="editable-img-wrapper rounded h-full flex">
-                    <img id="img-ornamen-kanan" src="https://i.ibb.co.com/8gsdLSTM/Proyek-Baru-51-68-BC19-E.png" alt="Ornamen Kanan" class="w-full h-auto object-contain drop-shadow-xl hover:scale-105 transition-transform">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[url('https://i.ibb.co.com/9m3FYdHc/Proyek-Baru-42-14-C2486.png')] bg-cover md:bg-[length:100%_100%] bg-center bg-no-repeat pt-16 md:pt-24 pb-12 md:pb-16 m-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-block bg-[#001A3D] py-3 px-6 md:py-4 md:px-10 rounded-2xl shadow-lg mb-8 md:mb-12">
-                <h2 id="txt-berita-judul" class="editable-txt text-xl md:text-3xl font-heading font-bold text-white">BACA BERITA DARI HIMATIKA UIM</h2>
-            </div>
-            <div class="relative group text-left">
-                <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden pointer-events-none animate-scroll-hint">
-                    <div class="bg-black/60 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-lg backdrop-blur-sm">
-                        <i class="fas fa-chevron-right text-sm"></i>
-                    </div>
-                </div>
-                <div id="grid-berita-index" class="flex overflow-x-auto gap-3 snap-x snap-mandatory hide-scroll md:grid md:grid-cols-4 md:gap-6 md:overflow-visible pb-4">
-                </div>
-            </div>
-            <div class="mt-10 text-center">
-                <a href="berita.html" class="inline-block border-2 border-white text-white font-bold py-2.5 px-8 rounded-full hover:bg-white hover:text-[#001A3D] transition shadow-lg">
-                    Lihat Semua Berita <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-[linear-gradient(to_bottom,#001C44_0px,#F5F4F1_50px,#F5F4F1_100%)] py-12 md:py-20 m-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div class="text-left">
-                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-800 mb-4 md:mb-6">Sekretariat</h2>
-                    <div class="flex items-start text-gray-600 text-base md:text-lg">
-                        <i class="fas fa-map-marker-alt text-himasiBlue mt-1 mr-4 text-2xl md:text-3xl"></i>
-                        <p>
-                            <strong>Alamat : Universitas Indonesia Mandiri</strong><br>
-                            <span id="txt-alamat" class="editable-txt">6P77+5VQ, Jl. Lintas Sumatera, Tj. Heran, Kec. Penengahan, Kabupaten Lampung Selatan, Lampung 35592.</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="w-full rounded-2xl overflow-hidden shadow-xl border-4 border-white h-64 md:h-auto">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.484031081758!2d105.7147533!3d-5.7870894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410b001b7db41d%3A0xd6d561cd88b415b!2sUNIVERSITAS%20INDONESIA%20MANDIRI!5e0!3m2!1sid!2sid!4v1776189049955!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-full md:h-[450px]"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="cv-section" class="hidden min-h-screen pt-28 pb-16 bg-[#F8FAFC] m-0 border-none relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative flex items-center justify-center mb-10">
-                <button onclick="tutupCV(event)" class="absolute left-0 text-[#1B427B] hover:text-red-600 transition p-2 md:p-3 bg-white rounded-full shadow-md border border-gray-200 group" title="Kembali ke Beranda">
-                    <i class="fas fa-door-open text-xl md:text-2xl group-hover:-translate-x-1 transition-transform"></i>
-                </button>
-                <h2 class="text-2xl md:text-4xl font-heading font-bold text-center text-[#1B427B] drop-shadow-sm px-14">
-                    Curriculum Vitae - Angkatan <span id="cv-current-year" class="text-himasiBlue border-b-4 border-yellow-400"></span>
-                </h2>
-            </div>
-            
-            <div id="cv-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                </div>
-        </div>
-    </section>
-
-    <footer class="bg-[#001436] py-6 m-0 border-none relative z-50">
-        <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
-            <p class="text-gray-400 text-sm">Developed by Dep Pengembangan dan SDM 2025</p>
-        </div>
-    </footer>
-
-    <button id="btnSaveCms" onclick="simpanKeFirebase()" class="hidden fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-2xl font-bold z-[110] flex items-center gap-2 transition-transform hover:scale-110 btn-save-pop">
-        <i class="fas fa-save text-xl"></i> Simpan
-    </button>
-
-    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] hidden flex items-center justify-center transition-opacity px-4">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 md:p-8 transform scale-95 transition-transform" id="modalContent">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-himasiDark font-heading">Akses Admin</h2>
-                <button onclick="closeModal()" class="text-gray-500 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
-            </div>
-            <div id="errorMsg" class="hidden bg-red-100 text-red-600 p-3 rounded mb-4 text-sm font-medium">Username atau Password salah!</div>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-gray-700 font-medium mb-1">Username</label>
-                    <input type="text" id="username" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-himasiBlue focus:ring-1 focus:ring-himasiBlue" placeholder="Masukkan Username">
-                </div>
-                <div>
-                    <label class="block text-gray-700 font-medium mb-1">Password</label>
-                    <input type="password" id="password" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-himasiBlue focus:ring-1 focus:ring-himasiBlue" placeholder="Masukkan Password">
-                </div>
-                <button onclick="prosesLogin()" class="w-full bg-himasiBlue text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition mt-4">Login</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="modalAngkatan" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center px-4">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 transform scale-95 transition-transform" id="modalAngkatanContent">
-            <h2 class="text-xl font-bold text-himasiDark font-heading mb-4">Angkatan Tahun Berapa</h2>
-            <div class="mb-6">
-                <select id="pilihanAngkatan" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-himasiBlue focus:ring-1 focus:ring-himasiBlue">
-                    <option value="">Pilih Tahun Angkatan...</option>
-                </select>
-                <p id="msgAngkatan" class="text-xs text-red-500 mt-2 hidden">Tahun ini sudah ada!</p>
-            </div>
-            <div class="flex justify-end gap-3">
-                <button onclick="closeModalAngkatan()" class="px-4 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition font-medium">Batal</button>
-                <button id="btn-konfirm-angkatan" onclick="konfirmasiTambahAngkatan()" class="bg-himasiBlue text-white font-bold py-2 px-6 rounded hover:bg-blue-700 transition shadow">Konfirmasi</button>
-            </div>
-        </div>
-    </div>
-
-<div id="modalTambahProfil" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center px-4">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6 transform scale-95 transition-transform overflow-y-auto max-h-[90vh] hide-scroll">
-            <div class="flex justify-between items-center mb-6">
-                <h2 id="modalProfilTitle" class="text-xl font-bold text-himasiDark font-heading">Tambah Profil</h2>
-                <button onclick="closeModalProfil()" class="text-gray-500 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
-            </div>
-            <div class="space-y-4">
-                
-                <div class="flex gap-3">
-                    <input type="hidden" id="inputProfilFoto">
-                    <input type="hidden" id="inputProfilBanner">
-                    <button type="button" onclick="openFormImgModal('foto')" class="flex-1 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 font-bold py-2 px-2 rounded transition text-xs flex flex-col items-center gap-1">
-                        <i class="fas fa-user-circle text-lg"></i> <span id="txt-status-foto">Pasang Foto Profil</span>
-                    </button>
-                    <button type="button" onclick="openFormImgModal('banner')" class="flex-1 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 font-bold py-2 px-2 rounded transition text-xs flex flex-col items-center gap-1">
-                        <i class="fas fa-image text-lg"></i> <span id="txt-status-banner">Pasang Banner</span>
-                    </button>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Nama</label>
-                    <input type="text" id="inputProfilNama" placeholder="Masukkan nama..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Skills</label>
-                    <input type="text" id="inputProfilSkills" placeholder="Contoh: HTML, CSS, Desain Grafis" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Skill Bahasa</label>
-                    <input type="text" id="inputProfilBahasa" placeholder="Contoh: Indonesia, Inggris" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Angkatan</label>
-                    <input type="text" id="inputProfilAngkatan" class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-100 cursor-not-allowed" readonly>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Bisnis</label>
-                    <input type="text" id="inputProfilBisnis" placeholder="Contoh: Freelance Web, Tidak ada" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-himasiBlue">
-                </div>
-
-                <div class="mt-2 border-t pt-3">
-                    <label class="block text-sm font-bold text-gray-700 mb-2">Sosial Media (Opsional)</label>
-                    <div class="flex gap-3 mb-3">
-                        <label class="flex items-center gap-1 text-sm text-gray-700 cursor-pointer">
-                            <input type="checkbox" id="checkIg" onchange="toggleSocmed('ig')"> <i class="fab fa-instagram text-pink-600"></i> Instagram
-                        </label>
-                        <label class="flex items-center gap-1 text-sm text-gray-700 cursor-pointer">
-                            <input type="checkbox" id="checkTt" onchange="toggleSocmed('tt')"> <i class="fab fa-tiktok text-black"></i> Tiktok
-                        </label>
-                        <label class="flex items-center gap-1 text-sm text-gray-700 cursor-pointer">
-                            <input type="checkbox" id="checkYt" onchange="toggleSocmed('yt')"> <i class="fab fa-youtube text-red-600"></i> Youtube
-                        </label>
-                    </div>
-                    
-                    <div id="wrapIg" class="hidden mb-2">
-                        <input type="text" id="inputIg" placeholder="Link Instagram..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-pink-500 text-sm">
-                    </div>
-                    <div id="wrapTt" class="hidden mb-2">
-                        <input type="text" id="inputTt" placeholder="Link Tiktok..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-gray-500 text-sm">
-                    </div>
-                    <div id="wrapYt" class="hidden">
-                        <input type="text" id="inputYt" placeholder="Link Youtube..." class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-red-500 text-sm">
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-end gap-3 mt-6">
-                <button onclick="closeModalProfil()" class="px-5 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition font-medium border border-gray-300">Batal</button>
-                <button id="btn-konfirm-profil" onclick="konfirmasiTambahProfil()" class="bg-himasiBlue text-white font-bold py-2 px-6 rounded hover:bg-blue-700 transition shadow">Konfirmasi</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="formImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[250] hidden flex items-center justify-center px-4">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
-            <button onclick="closeFormImgModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
-            <h3 class="text-xl font-bold text-gray-800 mb-6">Masukkan Lewat Apa?</h3>
-            <div id="formImgOptionsGroup" class="flex flex-col gap-3">
-                <button onclick="showFormUrlInput()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">Link URL</button>
-                <button onclick="document.getElementById('formFileUploader').click()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">Dari Galeri</button>
-            </div>
-            <div id="formImgUrlGroup" class="hidden flex-col gap-3 mt-4">
-                <input type="text" id="formImgUrlInput" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-500" placeholder="Paste link gambar disini...">
-                <button onclick="saveFormImageUrl()" class="bg-blue-600 text-white py-2 rounded font-semibold">Konfirmasi</button>
-            </div>
-            <div id="formUploadLoading" class="hidden mt-4 text-blue-600 font-semibold text-sm">
-                <i class="fas fa-circle-notch fa-spin mr-2"></i>Sedang Mengupload Gambar...
-            </div>
-        </div>
-    </div>
-    <input type="file" id="formFileUploader" accept="image/*" class="hidden" onchange="uploadFormToImgBB(event)">
-
-    <div id="editImageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[150] hidden flex items-center justify-center px-4">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 text-center relative">
-            <button onclick="closeEditImgModal()" class="absolute top-3 right-4 text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
-            <h3 class="text-xl font-bold text-gray-800 mb-6">Mau Input Lewat Mana?</h3>
-            <div id="imgOptionsGroup" class="flex flex-col gap-3">
-                <button onclick="showUrlInput()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition">Link URL</button>
-                <button onclick="document.getElementById('fileUploader').click()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">File Gambar</button>
-            </div>
-            <div id="imgUrlGroup" class="hidden flex-col gap-3 mt-4">
-                <input type="text" id="imgUrlInput" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-500" placeholder="Paste link gambar disini...">
-                <button onclick="saveImageUrl()" class="bg-blue-600 text-white py-2 rounded font-semibold">Simpan Gambar</button>
-            </div>
-            <div id="uploadLoading" class="hidden mt-4 text-blue-600 font-semibold text-sm">
-                <i class="fas fa-circle-notch fa-spin mr-2"></i>Sedang Mengupload Gambar...
-            </div>
-        </div>
-    </div>
-    <input type="file" id="fileUploader" accept="image/*" class="hidden" onchange="uploadToImgBB(event)">
-
-    <div id="playlist-box" class="playlist-box">
-        <div class="playlist-inner">
-            <div class="playlist-header"><span><i class="fas fa-list-ul"></i> Daftar Lagu</span><span style="font-size:10px; opacity:0.6;">Auto-Play</span></div>
-            <div class="playlist-scroll" id="playlist-container"></div>
-        </div>
-    </div>
-    <div id="now-playing-box" class="now-playing-box z-[9998]">
-        <div class="np-icon" onclick="toggleNPBox()"><i class="fas fa-music"></i></div>
-        <div class="np-content">
-            <div class="np-info"><div class="np-label">Sedang Memutar</div><div class="np-title" id="np-title">Menunggu Lagu...</div></div>
-            <div class="np-controls">
-                <button class="np-btn" id="btn-playlist-toggle" onclick="togglePlaylist()" title="Daftar Lagu"><i class="fas fa-list"></i></button>
-                <button class="np-btn" onclick="toggleMute()" title="Mute/Unmute"><i class="fas fa-volume-up" id="mute-icon"></i></button>
-            </div>
-        </div>
-    </div>
-
-    <script src="admin.js"></script>
-
-    <script>
-	const mouseGlow = document.getElementById('mouse-glow');
-
-    document.addEventListener('mousemove', (e) => {
-        // Menggeser posisi cahaya agar kursor berada tepat di tengah-tengah cahaya
-        // (150px adalah setengah dari lebar/tinggi cahaya 300px)
-        const x = e.clientX - 50; 
-        const y = e.clientY - 50;
-        
-        mouseGlow.style.transform = `translate(${x}px, ${y}px)`;
-    });
-	
-        // ==========================================
-        // KONFIGURASI GITHUB API (HARAP DIISI)
-        // ==========================================
-        const GITHUB_TOKEN = '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'; // Ganti dengan Token Anda
-        const GITHUB_OWNER = 'DilzGhaaziy';         // Ganti dengan Username Github Anda
-        const GITHUB_REPO = 'HIMATIKA-UIM';                // Ganti dengan Nama Repository Anda
-        // ==========================================
-
-        const mobileMenuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-
-        function toggleMobileDepartemen() {
-            document.getElementById('submenu-dept-mobile').classList.toggle('hidden');
-            document.getElementById('icon-dept-mobile').classList.toggle('rotate-180');
-        }
-
-        function toggleMobileCV() {
-            document.getElementById('submenu-cv-mobile').classList.toggle('hidden');
-            document.getElementById('icon-cv-mobile').classList.toggle('rotate-180');
-        }
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCPUO6gazqj97i4Rj8NlmKzdJu764CZ_0g",
-            authDomain: "himatika-uim.firebaseapp.com",
-            databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "himatika-uim",
-            storageBucket: "himatika-uim.firebasestorage.app",
-            messagingSenderId: "829701559786",
-            appId: "1:829701559786:web:a81cbb4bda51c41ed44e93",
-            measurementId: "G-LVPX6SQ67K"
-        };
-
-        // Initialize Firebase & Analytics
-        firebase.initializeApp(firebaseConfig);
-        const analytics = firebase.analytics(); // Fitur Analytics Aktif
-        
-        const database = firebase.database();
-        const cmsRef = database.ref('himasi_web_data');
-
-        let isEditModeActive = false; 
-
-        document.addEventListener("DOMContentLoaded", () => {
-            initRealtimeCMS();
-            cekStatusLogin();
-            initNewsFeed();
-            fetchMenuAngkatan();
-        });
-
-        // =========================================================
-        // GITHUB API - SISTEM CURRICULUM VITAE SPA LOGIC
-        // =========================================================
-        let existingAngkatan = [];
-        let currentCVTahun = '';
-        let currentCVSha = '';
-        let currentCVData = [];
-
-        async function fetchMenuAngkatan() {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/`, {
-                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
-                });
-
-                if (response.ok) {
-                    const files = await response.json();
-                    existingAngkatan = files.filter(f => f.name.endsWith('.json')).map(f => f.name.replace('.json', ''));
-                    existingAngkatan.sort();
-                    renderMenuAngkatan();
-                }
-            } catch (error) { console.error("Gagal memuat list angkatan:", error); }
-        }
-
-        function renderMenuAngkatan() {
-            const listPC = document.getElementById('list-angkatan-pc');
-            const listMobile = document.getElementById('list-angkatan-mobile');
-            
-            listPC.innerHTML = '';
-            listMobile.innerHTML = '';
-
-            if (existingAngkatan.length === 0) {
-                listPC.innerHTML = '<span class="block px-4 py-2 text-xs text-gray-400 italic">Belum ada angkatan</span>';
-                listMobile.innerHTML = '<span class="block text-xs text-gray-400 italic">Belum ada angkatan</span>';
-            } else {
-                existingAngkatan.forEach(tahun => {
-                    // Ikon diganti dari 'fa-folder-open' menjadi 'fa-file-alt' (dokumen resume)
-                    listPC.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue transition"><i class="fas fa-file-alt mr-2 text-gray-400"></i>Angkatan ${tahun}</a>`;
-                    listMobile.innerHTML += `<a href="#" onclick="loadCV('${tahun}', event); document.getElementById('mobile-menu').classList.add('hidden');" class="block text-sm text-gray-300 hover:text-white transition"><i class="fas fa-file-alt mr-2"></i>Angkatan ${tahun}</a>`;
-                });
-            }
-        }
-
-        // FUNGSI LOAD CV & SEMBUNYIKAN SECTION UTAMA
-        async function loadCV(tahun, event) {
-            if(event) event.preventDefault();
-            currentCVTahun = tahun;
-            
-            const cvSection = document.getElementById('cv-section');
-            const grid = document.getElementById('cv-grid');
-            
-            // Sembunyikan semua section utama kecuali cv-section
-            document.querySelectorAll('section:not(#cv-section)').forEach(sec => {
-                sec.classList.add('hidden');
-            });
-
-            cvSection.classList.remove('hidden');
-            document.getElementById('cv-current-year').innerText = tahun;
-            grid.innerHTML = '<div class="col-span-full text-center py-10"><i class="fas fa-spinner fa-spin text-3xl text-himasiBlue mb-3"></i><p class="text-gray-500 font-medium">Memuat data profil...</p></div>';
-            
-            // Scroll otomatis ke atas
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${tahun}.json`, {
-                    headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
-                });
-
-                if (response.ok) {
-                    const fileData = await response.json();
-                    currentCVSha = fileData.sha;
-                    const decodedStr = decodeURIComponent(escape(atob(fileData.content)));
-                    currentCVData = JSON.parse(decodedStr);
-                    renderCVGrid();
-                } else {
-                    grid.innerHTML = '<div class="col-span-full text-center py-10 text-red-500">File gagal dimuat.</div>';
-                }
-            } catch (error) {
-                grid.innerHTML = '<div class="col-span-full text-center py-10 text-red-500">Kesalahan jaringan saat memuat CV.</div>';
-            }
-        }
-
-        // FUNGSI TUTUP CV & TAMPILKAN KEMBALI HALAMAN UTAMA
-        function tutupCV(event) {
-            if(event) event.preventDefault();
-            
-            // Tampilkan kembali semua section yang tadi disembunyikan
-            document.querySelectorAll('section:not(#cv-section)').forEach(sec => {
-                sec.classList.remove('hidden');
-            });
-            
-            // Sembunyikan section CV
-            document.getElementById('cv-section').classList.add('hidden');
-            
-            // Kembalikan ke paling atas layaknya ke halaman beranda
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            currentCVTahun = '';
-            currentCVData = [];
-        }
-
-         function openModalProfil() {
-            editingProfileIndex = -1;
-            document.getElementById('modalProfilTitle').innerText = 'Tambah Profil';
-            document.getElementById('modalTambahProfil').classList.remove('hidden');
-            document.getElementById('inputProfilAngkatan').value = currentCVTahun;
-            
-            document.getElementById('inputProfilNama').value = '';
-            document.getElementById('inputProfilSkills').value = '';
-            document.getElementById('inputProfilBahasa').value = '';
-            document.getElementById('inputProfilBisnis').value = '';
-            document.getElementById('inputProfilFoto').value = '';
-            document.getElementById('inputProfilBanner').value = '';
-            
-            document.getElementById('txt-status-foto').innerText = 'Pasang Foto Profil';
-            document.getElementById('txt-status-foto').classList.remove('text-green-600');
-            document.getElementById('txt-status-banner').innerText = 'Pasang Banner';
-            document.getElementById('txt-status-banner').classList.remove('text-green-600');
-
-            document.getElementById('checkIg').checked = false;
-            document.getElementById('checkTt').checked = false;
-            document.getElementById('checkYt').checked = false;
-            toggleSocmed('ig'); toggleSocmed('tt'); toggleSocmed('yt');
-            document.getElementById('inputIg').value = ''; document.getElementById('inputTt').value = ''; document.getElementById('inputYt').value = '';
-        }
-
-        // FUNGSI MEMBUKA MODAL EDIT PROFIL (PENCIL ICON)
-        function editProfil(index) {
-            editingProfileIndex = index;
-            const p = currentCVData[index];
-            
-            document.getElementById('modalProfilTitle').innerText = 'Edit Profil';
-            document.getElementById('modalTambahProfil').classList.remove('hidden');
-            document.getElementById('inputProfilAngkatan').value = p.angkatan || currentCVTahun;
-            
-            document.getElementById('inputProfilNama').value = p.nama || '';
-            document.getElementById('inputProfilSkills').value = p.skills || '';
-            document.getElementById('inputProfilBahasa').value = p.bahasa || '';
-            document.getElementById('inputProfilBisnis').value = p.bisnis || '';
-            document.getElementById('inputProfilFoto').value = p.fotoProf || '';
-            document.getElementById('inputProfilBanner').value = p.bannerProf || '';
-            
-            document.getElementById('txt-status-foto').innerText = p.fotoProf ? 'Foto Terpasang!' : 'Pasang Foto Profil';
-            if(p.fotoProf) document.getElementById('txt-status-foto').classList.add('text-green-600');
-            
-            document.getElementById('txt-status-banner').innerText = p.bannerProf ? 'Banner Terpasang!' : 'Pasang Banner';
-            if(p.bannerProf) document.getElementById('txt-status-banner').classList.add('text-green-600');
-
-            // Sosmed Loader
-            document.getElementById('checkIg').checked = !!(p.socmed && p.socmed.instagram);
-            document.getElementById('checkTt').checked = !!(p.socmed && p.socmed.tiktok);
-            document.getElementById('checkYt').checked = !!(p.socmed && p.socmed.youtube);
-            toggleSocmed('ig'); toggleSocmed('tt'); toggleSocmed('yt');
-            
-            document.getElementById('inputIg').value = (p.socmed && p.socmed.instagram) ? p.socmed.instagram : '';
-            document.getElementById('inputTt').value = (p.socmed && p.socmed.tiktok) ? p.socmed.tiktok : '';
-            document.getElementById('inputYt').value = (p.socmed && p.socmed.youtube) ? p.socmed.youtube : '';
-        }
-
-        function closeModalProfil() { document.getElementById('modalTambahProfil').classList.add('hidden'); }
-
-        // FUNGSI KONFIRMASI SIMPAN PROFIL
-        async function konfirmasiTambahProfil() {
-            const btn = document.getElementById('btn-konfirm-profil');
-            const nama = document.getElementById('inputProfilNama').value.trim();
-            const skills = document.getElementById('inputProfilSkills').value.trim();
-            const bahasa = document.getElementById('inputProfilBahasa').value.trim();
-            const angkatan = document.getElementById('inputProfilAngkatan').value.trim();
-            const bisnis = document.getElementById('inputProfilBisnis').value.trim();
-            const fotoProf = document.getElementById('inputProfilFoto').value.trim();
-            const bannerProf = document.getElementById('inputProfilBanner').value.trim();
-
-            if (!nama) { alert("Nama wajib diisi!"); return; }
-
-            // Ambil data sosial media jika di centang
-            let socmed = {};
-            if (document.getElementById('checkIg').checked) socmed.instagram = document.getElementById('inputIg').value.trim();
-            if (document.getElementById('checkTt').checked) socmed.tiktok = document.getElementById('inputTt').value.trim();
-            if (document.getElementById('checkYt').checked) socmed.youtube = document.getElementById('inputYt').value.trim();
-
-            btn.innerText = "Menyimpan..."; btn.disabled = true;
-
-            const newProfileObj = { nama, skills, bahasa, angkatan, bisnis, fotoProf, bannerProf, socmed };
-            
-            if (editingProfileIndex > -1) {
-                currentCVData[editingProfileIndex] = newProfileObj; // Edit Data
-            } else {
-                currentCVData.push(newProfileObj); // Tambah Data Baru
-            }
-
-            const jsonStr = JSON.stringify(currentCVData, null, 2);
-            const encodedContent = btoa(unescape(encodeURIComponent(jsonStr)));
-
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${currentCVTahun}.json`, {
-                    method: 'PUT',
-                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: `Admin update profil ${nama}`, content: encodedContent, sha: currentCVSha })
-                });
-
-                if (response.ok) {
-                    const resData = await response.json();
-                    currentCVSha = resData.content.sha;
-                    alert("Profil berhasil disimpan!");
-                    closeModalProfil(); renderCVGrid();
-                } else {
-                    const err = await response.json();
-                    alert("Gagal menyimpan ke GitHub: " + err.message);
-                }
-            } catch (error) { alert("Terjadi kesalahan jaringan."); }
-
-            btn.innerText = "Konfirmasi"; btn.disabled = false;
-        }
-
-        // =========================================================
-        // SISTEM UPLOAD GAMBAR UNTUK FORM PROFIL
-        // =========================================================
-        function openFormImgModal(type) {
-            currentFormImgType = type;
-            document.getElementById('formImageModal').classList.remove('hidden');
-            document.getElementById('formImgOptionsGroup').classList.remove('hidden');
-            document.getElementById('formImgUrlGroup').classList.add('hidden');
-            document.getElementById('formImgUrlInput').value = '';
-            document.getElementById('formUploadLoading').classList.add('hidden');
-        }
-        function closeFormImgModal() { document.getElementById('formImageModal').classList.add('hidden'); }
-        function showFormUrlInput() { 
-            document.getElementById('formImgOptionsGroup').classList.add('hidden'); 
-            document.getElementById('formImgUrlGroup').classList.remove('hidden'); 
-            document.getElementById('formImgUrlGroup').classList.add('flex'); 
-        }
-        function saveFormImageUrl() { 
-            const url = document.getElementById('formImgUrlInput').value; 
-            if (url) { 
-                let fixedUrl = url.replace("i.ibb.co/", "i.ibb.co.com/"); 
-                applyFormImage(fixedUrl); 
-                closeFormImgModal(); 
-            } 
-        }
-        async function uploadFormToImgBB(event) { 
-            const file = event.target.files[0]; 
-            if (!file) return; 
-            document.getElementById('formImgOptionsGroup').classList.add('hidden'); 
-            document.getElementById('formUploadLoading').classList.remove('hidden'); 
-            const formData = new FormData(); formData.append('image', file); 
-            try { 
-                const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData }); 
-                const data = await response.json(); 
-                if (data.success) { 
-                    let fixedUrl = data.data.url.replace("i.ibb.co/", "i.ibb.co.com/"); 
-                    applyFormImage(fixedUrl); 
-                    closeFormImgModal(); 
-                } else { alert("Gagal upload."); closeFormImgModal(); } 
-            } catch (e) { alert("Error jaringan."); closeFormImgModal(); } 
-            event.target.value = ''; 
-        }
-        function applyFormImage(url) {
-            if (currentFormImgType === 'foto') {
-                document.getElementById('inputProfilFoto').value = url;
-                document.getElementById('txt-status-foto').innerText = 'Foto Terpasang!';
-                document.getElementById('txt-status-foto').classList.add('text-green-600');
-            } else {
-                document.getElementById('inputProfilBanner').value = url;
-                document.getElementById('txt-status-banner').innerText = 'Banner Terpasang!';
-                document.getElementById('txt-status-banner').classList.add('text-green-600');
-            }
-        }
-
-        // =========================================================
-        // GITHUB API - MODAL TAMBAH TAHUN ANGKATAN
-        // =========================================================
-        async function openModalAngkatan(event) {
-            event.preventDefault(); 
-            const modal = document.getElementById('modalAngkatan');
-            const select = document.getElementById('pilihanAngkatan');
-            const btnKonfirm = document.getElementById('btn-konfirm-angkatan');
-            
-            modal.classList.remove('hidden');
-            btnKonfirm.innerText = "Memuat Data..."; btnKonfirm.disabled = true;
-            select.innerHTML = '<option value="">Pilih Tahun Angkatan...</option>';
-            document.getElementById('msgAngkatan').classList.add('hidden');
-
-            for (let year = 2022; year <= 2030; year++) {
-                const yearStr = year.toString();
-                const option = document.createElement('option');
-                option.value = yearStr;
-                
-                if (existingAngkatan.includes(yearStr)) {
-                    option.text = `${yearStr} (Sudah Ada)`;
-                    option.disabled = true; option.classList.add('text-gray-400');
-                } else {
-                    option.text = yearStr; option.classList.add('text-gray-800', 'font-medium');
-                }
-                select.appendChild(option);
-            }
-            btnKonfirm.innerText = "Konfirmasi"; btnKonfirm.disabled = false;
-        }
-        function closeModalAngkatan() { document.getElementById('modalAngkatan').classList.add('hidden'); }
-
-        async function konfirmasiTambahAngkatan() {
-            const select = document.getElementById('pilihanAngkatan');
-            const tahun = select.value;
-            if (!tahun) { alert("Harap pilih tahun angkatan!"); return; }
-
-            const btnKonfirm = document.getElementById('btn-konfirm-angkatan');
-            btnKonfirm.innerText = "Menyimpan..."; btnKonfirm.disabled = true;
-
-            const fileName = `${tahun}.json`;
-            const templateData = JSON.stringify([], null, 2); 
-            const contentEncoded = btoa(templateData); 
-
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${fileName}`, {
-                    method: 'PUT',
-                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: `Membuat angkatan ${tahun}`, content: contentEncoded })
-                });
-
-                if (response.ok || response.status === 201) {
-                    alert(`Berhasil! Angkatan ${tahun} telah dibuat.`);
-                    closeModalAngkatan(); fetchMenuAngkatan(); 
-                } else {
-                    const err = await response.json(); alert("Gagal menyimpan: " + err.message);
-                }
-            } catch (error) { alert("Terjadi kesalahan jaringan."); }
-
-            btnKonfirm.innerText = "Konfirmasi"; btnKonfirm.disabled = false;
-        }
-
-        // ==========================================
-        // SISTEM LOGIN (Murni JS adminAccounts) & CMS
-        // ==========================================
-        function cekStatusLogin() {
-            const btnDashboard = document.getElementById('btnDashboard');
-            const btnAdminAuth = document.getElementById('btnAdminAuth');
-            const btnEditModePC = document.getElementById('btnEditModePC');
-            
-            const btnDashboardMobileHeader = document.getElementById('btnDashboardMobileHeader');
-            const btnAdminMobileHeader = document.getElementById('btnAdminMobileHeader');
-            const btnEditModeMobile = document.getElementById('btnEditModeMobile');
-            const btnLogoutMobile = document.getElementById('btnLogoutMobile');
-            const btnSaveCms = document.getElementById('btnSaveCms');
-            
-            const btnTambahAngkatanPC = document.getElementById('btn-tambah-angkatan-pc');
-            const btnTambahAngkatanMobile = document.getElementById('btn-tambah-angkatan-mobile');
-            
-            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-
-            if (isLoggedIn) {
-                btnDashboard.classList.remove('hidden'); btnEditModePC.classList.remove('hidden');
-                btnAdminAuth.textContent = 'Logout'; btnAdminAuth.classList.remove('shimmer-text'); btnAdminAuth.classList.add('text-red-300', 'hover:text-red-400'); btnAdminAuth.onclick = prosesLogout;
-                btnDashboardMobileHeader.classList.remove('hidden'); btnAdminMobileHeader.classList.add('hidden'); btnEditModeMobile.classList.remove('hidden'); btnLogoutMobile.classList.remove('hidden'); 
-                
-                if(btnTambahAngkatanPC) btnTambahAngkatanPC.classList.remove('hidden');
-                if(btnTambahAngkatanMobile) btnTambahAngkatanMobile.classList.remove('hidden');
-
-                if (currentCVTahun !== '') renderCVGrid(); 
-                if(isEditModeActive) { toggleEditMode(); } else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
-            } else {
-                btnDashboard.classList.add('hidden'); btnEditModePC.classList.add('hidden');
-                btnAdminAuth.textContent = 'Admin'; btnAdminAuth.classList.add('shimmer-text'); btnAdminAuth.classList.remove('text-red-300', 'hover:text-red-400'); btnAdminAuth.onclick = openModal;
-                btnDashboardMobileHeader.classList.add('hidden'); btnAdminMobileHeader.classList.remove('hidden'); btnEditModeMobile.classList.add('hidden'); btnLogoutMobile.classList.add('hidden'); 
-                
-                if(btnTambahAngkatanPC) btnTambahAngkatanPC.classList.add('hidden');
-                if(btnTambahAngkatanMobile) btnTambahAngkatanMobile.classList.add('hidden');
-
-                if (currentCVTahun !== '') renderCVGrid();
-                if(isEditModeActive) { toggleEditMode(); } else { aktifkanModeEdit(false); btnSaveCms.classList.add('hidden'); }
-            }
-        }
-
-        function openModal() { document.getElementById('loginModal').classList.remove('hidden'); }
-        function closeModal() { document.getElementById('loginModal').classList.add('hidden'); document.getElementById('errorMsg').classList.add('hidden'); }
-
-        // FUNGSI LOGIN DIPERBAIKI (TIDAK MENGGUNAKAN FIREBASE ADMINS DB)
-        function prosesLogin() {
-            const userIn = document.getElementById('username').value;
-            const passIn = document.getElementById('password').value;
-            const errorMsg = document.getElementById('errorMsg');
-            
-            if(!userIn || !passIn) { 
-                errorMsg.innerText = "Username dan Password tidak boleh kosong!"; 
-                errorMsg.classList.remove('hidden'); 
-                return; 
-            }
-
-            const btnLogin = document.querySelector('button[onclick="prosesLogin()"]');
-            const originalText = btnLogin.innerText;
-            btnLogin.innerText = "Memeriksa..."; 
-            btnLogin.disabled = true;
-
-            setTimeout(() => {
-                let userMatch = null;
-                
-                // Membaca langsung dari array adminAccounts yang ada di file admin.js
-                if (typeof adminAccounts !== 'undefined') { 
-                    userMatch = adminAccounts.find(acc => acc.username === userIn && acc.password === passIn); 
-                }
-
-                if (userMatch) { 
-                    localStorage.setItem('adminLoggedIn', 'true'); 
-                    localStorage.setItem('adminData', JSON.stringify(userMatch)); 
-                    closeModal(); 
-                    cekStatusLogin(); 
-                } else { 
-                    errorMsg.innerText = "Username/Password salah, atau file admin.js gagal dimuat!"; 
-                    errorMsg.classList.remove('hidden'); 
-                }
-                
-                btnLogin.innerText = originalText; 
-                btnLogin.disabled = false;
-            }, 600);
-        }
-
-        function prosesLogout() { if(confirm('Apakah Anda yakin ingin logout?')){ localStorage.removeItem('adminLoggedIn'); localStorage.removeItem('adminData'); cekStatusLogin(); } }
-        
-        function toggleEditMode() {
-            isEditModeActive = !isEditModeActive;
-            const btnPC = document.getElementById('btnEditModePC');
-            const btnMobile = document.getElementById('btnEditModeMobile');
-            if(isEditModeActive) {
-                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: ON'; btnPC.classList.replace('bg-red-500/90', 'bg-green-500/90'); btnPC.classList.replace('hover:bg-red-500', 'hover:bg-green-500');
-                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: ON'; btnMobile.classList.replace('bg-red-500/90', 'bg-green-500/90'); btnMobile.classList.replace('hover:bg-red-500', 'hover:bg-green-500'); btnMobile.classList.replace('border-red-400', 'border-green-400');
-                aktifkanModeEdit(true); document.getElementById('btnSaveCms').classList.remove('hidden');
-            } else {
-                btnPC.innerHTML = '<i class="fas fa-edit mr-1"></i> EDIT: OFF'; btnPC.classList.replace('bg-green-500/90', 'bg-red-500/90'); btnPC.classList.replace('hover:bg-green-500', 'hover:bg-red-500');
-                btnMobile.innerHTML = '<i class="fas fa-edit"></i> EDIT: OFF'; btnMobile.classList.replace('bg-green-500/90', 'bg-red-500/90'); btnMobile.classList.replace('hover:bg-green-500', 'hover:bg-red-500'); btnMobile.classList.replace('border-green-400', 'border-red-400');
-                aktifkanModeEdit(false); document.getElementById('btnSaveCms').classList.add('hidden');
-            }
-        }
-
-        function aktifkanModeEdit(status) {
-            document.querySelectorAll('.editable-txt').forEach(el => { el.setAttribute('contenteditable', status); });
-            document.querySelectorAll('.editable-img-wrapper').forEach(wrapper => {
-                const imgId = wrapper.querySelector('img').id;
-                if (status) {
-                    if (!wrapper.querySelector('.cam-overlay')) {
-                        const overlay = document.createElement('div'); overlay.className = 'cam-overlay'; overlay.innerHTML = '<i class="fas fa-camera text-white text-3xl"></i>'; overlay.onclick = () => openEditImgModal(imgId); wrapper.appendChild(overlay);
-                    }
-                } else { const overlay = wrapper.querySelector('.cam-overlay'); if (overlay) overlay.remove(); }
-            });
-        }
-
-        let localCmsData = { texts: {}, images: {} }; 
-        const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079'; let currentEditImageId = null;
-
-        function initNewsFeed() {
-            const container = document.getElementById('grid-berita-index'); if(!container) return; container.innerHTML = '<div class="w-full text-center text-white py-10">Memuat berita terbaru...</div>';
-            database.ref('news').on('value', (snapshot) => {
-                container.innerHTML = ''; const data = snapshot.val();
-                if (data) {
-                    let newsArray = Object.keys(data).map(key => { return { id_firebase: key, ...data[key] }; });
-                    newsArray.sort((a, b) => new Date(b.date) - new Date(a.date)); const top4 = newsArray.slice(0, 4);
-                    top4.forEach(news => {
-                        const dateObj = new Date(news.date); const tglStr = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); let cleanExcerpt = news.excerpt.replace(/<[^>]*>?/gm, '');
-                        container.innerHTML += `<article class="flex-none w-[60%] md:w-auto snap-start bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition cursor-pointer" onclick="window.location.href='berita.html?id=${news.id_firebase}'"><div class="h-28 md:h-48 w-full bg-gray-200"><img src="${news.img}" alt="Berita" class="w-full h-full object-cover"></div><div class="p-4 md:p-5 flex flex-col justify-between"><div><h4 class="font-bold text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 text-gray-800 hover:text-himasiBlue transition">${news.title}</h4><div class="text-[9px] md:text-xs text-gray-500 mb-2 md:mb-3 font-semibold"><span>${tglStr}</span> • <span class="text-himasiBlue uppercase">${news.label}</span></div><p class="text-gray-600 text-[10px] md:text-sm line-clamp-2 md:line-clamp-3">${cleanExcerpt}</p></div></div></article>`;
-                    });
-                } else { container.innerHTML = '<div class="w-full text-center text-gray-400 py-10">Belum ada berita.</div>'; }
-            });
-        }
-
-        function initRealtimeCMS() {
-            cmsRef.on('value', (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    localCmsData = data; 
-                    if(data.texts) { for (let id in data.texts) { const el = document.getElementById(id); if (el && document.activeElement !== el) { el.innerText = data.texts[id]; if(el.classList.contains('glitch')) el.setAttribute('data-text', data.texts[id]); } } }
-                    if(data.images) { for (let id in data.images) { const img = document.getElementById(id); if (img) img.src = data.images[id]; } }
-                }
-            });
-            document.querySelectorAll('.editable-txt').forEach(el => { el.addEventListener('blur', (e) => { if(el.getAttribute('contenteditable') === "true") { if(!localCmsData.texts) localCmsData.texts = {}; localCmsData.texts[e.target.id] = e.target.innerText; if(e.target.classList.contains('glitch')) e.target.setAttribute('data-text', e.target.innerText); } }); });
-        }
-
-        function saveImageEdit(id, url) { const img = document.getElementById(id); if (img) img.src = url; if(!localCmsData.images) localCmsData.images = {}; localCmsData.images[id] = url; }
-        function simpanKeFirebase() { const btn = document.getElementById('btnSaveCms'); const originalText = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin text-xl"></i> Menyimpan...'; cmsRef.set(localCmsData).then(() => { btn.innerHTML = '<i class="fas fa-check text-xl"></i> Tersimpan!'; setTimeout(() => { btn.innerHTML = originalText; }, 2000); }).catch((error) => { alert("Gagal menyimpan data."); btn.innerHTML = originalText; }); }
-        function openEditImgModal(imgId) { currentEditImageId = imgId; document.getElementById('editImageModal').classList.remove('hidden'); document.getElementById('imgOptionsGroup').classList.remove('hidden'); document.getElementById('imgUrlGroup').classList.add('hidden'); document.getElementById('imgUrlInput').value = ''; document.getElementById('uploadLoading').classList.add('hidden'); }
-        function closeEditImgModal() { document.getElementById('editImageModal').classList.add('hidden'); currentEditImageId = null; }
-        function showUrlInput() { document.getElementById('imgOptionsGroup').classList.add('hidden'); document.getElementById('imgUrlGroup').classList.remove('hidden'); document.getElementById('imgUrlGroup').classList.add('flex'); }
-        function saveImageUrl() { const url = document.getElementById('imgUrlInput').value; if (url && currentEditImageId) { let fixedUrl = url.replace("i.ibb.co/", "i.ibb.co.com/"); saveImageEdit(currentEditImageId, fixedUrl); closeEditImgModal(); } }
-        async function uploadToImgBB(event) { const file = event.target.files[0]; if (!file) return; document.getElementById('imgOptionsGroup').classList.add('hidden'); document.getElementById('uploadLoading').classList.remove('hidden'); const formData = new FormData(); formData.append('image', file); try { const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData }); const data = await response.json(); if (data.success) { let fixedUrl = data.data.url.replace("i.ibb.co/", "i.ibb.co.com/"); saveImageEdit(currentEditImageId, fixedUrl); closeEditImgModal(); } else { alert("Gagal upload."); closeEditImgModal(); } } catch (e) { alert("Error jaringan."); closeEditImgModal(); } event.target.value = ''; }
-        
-        const bgmPlaylist = [ {title: "DBFM Radio Pemda", url: "https://pu.klikhost.com/proxy/dbfm/stream"}, {title: "iSWARA Jakarta FM", url: "https://n13.radiojar.com/4ywdgup3bnzuv?rj-ttl=5&rj-tok=AAABnECWuWQAm41UJbq3s9BypA"}, {title: "iSWARA Banjarmasin FM", url: "https://stream.radiojar.com/qfqd2aw80k8uv"}, {title: "SmartFM", url: "https://cast2.my-control-panel.com/proxy/radioso3/stream"}, {title: "Mettaswara Dangdut FM", url: "http://mettaswara.com:8700/d4d"}, {title: "Mettaswara Koplo FM", url: "http://mettaswara.com:8700/koplo"}, {title: "Tebet Radio FM", url: "https://stream-ssl.arenastreaming.com:8066/stream"}, {title: "RTC Radio FM", url: "https://stream.pamula.xyz/listen/rtc_ui/radio.mp3"}, {title: "JGRP Radio Live", url: "https://s7.alhastream.com/radio/8350/live"} ];
-        let bgmAudio = new Audio(); let currentBgmIndex = -1; let isMuted = false; let userInteracted = false; let npBoxTimeout = null; let radioTimeout = null;
-        document.addEventListener('click', () => { if (!userInteracted) { userInteracted = true; if(bgmAudio.paused) { tryPlayDefaultRadio(); } } }, { once: true }); 
-        function tryPlayDefaultRadio() { if (!userInteracted) return; const now = new Date(); const day = now.getDay(); const hour = now.getHours(); let defaultIndex = 0; if (day === 0 || day === 6) { defaultIndex = 8; } else { if (hour >= 8 && hour < 20) { defaultIndex = 0; } else { defaultIndex = 8; } } currentBgmIndex = defaultIndex; playSpecificBGM(defaultIndex, true); if (radioTimeout) clearTimeout(radioTimeout); radioTimeout = setTimeout(() => { if (bgmAudio.paused || bgmAudio.readyState < 3) { playRandomBGM(); } }, 5000); }
-        function playSpecificBGM(index, isStartup = false) { if (currentBgmIndex === index && !bgmAudio.paused && !isStartup) { bgmAudio.pause(); renderPlaylist(); return; } currentBgmIndex = index; bgmAudio.src = bgmPlaylist[currentBgmIndex].url; bgmAudio.volume = isMuted ? 0 : 1.0; bgmAudio.onerror = function() { if (isStartup) { playRandomBGM(); } else { updateNPUI("Link Offline, Mencari..."); playRandomBGM(); } }; const playPromise = bgmAudio.play(); if (playPromise !== undefined) { playPromise.then(() => { updateNPUI(bgmPlaylist[currentBgmIndex].title); renderPlaylist(); if(isStartup && radioTimeout) clearTimeout(radioTimeout); }).catch(e => { if(isStartup) playRandomBGM(); }); } bgmAudio.onended = playRandomBGM; }
-        function playRandomBGM() { if (!userInteracted) return; if (radioTimeout) clearTimeout(radioTimeout); bgmAudio.pause(); let newIdx; do { newIdx = Math.floor(Math.random() * bgmPlaylist.length); } while ((newIdx === currentBgmIndex || newIdx === 0) && bgmPlaylist.length > 1); currentBgmIndex = newIdx; bgmAudio.src = bgmPlaylist[currentBgmIndex].url; bgmAudio.volume = 0; bgmAudio.onerror = () => { playRandomBGM(); }; const playPromise = bgmAudio.play(); if (playPromise !== undefined) { playPromise.then(() => { fadeInBGM(); updateNPUI(bgmPlaylist[currentBgmIndex].title); renderPlaylist(); document.getElementById('now-playing-box').classList.add('expanded'); }).catch(error => { }); } bgmAudio.onended = playRandomBGM; }
-        function fadeInBGM() { let vol = 0; const fade = setInterval(() => { if(vol < 1.0) { vol += 0.1; if(!isMuted) bgmAudio.volume = Math.min(vol, 1.0); } else { clearInterval(fade); } }, 100); }
-        function toggleMute() { isMuted = !isMuted; bgmAudio.muted = isMuted; document.getElementById('mute-icon').className = isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up'; }
-        function toggleNPBox() { const box = document.getElementById('now-playing-box'); const playlist = document.getElementById('playlist-box'); box.classList.toggle('expanded'); if (!box.classList.contains('expanded')) { playlist.classList.remove('show'); document.getElementById('btn-playlist-toggle').classList.remove('active-list'); } }
-        function togglePlaylist() { const playlistBox = document.getElementById('playlist-box'); const btn = document.getElementById('btn-playlist-toggle'); if (!playlistBox.classList.contains('show')) { renderPlaylist(); } playlistBox.classList.toggle('show'); btn.classList.toggle('active-list'); }
-        function updateNPUI(title) { document.getElementById('np-title').innerText = title; const box = document.getElementById('now-playing-box'); const playlist = document.getElementById('playlist-box'); box.classList.add('expanded'); if (npBoxTimeout) clearTimeout(npBoxTimeout); npBoxTimeout = setTimeout(() => { if (!playlist.classList.contains('show')) { box.classList.remove('expanded'); } }, 5000); }
-        function renderPlaylist() { const container = document.getElementById('playlist-container'); container.innerHTML = ""; bgmPlaylist.forEach((track, index) => { const isPlaying = (index === currentBgmIndex && !bgmAudio.paused); const item = document.createElement('div'); item.className = `track-item ${isPlaying ? 'playing' : ''}`; item.onclick = () => playSpecificBGM(index); item.innerHTML = `<div class="track-icon"><i class="fas ${isPlaying ? 'fa-volume-up' : 'fa-play'}"></i></div><div class="track-info"><div class="track-name">${track.title}</div><div class="track-status">${isPlaying ? 'Sedang Diputar' : 'Klik untuk memutar'}</div></div>`; container.appendChild(item); }); }
-		
-        let editingProfileIndex = -1;
-        let currentFormImgType = '';
-
-        // Tampilkan/Sembunyikan kolom input sosmed berdasarkan Checkbox
-        function toggleSocmed(type) {
-            const isChecked = document.getElementById('check' + type.charAt(0).toUpperCase() + type.slice(1)).checked;
-            const wrap = document.getElementById('wrap' + type.charAt(0).toUpperCase() + type.slice(1));
-            if(isChecked) { wrap.classList.remove('hidden'); } else { wrap.classList.add('hidden'); }
-        }
-
-function renderCVGrid() {
-            const grid = document.getElementById('cv-grid');
-            grid.innerHTML = '';
-            const isAdmin = localStorage.getItem('adminLoggedIn') === 'true';
-
-            if (currentCVData.length === 0 && !isAdmin) {
-                grid.innerHTML = '<div class="col-span-full text-center py-10 text-gray-500 italic">Belum ada profil untuk angkatan ini.</div>';
-                return;
-            }
-
-            currentCVData.forEach((profil, index) => {
-                const bannerId = `cv-banner-${currentCVTahun}-${index}`;
-                const profId = `cv-prof-${currentCVTahun}-${index}`;
-                
-                // Prioritaskan gambar dari JSON profil, jika tidak ada baru gunakan cache Firebase/Default
-                const bannerUrl = profil.bannerProf || ((localCmsData.images && localCmsData.images[bannerId]) ? localCmsData.images[bannerId] : 'https://i.ibb.co.com/mC7XyShv/Chat-GPT-Image-26-Jun-2026-18-16-33.png');
-                const profUrl = profil.fotoProf || ((localCmsData.images && localCmsData.images[profId]) ? localCmsData.images[profId] : 'https://i.ibb.co.com/S4Q8KP29/images-15.jpg');
-
-                // Render Social Media Icons (Posisi di tengah)
-                let socmedHTML = '<div class="flex flex-col items-center justify-center border-b border-gray-100 pb-1.5 pt-1">';
-                socmedHTML += '<span class="text-[9px] font-bold text-gray-400 uppercase mb-1">Social Media</span>';
-                
-                if (profil.socmed && (profil.socmed.instagram || profil.socmed.tiktok || profil.socmed.youtube)) {
-                    socmedHTML += '<div class="flex gap-4 justify-center">';
-                    if (profil.socmed.instagram) socmedHTML += `<a href="${profil.socmed.instagram}" target="_blank" class="text-pink-600 hover:text-pink-800 text-sm hover:scale-110 transition-transform"><i class="fab fa-instagram"></i></a>`;
-                    if (profil.socmed.tiktok) socmedHTML += `<a href="${profil.socmed.tiktok}" target="_blank" class="text-black hover:text-gray-800 text-sm hover:scale-110 transition-transform"><i class="fab fa-tiktok"></i></a>`;
-                    if (profil.socmed.youtube) socmedHTML += `<a href="${profil.socmed.youtube}" target="_blank" class="text-red-600 hover:text-red-800 text-sm hover:scale-110 transition-transform"><i class="fab fa-youtube"></i></a>`;
-                    socmedHTML += '</div>';
-                } else {
-                    socmedHTML += '<span class="text-[10px] font-medium text-gray-500 italic">-Tidak Ada/Privasi-</span>';
-                }
-                socmedHTML += '</div>';
-
-                grid.innerHTML += `
-                    <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col aspect-[1/1] hover:shadow-xl transition relative group">
-                        
-                        <!-- Banner Rasio 5:2 Permanen -->
-                        <div class="relative w-full aspect-[5/2] bg-gray-200 flex-shrink-0 overflow-hidden">
-                            <img id="${bannerId}" src="${bannerUrl}" class="w-full h-full object-cover object-center">
-                            
-                            ${isAdmin ? `<button onclick="openEditImgModal('${bannerId}')" class="absolute top-2 right-2 bg-black/60 hover:bg-himasiBlue text-white w-8 h-8 rounded-full flex items-center justify-center transition shadow-lg z-20" title="Ganti Banner"><i class="fas fa-camera"></i></button>` : ''}
-                        </div>
-
-                        <div class="relative px-5 pb-5 flex-grow flex flex-col bg-white">
-                            <!-- Foto Profil Bulat -->
-                            <div class="relative -mt-8 mx-auto w-16 h-16 rounded-full border-4 border-white shadow-md bg-gray-100 z-10 flex-shrink-0 overflow-hidden">
-                                <img id="${profId}" src="${profUrl}" class="w-full h-full object-cover bg-white object-center">
-                                ${isAdmin ? `<div onclick="openEditImgModal('${profId}')" class="absolute inset-0 bg-black/50 flex items-center justify-center cursor-pointer opacity-0 hover:opacity-100 transition z-20" title="Ganti Foto Profil"><i class="fas fa-camera text-white text-lg"></i></div>` : ''}
-                            </div>
-
-                            <!-- Tombol Edit Pensil -->
-                            ${isAdmin ? `<button onclick="editProfil(${index})" class="absolute right-[calc(50%-4rem)] top-[-1.5rem] bg-yellow-500 hover:bg-yellow-600 text-white w-7 h-7 rounded-full flex items-center justify-center transition shadow z-20" title="Edit Profil"><i class="fas fa-pencil-alt text-xs"></i></button>` : ''}
-
-                            <h3 class="text-sm font-bold text-center text-[#1B427B] mt-1 mb-2 leading-tight line-clamp-1">${profil.nama}</h3>
-                            
-                            <div class="flex flex-col gap-1 text-left overflow-y-auto hide-scroll flex-grow">
-                                <div class="flex flex-col border-b border-gray-100 pb-0.5">
-                                    <span class="text-[9px] font-bold text-gray-400 uppercase">Skills:</span>
-                                    <span class="text-[11px] font-medium text-gray-700">${profil.skills}</span>
-                                </div>
-                                <div class="flex flex-col border-b border-gray-100 pb-0.5">
-                                    <span class="text-[9px] font-bold text-gray-400 uppercase">Skill Bahasa:</span>
-                                    <span class="text-[11px] font-medium text-gray-700">${profil.bahasa}</span>
-                                </div>
-                                
-                                ${socmedHTML}
-                                
-                                <div class="flex flex-col items-center text-center mt-auto pb-1">
-    <span class="text-[9px] font-bold text-gray-400 uppercase">Bisnis</span>
-    <span class="text-[11px] font-bold text-gray-800 line-clamp-1 w-full">${profil.bisnis}</span>
+<body>
+
+<!-- ============ LOADER & UTILITIES ============ -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <img class="loader-logo" src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+    <div class="loader-bar"><span></span></div>
+  </div>
 </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
+<div class="progress" id="progress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="toast" id="toast"></div>
 
-            if (isAdmin) {
-                grid.innerHTML += `
-                    <div onclick="openModalProfil()" class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100 hover:border-himasiBlue hover:text-himasiBlue transition aspect-[1/1] group shadow-sm">
-                        <div class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center mb-4 group-hover:scale-110 transition"><i class="fas fa-plus text-2xl text-gray-400 group-hover:text-himasiBlue"></i></div>
-                        <span class="text-gray-500 font-bold group-hover:text-himasiBlue">Tambahkan Profil</span>
-                    </div>
-                `;
-            }
-        }
-		
-        // 2. Fungsi saveImageEdit yang sudah diupdate
-        function saveImageEdit(id, url) { 
-            const img = document.getElementById(id); 
-            if (img) img.src = url; 
-            if(!localCmsData.images) localCmsData.images = {}; 
-            localCmsData.images[id] = url; 
-            simpanKeFirebase(); // Auto save
-        }
-		
-    </script>
+<!-- Mode edit admin -->
+<div class="edit-bar" id="editBar">
+  <span><i class="fa-solid fa-pen-ruler"></i> Mode Edit: klik teks untuk mengubah, klik gambar untuk ganti URL</span>
+  <button class="eb-btn" id="editCancel">Batal</button>
+  <button class="eb-btn primary" id="editSave"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+</div>
+<button class="edit-fab" id="editFab"><i class="fa-solid fa-pen"></i> Edit Halaman</button>
+
+<!-- ============ HEADER DESKTOP ============ -->
+<header class="header" id="header">
+  <a href="#home" class="brand">
+    <img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+    <div><b>HIMATIKA</b><small>UNIV. INDONESIA MANDIRI</small></div>
+  </a>
+  <nav class="nav">
+    <a href="#home" data-nav="home">Beranda</a>
+    <a href="#tentang" data-nav="tentang">Tentang</a>
+    <div class="dd">
+      <button>Departemen <i class="fa-solid fa-chevron-down"></i></button>
+      <div class="dd-menu">
+        <a href="struktur.html" style="--c:#38BDF8"><i class="fa-solid fa-tower-broadcast"></i> Kominfo</a>
+        <a href="stpemuda.html" style="--c:#FB923C"><i class="fa-solid fa-people-group"></i> Kepemudaan</a>
+        <a href="stagama.html" style="--c:#34D399"><i class="fa-solid fa-mosque"></i> Keagamaan</a>
+        <a href="stsdm.html" style="--c:#A78BFA"><i class="fa-solid fa-user-graduate"></i> PSDM</a>
+        <a href="stkesejahteraan.html" style="--c:#FB7185"><i class="fa-solid fa-hand-holding-heart"></i> Kesejahteraan</a>
+        <a href="GridStruktur.html" style="--c:#F5B841"><i class="fa-solid fa-sitemap"></i> Struktur Lengkap</a>
+      </div>
+    </div>
+    <a href="proker.html">Program Kerja</a>
+    <a href="#berita" data-nav="berita">Berita</a>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-btn theme-toggle" aria-label="Ganti tema"><i class="fa-solid fa-moon"></i></button>
+    <a href="#kontak" class="btn btn-gold btn-sm">Hubungi Kami</a>
+  </div>
+</header>
+
+<!-- ============ APPBAR MOBILE ============ -->
+<header class="appbar" id="appbar">
+  <a href="#home" class="brand">
+    <img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+    <div><b>HIMATIKA</b><small>UIM</small></div>
+  </a>
+  <button class="icon-btn theme-toggle" aria-label="Ganti tema"><i class="fa-solid fa-moon"></i></button>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  </div>
+  <div class="container hero-inner">
+    <div>
+      <div class="badge reveal"><span>RESMI</span> Himpunan Mahasiswa Informatika</div>
+      <h1 class="reveal" style="--d:.1s">
+        <span class="grad">HIMATIKA</span><br>
+        Muda, <span class="typing" id="typing">Inovatif</span>
+      </h1>
+      <p class="lead reveal" style="--d:.2s" data-edit="hero_desc">Wadah aspirasi, kolaborasi, dan pengembangan diri mahasiswa Informatika Universitas Indonesia Mandiri, untuk mencetak generasi digital yang kreatif dan berdampak.</p>
+      <div class="hero-cta reveal" style="--d:.3s">
+        <a href="#tentang" class="btn btn-gold">Kenali Kami <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="proker.html" class="btn btn-ghost"><i class="fa-solid fa-rocket"></i> Program Kerja</a>
+      </div>
+      <div class="hero-meta reveal" style="--d:.4s">
+        <div><b data-edit="meta_1">5</b><small>Departemen</small></div>
+        <div><b data-edit="meta_2">2025</b><small>Kepengurusan</small></div>
+        <div><b>UIM</b><small>Informatika</small></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal" style="--d:.2s">
+      <div class="orbit o1"><span class="dot"></span></div>
+      <div class="orbit o2"><span class="dot"></span></div>
+      <div class="logo-core"><img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA"></div>
+      <div class="chip c1"><i class="fa-solid fa-code"></i> Coding &amp; Dev</div>
+      <div class="chip c2"><i class="fa-solid fa-microchip"></i> Tech &amp; AI</div>
+      <div class="chip c3"><i class="fa-solid fa-users"></i> Solidaritas</div>
+    </div>
+  </div>
+  <div class="scroll-hint"></div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee">
+    <span>HIMATIKA UIM</span><span>Informatika</span><span>Inovasi</span><span>Kolaborasi</span><span>Teknologi</span><span>Kreativitas</span><span>Solidaritas</span>
+  </div>
+</div>
+
+<!-- ============ TENTANG ============ -->
+<section class="section" id="tentang">
+  <div class="container">
+    <div class="about-head">
+      <div class="reveal">
+        <span class="eyebrow">Tentang Kami</span>
+        <h2 class="title">Satu himpunan, <span class="hl">banyak dampak</span>.</h2>
+      </div>
+      <p class="lead reveal" style="--d:.1s" data-edit="tentang_desc">HIMATIKA adalah organisasi kemahasiswaan yang menaungi seluruh mahasiswa Program Studi Informatika Universitas Indonesia Mandiri. Kami hadir untuk mengembangkan potensi akademik, keterampilan teknologi, serta karakter kepemimpinan anggotanya.</p>
+    </div>
+
+    <div class="bento">
+      <div class="card visi spot tilt reveal">
+        <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
+        <h3>Visi</h3>
+        <p data-edit="visi">Menjadikan HIMATIKA sebagai himpunan yang solid, inovatif, dan berdaya saing, serta menjadi rumah bagi seluruh mahasiswa Informatika untuk tumbuh bersama.</p>
+      </div>
+      <div class="card misi spot tilt reveal" style="--d:.1s">
+        <div class="card-icon ic-mint"><i class="fa-solid fa-bullseye"></i></div>
+        <h3>Misi</h3>
+        <ul>
+          <li data-edit="misi_1">Meningkatkan kualitas akademik dan kompetensi teknologi anggota.</li>
+          <li data-edit="misi_2">Membangun solidaritas dan kekeluargaan antar mahasiswa.</li>
+          <li data-edit="misi_3">Menjadi jembatan aspirasi mahasiswa kepada program studi dan kampus.</li>
+        </ul>
+      </div>
+      <div class="card v1 spot tilt reveal" style="--d:.15s">
+        <div class="card-icon ic-gold"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>Inovatif</h3>
+        <p>Berani mencoba hal baru lewat teknologi.</p>
+      </div>
+      <div class="card v2 spot tilt reveal" style="--d:.2s">
+        <div class="card-icon ic-cyan"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Kolaboratif</h3>
+        <p>Tumbuh bersama, saling menguatkan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIMPINAN ============ -->
+<section class="section leaders-sec" id="pimpinan">
+  <div class="container">
+    <div class="section-head" style="justify-content:center;text-align:center">
+      <div class="reveal">
+        <span class="eyebrow">Pimpinan</span>
+        <h2 class="title">Nahkoda <span class="hl">HIMATIKA</span></h2>
+      </div>
+    </div>
+    <p class="swipe-hint" style="justify-content:center">Geser untuk melihat <i class="fa-solid fa-hand-pointer"></i></p>
+    <div class="leaders">
+      <article class="leader tilt reveal">
+        <span class="leader-num">01</span>
+        <img data-edit-img="ketua_img" src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Ketua HIMATIKA" loading="lazy">
+        <div class="leader-info">
+          <span class="leader-role">Ketua Umum</span>
+          <h3 data-edit="ketua_nama">Nama Ketua</h3>
+          <p data-edit="ketua_desc">Informatika UIM</p>
+        </div>
+      </article>
+      <article class="leader tilt reveal" style="--d:.12s">
+        <span class="leader-num">02</span>
+        <img data-edit-img="wakil_img" src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Wakil Ketua HIMATIKA" loading="lazy">
+        <div class="leader-info">
+          <span class="leader-role">Wakil Ketua</span>
+          <h3 data-edit="wakil_nama">Nama Wakil Ketua</h3>
+          <p data-edit="wakil_desc">Informatika UIM</p>
+        </div>
+      </article>
+    </div>
+    <blockquote class="quote reveal">
+      <i class="fa-solid fa-quote-left"></i>
+      <span data-edit="quote">Bersama kita bukan hanya belajar teknologi, tapi juga belajar menjadi manusia yang bermanfaat.</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ DEPARTEMEN ============ -->
+<section class="section" id="departemen">
+  <div class="container">
+    <div class="section-head">
+      <div class="reveal">
+        <span class="eyebrow">Departemen</span>
+        <h2 class="title">Bergerak lewat <span class="hl">5 departemen</span></h2>
+      </div>
+      <a href="GridStruktur.html" class="btn btn-dark btn-sm reveal">Struktur Lengkap <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="dept-grid">
+      <a href="struktur.html" class="dept reveal" style="--c:#0EA5E9">
+        <div class="card-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+        <div class="dept-text"><h3>Kominfo</h3><p>Komunikasi, informasi, media kreatif, dan publikasi himpunan.</p></div>
+        <span class="go"><span>Lihat anggota</span> <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="stpemuda.html" class="dept reveal" style="--c:#F97316;--d:.06s">
+        <div class="card-icon"><i class="fa-solid fa-people-group"></i></div>
+        <div class="dept-text"><h3>Kepemudaan</h3><p>Pengembangan minat bakat, olahraga, dan jiwa kepemimpinan.</p></div>
+        <span class="go"><span>Lihat anggota</span> <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="stagama.html" class="dept reveal" style="--c:#10B981;--d:.12s">
+        <div class="card-icon"><i class="fa-solid fa-mosque"></i></div>
+        <div class="dept-text"><h3>Keagamaan</h3><p>Pembinaan spiritual dan kegiatan keagamaan anggota.</p></div>
+        <span class="go"><span>Lihat anggota</span> <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="stsdm.html" class="dept reveal" style="--c:#8B5CF6">
+        <div class="card-icon"><i class="fa-solid fa-user-graduate"></i></div>
+        <div class="dept-text"><h3>PSDM</h3><p>Pengembangan sumber daya mahasiswa, kaderisasi, dan pelatihan.</p></div>
+        <span class="go"><span>Lihat anggota</span> <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="stkesejahteraan.html" class="dept reveal" style="--c:#F43F5E;--d:.06s">
+        <div class="card-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+        <div class="dept-text"><h3>Kesejahteraan</h3><p>Advokasi, kesejahteraan, dan kepedulian sosial mahasiswa.</p></div>
+        <span class="go"><span>Lihat anggota</span> <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a href="proker.html" class="dept all reveal" style="--c:#F5B841;--d:.12s">
+        <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+        <div class="dept-text"><h3>Program Kerja</h3><p>Lihat seluruh program kerja kepengurusan tahun ini.</p></div>
+        <span class="go"><span>Jelajahi</span> <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATISTIK ============ -->
+<section class="section stats" id="statistik">
+  <div class="hero-bg"><div class="hero-grid"></div><div class="blob b2" style="opacity:.15"></div></div>
+  <div class="container">
+    <div class="section-head" style="justify-content:center;text-align:center;position:relative;z-index:2">
+      <div class="reveal">
+        <span class="eyebrow" style="color:var(--gold)">Dalam Angka</span>
+        <h2 class="title" style="color:#fff">Kepengurusan <span class="grad">HIMATIKA</span></h2>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat reveal"><i class="fa-solid fa-users"></i><b class="counter" data-suffix="+" data-edit="stat_anggota">50</b><small>Pengurus Aktif</small></div>
+      <div class="stat reveal" style="--d:.08s"><i class="fa-solid fa-layer-group"></i><b class="counter" data-edit="stat_departemen">5</b><small>Departemen</small></div>
+      <div class="stat reveal" style="--d:.16s"><i class="fa-solid fa-list-check"></i><b class="counter" data-suffix="+" data-edit="stat_proker">20</b><small>Program Kerja</small></div>
+      <div class="stat reveal" style="--d:.24s"><i class="fa-solid fa-graduation-cap"></i><b class="counter" data-suffix="+" data-edit="stat_mahasiswa">200</b><small>Mahasiswa Informatika</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BERITA ============ -->
+<section class="section" id="berita">
+  <div class="container">
+    <div class="section-head">
+      <div class="reveal">
+        <span class="eyebrow">Kabar Terbaru</span>
+        <h2 class="title">Berita &amp; <span class="hl">Kegiatan</span></h2>
+      </div>
+      <a href="berita.html" class="btn btn-dark btn-sm reveal">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <p class="swipe-hint">Geser untuk berita lainnya <i class="fa-solid fa-hand-pointer"></i></p>
+    <div class="news-grid" id="newsGrid">
+      <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAK / CTA ============ -->
+<section id="kontak">
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <span class="eyebrow" style="color:var(--gold)">Terhubung</span>
+        <h2 class="title">Ikuti perjalanan <span class="grad">HIMATIKA</span></h2>
+        <p class="lead" data-edit="cta_desc">Dapatkan info kegiatan, lomba, dan dokumentasi terbaru melalui media sosial resmi kami.</p>
+        <div class="socials">
+          <!-- GANTI href dengan link akun resmi -->
+          <a href="#" class="social" style="--c:#E1306C" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social" style="--c:#111" aria-label="TikTok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social" style="--c:#FF0000" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="social" style="--c:#0A66C2" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:himatika@uim.ac.id" class="social" style="--c:#F5B841" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="cv-box">
+        <h4><i class="fa-solid fa-id-card" style="color:var(--gold)"></i> CV Angkatan</h4>
+        <p>Lihat profil &amp; CV pengurus per angkatan.</p>
+        <div class="cv-list" id="cvList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#home" class="brand">
+          <img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+          <div><b>HIMATIKA</b><small>UNIV. INDONESIA MANDIRI</small></div>
+        </a>
+        <p class="footer-desc">Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri. Solid, inovatif, dan berdampak.</p>
+      </div>
+      <div>
+        <h5>Navigasi</h5>
+        <ul>
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="proker.html">Program Kerja</a></li>
+          <li><a href="berita.html">Berita</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Departemen</h5>
+        <ul>
+          <li><a href="struktur.html">Kominfo</a></li>
+          <li><a href="stpemuda.html">Kepemudaan</a></li>
+          <li><a href="stagama.html">Keagamaan</a></li>
+          <li><a href="stsdm.html">PSDM</a></li>
+          <li><a href="stkesejahteraan.html">Kesejahteraan</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Kontak</h5>
+        <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span data-edit="kontak_alamat">Universitas Indonesia Mandiri</span></div>
+        <div class="contact-item"><i class="fa-solid fa-envelope"></i><span data-edit="kontak_email">himatika@uim.ac.id</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> HIMATIKA UIM. All rights reserved.</span>
+      <a href="admin.html"><i class="fa-solid fa-lock"></i> Admin</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOTTOM NAV (MOBILE) ============ -->
+<nav class="bottom-nav">
+  <a href="#home" data-nav="home" class="active"><i class="fa-solid fa-house"></i>Beranda</a>
+  <a href="#tentang" data-nav="tentang"><i class="fa-solid fa-circle-info"></i>Tentang</a>
+  <a href="#departemen" data-nav="departemen"><i class="fa-solid fa-layer-group"></i>Divisi</a>
+  <a href="#berita" data-nav="berita"><i class="fa-solid fa-newspaper"></i>Berita</a>
+  <button id="menuBtn"><i class="fa-solid fa-grip"></i>Menu</button>
+</nav>
+
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="sheet" id="sheet" role="dialog" aria-label="Menu">
+  <div class="sheet-handle"></div>
+  <h4>Halaman</h4>
+  <div class="sheet-grid">
+    <a href="proker.html" style="--c:#F5B841"><i class="fa-solid fa-rocket"></i>Program Kerja</a>
+    <a href="berita.html" style="--c:#1E4380"><i class="fa-solid fa-newspaper"></i>Semua Berita</a>
+    <a href="GridStruktur.html" style="--c:#0F2547"><i class="fa-solid fa-sitemap"></i>Struktur</a>
+    <a href="#pimpinan" style="--c:#0EA5E9"><i class="fa-solid fa-crown"></i>Pimpinan</a>
+    <a href="#statistik" style="--c:#10B981"><i class="fa-solid fa-chart-simple"></i>Statistik</a>
+    <a href="#kontak" style="--c:#F43F5E"><i class="fa-solid fa-paper-plane"></i>Kontak</a>
+  </div>
+  <h4>Departemen</h4>
+  <div class="sheet-grid">
+    <a href="struktur.html" style="--c:#0EA5E9"><i class="fa-solid fa-tower-broadcast"></i>Kominfo</a>
+    <a href="stpemuda.html" style="--c:#F97316"><i class="fa-solid fa-people-group"></i>Kepemudaan</a>
+    <a href="stagama.html" style="--c:#10B981"><i class="fa-solid fa-mosque"></i>Keagamaan</a>
+    <a href="stsdm.html" style="--c:#8B5CF6"><i class="fa-solid fa-user-graduate"></i>PSDM</a>
+    <a href="stkesejahteraan.html" style="--c:#F43F5E"><i class="fa-solid fa-hand-holding-heart"></i>Kesejahteraan</a>
+    <a href="admin.html" style="--c:#5B6578"><i class="fa-solid fa-lock"></i>Admin</a>
+  </div>
+</div>
+
+<!-- ============ MUSIC & TO TOP ============ -->
+<div class="np" id="np">
+  <div class="np-disc" id="npDisc" title="Musik"></div>
+  <div class="np-info">
+    <b data-edit="musik_judul">HIMATIKA Radio</b>
+    <small class="np-bars"><i></i><i></i><i></i></small>
+  </div>
+  <button class="np-btn" id="npBtn" aria-label="Putar musik"><i class="fa-solid fa-play"></i></button>
+</div>
+<!-- GANTI src dengan file musik Anda -->
+<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
+
+<button class="totop" id="toTop" aria-label="Kembali ke atas"><span><i class="fa-solid fa-arrow-up"></i></span></button>
+
+<!-- ============ FIREBASE (compat) ============ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script>
+/* =========================================================
+   KONFIGURASI — WAJIB DISESUAIKAN
+   ========================================================= */
+const firebaseConfig = {
+  apiKey: "ISI_API_KEY",
+  authDomain: "ISI.firebaseapp.com",
+  databaseURL: "https://ISI-default-rtdb.firebaseio.com",
+  projectId: "ISI",
+  storageBucket: "ISI.appspot.com",
+  messagingSenderId: "ISI",
+  appId: "ISI"
+};
+const DB_PATH = { konten: 'konten', berita: 'berita', cv: 'cvAngkatan' }; // samakan dengan database lama
+const CV_URL = (tahun) => `GridStruktur.html?angkatan=${encodeURIComponent(tahun)}`;   // samakan dengan halaman CV lama
+const DEFAULT_CV = ['2022', '2025'];
+const LOGO = 'https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png';
+
+/* ================= HELPERS ================= */
+const $  = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const finePointer  = matchMedia('(hover:hover) and (pointer:fine)').matches;
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const stripHtml = s => new DOMParser().parseFromString(String(s || ''), 'text/html').body.textContent || '';
+const toTime = d => { const t = new Date(d).getTime(); return isNaN(t) ? 0 : t; };
+const fmtDate = d => { if (!d) return ''; const t = new Date(d); return isNaN(t) ? String(d) : t.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' }); };
+let toastTimer;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800); }
+$('#year').textContent = new Date().getFullYear();
+
+/* ================= LOADER ================= */
+const hideLoader = () => $('#loader').classList.add('hide');
+window.addEventListener('load', () => setTimeout(hideLoader, 350));
+setTimeout(hideLoader, 4000);
+
+/* ================= THEME ================= */
+const root = document.documentElement;
+function syncThemeIcon(){ $$('.theme-toggle i').forEach(i => i.className = root.dataset.theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'); }
+$$('.theme-toggle').forEach(b => b.addEventListener('click', () => {
+  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', root.dataset.theme); syncThemeIcon();
+}));
+syncThemeIcon();
+
+/* ================= SCROLL (progress, header, to-top) ================= */
+const header = $('#header'), appbar = $('#appbar'), progress = $('#progress'), toTop = $('#toTop');
+let ticking = false;
+function onScroll(){
+  const y = scrollY, h = document.documentElement.scrollHeight - innerHeight, p = h > 0 ? y / h : 0;
+  progress.style.transform = `scaleX(${p})`;
+  header.classList.toggle('scrolled', y > 40);
+  appbar.classList.toggle('scrolled', y > 20);
+  toTop.style.setProperty('--p', (p * 100).toFixed(1));
+  toTop.classList.toggle('show', y > 600);
+  ticking = false;
+}
+addEventListener('scroll', () => { if (!ticking){ requestAnimationFrame(onScroll); ticking = true; } }, { passive:true });
+onScroll();
+toTop.addEventListener('click', () => scrollTo({ top:0, behavior:'smooth' }));
+
+/* ================= REVEAL ================= */
+const revealIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); }
+}), { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+const observeReveal = (scope = document) => $$('.reveal:not(.in)', scope).forEach(el => revealIO.observe(el));
+observeReveal();
+
+/* ================= COUNTER ================= */
+const counterIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target, end = parseInt(el.textContent.replace(/\D/g, ''), 10) || 0;
+  counterIO.unobserve(el);
+  if (reduceMotion || document.body.classList.contains('editing')) return;
+  const dur = 1600, start = performance.now();
+  const step = now => { const k = Math.min((now - start) / dur, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 4))); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}), { threshold:.6 });
+$$('.counter').forEach(el => counterIO.observe(el));
+
+/* ================= TYPING ================= */
+(function(){
+  const el = $('#typing'), words = ['Inovatif', 'Kolaboratif', 'Kreatif', 'Berdampak'];
+  if (reduceMotion) return;
+  let wi = 0, ci = words[0].length, del = true;
+  (function tick(){
+    const w = words[wi]; el.textContent = w.slice(0, ci);
+    if (del){ if (ci > 0){ ci--; return setTimeout(tick, 45); } del = false; wi = (wi + 1) % words.length; return setTimeout(tick, 250); }
+    if (ci < words[wi].length){ ci++; return setTimeout(tick, 95); }
+    del = true; setTimeout(tick, 1800);
+  })();
+})();
+
+/* ================= MARQUEE (duplikasi agar mulus) ================= */
+const mq = $('#marquee'); mq.innerHTML += mq.innerHTML;
+
+/* ================= DESKTOP: TILT + SPOTLIGHT + CURSOR GLOW ================= */
+if (finePointer && !reduceMotion){
+  $$('.tilt').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      if (document.body.classList.contains('editing')) return;
+      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      el.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateY(-6px)`;
+      el.style.setProperty('--mx', `${(x + .5) * 100}%`); el.style.setProperty('--my', `${(y + .5) * 100}%`);
+    });
+    el.addEventListener('pointerleave', () => el.style.transform = '');
+  });
+  const glow = $('#cursorGlow');
+  addEventListener('pointermove', e => glow.style.transform = `translate(${e.clientX - 250}px, ${e.clientY - 250}px)`, { passive:true });
+}
+
+/* ================= ACTIVE NAV ON SCROLL ================= */
+const navIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) $$('[data-nav]').forEach(a => a.classList.toggle('active', a.dataset.nav === e.target.id));
+}), { rootMargin:'-45% 0px -50% 0px' });
+$$('section[id]').forEach(s => navIO.observe(s));
+
+/* ================= MOBILE SHEET (swipe to close) ================= */
+const sheet = $('#sheet'), backdrop = $('#sheetBackdrop');
+const openSheet  = () => { sheet.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; };
+const closeSheet = () => { sheet.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; sheet.style.transform = ''; };
+$('#menuBtn').addEventListener('click', openSheet);
+backdrop.addEventListener('click', closeSheet);
+$$('#sheet a').forEach(a => a.addEventListener('click', closeSheet));
+let startY = null;
+sheet.addEventListener('touchstart', e => { if (sheet.scrollTop <= 0) startY = e.touches[0].clientY; }, { passive:true });
+sheet.addEventListener('touchmove', e => {
+  if (startY === null) return; const dy = e.touches[0].clientY - startY;
+  if (dy > 0){ sheet.style.transition = 'none'; sheet.style.transform = `translateY(${dy}px)`; }
+}, { passive:true });
+sheet.addEventListener('touchend', e => {
+  if (startY === null) return; const dy = e.changedTouches[0].clientY - startY;
+  sheet.style.transition = ''; if (dy > 100) closeSheet(); else sheet.style.transform = ''; startY = null;
+});
+
+/* ================= MUSIC PLAYER ================= */
+const audio = $('#bgm'), np = $('#np'), npBtn = $('#npBtn');
+$('#npDisc').addEventListener('click', () => np.classList.toggle('expanded'));
+npBtn.addEventListener('click', () => audio.paused ? audio.play().catch(() => toast('Musik tidak dapat diputar')) : audio.pause());
+audio.addEventListener('play',  () => { np.classList.add('playing');    npBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; });
+audio.addEventListener('pause', () => { np.classList.remove('playing'); npBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; });
+
+/* ================= BERITA ================= */
+function normalizeNews(obj){
+  return Object.entries(obj || {}).map(([id, v]) => ({
+    id,
+    title: v.judul || v.title || 'Tanpa Judul',
+    img:   v.gambar || v.image || v.img || v.thumbnail || '',
+    date:  v.tanggal || v.date || v.createdAt || v.timestamp || '',
+    tag:   v.kategori || v.category || 'Kegiatan',
+    desc:  stripHtml(v.ringkasan || v.isi || v.konten || v.deskripsi || v.content || '').slice(0, 220)
+  })).sort((a, b) => toTime(b.date) - toTime(a.date));
+}
+function renderNews(list){
+  const grid = $('#newsGrid');
+  if (!list.length){ grid.innerHTML = `<div class="empty"><i class="fa-regular fa-newspaper"></i><p>Belum ada berita untuk ditampilkan.</p></div>`; return; }
+  grid.innerHTML = list.slice(0, 5).map((n, i) => `
+    <a class="news reveal" style="--d:${i * .07}s" href="berita.html?id=${encodeURIComponent(n.id)}">
+      <div class="news-img">
+        <img src="${esc(n.img || LOGO)}" alt="${esc(n.title)}" loading="lazy" onerror="this.onerror=null;this.src='${LOGO}'">
+        <span class="news-tag">${esc(n.tag)}</span>
+      </div>
+      <div class="news-body">
+        <span class="news-date"><i class="fa-regular fa-calendar"></i> ${esc(fmtDate(n.date))}</span>
+        <h3>${esc(n.title)}</h3>
+        <p>${esc(n.desc)}</p>
+        <span class="read-more">Baca selengkapnya <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </a>`).join('');
+  observeReveal(grid);
+}
+const DEMO_NEWS = [
+  { id:'demo1', title:'Contoh Berita: Hubungkan Firebase untuk menampilkan berita asli', img:'', date:new Date().toISOString(), tag:'Info', desc:'Isi firebaseConfig di bagian script agar berita dari database tampil otomatis di sini.' },
+  { id:'demo2', title:'Workshop Pemrograman Web untuk Mahasiswa Baru', img:'', date:'2025-10-12', tag:'Kegiatan', desc:'Contoh tampilan kartu berita.' },
+  { id:'demo3', title:'Seminar Teknologi & Karier di Dunia IT', img:'', date:'2025-09-20', tag:'Seminar', desc:'Contoh tampilan kartu berita.' }
+];
+
+/* ================= CV ANGKATAN ================= */
+function renderCV(list){
+  const uniq = [...new Set(list.filter(Boolean).map(String))].sort();
+  $('#cvList').innerHTML = uniq.map(t => `
+    <a class="cv-chip" href="${CV_URL(t)}"><span><i class="fa-solid fa-graduation-cap"></i> Angkatan ${esc(t)}</span><i class="fa-solid fa-arrow-right"></i></a>`).join('');
+}
+
+/* ================= KONTEN DINAMIS ================= */
+function applyContent(data){
+  Object.entries(data || {}).forEach(([k, v]) => {
+    $$(`[data-edit="${CSS.escape(k)}"]`).forEach(el => el.textContent = v);
+    $$(`[data-edit-img="${CSS.escape(k)}"]`).forEach(el => el.src = v);
+  });
+}
+
+/* ================= FIREBASE ================= */
+const fbReady = typeof firebase !== 'undefined' && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith('ISI');
+let db = null, auth = null;
+if (fbReady){
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.database();
+  auth = firebase.auth();
+  db.ref(DB_PATH.konten).once('value').then(s => applyContent(s.val())).catch(console.warn);
+  db.ref(DB_PATH.berita).limitToLast(12).on('value', s => renderNews(normalizeNews(s.val())), () => renderNews([]));
+  db.ref(DB_PATH.cv).once('value')
+    .then(s => { const v = s.val(); renderCV(v ? Object.values(v).map(x => typeof x === 'object' ? (x.tahun || x.year) : x) : DEFAULT_CV); })
+    .catch(() => renderCV(DEFAULT_CV));
+  auth.onAuthStateChanged(u => document.body.classList.toggle('is-admin', !!u));
+} else {
+  setTimeout(() => renderNews(DEMO_NEWS), 600);
+  renderCV(DEFAULT_CV);
+}
+
+/* ================= MODE EDIT ADMIN ================= */
+let editing = false;
+function setEditing(on){
+  editing = on;
+  document.body.classList.toggle('editing', on);
+  $$('[data-edit]').forEach(el => { el.contentEditable = on ? 'true' : 'false'; el.spellcheck = false; });
+  $$('.tilt').forEach(el => el.style.transform = '');
+}
+$('#editFab').addEventListener('click', () => { setEditing(true); toast('Mode edit aktif'); });
+$('#editCancel').addEventListener('click', () => { setEditing(false); location.reload(); });
+$('#editSave').addEventListener('click', async () => {
+  if (!db) return toast('Firebase belum terhubung');
+  const data = {};
+  $$('[data-edit]').forEach(el => data[el.dataset.edit] = el.textContent.trim());
+  $$('[data-edit-img]').forEach(el => data[el.dataset.editImg] = el.src);
+  try { await db.ref(DB_PATH.konten).update(data); setEditing(false); toast('Perubahan tersimpan ✓'); }
+  catch (err) { toast('Gagal menyimpan: ' + err.message); }
+});
+document.addEventListener('click', e => {
+  if (!editing) return;
+  if (e.target.closest('[data-edit]') && e.target.closest('a')) e.preventDefault();
+  const img = e.target.closest('[data-edit-img]');
+  if (img){ e.preventDefault(); const url = prompt('Masukkan URL gambar baru:', img.src); if (url) img.src = url.trim(); }
+});
+document.addEventListener('paste', e => {
+  if (!editing || !e.target.closest('[data-edit]')) return;
+  e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain'));
+});
+
+/* ================= SERVICE WORKER ================= */
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
 </body>
 </html>
