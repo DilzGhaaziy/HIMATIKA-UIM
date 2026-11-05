@@ -1,215 +1,103 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departemen Agama - HIMATIKA</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        himasiBlue: '#0d72bf',
-                        himasiDark: '#363537',
-                        textDark: '#444444'
-                    },
-                    fontFamily: {
-                        sans: ['Roboto', 'sans-serif'],
-                        heading: ['Raleway', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .fade-in { animation: fadeIn 0.8s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .arabic { font-family: 'Amiri', serif; font-size: 1.8rem; line-height: 2.8rem; direction: rtl; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050E1F">
+<title>Departemen Agama - HIMATIKA</title>
+<link rel="icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
+<script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+.spirit{display:grid;grid-template-columns:1.4fr 1fr;gap:1.2rem;margin-top:2rem}
+.doa{position:relative;background:linear-gradient(150deg,var(--navy-800),var(--navy-950));color:#fff;border-radius:28px;padding:clamp(1.6rem,4vw,2.8rem);overflow:hidden;text-align:center;min-height:380px;display:flex;flex-direction:column;justify-content:center}
+.doa::before{content:'';position:absolute;inset:0;opacity:.07;background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);background-size:22px 22px}
+.doa>*{position:relative}
+.doa h3{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:1.4rem}
+.arab{font-family:'Amiri',serif;font-size:clamp(1.5rem,3.4vw,2.3rem);line-height:2;direction:rtl;margin-bottom:1.2rem}
+.latin{color:rgba(255,255,255,.6);font-style:italic;font-size:.9rem;margin-bottom:.9rem}
+.arti{font-weight:500;color:rgba(255,255,255,.9)}
+.src{margin-top:1.2rem;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.side{display:flex;flex-direction:column;gap:1.2rem}
+.quote-card{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center}
+.quote-card>i{font-size:1.6rem;color:var(--mint);margin-bottom:1rem}
+.quote-card p{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;line-height:1.5}
+.quote-card small{display:block;margin-top:1rem;font-weight:800;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.timer{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;border-radius:20px;background:var(--surface);border:1px solid var(--line);font-size:.82rem;font-weight:600;color:var(--text-2)}
+.bar{flex:1;height:5px;border-radius:5px;background:var(--bg-2);overflow:hidden}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--gold));transform-origin:0 50%;animation:fill 30s linear infinite}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fade{animation:fadeUp .7s var(--ease)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (max-width:960px){.spirit{grid-template-columns:1fr}}
+</style>
 </head>
-<body class="font-sans text-textDark bg-[#F5F4F1] overflow-x-hidden">
+<body data-page="agama">
+<main id="dept"></main>
+<script src="app.js"></script>
+<script>
+HIMA.renderDept({
+  key: 'agama',
+  desc: 'Departemen Agama adalah bidang yang bertanggung jawab dalam membina karakter spiritual dan religiusitas mahasiswa Informatika. Departemen ini berfokus pada kegiatan kerohanian, penyediaan ruang diskusi keagamaan, serta penguatan nilai-nilai moral dan etika yang menjadi fondasi dalam berorganisasi dan bermasyarakat.',
+  leaders: [ { name:'Rahma Aulya', role:'Ketua Departemen' }, { name:'Lucky Cahya Khalima Usada', role:'Wakil Ketua Departemen' } ],
+  units: [],
+  noUnitText: 'Departemen ini tidak memiliki unit.'
+});
 
-    <nav class="bg-[#1B427B] shadow-md fixed w-full z-50 top-0 border-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html">
-                        <img class="h-14 w-auto rounded px-2" src="https://i.ibb.co.com/fYnf7V3C/Proyek-Baru-60-A47862-B.png" alt="HIMATIKA Logo">
-                    </a>
-                </div>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html" class="text-white font-medium hover:text-gray-300">Beranda</a>
-                    <a href="proker.html" class="text-gray-200 font-medium hover:text-white">Program Kerja</a>
-                    
-                    <div class="relative group cursor-pointer py-6">
-                        <span class="text-white font-bold group-hover:text-gray-300">Departemen <i class="fas fa-chevron-down text-xs ml-1"></i></span>
-                        <div class="absolute left-0 mt-4 w-64 bg-white border border-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                            <a href="struktur.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Komunikasi dan Informasi</a>
-                            <a href="stpemuda.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pemuda dan Olahraga</a>
-                            <a href="stagama.html" class="block px-4 py-3 text-sm font-bold text-himasiBlue bg-gray-50 border-b">Agama</a>
-                            <a href="stsdm.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue border-b">Pengembangan dan SDM</a>
-                            <a href="stkesejahteraan.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-himasiBlue">Kesejahteraan Mahasiswa</a>
-                        </div>
-                    </div>
-                    
-                    <a href="berita.html" class="text-gray-200 font-medium hover:text-white">Berita</a>
-                    <a href="galeri.html" class="text-gray-200 font-medium hover:text-white">Galeri</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+document.getElementById('deptExtra').innerHTML = `
+  <div class="section-head reveal" style="margin-top:3.5rem"><div><span class="eyebrow">Pengingat Harian</span><h2 class="title">Doa &amp; <span class="hl">Mutiara Hikmah</span></h2></div></div>
+  <div class="spirit">
+    <div class="doa reveal" id="doa"></div>
+    <div class="side">
+      <div class="quote-card reveal" id="quote"></div>
+      <div class="timer reveal"><i class="fa-solid fa-rotate"></i> Berganti otomatis tiap 30 detik <div class="bar"><span></span></div></div>
+    </div>
+  </div>`;
+HIMA.observe();
 
-    <section class="pt-36 pb-16 px-4">
-        <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 p-8 md:p-12">
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center border-b border-gray-200 pb-12">
-                <div>
-                    <div class="inline-block bg-[#001D4D] text-white font-bold py-2 px-6 rounded-full mb-6">Departemen</div>
-                    <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-800 mb-6 uppercase">Agama</h1>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        Departemen Agama adalah bidang yang bertanggung jawab dalam membina karakter spiritual dan religiusitas mahasiswa Informatika. Departemen ini berfokus pada kegiatan kerohanian, penyediaan ruang diskusi keagamaan, serta penguatan nilai-nilai moral dan etika yang menjadi fondasi dalam berorganisasi dan bermasyarakat.
-                    </p>
-                </div>
-
-                <div class="flex flex-col sm:flex-row justify-center gap-8">
-                    <div class="flex flex-col items-center">
-                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-48 h-48 object-cover rounded-2xl shadow-md border-4 border-gray-50" alt="Rahma Aulya">
-                        <div class="bg-[#1B427B] text-white font-bold py-2 px-6 rounded-full shadow-md -mt-5 relative z-10 text-center whitespace-nowrap">
-                            Rahma Aulya
-                        </div>
-                        <p class="text-gray-500 mt-3 font-semibold text-sm">Ketua Departemen</p>
-                    </div>
-
-                    <div class="flex flex-col items-center">
-                        <img src="https://i.ibb.co.com/V59MPWH/Proyek-Baru-59-9-A3-D4-FF.png" class="w-48 h-48 object-cover rounded-2xl shadow-md border-4 border-gray-50" alt="Lucky Cahya">
-                        <div class="bg-[#1B427B] text-white font-bold py-2 px-6 rounded-full shadow-md -mt-5 relative z-10 text-center whitespace-nowrap">
-                            Lucky Cahya Khalima Usada
-                        </div>
-                        <p class="text-gray-500 mt-3 font-semibold text-sm">Wakil Ketua Departemen</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-12 text-center">
-                <p class="text-gray-400 italic mb-10">Departemen ini tidak memiliki unit.</p>
-                
-                <div id="doa-container" class="bg-gray-50 border border-gray-100 rounded-3xl p-6 md:p-10 mb-8 fade-in min-h-[300px] flex flex-col justify-center">
-                    </div>
-
-                <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
-                    Doa ini muncul secara random & berganti setelah 30 detik
-                </span>
-
-                <div id="quote-container" class="mt-16 bg-[#1B427B]/5 border-l-4 border-[#1B427B] rounded-r-2xl p-8 italic text-lg text-gray-700 fade-in min-h-[120px] flex flex-col justify-center">
-                    </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer class="bg-[#001436] py-6 mt-10 border-none">
-        <div class="max-w-7xl mx-auto px-4 text-right">
-            <p class="text-gray-400 text-sm">Developed by Gilang Aidil Pratama / Dilz Ghaaziy</p>
-        </div>
-    </footer>
-
-    <script>
-        const prayers = [
-            {
-                title: "Doa Memohon Ilmu, Rezeki, dan Amal yang Diterima",
-                arab: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا",
-                latin: "Allahumma inni as-aluka 'ilman nafi'an, wa rizqan thayyiban, wa 'amalan mutaqabbalan",
-                meaning: "Ya Allah, sungguh aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik, dan amal yang diterima.",
-                source: "HR. Ibnu Majah (no. 925) & Ahmad"
-            },
-            {
-                title: "Doa Masuk & Keluar WC",
-                arab: "Masuk: اللَّهُمَّ إنِّي أَعُوذُ بِك من الْخُبْثِ وَالْخَبَائِثِ <br>Keluar: غُفْرَانَكَ الْحَمْدُ للهِ الَّذِىْ اَذْهَبَ عَنّى اْلاَذَى وَعَافَانِىْ",
-                latin: "Masuk: Bismillahi, Allahumma inni a'udzu bika minal khubutsi wal khabaitsi<br>Keluar: Ghufrānaka, alhamdulillāhil-ladzī adzhaba 'annī al-adzā wa 'āfānī",
-                meaning: "Masuk: Ya Allah, sungguh aku berlindung kepada-Mu dari godaan setan laki-laki dan setan perempuan.<br>Keluar: Dengan mengharap ampunan-Mu, segala puji bagi Allah yang telah menghilangkan kotoran dari badanku dan menyihatkan.",
-                source: "HR. Bukhari & Muslim"
-            },
-            {
-                title: "Doa Masuk & Keluar Masjid",
-                arab: "Masuk: اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ <br>Keluar: اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
-                latin: "Masuk: Allahummaf-tahlii abwaaba rahmatik<br>Keluar: Allahumma inni as-aluka min fadhlik",
-                meaning: "Masuk: Ya Allah, bukakanlah pintu-pintu rahmat-Mu.<br>Keluar: Ya Allah, aku memohon karunia-Mu.",
-                source: "HR. Muslim"
-            },
-            {
-                title: "Doa Sebelum Tidur & Bangun Tidur",
-                arab: "Tidur: بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا <br>Bangun: الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
-                latin: "Tidur: Bismika Allahumma amutu wa ahya<br>Bangun: Alhamdu lillahil ladzii ahyaanaa ba'da maa amaatanaa wa ilaihin nusyuur",
-                meaning: "Tidur: Dengan nama-Mu Ya Allah, aku mati dan aku hidup.<br>Bangun: Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan hanya kepada-Nya kami kembali.",
-                source: "HR. Bukhari & Muslim"
-            },
-            {
-                title: "Doa Naik Kendaraan",
-                arab: "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ",
-                latin: "Subhaanal ladzii sakhkhara lanaa haadzaa wa maa kunnaa lahu muqriniin, wa innaa ilaa rabbinaa lamunqalibuun",
-                meaning: "Maha Suci Allah yang telah menundukkan semua ini bagi kami padahal kami sebelumnya tidak mampu menguasainya, dan sesungguhnya kami akan kembali kepada Tuhan kami.",
-                source: "QS. Az-Zukhruf: 13-14"
-            }
-        ];
-
-        const quotes = [
-            { text: "Barangsiapa yang menempuh jalan untuk mencari ilmu, maka Allah akan memudahkan baginya jalan menuju surga.", source: "HR. Muslim" },
-            { text: "Sesungguhnya setiap amalan itu bergantung pada niatnya.", source: "HR. Bukhari & Muslim" },
-            { text: "Senyummu di hadapan saudaramu adalah sedekah.", source: "HR. Tirmidzi" },
-            { text: "Beribadahlah kepada Allah seakan-akan kamu melihat-Nya, jika kamu tidak melihat-Nya, sesungguhnya Dia melihatmu.", source: "HR. Muslim" },
-            { text: "Malu itu bagian dari iman.", source: "HR. Bukhari & Muslim" },
-            { text: "Mukmin yang paling sempurna imannya adalah yang paling baik akhlaknya.", source: "HR. Tirmidzi" },
-            { text: "Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia lainnya.", source: "HR. Ahmad" },
-            { text: "Cukuplah kematian sebagai penasihat.", source: "Ath-Thabrani" },
-            { text: "Dunia adalah penjara bagi orang mukmin dan surga bagi orang kafir.", source: "HR. Muslim" },
-            { text: "Tidak akan masuk surga orang yang di dalam hatinya terdapat sebesar biji sawi kesombongan.", source: "HR. Muslim" },
-            // ... (Daftar ini akan secara otomatis dirandom, contoh 10 di atas mewakili struktur 100 quotes)
-            { text: "Waktu itu seperti pedang, jika kamu tidak memotongnya, ia akan memotongmu.", source: "Imam Syafi'i" },
-            { text: "Tangan di atas lebih baik daripada tangan di bawah.", source: "HR. Bukhari" },
-            { text: "Bertakwalah kepada Allah di mana pun kamu berada.", source: "HR. Tirmidzi" },
-            { text: "Barangsiapa beriman kepada Allah dan hari akhir, hendaklah ia berkata baik atau diam.", source: "HR. Bukhari" },
-            { text: "Barangsiapa yang menutupi aib seorang muslim, Allah akan menutupi aibnya di dunia dan akhirat.", source: "HR. Muslim" },
-            { text: "Surga itu di bawah telapak kaki ibu.", source: "HR. Ahmad" },
-            { text: "Sampaikanlah dariku walau hanya satu ayat.", source: "HR. Bukhari" },
-            { text: "Pekerjaan yang paling dicintai Allah adalah amalan yang dilakukan secara istiqomah meskipun sedikit.", source: "HR. Bukhari" },
-            { text: "Dan Dialah yang bersamamu di mana saja kamu berada.", source: "QS. Al-Hadid: 4" },
-            { text: "Maka sesungguhnya bersama kesulitan itu ada kemudahan.", source: "QS. Al-Inshirah: 5" }
-        ];
-
-        // Fungsi Random
-        function updateContent() {
-            const doa = prayers[Math.floor(Math.random() * prayers.length)];
-            const quote = quotes[Math.floor(Math.random() * quotes.length)];
-
-            const doaBox = document.getElementById('doa-container');
-            doaBox.innerHTML = `
-                <h3 class="text-xl font-bold text-himasiBlue mb-6 uppercase tracking-wider">${doa.title}</h3>
-                <div class="mb-6"><span class="text-3xl md:text-4xl text-gray-800 leading-relaxed font-serif" dir="rtl">${doa.arab}</span></div>
-                <p class="text-gray-500 italic mb-3 text-sm">${doa.latin}</p>
-                <p class="text-gray-700 font-medium px-4 mb-4">"${doa.meaning}"</p>
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">— Sumber: ${doa.source}</p>
-            `;
-
-            const quoteBox = document.getElementById('quote-container');
-            quoteBox.innerHTML = `
-                <p class="text-xl leading-relaxed mb-4">"${quote.text}"</p>
-                <p class="text-sm font-bold text-[#1B427B] uppercase tracking-widest">— ${quote.source}</p>
-            `;
-            
-            // Efek refresh animasi
-            doaBox.classList.remove('fade-in'); void doaBox.offsetWidth; doaBox.classList.add('fade-in');
-            quoteBox.classList.remove('fade-in'); void quoteBox.offsetWidth; quoteBox.classList.add('fade-in');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateContent();
-            setInterval(updateContent, 30000); // 30 detik
-        });
-    </script>
+const prayers = [
+  { title:"Doa Memohon Ilmu, Rezeki, dan Amal yang Diterima", arab:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا", latin:"Allahumma inni as-aluka 'ilman nafi'an, wa rizqan thayyiban, wa 'amalan mutaqabbalan", meaning:"Ya Allah, sungguh aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik, dan amal yang diterima.", source:"HR. Ibnu Majah (no. 925) & Ahmad" },
+  { title:"Doa Masuk & Keluar WC", arab:"Masuk: اللَّهُمَّ إنِّي أَعُوذُ بِك من الْخُبْثِ وَالْخَبَائِثِ <br>Keluar: غُفْرَانَكَ الْحَمْدُ للهِ الَّذِىْ اَذْهَبَ عَنّى اْلاَذَى وَعَافَانِىْ", latin:"Masuk: Bismillahi, Allahumma inni a'udzu bika minal khubutsi wal khabaitsi<br>Keluar: Ghufrānaka, alhamdulillāhil-ladzī adzhaba 'annī al-adzā wa 'āfānī", meaning:"Masuk: Ya Allah, sungguh aku berlindung kepada-Mu dari godaan setan laki-laki dan setan perempuan.<br>Keluar: Dengan mengharap ampunan-Mu, segala puji bagi Allah yang telah menghilangkan kotoran dari badanku dan menyihatkan.", source:"HR. Bukhari & Muslim" },
+  { title:"Doa Masuk & Keluar Masjid", arab:"Masuk: اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ <br>Keluar: اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ", latin:"Masuk: Allahummaf-tahlii abwaaba rahmatik<br>Keluar: Allahumma inni as-aluka min fadhlik", meaning:"Masuk: Ya Allah, bukakanlah pintu-pintu rahmat-Mu.<br>Keluar: Ya Allah, aku memohon karunia-Mu.", source:"HR. Muslim" },
+  { title:"Doa Sebelum Tidur & Bangun Tidur", arab:"Tidur: بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا <br>Bangun: الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ", latin:"Tidur: Bismika Allahumma amutu wa ahya<br>Bangun: Alhamdu lillahil ladzii ahyaanaa ba'da maa amaatanaa wa ilaihin nusyuur", meaning:"Tidur: Dengan nama-Mu Ya Allah, aku mati dan aku hidup.<br>Bangun: Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan hanya kepada-Nya kami kembali.", source:"HR. Bukhari & Muslim" },
+  { title:"Doa Naik Kendaraan", arab:"سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ", latin:"Subhaanal ladzii sakhkhara lanaa haadzaa wa maa kunnaa lahu muqriniin, wa innaa ilaa rabbinaa lamunqalibuun", meaning:"Maha Suci Allah yang telah menundukkan semua ini bagi kami padahal kami sebelumnya tidak mampu menguasainya, dan sesungguhnya kami akan kembali kepada Tuhan kami.", source:"QS. Az-Zukhruf: 13-14" }
+];
+const quotes = [
+  { text:"Barangsiapa yang menempuh jalan untuk mencari ilmu, maka Allah akan memudahkan baginya jalan menuju surga.", source:"HR. Muslim" },
+  { text:"Sesungguhnya setiap amalan itu bergantung pada niatnya.", source:"HR. Bukhari & Muslim" },
+  { text:"Senyummu di hadapan saudaramu adalah sedekah.", source:"HR. Tirmidzi" },
+  { text:"Beribadahlah kepada Allah seakan-akan kamu melihat-Nya, jika kamu tidak melihat-Nya, sesungguhnya Dia melihatmu.", source:"HR. Muslim" },
+  { text:"Malu itu bagian dari iman.", source:"HR. Bukhari & Muslim" },
+  { text:"Mukmin yang paling sempurna imannya adalah yang paling baik akhlaknya.", source:"HR. Tirmidzi" },
+  { text:"Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia lainnya.", source:"HR. Ahmad" },
+  { text:"Cukuplah kematian sebagai penasihat.", source:"Ath-Thabrani" },
+  { text:"Dunia adalah penjara bagi orang mukmin dan surga bagi orang kafir.", source:"HR. Muslim" },
+  { text:"Tidak akan masuk surga orang yang di dalam hatinya terdapat sebesar biji sawi kesombongan.", source:"HR. Muslim" },
+  { text:"Waktu itu seperti pedang, jika kamu tidak memotongnya, ia akan memotongmu.", source:"Imam Syafi'i" },
+  { text:"Tangan di atas lebih baik daripada tangan di bawah.", source:"HR. Bukhari" },
+  { text:"Bertakwalah kepada Allah di mana pun kamu berada.", source:"HR. Tirmidzi" },
+  { text:"Barangsiapa beriman kepada Allah dan hari akhir, hendaklah ia berkata baik atau diam.", source:"HR. Bukhari" },
+  { text:"Barangsiapa yang menutupi aib seorang muslim, Allah akan menutupi aibnya di dunia dan akhirat.", source:"HR. Muslim" },
+  { text:"Surga itu di bawah telapak kaki ibu.", source:"HR. Ahmad" },
+  { text:"Sampaikanlah dariku walau hanya satu ayat.", source:"HR. Bukhari" },
+  { text:"Pekerjaan yang paling dicintai Allah adalah amalan yang dilakukan secara istiqomah meskipun sedikit.", source:"HR. Bukhari" },
+  { text:"Dan Dialah yang bersamamu di mana saja kamu berada.", source:"QS. Al-Hadid: 4" },
+  { text:"Maka sesungguhnya bersama kesulitan itu ada kemudahan.", source:"QS. Al-Inshirah: 5" }
+];
+let lastD = -1, lastQ = -1;
+const pick = (arr, last) => { let i; do { i = Math.floor(Math.random() * arr.length); } while (arr.length > 1 && i === last); return i; };
+function updateContent() {
+  lastD = pick(prayers, lastD); lastQ = pick(quotes, lastQ);
+  const d = prayers[lastD], q = quotes[lastQ];
+  const doa = document.getElementById('doa'), qt = document.getElementById('quote');
+  doa.innerHTML = `<h3><i class="fa-solid fa-hands-praying"></i> ${d.title}</h3><div class="arab">${d.arab}</div><p class="latin">${d.latin}</p><p class="arti">"${d.meaning}"</p><p class="src">Sumber: ${d.source}</p>`;
+  qt.innerHTML = `<i class="fa-solid fa-quote-left"></i><p>"${q.text}"</p><small>— ${q.source}</small>`;
+  [doa, qt].forEach(el => { el.classList.remove('fade'); void el.offsetWidth; el.classList.add('fade'); });
+}
+updateContent();
+setInterval(updateContent, 30000);
+</script>
 </body>
 </html>
