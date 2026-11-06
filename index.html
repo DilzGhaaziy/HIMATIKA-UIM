@@ -12,10 +12,10 @@
 <meta property="og:title" content="HIMATIKA - Universitas Indonesia Mandiri">
 <meta property="og:site_name" content="HIMATIKA UIM">
 <meta property="og:description" content="Website Resmi Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri.">
-<meta property="og:image" content="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
+<meta property="og:image" content="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
 <meta property="og:type" content="website">
-<link rel="icon" href="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" type="image/png">
-<link rel="apple-touch-icon" href="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
+<link rel="icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" type="image/png">
+<link rel="apple-touch-icon" href="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png">
 
 <!-- Terapkan tema sebelum render (mencegah kedipan) -->
 <script>
@@ -426,6 +426,111 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ================= RESTORE: ADMIN, MODAL, CV, RADIO, PETA ================= */
+.hidden{display:none!important}
+body:not(.is-admin) .admin-only{display:none!important}
+body.is-admin .hide-admin{display:none!important}
+@media (max-width:1180px){
+  .hide-md{display:none!important}
+  .nav>a,.dd>button{padding:.6rem .7rem}
+}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:1500;display:grid;place-items:center;padding:1rem;background:rgba(5,14,31,.6);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:.3s}
+.modal.open{opacity:1;visibility:visible}
+.modal-box{width:min(460px,100%);max-height:90vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:24px;padding:1.6rem;box-shadow:var(--shadow-lg);transform:translateY(20px) scale(.97);transition:transform .35s var(--ease)}
+.modal.open .modal-box{transform:none}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.2rem}
+.modal-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.25rem}
+.modal-x{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--bg);flex-shrink:0}
+.field{display:grid;gap:.4rem;margin-bottom:.9rem}
+.field label{font-size:.8rem;font-weight:700;color:var(--text-2)}
+.field input:not([type=checkbox]),.field select{width:100%;padding:.8rem 1rem;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font:inherit;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.field input[readonly]{opacity:.65;cursor:not-allowed}
+.form-err{display:none;background:rgba(251,113,133,.15);color:#E11D48;padding:.7rem .9rem;border-radius:12px;font-size:.85rem;font-weight:600;margin-bottom:1rem}
+.form-err.show{display:block}
+.modal-actions{display:flex;gap:.6rem;justify-content:flex-end;margin-top:1.2rem;flex-wrap:wrap}
+.btn-block{width:100%;justify-content:center}
+.btn-line{border:1.5px solid var(--line);color:var(--text)}
+.btn-danger{color:#E11D48;border-color:rgba(225,29,72,.3);margin-right:auto}
+.img-pick{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem}
+.img-pick button{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1rem .5rem;border-radius:14px;background:var(--bg);border:1.5px dashed var(--line);font-size:.8rem;font-weight:700;transition:.25s}
+.img-pick button:hover{border-color:var(--gold)}
+.img-pick button i{font-size:1.2rem}
+.img-pick button.ok{border-color:var(--mint);color:#059669}
+.socmed-checks{display:flex;gap:1rem;flex-wrap:wrap;font-size:.85rem;margin-bottom:.4rem}
+.socmed-checks label{display:flex;align-items:center;gap:.35rem;cursor:pointer;color:var(--text);font-weight:600}
+
+/* Header saat mode CV (latar terang) */
+body.cv-mode .header,body.cv-mode .appbar{background:rgba(10,26,51,.85);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+
+/* Halaman CV */
+.cv-page{display:none;min-height:80vh;padding:clamp(7rem,12vw,8.5rem) 0 2rem}
+body.cv-mode .cv-page{display:block}
+body.cv-mode>section:not(.cv-page),body.cv-mode>.marquee{display:none}
+.cv-top{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.2rem}
+.cv-top .eyebrow{margin-bottom:.4rem}
+.cv-back{width:50px;height:50px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);transition:.3s var(--ease)}
+.cv-back:hover{transform:translateX(-4px);background:var(--gold);color:var(--navy-950)}
+.cv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+.cv-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .4s var(--ease),box-shadow .4s;display:flex;flex-direction:column}
+.cv-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.cv-banner{position:relative;aspect-ratio:5/2;background:var(--navy-800)}
+.cv-banner img{width:100%;height:100%;object-fit:cover}
+.cv-avatar{position:relative;width:88px;height:88px;margin:-44px auto 0;border-radius:50%;border:4px solid var(--surface);overflow:hidden;background:var(--bg);z-index:2;box-shadow:var(--shadow)}
+.cv-avatar img{width:100%;height:100%;object-fit:cover}
+.cv-body{padding:.7rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.cv-body h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;text-align:center}
+.cv-row{border-top:1px solid var(--line);padding-top:.5rem}
+.cv-row.center{text-align:center}
+.cv-row small{display:block;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);margin-bottom:.15rem}
+.cv-row span{font-size:.9rem;font-weight:600}
+.cv-row .muted{font-size:.8rem;font-style:italic;font-weight:500;color:var(--text-2)}
+.cv-soc{display:flex;gap:.5rem;justify-content:center}
+.cv-soc a{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--bg);transition:.3s}
+.cv-soc a:hover{background:var(--gold);color:var(--navy-950);transform:translateY(-3px)}
+.cv-cam,.cv-edit{position:absolute;top:.6rem;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;z-index:3;font-size:.8rem}
+.cv-cam{right:.6rem;background:rgba(5,14,31,.65);color:#fff}
+.cv-edit{left:.6rem;background:var(--gold);color:var(--navy-950)}
+.cv-avatar .cv-cam{inset:0;width:100%;height:100%;border-radius:50%;opacity:0;transition:opacity .3s}
+.cv-avatar:hover .cv-cam{opacity:1}
+@media (hover:none){.cv-avatar .cv-cam{opacity:.8;inset:auto 0 0 auto;width:30px;height:30px}}
+.cv-add{min-height:340px;border-radius:var(--radius);border:2px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;font-weight:700;color:var(--text-2);transition:.3s}
+.cv-add span{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow);font-size:1.2rem}
+.cv-add:hover{border-color:var(--gold);color:var(--text)}
+
+/* Peta sekretariat */
+.map-wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:2rem;align-items:center;margin-top:2rem;background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:clamp(1.4rem,3vw,2.2rem);box-shadow:var(--shadow)}
+.map-wrap iframe{width:100%;height:340px;border:0;border-radius:20px}
+.map-wrap .lead{margin:1rem 0 1.4rem}
+@media (max-width:960px){.map-wrap{grid-template-columns:1fr}.map-wrap iframe{height:260px}}
+
+/* Radio + playlist */
+.np.expanded{max-width:350px}
+.np-info{min-width:0;max-width:130px}
+.np-info b{overflow:hidden;text-overflow:ellipsis}
+.np-ctrl{display:flex;gap:.3rem;flex-shrink:0}
+.np-ctrl button{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);font-size:.8rem;transition:.25s}
+.np-ctrl button:hover,.np-ctrl button.on{background:var(--gold);color:var(--navy-950)}
+.playlist{position:fixed;left:1.5rem;bottom:5.4rem;z-index:901;width:290px;max-height:380px;display:flex;flex-direction:column;background:rgba(10,26,51,.96);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:20px;color:#fff;box-shadow:0 20px 50px -15px rgba(0,0,0,.6);opacity:0;visibility:hidden;transform:translateY(15px);transition:.35s var(--ease)}
+.playlist.show{opacity:1;visibility:visible;transform:none}
+.pl-head{padding:.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.pl-head small{opacity:.5;font-size:.7rem}
+.pl-list{overflow:auto;padding:.5rem}
+.track{display:flex;align-items:center;gap:.7rem;padding:.55rem .7rem;border-radius:12px;width:100%;text-align:left;transition:.2s}
+.track:hover{background:rgba(255,255,255,.06)}
+.track.playing{background:rgba(245,184,65,.14)}
+.track>i{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.08);font-size:.7rem;flex-shrink:0}
+.track.playing>i{background:var(--gold);color:var(--navy-950)}
+.track span{min-width:0}
+.track b{display:block;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track small{font-size:.68rem;opacity:.55}
+@media (max-width:960px){
+  .np.expanded{max-width:calc(100% - 2rem)}
+  .playlist{left:auto;right:1rem;bottom:calc(10rem + env(safe-area-inset-bottom));width:min(290px,calc(100% - 2rem))}
+}
 </style>
 </head>
 
@@ -434,7 +539,7 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
 <!-- ============ LOADER & UTILITIES ============ -->
 <div class="loader" id="loader">
   <div class="loader-inner">
-    <img class="loader-logo" src="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+    <img class="loader-logo" src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
     <div class="loader-bar"><span></span></div>
   </div>
 </div>
@@ -444,7 +549,7 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
 
 <!-- Mode edit admin -->
 <div class="edit-bar" id="editBar">
-  <span><i class="fa-solid fa-pen-ruler"></i> Mode Edit: klik teks untuk mengubah, klik gambar untuk ganti URL</span>
+  <span><i class="fa-solid fa-pen-ruler"></i> Mode Edit: klik teks untuk mengubah, klik gambar untuk mengganti</span>
   <button class="eb-btn" id="editCancel">Batal</button>
   <button class="eb-btn primary" id="editSave"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
 </div>
@@ -453,8 +558,8 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
 <!-- ============ HEADER DESKTOP ============ -->
 <header class="header" id="header">
   <a href="#home" class="brand">
-    <img src="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
-    <div><b>HIMATIKA</b><small>UIMANDIRI</small></div>
+    <img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+    <div><b>HIMATIKA</b><small>UNIV. INDONESIA MANDIRI</small></div>
   </a>
   <nav class="nav">
     <a href="#home" data-nav="home">Beranda</a>
@@ -462,30 +567,41 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
     <div class="dd">
       <button>Departemen <i class="fa-solid fa-chevron-down"></i></button>
       <div class="dd-menu">
-        <a href="struktur.html" style="--c:#38BDF8"><i class="fa-solid fa-tower-broadcast"></i> Kominfo</a>
-        <a href="stpemuda.html" style="--c:#FB923C"><i class="fa-solid fa-people-group"></i> Kepemudaan</a>
-        <a href="stagama.html" style="--c:#34D399"><i class="fa-solid fa-mosque"></i> Keagamaan</a>
-        <a href="stsdm.html" style="--c:#A78BFA"><i class="fa-solid fa-user-graduate"></i> PSDM</a>
-        <a href="stkesejahteraan.html" style="--c:#FB7185"><i class="fa-solid fa-hand-holding-heart"></i> Kesejahteraan</a>
+        <a href="struktur.html" style="--c:#38BDF8"><i class="fa-solid fa-tower-broadcast"></i> Komunikasi dan Informasi</a>
+        <a href="stpemuda.html" style="--c:#FB923C"><i class="fa-solid fa-people-group"></i> Pemuda dan Olahraga</a>
+        <a href="stagama.html" style="--c:#34D399"><i class="fa-solid fa-mosque"></i> Agama</a>
+        <a href="stsdm.html" style="--c:#A78BFA"><i class="fa-solid fa-user-graduate"></i> Pengembangan dan SDM</a>
+        <a href="stkesejahteraan.html" style="--c:#FB7185"><i class="fa-solid fa-hand-holding-heart"></i> Kesejahteraan Mahasiswa</a>
         <a href="GridStruktur.html" style="--c:#F5B841"><i class="fa-solid fa-sitemap"></i> Struktur Lengkap</a>
       </div>
     </div>
+    <div class="dd">
+      <button>CV <i class="fa-solid fa-chevron-down"></i></button>
+      <div class="dd-menu" id="cvMenuPC"></div>
+    </div>
     <a href="proker.html">Program Kerja</a>
-    <a href="#berita" data-nav="berita">Berita</a>
+    <a href="berita.html">Berita</a>
+    <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" target="_blank" rel="noopener">Galeri</a>
   </nav>
   <div class="header-actions">
+    <a href="dashboard.html" class="btn btn-ghost btn-sm admin-only"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+    <button class="btn btn-ghost btn-sm js-auth"><i class="fa-solid fa-user-shield"></i> <span>Admin</span></button>
     <button class="icon-btn theme-toggle" aria-label="Ganti tema"><i class="fa-solid fa-moon"></i></button>
-    <a href="#kontak" class="btn btn-gold btn-sm">Hubungi Kami</a>
+    <a href="#kontak" class="btn btn-gold btn-sm hide-md hide-admin">Hubungi Kami</a>
   </div>
 </header>
 
 <!-- ============ APPBAR MOBILE ============ -->
 <header class="appbar" id="appbar">
   <a href="#home" class="brand">
-    <img src="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+    <img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
     <div><b>HIMATIKA</b><small>UIM</small></div>
   </a>
-  <button class="icon-btn theme-toggle" aria-label="Ganti tema"><i class="fa-solid fa-moon"></i></button>
+  <div class="header-actions">
+    <a href="dashboard.html" class="icon-btn admin-only" aria-label="Dashboard"><i class="fa-solid fa-gauge-high"></i></a>
+    <button class="icon-btn js-auth" aria-label="Login admin"><i class="fa-solid fa-user-shield"></i></button>
+    <button class="icon-btn theme-toggle" aria-label="Ganti tema"><i class="fa-solid fa-moon"></i></button>
+  </div>
 </header>
 
 <!-- ============ HERO ============ -->
@@ -515,7 +631,7 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
     <div class="hero-visual reveal" style="--d:.2s">
       <div class="orbit o1"><span class="dot"></span></div>
       <div class="orbit o2"><span class="dot"></span></div>
-      <div class="logo-core"><img src="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA"></div>
+      <div class="logo-core"><img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA"></div>
       <div class="chip c1"><i class="fa-solid fa-code"></i> Coding &amp; Dev</div>
       <div class="chip c2"><i class="fa-solid fa-microchip"></i> Tech &amp; AI</div>
       <div class="chip c3"><i class="fa-solid fa-users"></i> Solidaritas</div>
@@ -584,20 +700,20 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
     <div class="leaders">
       <article class="leader tilt reveal">
         <span class="leader-num">01</span>
-        <img data-edit-img="ketua_img" src="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Ketua HIMATIKA" loading="lazy">
+        <img data-edit-img="ketua_img" src="https://i.ibb.co.com/Kxr4sd4y/Proyek-Baru-69-52-C7895.png" alt="Ketua HIMATIKA" loading="lazy">
         <div class="leader-info">
           <span class="leader-role">Ketua Umum</span>
-          <h3 data-edit="ketua_nama">Nama Ketua</h3>
-          <p data-edit="ketua_desc">Informatika UIM</p>
+          <h3 data-edit="ketua_nama">Nazril Abdillah</h3>
+          <p data-edit="ketua_desc">Ketua HIMATIKA 2025-2026</p>
         </div>
       </article>
       <article class="leader tilt reveal" style="--d:.12s">
         <span class="leader-num">02</span>
-        <img data-edit-img="wakil_img" src="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Wakil Ketua HIMATIKA" loading="lazy">
+        <img data-edit-img="wakil_img" src="https://i.ibb.co.com/gbVCQGLq/Proyek-Baru-69-285-CF79.png" alt="Wakil Ketua HIMATIKA" loading="lazy">
         <div class="leader-info">
           <span class="leader-role">Wakil Ketua</span>
-          <h3 data-edit="wakil_nama">Nama Wakil Ketua</h3>
-          <p data-edit="wakil_desc">Informatika UIM</p>
+          <h3 data-edit="wakil_nama">I Kadek Febrianto Indrajaya</h3>
+          <p data-edit="wakil_desc">Wakil Ketua HIMATIKA 2025-2026</p>
         </div>
       </article>
     </div>
@@ -664,10 +780,10 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
       </div>
     </div>
     <div class="stats-grid">
-      <div class="stat reveal"><i class="fa-solid fa-users"></i><b class="counter" data-suffix="+" data-edit="stat_anggota">50</b><small>Pengurus Aktif</small></div>
+      <div class="stat reveal"><i class="fa-solid fa-users"></i><b class="counter" data-edit="stat_anggota">49</b><small>Pengurus HIMATIKA</small></div>
       <div class="stat reveal" style="--d:.08s"><i class="fa-solid fa-layer-group"></i><b class="counter" data-edit="stat_departemen">5</b><small>Departemen</small></div>
       <div class="stat reveal" style="--d:.16s"><i class="fa-solid fa-list-check"></i><b class="counter" data-suffix="+" data-edit="stat_proker">20</b><small>Program Kerja</small></div>
-      <div class="stat reveal" style="--d:.24s"><i class="fa-solid fa-graduation-cap"></i><b class="counter" data-suffix="+" data-edit="stat_mahasiswa">200</b><small>Mahasiswa Informatika</small></div>
+      <div class="stat reveal" style="--d:.24s"><i class="fa-solid fa-graduation-cap"></i><b class="counter" data-edit="stat_mahasiswa">106</b><small>Anggota HIMATIKA</small></div>
     </div>
   </div>
 </section>
@@ -698,11 +814,10 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
         <h2 class="title">Ikuti perjalanan <span class="grad">HIMATIKA</span></h2>
         <p class="lead" data-edit="cta_desc">Dapatkan info kegiatan, lomba, dan dokumentasi terbaru melalui media sosial resmi kami.</p>
         <div class="socials">
-          <!-- GANTI href dengan link akun resmi -->
-          <a href="#" class="social" style="--c:#E1306C" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" class="social" style="--c:#E1306C" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@HIMATIKAUIMANDIRI" class="social" style="--c:#FF0000" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+          <!-- GANTI # dengan link TikTok resmi -->
           <a href="#" class="social" style="--c:#111" aria-label="TikTok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="#" class="social" style="--c:#FF0000" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" class="social" style="--c:#0A66C2" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
           <a href="mailto:himatika@uim.ac.id" class="social" style="--c:#F5B841" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
       </div>
@@ -712,8 +827,118 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
         <div class="cv-list" id="cvList"></div>
       </div>
     </div>
+
+    <div class="map-wrap reveal">
+      <div>
+        <span class="eyebrow">Sekretariat</span>
+        <h2 class="title" style="font-size:clamp(1.6rem,3vw,2.3rem)">Kunjungi <span class="hl">kami</span></h2>
+        <p class="lead"><strong>Universitas Indonesia Mandiri</strong><br>
+          <span data-edit="kontak_alamat_lengkap">6P77+5VQ, Jl. Lintas Sumatera, Tj. Heran, Kec. Penengahan, Kabupaten Lampung Selatan, Lampung 35592.</span></p>
+        <a href="https://uimandiri.ac.id/" target="_blank" rel="noopener" class="btn btn-dark btn-sm"><i class="fa-solid fa-globe"></i> Website UIM</a>
+      </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.484031081758!2d105.7147533!3d-5.7870894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e410b001b7db41d%3A0xd6d561cd88b415b!2sUNIVERSITAS%20INDONESIA%20MANDIRI!5e0!3m2!1sid!2sid!4v1776189049955!5m2!1sid!2sid" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta Universitas Indonesia Mandiri"></iframe>
+    </div>
   </div>
 </section>
+
+<!-- ============ CV ANGKATAN ============ -->
+<section class="cv-page" id="cv-section">
+  <div class="container">
+    <div class="cv-top">
+      <button class="cv-back" id="cvBack" aria-label="Kembali ke beranda"><i class="fa-solid fa-arrow-left"></i></button>
+      <div>
+        <span class="eyebrow">Curriculum Vitae</span>
+        <h2 class="title">Angkatan <span class="hl" id="cvYear"></span></h2>
+      </div>
+    </div>
+    <div class="cv-grid" id="cvGrid"></div>
+  </div>
+</section>
+
+<!-- Modal Login Admin -->
+<div class="modal" id="loginModal" role="dialog" aria-modal="true">
+  <form class="modal-box" id="loginForm">
+    <div class="modal-head">
+      <h3><i class="fa-solid fa-user-shield" style="color:var(--gold)"></i> Akses Admin</h3>
+      <button type="button" class="modal-x" data-close aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="form-err" id="loginErr"></div>
+    <div class="field"><label for="loginUser">Username</label><input id="loginUser" autocomplete="username" placeholder="Masukkan username"></div>
+    <div class="field"><label for="loginPass">Password</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="Masukkan password"></div>
+    <button class="btn btn-gold btn-block" id="loginBtn" type="submit">Masuk</button>
+  </form>
+</div>
+
+<!-- Modal Tambah Angkatan -->
+<div class="modal" id="angkatanModal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Tambah Angkatan</h3>
+      <button type="button" class="modal-x" data-close aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="field"><label for="angkatanSelect">Angkatan tahun berapa?</label><select id="angkatanSelect"></select></div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-line btn-sm" data-close>Batal</button>
+      <button type="button" class="btn btn-gold btn-sm" id="angkatanSave">Konfirmasi</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Tambah/Edit Profil CV -->
+<div class="modal" id="profilModal" role="dialog" aria-modal="true">
+  <form class="modal-box" id="profilForm">
+    <div class="modal-head">
+      <h3 id="profilTitle">Tambah Profil</h3>
+      <button type="button" class="modal-x" data-close aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <input type="hidden" id="pfFoto"><input type="hidden" id="pfBanner">
+    <div class="img-pick">
+      <button type="button" id="pfFotoBtn"><i class="fa-solid fa-circle-user"></i><span>Pasang Foto Profil</span></button>
+      <button type="button" id="pfBannerBtn"><i class="fa-solid fa-image"></i><span>Pasang Banner</span></button>
+    </div>
+    <div class="field"><label for="pfNama">Nama</label><input id="pfNama" placeholder="Masukkan nama..."></div>
+    <div class="field"><label for="pfSkills">Skills</label><input id="pfSkills" placeholder="Contoh: HTML, CSS, Desain Grafis"></div>
+    <div class="field"><label for="pfBahasa">Skill Bahasa</label><input id="pfBahasa" placeholder="Contoh: Indonesia, Inggris"></div>
+    <div class="field"><label for="pfAngkatan">Angkatan</label><input id="pfAngkatan" readonly></div>
+    <div class="field"><label for="pfBisnis">Bisnis</label><input id="pfBisnis" placeholder="Contoh: Freelance Web, Tidak ada"></div>
+    <div class="field">
+      <label>Sosial Media (opsional)</label>
+      <div class="socmed-checks">
+        <label><input type="checkbox" data-soc="ig"> <i class="fa-brands fa-instagram"></i> Instagram</label>
+        <label><input type="checkbox" data-soc="tt"> <i class="fa-brands fa-tiktok"></i> TikTok</label>
+        <label><input type="checkbox" data-soc="yt"> <i class="fa-brands fa-youtube"></i> YouTube</label>
+      </div>
+      <input id="pfIg" class="hidden" placeholder="Link Instagram...">
+      <input id="pfTt" class="hidden" placeholder="Link TikTok...">
+      <input id="pfYt" class="hidden" placeholder="Link YouTube...">
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-line btn-sm btn-danger hidden" id="pfDelete"><i class="fa-solid fa-trash"></i> Hapus</button>
+      <button type="button" class="btn btn-line btn-sm" data-close>Batal</button>
+      <button type="submit" class="btn btn-gold btn-sm" id="pfSave">Simpan</button>
+    </div>
+  </form>
+</div>
+
+<!-- Modal Ganti Gambar (URL / upload ImgBB) -->
+<div class="modal" id="imgModal" role="dialog" aria-modal="true">
+  <div class="modal-box" style="text-align:center">
+    <div class="modal-head">
+      <h3>Masukkan gambar lewat apa?</h3>
+      <button type="button" class="modal-x" data-close aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="img-pick" id="imgOptions">
+      <button type="button" id="imgByUrl"><i class="fa-solid fa-link"></i><span>Link URL</span></button>
+      <button type="button" id="imgByFile"><i class="fa-solid fa-upload"></i><span>Dari Galeri</span></button>
+    </div>
+    <div id="imgUrlGroup" class="hidden">
+      <div class="field"><input id="imgUrl" placeholder="Paste link gambar di sini..."></div>
+      <button type="button" class="btn btn-gold btn-block" id="imgUrlSave">Konfirmasi</button>
+    </div>
+    <p id="imgLoading" class="hidden" style="color:var(--text-2);font-weight:600"><i class="fa-solid fa-circle-notch fa-spin"></i> Sedang mengupload gambar...</p>
+    <input type="file" id="imgFile" accept="image/*" hidden>
+  </div>
+</div>
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
@@ -721,7 +946,7 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
     <div class="footer-grid">
       <div>
         <a href="#home" class="brand">
-          <img src="https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
+          <img src="https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png" alt="Logo HIMATIKA">
           <div><b>HIMATIKA</b><small>UNIV. INDONESIA MANDIRI</small></div>
         </a>
         <p class="footer-desc">Himpunan Mahasiswa Informatika Universitas Indonesia Mandiri. Solid, inovatif, dan berdampak.</p>
@@ -733,6 +958,7 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
           <li><a href="#tentang">Tentang</a></li>
           <li><a href="proker.html">Program Kerja</a></li>
           <li><a href="berita.html">Berita</a></li>
+          <li><a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" target="_blank" rel="noopener">Galeri</a></li>
         </ul>
       </div>
       <div>
@@ -752,8 +978,11 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span id="year"></span> HIMATIKA UIM. All rights reserved.</span>
-      <a href="admin.html"><i class="fa-solid fa-lock"></i> Admin</a>
+      <span>© <span id="year"></span> HIMATIKA UIM · Developed by Dep Pengembangan dan SDM 2025</span>
+      <span style="display:flex;gap:1.2rem">
+        <a href="dashboard.html" class="admin-only"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="#" class="js-auth"><i class="fa-solid fa-lock"></i> <span>Admin</span></a>
+      </span>
     </div>
   </div>
 </footer>
@@ -778,6 +1007,7 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
     <a href="#pimpinan" style="--c:#0EA5E9"><i class="fa-solid fa-crown"></i>Pimpinan</a>
     <a href="#statistik" style="--c:#10B981"><i class="fa-solid fa-chart-simple"></i>Statistik</a>
     <a href="#kontak" style="--c:#F43F5E"><i class="fa-solid fa-paper-plane"></i>Kontak</a>
+    <a href="https://www.instagram.com/hima.informatika_uim?igsh=MWtuY25iYzd3YXJseA==" target="_blank" rel="noopener" style="--c:#E1306C"><i class="fa-brands fa-instagram"></i>Galeri</a>
   </div>
   <h4>Departemen</h4>
   <div class="sheet-grid">
@@ -786,46 +1016,67 @@ body.editing [data-edit-img]{outline:3px dashed var(--cyan);outline-offset:-3px;
     <a href="stagama.html" style="--c:#10B981"><i class="fa-solid fa-mosque"></i>Keagamaan</a>
     <a href="stsdm.html" style="--c:#8B5CF6"><i class="fa-solid fa-user-graduate"></i>PSDM</a>
     <a href="stkesejahteraan.html" style="--c:#F43F5E"><i class="fa-solid fa-hand-holding-heart"></i>Kesejahteraan</a>
-    <a href="admin.html" style="--c:#5B6578"><i class="fa-solid fa-lock"></i>Admin</a>
+    <a href="dashboard.html" class="admin-only" style="--c:#16335F"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+    <a href="#" class="js-auth" style="--c:#5B6578"><i class="fa-solid fa-user-shield"></i><span>Admin</span></a>
   </div>
+  <h4>Curriculum Vitae</h4>
+  <div class="sheet-grid" id="cvSheet"></div>
 </div>
 
-<!-- ============ MUSIC & TO TOP ============ -->
+<!-- ============ RADIO HIMATIKA ============ -->
+<div class="playlist" id="playlist">
+  <div class="pl-head"><span><i class="fa-solid fa-list-ul"></i> Daftar Radio</span><small>Auto-Play</small></div>
+  <div class="pl-list" id="plList"></div>
+</div>
 <div class="np" id="np">
-  <div class="np-disc" id="npDisc" title="Musik"></div>
+  <div class="np-disc" id="npDisc" title="Radio HIMATIKA"></div>
   <div class="np-info">
-    <b data-edit="musik_judul">HIMATIKA Radio</b>
+    <b id="npTitle">HIMATIKA Radio</b>
     <small class="np-bars"><i></i><i></i><i></i></small>
   </div>
-  <button class="np-btn" id="npBtn" aria-label="Putar musik"><i class="fa-solid fa-play"></i></button>
+  <div class="np-ctrl">
+    <button id="npList" aria-label="Daftar radio"><i class="fa-solid fa-list"></i></button>
+    <button id="npMute" aria-label="Mute"><i class="fa-solid fa-volume-high"></i></button>
+  </div>
+  <button class="np-btn" id="npBtn" aria-label="Putar radio"><i class="fa-solid fa-play"></i></button>
 </div>
-<!-- GANTI src dengan file musik Anda -->
-<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
 
 <button class="totop" id="toTop" aria-label="Kembali ke atas"><span><i class="fa-solid fa-arrow-up"></i></span></button>
 
 <!-- ============ FIREBASE (compat) ============ -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+<!-- Daftar akun admin (sama seperti web lama) -->
+<script src="admin.js"></script>
 
 <script>
 /* =========================================================
-   KONFIGURASI — WAJIB DISESUAIKAN
+   KONFIGURASI
    ========================================================= */
 const firebaseConfig = {
-  apiKey: "ISI_API_KEY",
-  authDomain: "ISI.firebaseapp.com",
+  apiKey: "AIzaSyCPUO6gazqj97i4Rj8NlmKzdJu764CZ_0g",
+  authDomain: "himatika-uim.firebaseapp.com",
   databaseURL: "https://himatika-uim-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "ISI",
-  storageBucket: "ISI.appspot.com",
-  messagingSenderId: "ISI",
-  appId: "ISI"
+  projectId: "himatika-uim",
+  storageBucket: "himatika-uim.firebasestorage.app",
+  messagingSenderId: "829701559786",
+  appId: "1:829701559786:web:a81cbb4bda51c41ed44e93",
+  measurementId: "G-LVPX6SQ67K"
 };
-const DB_PATH = { konten: 'konten', berita: 'news', cv: 'cvAngkatan' }; // samakan dengan database lama
-const CV_URL = (tahun) => `GridStruktur.html?angkatan=${encodeURIComponent(tahun)}`;   // samakan dengan halaman CV lama
-const DEFAULT_CV = ['2022', '2025'];
-const LOGO = 'https://i.ibb.co.com/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png';
+const CMS_PATH  = 'himasi_web_data';   // path konten lama
+const NEWS_PATH = 'news';              // path berita lama
+const IMGBB_API_KEY = '794f171b910d0156e010c8e3f944e079';
+
+// GitHub (penyimpanan CV per angkatan) -- WAJIB pakai token BARU, token lama sudah bocor
+const GITHUB_TOKEN = 'ISI_TOKEN_GITHUB_BARU';
+const GITHUB_OWNER = 'DilzGhaaziy';
+const GITHUB_REPO  = 'HIMATIKA-UIM';
+
+const LOGO = 'https://i.ibb.co/MkNRxfFG/Proyek-Baru-288-F09-EFA8.png';
+const DEFAULT_BANNER = 'https://i.ibb.co.com/mC7XyShv/Chat-GPT-Image-26-Jun-2026-18-16-33.png';
+const DEFAULT_AVATAR = 'https://i.ibb.co.com/S4Q8KP29/images-15.jpg';
+const fixImg = u => String(u || '').replace('i.ibb.co/', 'i.ibb.co.com/');
 
 /* ================= HELPERS ================= */
 const $  = (s, c = document) => c.querySelector(s);
@@ -944,22 +1195,117 @@ sheet.addEventListener('touchend', e => {
   sheet.style.transition = ''; if (dy > 100) closeSheet(); else sheet.style.transform = ''; startY = null;
 });
 
-/* ================= MUSIC PLAYER ================= */
-const audio = $('#bgm'), np = $('#np'), npBtn = $('#npBtn');
-$('#npDisc').addEventListener('click', () => np.classList.toggle('expanded'));
-npBtn.addEventListener('click', () => audio.paused ? audio.play().catch(() => toast('Musik tidak dapat diputar')) : audio.pause());
-audio.addEventListener('play',  () => { np.classList.add('playing');    npBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; });
-audio.addEventListener('pause', () => { np.classList.remove('playing'); npBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; });
+/* ================= RADIO HIMATIKA ================= */
+const bgmPlaylist = [
+  { title: 'DBFM Radio Pemda',      url: 'https://pu.klikhost.com/proxy/dbfm/stream' },
+  { title: 'iSWARA Jakarta FM',     url: 'https://n13.radiojar.com/4ywdgup3bnzuv?rj-ttl=5&rj-tok=AAABnECWuWQAm41UJbq3s9BypA' },
+  { title: 'iSWARA Banjarmasin FM', url: 'https://stream.radiojar.com/qfqd2aw80k8uv' },
+  { title: 'SmartFM',               url: 'https://cast2.my-control-panel.com/proxy/radioso3/stream' },
+  { title: 'Mettaswara Dangdut FM', url: 'http://mettaswara.com:8700/d4d' },
+  { title: 'Mettaswara Koplo FM',   url: 'http://mettaswara.com:8700/koplo' },
+  { title: 'Tebet Radio FM',        url: 'https://stream-ssl.arenastreaming.com:8066/stream' },
+  { title: 'RTC Radio FM',          url: 'https://stream.pamula.xyz/listen/rtc_ui/radio.mp3' },
+  { title: 'JGRP Radio Live',       url: 'https://s7.alhastream.com/radio/8350/live' }
+];
+const bgm = new Audio(); bgm.preload = 'none';
+const np = $('#np'), npBtn = $('#npBtn'), npTitle = $('#npTitle'), plBox = $('#playlist'), plList = $('#plList'), npListBtn = $('#npList'), npMuteBtn = $('#npMute');
+let curIdx = -1, isMuted = false, userInteracted = false, npTimer = null, radioTimer = null, failCount = 0;
+
+function updateNP(title){
+  npTitle.textContent = title; np.classList.add('expanded');
+  clearTimeout(npTimer);
+  npTimer = setTimeout(() => { if (!plBox.classList.contains('show')) np.classList.remove('expanded'); }, 5000);
+}
+function renderPlaylist(){
+  plList.innerHTML = bgmPlaylist.map((t, i) => {
+    const on = i === curIdx && !bgm.paused;
+    return `<button class="track${on ? ' playing' : ''}" data-i="${i}"><i class="fa-solid ${on ? 'fa-volume-high' : 'fa-play'}"></i><span><b>${esc(t.title)}</b><small>${on ? 'Sedang diputar' : 'Klik untuk memutar'}</small></span></button>`;
+  }).join('');
+}
+function fadeIn(){ let v = 0; const f = setInterval(() => { v = Math.min(v + .1, 1); bgm.volume = v; if (v >= 1) clearInterval(f); }, 100); }
+function playSpecific(i, startup = false){
+  if (curIdx === i && !bgm.paused && !startup){ bgm.pause(); return; }
+  curIdx = i; bgm.src = bgmPlaylist[i].url; bgm.volume = 1; bgm.muted = isMuted;
+  bgm.onerror = () => { if (!startup) updateNP('Link offline, mencari...'); playRandom(); };
+  bgm.play().then(() => { failCount = 0; clearTimeout(radioTimer); updateNP(bgmPlaylist[i].title); }).catch(() => {});
+}
+function playRandom(){
+  if (!userInteracted) return;
+  clearTimeout(radioTimer);
+  if (++failCount > bgmPlaylist.length){ failCount = 0; bgm.onerror = null; bgm.pause(); updateNP('Radio sedang tidak tersedia'); return; }
+  let n; do { n = Math.floor(Math.random() * bgmPlaylist.length); } while ((n === curIdx || n === 0) && bgmPlaylist.length > 2);
+  curIdx = n; bgm.src = bgmPlaylist[n].url; bgm.volume = 0; bgm.muted = isMuted;
+  bgm.onerror = playRandom;
+  bgm.play().then(() => { failCount = 0; fadeIn(); updateNP(bgmPlaylist[n].title); }).catch(() => {});
+}
+function tryDefaultRadio(){
+  const now = new Date(), d = now.getDay(), h = now.getHours();
+  const idx = (d === 0 || d === 6 || h < 8 || h >= 20) ? 8 : 0; // Senin-Jumat 08-20: DBFM, selain itu JGRP
+  playSpecific(idx, true);
+  clearTimeout(radioTimer);
+  radioTimer = setTimeout(() => { if (bgm.paused || bgm.readyState < 3) playRandom(); }, 5000);
+}
+bgm.addEventListener('ended', playRandom);
+bgm.addEventListener('play',  () => { np.classList.add('playing');    npBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; renderPlaylist(); });
+bgm.addEventListener('pause', () => { np.classList.remove('playing'); npBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; renderPlaylist(); });
+document.addEventListener('click', () => { if (userInteracted) return; userInteracted = true; tryDefaultRadio(); }, { once: true });
+npBtn.addEventListener('click', () => {
+  userInteracted = true;
+  if (curIdx < 0) return tryDefaultRadio();
+  bgm.paused ? playSpecific(curIdx, true) : bgm.pause();
+});
+$('#npDisc').addEventListener('click', () => {
+  np.classList.toggle('expanded');
+  if (!np.classList.contains('expanded')){ plBox.classList.remove('show'); npListBtn.classList.remove('on'); }
+});
+npListBtn.addEventListener('click', () => { renderPlaylist(); plBox.classList.toggle('show'); npListBtn.classList.toggle('on'); });
+npMuteBtn.addEventListener('click', () => {
+  isMuted = !isMuted; bgm.muted = isMuted;
+  npMuteBtn.innerHTML = `<i class="fa-solid ${isMuted ? 'fa-volume-xmark' : 'fa-volume-high'}"></i>`;
+});
+plList.addEventListener('click', e => { const b = e.target.closest('.track'); if (b){ userInteracted = true; playSpecific(+b.dataset.i); } });
+renderPlaylist();
+
+/* ================= MODAL HELPER ================= */
+const openModal  = id => $('#' + id).classList.add('open');
+const closeModal = id => $('#' + id).classList.remove('open');
+document.addEventListener('click', e => {
+  const m = e.target.closest('.modal'); if (!m) return;
+  if (e.target === m || e.target.closest('[data-close]')){ e.preventDefault(); m.classList.remove('open'); }
+});
+addEventListener('keydown', e => { if (e.key === 'Escape'){ const top = $$('.modal.open').pop(); if (top) top.classList.remove('open'); } });
+
+/* ================= STATE ================= */
+let editing = false, db = null, cmsRef = null, cmsData = { texts: {}, images: {} };
+let angkatanList = [], cvTahun = '', cvSha = '', cvData = [], pfIndex = -1, imgCb = null;
+const isAdmin = () => localStorage.getItem('adminLoggedIn') === 'true';
+
+/* ================= FIREBASE: KONTEN CMS ================= */
+// ID elemen lama -> key baru, supaya isi yang sudah tersimpan di Firebase tetap tampil
+const LEGACY = {
+  'txt-tentang-desk':'tentang_desc', 'txt-ketua-nama':'ketua_nama', 'txt-ketua-jabatan':'ketua_desc',
+  'txt-wakil-nama':'wakil_nama', 'txt-wakil-jabatan':'wakil_desc', 'txt-stat-1':'stat_anggota',
+  'txt-stat-2':'stat_departemen', 'txt-stat-3':'stat_mahasiswa', 'txt-alamat':'kontak_alamat_lengkap',
+  'img-ketua':'ketua_img', 'img-wakil':'wakil_img'
+};
+const legacyFirst = obj => Object.entries(obj).sort(([a], [b]) => (LEGACY[a] ? 0 : 1) - (LEGACY[b] ? 0 : 1));
+function applyCMS(raw){
+  cmsData = { texts: { ...(raw?.texts || {}) }, images: { ...(raw?.images || {}) } };
+  if (editing) return; // jangan timpa yang sedang diedit
+  legacyFirst(cmsData.texts).forEach(([k, v]) => $$(`[data-edit="${CSS.escape(LEGACY[k] || k)}"]`).forEach(el => el.textContent = v));
+  legacyFirst(cmsData.images).forEach(([k, v]) => $$(`[data-edit-img="${CSS.escape(LEGACY[k] || k)}"]`).forEach(el => el.src = fixImg(v)));
+  if (cvTahun) renderCVGrid();
+}
 
 /* ================= BERITA ================= */
 function normalizeNews(obj){
   return Object.entries(obj || {}).map(([id, v]) => ({
     id,
-    title: v.judul || v.title || 'Tanpa Judul',
-    img:   v.gambar || v.image || v.img || v.thumbnail || '',
-    date:  v.tanggal || v.date || v.createdAt || v.timestamp || '',
-    tag:   v.kategori || v.category || 'Kegiatan',
-    desc:  stripHtml(v.ringkasan || v.isi || v.konten || v.deskripsi || v.content || '').slice(0, 220)
+    title: v.title || v.judul || 'Tanpa Judul',
+    img:   fixImg(v.img || v.gambar || v.image || v.thumbnail || ''),
+    date:  v.date || v.tanggal || v.createdAt || v.timestamp || '',
+    tag:   v.label || v.kategori || v.category || 'Kegiatan',
+    desc:  stripHtml(v.excerpt || v.ringkasan || v.isi || v.konten || v.content || '').slice(0, 220)
   })).sort((a, b) => toTime(b.date) - toTime(a.date));
 }
 function renderNews(list){
@@ -980,73 +1326,297 @@ function renderNews(list){
     </a>`).join('');
   observeReveal(grid);
 }
-const DEMO_NEWS = [
-  { id:'demo1', title:'Contoh Berita: Hubungkan Firebase untuk menampilkan berita asli', img:'', date:new Date().toISOString(), tag:'Info', desc:'Isi firebaseConfig di bagian script agar berita dari database tampil otomatis di sini.' },
-  { id:'demo2', title:'Workshop Pemrograman Web untuk Mahasiswa Baru', img:'', date:'2025-10-12', tag:'Kegiatan', desc:'Contoh tampilan kartu berita.' },
-  { id:'demo3', title:'Seminar Teknologi & Karier di Dunia IT', img:'', date:'2025-09-20', tag:'Seminar', desc:'Contoh tampilan kartu berita.' }
-];
 
-/* ================= CV ANGKATAN ================= */
-function renderCV(list){
-  const uniq = [...new Set(list.filter(Boolean).map(String))].sort();
-  $('#cvList').innerHTML = uniq.map(t => `
-    <a class="cv-chip" href="${CV_URL(t)}"><span><i class="fa-solid fa-graduation-cap"></i> Angkatan ${esc(t)}</span><i class="fa-solid fa-arrow-right"></i></a>`).join('');
-}
-
-/* ================= KONTEN DINAMIS ================= */
-function applyContent(data){
-  Object.entries(data || {}).forEach(([k, v]) => {
-    $$(`[data-edit="${CSS.escape(k)}"]`).forEach(el => el.textContent = v);
-    $$(`[data-edit-img="${CSS.escape(k)}"]`).forEach(el => el.src = v);
-  });
-}
-
-/* ================= FIREBASE ================= */
-const fbReady = typeof firebase !== 'undefined' && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith('ISI');
-let db = null, auth = null;
-if (fbReady){
+try {
   firebase.initializeApp(firebaseConfig);
+  try { firebase.analytics(); } catch (e) {}
   db = firebase.database();
-  auth = firebase.auth();
-  db.ref(DB_PATH.konten).once('value').then(s => applyContent(s.val())).catch(console.warn);
-  db.ref(DB_PATH.berita).limitToLast(12).on('value', s => renderNews(normalizeNews(s.val())), () => renderNews([]));
-  db.ref(DB_PATH.cv).once('value')
-    .then(s => { const v = s.val(); renderCV(v ? Object.values(v).map(x => typeof x === 'object' ? (x.tahun || x.year) : x) : DEFAULT_CV); })
-    .catch(() => renderCV(DEFAULT_CV));
-  auth.onAuthStateChanged(u => document.body.classList.toggle('is-admin', !!u));
-} else {
-  setTimeout(() => renderNews(DEMO_NEWS), 600);
-  renderCV(DEFAULT_CV);
+  cmsRef = db.ref(CMS_PATH);
+  cmsRef.on('value', s => applyCMS(s.val()), console.warn);
+  db.ref(NEWS_PATH).on('value', s => renderNews(normalizeNews(s.val())), () => renderNews([]));
+} catch (err) {
+  console.warn('Firebase gagal dimuat:', err);
+  renderNews([]);
 }
+
+/* ================= LOGIN ADMIN (admin.js) ================= */
+function refreshAuthUI(){
+  const a = isAdmin();
+  document.body.classList.toggle('is-admin', a);
+  $$('.js-auth').forEach(b => {
+    const icon = a ? 'fa-right-from-bracket' : 'fa-user-shield';
+    b.innerHTML = b.classList.contains('icon-btn') ? `<i class="fa-solid ${icon}"></i>` : `<i class="fa-solid ${icon}"></i> <span>${a ? 'Logout' : 'Admin'}</span>`;
+    b.setAttribute('aria-label', a ? 'Logout' : 'Login admin');
+  });
+  if (!a && editing) setEditing(false);
+  renderCVMenus();
+  if (cvTahun) renderCVGrid();
+}
+function showLoginErr(msg){ const e = $('#loginErr'); e.textContent = msg; e.classList.add('show'); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('.js-auth'); if (!b) return;
+  e.preventDefault();
+  if (isAdmin()){
+    if (confirm('Apakah Anda yakin ingin logout?')){ localStorage.removeItem('adminLoggedIn'); localStorage.removeItem('adminData'); refreshAuthUI(); toast('Berhasil logout'); }
+  } else {
+    $('#loginErr').classList.remove('show'); openModal('loginModal'); setTimeout(() => $('#loginUser').focus(), 200);
+  }
+});
+$('#loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = $('#loginUser').value.trim(), p = $('#loginPass').value;
+  if (!u || !p) return showLoginErr('Username dan password tidak boleh kosong!');
+  const btn = $('#loginBtn'); btn.disabled = true; btn.textContent = 'Memeriksa...';
+  setTimeout(() => {
+    const acc = (typeof adminAccounts !== 'undefined') ? adminAccounts.find(x => x.username === u && x.password === p) : null;
+    if (acc){
+      const { password, ...safe } = acc; // password tidak ikut disimpan
+      localStorage.setItem('adminLoggedIn', 'true');
+      localStorage.setItem('adminData', JSON.stringify(safe));
+      closeModal('loginModal'); $('#loginForm').reset(); refreshAuthUI(); toast('Login berhasil, selamat datang!');
+    } else showLoginErr('Username/Password salah, atau file admin.js gagal dimuat!');
+    btn.disabled = false; btn.textContent = 'Masuk';
+  }, 600);
+});
+addEventListener('storage', e => { if (e.key === 'adminLoggedIn') refreshAuthUI(); });
+
+/* ================= PILIH GAMBAR (URL / UPLOAD IMGBB) ================= */
+function openImgPicker(cb){
+  imgCb = cb;
+  $('#imgOptions').classList.remove('hidden'); $('#imgUrlGroup').classList.add('hidden'); $('#imgLoading').classList.add('hidden');
+  $('#imgUrl').value = ''; openModal('imgModal');
+}
+function finishImg(url){ const cb = imgCb; imgCb = null; closeModal('imgModal'); if (cb) cb(url); }
+$('#imgByUrl').addEventListener('click', () => { $('#imgOptions').classList.add('hidden'); $('#imgUrlGroup').classList.remove('hidden'); $('#imgUrl').focus(); });
+$('#imgByFile').addEventListener('click', () => $('#imgFile').click());
+$('#imgUrlSave').addEventListener('click', () => { const u = $('#imgUrl').value.trim(); if (u) finishImg(fixImg(u)); });
+$('#imgFile').addEventListener('change', async e => {
+  const file = e.target.files[0]; if (!file) return;
+  $('#imgOptions').classList.add('hidden'); $('#imgLoading').classList.remove('hidden');
+  const fd = new FormData(); fd.append('image', file);
+  try {
+    const r = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: fd });
+    const d = await r.json();
+    if (d.success) finishImg(fixImg(d.data.url)); else { toast('Gagal upload gambar'); closeModal('imgModal'); }
+  } catch { toast('Error jaringan saat upload'); closeModal('imgModal'); }
+  e.target.value = '';
+});
 
 /* ================= MODE EDIT ADMIN ================= */
-let editing = false;
 function setEditing(on){
   editing = on;
   document.body.classList.toggle('editing', on);
   $$('[data-edit]').forEach(el => { el.contentEditable = on ? 'true' : 'false'; el.spellcheck = false; });
   $$('.tilt').forEach(el => el.style.transform = '');
 }
-$('#editFab').addEventListener('click', () => { setEditing(true); toast('Mode edit aktif'); });
+$('#editFab').addEventListener('click', () => { if (!isAdmin()) return; setEditing(true); toast('Mode edit aktif'); });
 $('#editCancel').addEventListener('click', () => { setEditing(false); location.reload(); });
 $('#editSave').addEventListener('click', async () => {
-  if (!db) return toast('Firebase belum terhubung');
-  const data = {};
-  $$('[data-edit]').forEach(el => data[el.dataset.edit] = el.textContent.trim());
-  $$('[data-edit-img]').forEach(el => data[el.dataset.editImg] = el.src);
-  try { await db.ref(DB_PATH.konten).update(data); setEditing(false); toast('Perubahan tersimpan ✓'); }
+  if (!cmsRef) return toast('Firebase belum terhubung');
+  const updates = {};
+  $$('[data-edit]').forEach(el => updates['texts/' + el.dataset.edit] = el.textContent.trim());
+  $$('[data-edit-img]').forEach(el => updates['images/' + el.dataset.editImg] = el.src);
+  try { await cmsRef.update(updates); setEditing(false); toast('Perubahan tersimpan ✓'); }
   catch (err) { toast('Gagal menyimpan: ' + err.message); }
 });
 document.addEventListener('click', e => {
   if (!editing) return;
   if (e.target.closest('[data-edit]') && e.target.closest('a')) e.preventDefault();
   const img = e.target.closest('[data-edit-img]');
-  if (img){ e.preventDefault(); const url = prompt('Masukkan URL gambar baru:', img.src); if (url) img.src = url.trim(); }
+  if (img){ e.preventDefault(); openImgPicker(url => { img.src = url; }); }
 });
 document.addEventListener('paste', e => {
   if (!editing || !e.target.closest('[data-edit]')) return;
   e.preventDefault(); document.execCommand('insertText', false, e.clipboardData.getData('text/plain'));
 });
+
+/* ================= CV ANGKATAN (GITHUB API) ================= */
+const GH_API = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/`;
+const hasToken = () => GITHUB_TOKEN && !GITHUB_TOKEN.startsWith('ISI');
+const ghHeaders = () => hasToken() ? { Authorization: `token ${GITHUB_TOKEN}` } : {};
+const safeUrl = u => /^https?:\/\//i.test(u) ? u : 'https://' + String(u).replace(/^\/+/, '');
+
+async function fetchAngkatan(){
+  try {
+    const r = await fetch(GH_API, { headers: ghHeaders(), cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    const files = await r.json();
+    angkatanList = files.filter(f => /^\d{4}\.json$/.test(f.name)).map(f => f.name.slice(0, 4)).sort();
+  } catch (e) { console.warn('Gagal memuat angkatan', e); angkatanList = []; }
+  renderCVMenus();
+}
+function renderCVMenus(){
+  const admin = isAdmin(), has = angkatanList.length;
+  $('#cvList').innerHTML = (has ? angkatanList.map(t => `<a href="#" class="cv-chip" data-cv="${t}"><span><i class="fa-solid fa-graduation-cap"></i> Angkatan ${t}</span><i class="fa-solid fa-arrow-right"></i></a>`).join('')
+    : '<p style="opacity:.6;font-size:.85rem">Belum ada angkatan.</p>')
+    + (admin ? `<a href="#" class="cv-chip" data-cv-new><span><i class="fa-solid fa-plus"></i> Tambah Angkatan</span></a>` : '');
+  $('#cvMenuPC').innerHTML = (has ? angkatanList.map(t => `<a href="#" data-cv="${t}" style="--c:#F5B841"><i class="fa-solid fa-file-lines"></i> Angkatan ${t}</a>`).join('')
+    : '<a href="#" style="--c:#93A1B8;pointer-events:none"><i class="fa-solid fa-circle-info"></i> Belum ada angkatan</a>')
+    + (admin ? `<a href="#" data-cv-new style="--c:#34D399"><i class="fa-solid fa-plus"></i> Tambah Angkatan</a>` : '');
+  $('#cvSheet').innerHTML = angkatanList.map(t => `<a href="#" data-cv="${t}" style="--c:#0F2547"><i class="fa-solid fa-id-card"></i>Angkatan ${t}</a>`).join('')
+    + (admin ? `<a href="#" data-cv-new style="--c:#10B981"><i class="fa-solid fa-plus"></i>Tambah</a>` : '')
+    || '<p style="grid-column:1/-1;font-size:.85rem;color:var(--text-2)">Belum ada angkatan.</p>';
+}
+async function loadCV(tahun){
+  cvTahun = tahun; cvData = [];
+  document.activeElement?.blur();
+  document.body.classList.add('cv-mode');
+  $('#cvYear').textContent = tahun;
+  $('#cvGrid').innerHTML = '<div class="empty"><i class="fa-solid fa-spinner fa-spin"></i><p>Memuat data profil...</p></div>';
+  scrollTo({ top: 0, behavior: 'smooth' });
+  try {
+    const r = await fetch(GH_API + `${tahun}.json`, { headers: ghHeaders(), cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    const f = await r.json();
+    cvSha = f.sha;
+    cvData = JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\s/g, '')))));
+    renderCVGrid();
+  } catch (e) {
+    $('#cvGrid').innerHTML = '<div class="empty"><i class="fa-solid fa-triangle-exclamation"></i><p>Data CV gagal dimuat.</p></div>';
+  }
+}
+function closeCV(){ document.body.classList.remove('cv-mode'); cvTahun = ''; cvData = []; scrollTo({ top: 0, behavior: 'smooth' }); }
+$('#cvBack').addEventListener('click', closeCV);
+// Klik menu anchor (#home, #berita, dst.) saat di halaman CV -> kembali ke beranda dulu
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]:not([href="#"])');
+  if (a && document.body.classList.contains('cv-mode')){ document.body.classList.remove('cv-mode'); cvTahun = ''; }
+}, true);
+document.addEventListener('click', e => {
+  const cv = e.target.closest('[data-cv]');
+  if (cv){ e.preventDefault(); closeSheet(); loadCV(cv.dataset.cv); return; }
+  if (e.target.closest('[data-cv-new]')){ e.preventDefault(); closeSheet(); openAngkatan(); }
+});
+
+function renderCVGrid(){
+  const grid = $('#cvGrid'), admin = isAdmin();
+  if (!cvData.length && !admin){ grid.innerHTML = '<div class="empty"><i class="fa-regular fa-id-card"></i><p>Belum ada profil untuk angkatan ini.</p></div>'; return; }
+  grid.innerHTML = cvData.map((p, i) => {
+    const banner = fixImg(p.bannerProf || cmsData.images[`cv-banner-${cvTahun}-${i}`] || DEFAULT_BANNER);
+    const foto   = fixImg(p.fotoProf   || cmsData.images[`cv-prof-${cvTahun}-${i}`]   || DEFAULT_AVATAR);
+    const s = p.socmed || {};
+    const soc = [['instagram','fa-instagram'],['tiktok','fa-tiktok'],['youtube','fa-youtube']]
+      .filter(([k]) => s[k]).map(([k, ic]) => `<a href="${esc(safeUrl(s[k]))}" target="_blank" rel="noopener" aria-label="${k}"><i class="fa-brands ${ic}"></i></a>`).join('');
+    return `<article class="cv-card reveal" style="--d:${(i % 6) * .05}s">
+      <div class="cv-banner">
+        <img src="${esc(banner)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${DEFAULT_BANNER}'">
+        ${admin ? `<button class="cv-edit" data-cv-edit="${i}" title="Edit profil"><i class="fa-solid fa-pen"></i></button>
+                   <button class="cv-cam" data-cv-img="banner" data-i="${i}" title="Ganti banner"><i class="fa-solid fa-camera"></i></button>` : ''}
+      </div>
+      <div class="cv-avatar">
+        <img src="${esc(foto)}" alt="${esc(p.nama)}" loading="lazy" onerror="this.onerror=null;this.src='${DEFAULT_AVATAR}'">
+        ${admin ? `<button class="cv-cam" data-cv-img="foto" data-i="${i}" title="Ganti foto"><i class="fa-solid fa-camera"></i></button>` : ''}
+      </div>
+      <div class="cv-body">
+        <h3>${esc(p.nama)}</h3>
+        <div class="cv-row"><small>Skills</small><span>${esc(p.skills || '-')}</span></div>
+        <div class="cv-row"><small>Skill Bahasa</small><span>${esc(p.bahasa || '-')}</span></div>
+        <div class="cv-row center"><small>Social Media</small>${soc ? `<div class="cv-soc">${soc}</div>` : '<span class="muted">-Tidak ada/Privasi-</span>'}</div>
+        <div class="cv-row center"><small>Bisnis</small><span>${esc(p.bisnis || '-')}</span></div>
+      </div>
+    </article>`;
+  }).join('') + (admin ? `<button class="cv-add reveal" data-cv-add><span><i class="fa-solid fa-plus"></i></span>Tambahkan Profil</button>` : '');
+  observeReveal(grid);
+}
+$('#cvGrid').addEventListener('click', e => {
+  const img = e.target.closest('[data-cv-img]'), ed = e.target.closest('[data-cv-edit]');
+  if (img){
+    const i = +img.dataset.i, key = img.dataset.cvImg === 'banner' ? 'bannerProf' : 'fotoProf';
+    openImgPicker(async url => {
+      const old = cvData[i][key]; cvData[i][key] = url;
+      if (await saveCV(`Update gambar ${cvData[i].nama}`)){ renderCVGrid(); toast('Gambar tersimpan ✓'); } else cvData[i][key] = old;
+    });
+  } else if (ed) openProfile(+ed.dataset.cvEdit);
+  else if (e.target.closest('[data-cv-add]')) openProfile(-1);
+});
+async function saveCV(message){
+  if (!hasToken()){ toast('Token GitHub belum diisi di konfigurasi'); return false; }
+  try {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(cvData, null, 2))));
+    const r = await fetch(GH_API + `${cvTahun}.json`, {
+      method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, content, sha: cvSha })
+    });
+    const d = await r.json();
+    if (!r.ok){ toast('Gagal menyimpan ke GitHub: ' + (d.message || r.status)); return false; }
+    cvSha = d.content.sha; return true;
+  } catch { toast('Terjadi kesalahan jaringan'); return false; }
+}
+
+/* ----- Tambah angkatan ----- */
+function openAngkatan(){
+  if (!isAdmin()) return;
+  const sel = $('#angkatanSelect');
+  sel.innerHTML = '<option value="">Pilih tahun angkatan...</option>';
+  for (let y = 2022; y <= 2030; y++){
+    const t = String(y), ada = angkatanList.includes(t);
+    sel.insertAdjacentHTML('beforeend', `<option value="${t}" ${ada ? 'disabled' : ''}>${t}${ada ? ' (Sudah ada)' : ''}</option>`);
+  }
+  openModal('angkatanModal');
+}
+$('#angkatanSave').addEventListener('click', async () => {
+  const t = $('#angkatanSelect').value;
+  if (!t) return toast('Harap pilih tahun angkatan!');
+  if (!hasToken()) return toast('Token GitHub belum diisi di konfigurasi');
+  const btn = $('#angkatanSave'); btn.disabled = true; btn.textContent = 'Menyimpan...';
+  try {
+    const r = await fetch(GH_API + `${t}.json`, {
+      method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `Membuat angkatan ${t}`, content: btoa('[]') })
+    });
+    if (r.ok){ closeModal('angkatanModal'); toast(`Angkatan ${t} berhasil dibuat ✓`); await fetchAngkatan(); }
+    else { const d = await r.json(); toast('Gagal: ' + d.message); }
+  } catch { toast('Terjadi kesalahan jaringan'); }
+  btn.disabled = false; btn.textContent = 'Konfirmasi';
+});
+
+/* ----- Tambah / edit / hapus profil ----- */
+const SOC = { ig: ['instagram', 'pfIg'], tt: ['tiktok', 'pfTt'], yt: ['youtube', 'pfYt'] };
+function markPick(){
+  const f = !!$('#pfFoto').value, b = !!$('#pfBanner').value;
+  $('#pfFotoBtn').classList.toggle('ok', f);   $('#pfFotoBtn span').textContent   = f ? 'Foto Terpasang!'   : 'Pasang Foto Profil';
+  $('#pfBannerBtn').classList.toggle('ok', b); $('#pfBannerBtn span').textContent = b ? 'Banner Terpasang!' : 'Pasang Banner';
+}
+function openProfile(i){
+  pfIndex = i; const p = i > -1 ? cvData[i] : {};
+  $('#profilTitle').textContent = i > -1 ? 'Edit Profil' : 'Tambah Profil';
+  $('#pfNama').value = p.nama || ''; $('#pfSkills').value = p.skills || ''; $('#pfBahasa').value = p.bahasa || '';
+  $('#pfBisnis').value = p.bisnis || ''; $('#pfAngkatan').value = p.angkatan || cvTahun;
+  $('#pfFoto').value = p.fotoProf || ''; $('#pfBanner').value = p.bannerProf || ''; markPick();
+  Object.entries(SOC).forEach(([k, [field, id]]) => {
+    const v = p.socmed?.[field] || '';
+    $(`[data-soc="${k}"]`).checked = !!v; $('#' + id).value = v; $('#' + id).classList.toggle('hidden', !v);
+  });
+  $('#pfDelete').classList.toggle('hidden', i < 0);
+  openModal('profilModal');
+}
+$$('[data-soc]').forEach(c => c.addEventListener('change', () => $('#' + SOC[c.dataset.soc][1]).classList.toggle('hidden', !c.checked)));
+$('#pfFotoBtn').addEventListener('click',   () => openImgPicker(url => { $('#pfFoto').value = url;   markPick(); }));
+$('#pfBannerBtn').addEventListener('click', () => openImgPicker(url => { $('#pfBanner').value = url; markPick(); }));
+$('#profilForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const nama = $('#pfNama').value.trim(); if (!nama) return toast('Nama wajib diisi!');
+  const socmed = {};
+  Object.entries(SOC).forEach(([k, [field, id]]) => { const v = $('#' + id).value.trim(); if ($(`[data-soc="${k}"]`).checked && v) socmed[field] = v; });
+  const obj = { nama, skills: $('#pfSkills').value.trim(), bahasa: $('#pfBahasa').value.trim(), angkatan: $('#pfAngkatan').value.trim(),
+                bisnis: $('#pfBisnis').value.trim(), fotoProf: $('#pfFoto').value.trim(), bannerProf: $('#pfBanner').value.trim(), socmed };
+  const backup = JSON.stringify(cvData);
+  if (pfIndex > -1) cvData[pfIndex] = obj; else cvData.push(obj);
+  const btn = $('#pfSave'); btn.disabled = true; btn.textContent = 'Menyimpan...';
+  const ok = await saveCV(`Admin update profil ${nama}`);
+  btn.disabled = false; btn.textContent = 'Simpan';
+  if (ok){ closeModal('profilModal'); renderCVGrid(); toast('Profil berhasil disimpan ✓'); } else cvData = JSON.parse(backup);
+});
+$('#pfDelete').addEventListener('click', async () => {
+  if (pfIndex < 0 || !confirm(`Hapus profil "${cvData[pfIndex].nama}"?`)) return;
+  const backup = JSON.stringify(cvData), nama = cvData[pfIndex].nama;
+  cvData.splice(pfIndex, 1);
+  if (await saveCV(`Admin hapus profil ${nama}`)){ closeModal('profilModal'); renderCVGrid(); toast('Profil dihapus'); } else cvData = JSON.parse(backup);
+});
+
+/* ================= INIT ================= */
+refreshAuthUI();
+fetchAngkatan();
 
 /* ================= SERVICE WORKER ================= */
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
